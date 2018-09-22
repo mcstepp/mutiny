@@ -1,0 +1,83 @@
+// core overrides
+
+$border-color:                      $gray-200;
+
+// Navbar
+
+
+$navbar-brand-width:                200px;
+$navbar-brand-logo:                 url('/images/logo.png');
+$navbar-brand-logo-size:            140px auto;
+
+// Sidebar
+
+$sidebar-width:                     220px;
+$mobile-sidebar-width:              $sidebar-width;
+
+
+// // Body
+// $body-bg: #020002;
+// $body-bg: #222;
+
+// faction colors
+$abnegation:						desaturate(lighten(#522f00, 30%), 50%);
+$amity:								desaturate(lighten(#330, 50%), 50%);
+$candor:							desaturate(lighten(#030, 30%), 50%);
+$dauntless:							desaturate(lighten(#300, 50%), 50%);
+$erudite:							desaturate(lighten(#003, 50%), 50%);
+$factionless:						desaturate(lighten(#033, 30%), 50%);
+
+// $body-color: #69565C;
+
+// // Borders
+// $laravel-border-color: darken($body-bg, 1%);
+// $list-group-border-color: $laravel-border-color;
+
+// $card-border-color: $laravel-border-color;
+
+// // Brands
+// $primary: #7C3257;
+// $info: #4D7C8A;
+// $success: #4A6C6F;
+// $warning: #cbb956;
+// $danger: #AF5D63;
+
+// Typography
+// $font-family-sans-serif: "Open Sans Condensed", sans-serif;
+// $font-size-base: .875rem; // 14px
+// $line-height-base: 1.6;
+// $text-color: #69565C;
+// $header-font-family: "Orbitron", serif;
+
+// // Inputs
+// $input-border-color: lighten($text-color, 40%);
+// $input-placeholder-color: lighten($text-color, 30%);
+
+// // Cards
+// $card-bg: rgba(#1f231c, 0.5);
+
+// // Lists
+// $list-group-bg: lighten($body-bg, 5%);
+
+// // Breadcrumbs
+
+// $breadcrumb-bg: $card-bg;
+// // $breadcrumb-padding-x: 0;
+
+// // $breadcrumb-divider-color:          $gray-600 !default;
+// // $breadcrumb-active-color:           $gray-600 !default;
+// // $breadcrumb-divider:                "/" !default;
+
+// /* 
+//  * Custom Variables
+//  *
+//  * Not Bootstrap Overrides
+//  */
+
+
+//  // Forums
+//  $forum-header-color: lighten($primary, 10%);
+//  $forum-description-color: lighten($info, 35%);
+
+//  // Navbar
+// $navbar-height: 50px;

@@ -1,0 +1,168 @@
+// Bootstrap overrides
+
+//
+// Color system
+//
+
+$white:                           #fff;
+$gray-100:                        #f8f9fa;
+$gray-200:                        #d1d4d7;
+$gray-300:                        #818a91;
+$gray-400:                        #869fac;
+$gray-500:                        #678898;
+$gray-600:                        #9fa1a3;
+$gray-700:                        #3e515b;
+$gray-800:                        #2a2c36;
+$gray-900:                        #151b1e;
+$black:                           #000 !default;
+
+$blue:                            #20a8d8;
+$indigo:                          #6610f2 !default;
+$purple:                          #6f42c1 !default;
+$pink:                            #e83e8c !default;
+$red:                             #f86c6b;
+$orange:                          #f8cb00;
+$yellow:                          #ffc107 !default;
+$green:                           #4dbd74;
+$teal:                            #20c997 !default;
+$cyan:                            #63c2de;
+$default:                         #b24653;
+$sidebar:                         #020002;
+
+$colors: (
+  blue:                           $blue,
+  indigo:                         $indigo,
+  default:                        $purple,
+  pink:                           $pink,
+  red:                            $red,
+  orange:                         $orange,
+  yellow:                         $yellow,
+  green:                          $green,
+  teal:                           $teal,
+  cyan:                           $cyan,
+  white:                          $white,
+  gray:                           $gray-600,
+  gray-dark:                      $gray-800
+);
+
+$theme-colors: (
+  primary:                        $default,
+  secondary:                      lighten($sidebar, 5%),
+  success:                        $green,
+  info:                           $cyan,
+  warning:                        $orange,
+  danger:                         $red,
+  light:                          $gray-100,
+  dark:                           darken($gray-900, 5%),
+
+  blue:                           $blue,
+  indigo:                         $indigo,
+  purple:                         $purple,
+  pink:                           $pink,
+  red:                            $red,
+  orange:                         $orange,
+  yellow:                         $yellow,
+  green:                          $green,
+  teal:                           $teal,
+  cyan:                           $cyan,
+
+  gray-100:                       $gray-100,
+  gray-200:                       $gray-200,
+  gray-300:                       $gray-300,
+  gray-400:                       $gray-400,
+  gray-500:                       $gray-500,
+  gray-600:                       $gray-600,
+  gray-700:                       $gray-700,
+  gray-800:                       $gray-800,
+  gray-900:                       $gray-900
+);
+
+// Options
+//
+// Quickly modify global styling by enabling or disabling optional features.
+
+$enable-transitions:              true;
+$enable-rounded:                  false;
+
+// Body
+//
+// Settings for the `<body>` element.
+
+$body-bg:                         #020002;
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+
+$font-size-base:                  0.875rem;
+$font-family-sans-serif:          "Raleway", sans-serif;
+$line-height-base:                1.6;
+$header-font-family:              "Orbitron", serif;
+
+// Breadcrumbs
+
+$breadcrumb-bg:                   $body-bg;
+$breadcrumb-margin-bottom:        1.5rem;
+
+// Cards
+
+$card-border-color:               $gray-200;
+$card-cap-bg:                     $gray-100;
+
+// Dropdowns
+
+$dropdown-padding-y:              0;
+$dropdown-border-color:           $gray-200;
+$dropdown-divider-bg:             $gray-100;
+
+// Buttons
+
+$btn-secondary-border:            $gray-300;
+
+// Progress bars
+
+$progress-bg:                     $gray-100;
+
+// Tables
+
+$table-bg-accent:                 $gray-100;
+$table-bg-hover:                  $gray-100;
+
+// Forms
+
+$input-group-addon-bg:            $gray-100;
+$input-border-color:              $gray-200;
+$input-group-addon-border-color:  $gray-200;
+
+//== List group
+//
+//##
+
+//** Background color on `.list-group-item`
+$list-group-bg:                 $gray-800 !default;
+//** `.list-group-item` border color
+$list-group-border:             $gray-900 !default;
+//** List group border radius
+// $list-group-border-radius:      $border-radius-base !default;
+
+// //** Background color of single list items on hover
+// $list-group-hover-bg:           #f5f5f5 !default;
+// //** Text color of active list items
+// $list-group-active-color:       $component-active-color !default;
+// //** Background color of active list items
+// $list-group-active-bg:          $component-active-bg !default;
+// //** Border color of active list elements
+// $list-group-active-border:      $list-group-active-bg !default;
+// //** Text color for content within active list items
+// $list-group-active-text-color:  lighten($list-group-active-bg, 40%) !default;
+
+// //** Text color of disabled list items
+// $list-group-disabled-color:      $gray-light !default;
+// //** Background color of disabled list items
+// $list-group-disabled-bg:         $gray-lighter !default;
+// //** Text color for content within disabled list items
+// $list-group-disabled-text-color: $list-group-disabled-color !default;
+
+$list-group-link-color:         #e6a9b0 !default;
+$list-group-link-hover-color:   lighten($list-group-link-color, 10%) !default;
+// $list-group-link-heading-color: #333 !default;

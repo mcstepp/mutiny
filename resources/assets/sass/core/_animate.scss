@@ -1,0 +1,53 @@
+// scss-lint:disable all
+.animated {
+  animation-duration: 1s;
+  // animation-fill-mode: both;
+}
+
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+  animation-duration: 2s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes flicker 
+{ 0% { opacity: 0.25; } 
+  5% { opacity: 0.25; } 
+  6% { opacity: 1; } 
+  11% { opacity: .4; } 
+  11.25% { opacity: .6; } 
+  11.5% { opacity: .4; } 
+  18% { opacity: 1; } 
+  18.5% { opacity: .9; } 
+  22% { opacity: 1; } 
+  38.5% { opacity: 1; } 
+  39% { opacity: .8; } 
+  42% { opacity: 1; } 
+  60% { opacity: 1; } 
+  60.5% { opacity: 0.25; } 
+  62% { opacity: 0.25; } 
+  63% { opacity: .2; } 
+  63.25% { opacity: 0.25; } 
+  65% { opacity: 1; } 
+  73% { opacity: 1; } 
+  75% { opacity: .8; } 
+  79% { opacity: 1; } 
+  100% { opacity: 1; } 
+} 
+

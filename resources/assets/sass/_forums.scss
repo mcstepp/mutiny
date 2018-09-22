@@ -1,0 +1,123 @@
+.m-forum-metadata {
+	.meta-label {
+		font-weight: bold;
+	}
+}
+
+.m-threads {
+	margin: 8px 16px;
+}
+
+// .m-thread-metadata,
+// .m-thread {
+
+// 	border-radius: 8px;
+
+// 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#42275a+0,734b6d+100&0.95+0,0.45+100 */
+// 	background: -moz-linear-gradient(left, rgba(66,39,90,0.35) 0%, rgba(115,75,109,0.1) 100%); /* FF3.6-15 */
+// 	background: -webkit-linear-gradient(left, rgba(66,39,90,35) 0%,rgba(115,75,109,0.1) 100%); /* Chrome10-25,Safari5.1-6 */
+// 	background: linear-gradient(to right, rgba(66,39,90,0.35) 0%,rgba(115,75,109,0.1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+// 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f242275a', endColorstr='#73734b6d',GradientType=1 ); /* IE6-9 */
+	
+// }
+
+.m-thread {
+	.card-top {
+
+		.tags {
+			font-style: italic;
+		}
+	}
+}
+
+.m-thread,
+.m-thread-metadata {
+	a {
+		text-decoration: none;
+		color: #fff;
+	}
+}
+
+.m-thread-participants {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.m-thread-participant {
+	flex: 0 1 auto;
+	margin: 3px;
+	margin-left: 0;
+}
+
+.m-thread-last-post,
+.m-thread-participant img {
+	border-radius: 50%;
+}
+
+.m-thread-post {
+	.m-miniprofile {
+		.author-metadata {
+			text-align: center;
+			width: 100%;
+		}
+
+		.author-badges {
+			display: flex;
+			align-items: center;
+		}
+
+		.author-avatar {
+			margin: 16px auto;
+		}
+	}
+
+	.m-thread-post-card {
+		width: 100%;
+	}
+}
+
+.m-thread-item-container {
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+
+
+	.thread-item {
+		flex: 1 1 auto;
+		border: 1px solid;
+	}
+
+	h3 {
+		margin: 0;
+	}
+}
+
+.m-author-container {
+	display: flex;
+	justify-content: flex-end;
+	background-color: red;
+	align-items: center;
+
+	.author-container-item {
+		flex: 1 1 auto;
+		border: 1px solid;
+		margin: 8px;
+	}
+
+	.author-avatar-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.author-avatar {
+		border-radius: 50%;
+		max-width: 50px;
+		max-height: 50px;
+	}
+
+}
+
+.navbar-collapse {
+	background-color: $body-bg;
+}

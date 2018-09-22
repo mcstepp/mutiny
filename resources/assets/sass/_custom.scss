@@ -1,0 +1,182 @@
+// Here you can add other styles
+
+.page-header {
+  padding: $spacer 0;
+  background: $breadcrumb-bg;
+  border-bottom: 1px solid $border-color;
+
+  h1 {
+    margin: 0;
+  }
+
+  .chart-wrapper {
+    max-width: 140px;
+    margin: 0 auto;
+    overflow: visible;
+  }
+
+  .charts .title {
+    margin-top: 2px;
+  }
+}
+
+.sidebar {
+  .sidebar-header {
+
+    .img-avatar {
+      width: 80px;
+      margin: 20px auto 10px;
+      border-radius: 50em;
+    }
+
+    > .btn-group {
+      margin-top: 10px;
+    }
+
+    .btn-link {
+      color: $text-muted;
+
+      &:hover {
+        color: $sidebar-color;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+ .m-header {
+   width: 100%;
+   height: 400px;
+   background-image: url('/images/mutiny_header_01.png');
+   // background-image: url(https://k.nickpic.host/vcQ3uA.png);
+   background-size: cover;
+   background-position: center center;
+   //background-attachment: fixed;
+   background-repeat: no-repeat;
+ }
+
+ .m-wrapper {
+    padding-right: 0;
+    padding-left: 0;
+    color: $gray-100;
+ }
+
+ .m-fancy-header {
+  font-family: Orbitron, serif;
+ }
+
+ .m-fancy-title {
+  font-family: "Oswald", sans-serif;
+ }
+
+ .m-card {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#42275a+0,734b6d+100&0.95+0,0.45+100 */
+  background: -moz-linear-gradient(135deg, rgba(66,39,90,0.35) 0%, rgba(115,75,109,0.1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(135deg, rgba(66,39,90,35) 0%,rgba(115,75,109,0.1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, rgba(66,39,90,0.35) 0%,rgba(115,75,109,0.1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f242275a', endColorstr='#73734b6d',GradientType=1 ); /* IE6-9 */
+
+  //     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#42275a+0,734b6d+100&0.95+0,0.45+100 */
+  // background: -moz-linear-gradient(135deg, rgba($factionless,0.35) 0%, rgba(115,75,109,0.1) 100%); /* FF3.6-15 */
+  // background: -webkit-linear-gradient(135deg, rgba($factionless,0.35) 0%,rgba(115,75,109,0.1) 100%); /* Chrome10-25,Safari5.1-6 */
+  // background: linear-gradient(135deg, rgba($factionless,0.35) 0%,rgba(115,75,109,0.1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f242275a', endColorstr='#73734b6d',GradientType=1 ); /* IE6-9 */
+
+  border-bottom: 1px solid rgba(#734b6d, 0.5);
+  border-top: 1px solid rgba(66,39,90,0.35);
+  border-right: 1px solid rgba(66,39,90,0.35);
+  border-left: 0;
+  box-shadow: -2px 1px 5px rgba($default, 0.25);
+
+
+  .card-header, .card-footer {
+    background: transparent;
+  }
+
+  .card-top, .card-body {
+    padding: 16px;
+  }
+ }
+
+ .neon-default {
+    color: #fff;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #303,
+        0 0 40px #303
+ }
+
+ .glow-default {
+  border: 1px solid rgba(115,75,109,0.45);
+  box-shadow:
+        0 0 5px rgba(66,39,90,0.65),
+        0 0 10px rgba(66,39,90,0.65),
+        0 0 20px rgba(115,75,109,0.45),
+        0 0 40px rgba(115,75,109,0.45)
+ }
+
+ .flicker:hover {
+  -webkit-animation: flicker 20s linear infinite;
+  -moz-animation: flicker 20s linear infinite;
+  animation: flicker 20s linear infinite;
+ }
+
+ // Faction colors
+.abnegation-bg,
+.amity-bg,
+.candor-bg,
+.dauntless-bg,
+.erudite-bg,
+.factionless-bg {
+  color: #fff;
+}
+
+ .abnegation {
+  color: $abnegation !important;
+ }
+ .abnegation-bg {
+  background-color: $abnegation !important;
+ }
+
+ .amity {
+  color: $amity !important;
+ }
+ .amity-bg {
+  background-color: $amity !important;
+ }
+
+ .candor {
+  color: $candor !important;
+ }
+ .candor-bg {
+  background-color: $candor !important;
+ }
+
+ .dauntless {
+  color: $dauntless !important;
+ }
+ .dauntless-bg {
+  background-color: $dauntless !important;
+ }
+
+ .erudite {
+  color: $erudite !important;
+ }
+.erudite-bg {
+  background-color: $erudite !important;
+}
+
+ .factionless {
+  color: $factionless !important;
+ }
+ .factionless-bg {
+  background-color: $factionless !important;
+ }
+
+.list-group-item {
+  color: $list-group-link-color;
+  &:hover {
+    color: $list-group-link-hover-color;
+  }
+}

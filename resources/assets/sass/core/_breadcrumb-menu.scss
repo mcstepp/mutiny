@@ -1,0 +1,43 @@
+.breadcrumb-menu {
+  margin-left: auto;
+
+  &::before {
+    display: none;
+  }
+
+  .btn-group {
+    vertical-align: top;
+  }
+
+  .btn {
+    padding: 0 $input-btn-padding-x;
+    color: $text-muted;
+    vertical-align: top;
+    border: 0;
+
+    &:hover, &.active {
+      color: #fff;
+      text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #303,
+        0 0 40px #303
+    }
+  }
+
+  .open {
+    .btn {
+    color: #fff;
+    text-shadow:
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px #303,
+        0 0 40px #303
+    }
+  }
+
+  .dropdown-menu {
+    min-width: 180px;
+    line-height: $line-height-base;
+  }
+}
