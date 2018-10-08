@@ -1,6 +1,6 @@
 <template>
     <div class="form-group row">
-        <label for="body" class="control-label col-sm-2">Post As:</label>
+        <label class="control-label col-sm-2">Post As:</label>
         <div class="col-sm-10">
             <input type="hidden" name="author_type" v-model="author_type">
             <label>
@@ -12,7 +12,7 @@
                        v-model="author_id">
                 {{ user.username }}
             </label>
-            <template v-for="character in listJson">
+            <template v-for="character in charactersJson">
                 <label>
                     <input type="radio"
                            name="author_id"
@@ -74,7 +74,7 @@
         },
 
         computed: {
-            listJson() {
+            charactersJson() {
                 return this.characters;
             }
         }

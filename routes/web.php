@@ -32,3 +32,4 @@ Route::get('/f/{forum}/create', 'Forums\ForumThreadController@create')->name('cr
 Route::post('/f/{forum}/create', 'Forums\ForumThreadController@store');
 
 Route::get('/f/{forum}/t/{thread}', 'Forums\ThreadPostController@index')->name('view-thread');
+Route::post('/f/{forum}/t/{thread}', 'Forums\ThreadPostController@store')->name('reply');

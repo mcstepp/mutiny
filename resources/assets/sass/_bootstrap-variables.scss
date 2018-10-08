@@ -4,16 +4,27 @@
 // Color system
 //
 
+// Mutiny Palettes
+$mutiny_purple_alt: #2A1225;
+$mutiny_purple:     #251a27;
+//$mutiny_darkpurple: #170A15;
+$mutiny_darkpurple: darken($mutiny_purple, 5%);
+$mutiny_pink_alt: #b24653;
+$mutiny_pink: #9A3F3D;
+$mutiny_darkpink: darken($mutiny_pink, 5%);
+
+
+
 $white:                           #fff;
-$gray-100:                        #f8f9fa;
-$gray-200:                        #d1d4d7;
-$gray-300:                        #818a91;
-$gray-400:                        #869fac;
-$gray-500:                        #678898;
-$gray-600:                        #9fa1a3;
-$gray-700:                        #3e515b;
-$gray-800:                        #2a2c36;
-$gray-900:                        #151b1e;
+$gray-100:                        #999999;
+$gray-200:                        #888888;
+$gray-300:                        #777777;
+$gray-400:                        #666666;
+$gray-500:                        #555555;
+$gray-600:                        #444444;
+$gray-700:                        #333333;
+$gray-800:                        #222222;
+$gray-900:                        #111111;
 $black:                           #000 !default;
 
 $blue:                            #20a8d8;
@@ -45,11 +56,14 @@ $colors: (
   gray-dark:                      $gray-800
 );
 
+$info: darken($teal, 25%);
+$primary: #6C4356;
+
 $theme-colors: (
-  primary:                        $default,
-  secondary:                      lighten($sidebar, 5%),
+  primary:                        $primary,
+  secondary:                      $mutiny_pink,
   success:                        $green,
-  info:                           $cyan,
+  info:                           $info,
   warning:                        $orange,
   danger:                         $red,
   light:                          $gray-100,
@@ -88,16 +102,21 @@ $enable-rounded:                  false;
 //
 // Settings for the `<body>` element.
 
-$body-bg:                         #020002;
+//$body-bg:                         #020002;
+$body-bg:                         #000;
+$body-color:                      #F4F3F4;
+$link-color:                      $mutiny_pink;
+$footer-bg:                       $body-bg;
 
-// Typography
+  // Typography
 //
 // Font, line-height, and color for body text, headings, and more.
 
 $font-size-base:                  0.875rem;
-$font-family-sans-serif:          "Raleway", sans-serif;
 $line-height-base:                1.6;
+$font-family-sans-serif:          "Raleway", sans-serif;
 $header-font-family:              "Orbitron", serif;
+$title-font-family:               "Oswald", sans-serif;
 
 // Breadcrumbs
 
@@ -110,10 +129,32 @@ $card-border-color:               $gray-200;
 $card-cap-bg:                     $gray-100;
 
 // Dropdowns
+//
+// Dropdown menu container and contents.
 
-$dropdown-padding-y:              0;
-$dropdown-border-color:           $gray-200;
-$dropdown-divider-bg:             $gray-100;
+//$dropdown-min-width:                10rem;
+$dropdown-padding-y:                0;
+//$dropdown-spacer:                   .125rem;
+$dropdown-bg:                       $mutiny_darkpurple;
+$dropdown-border-color:             $mutiny_purple;
+//$dropdown-border-radius:            $border-radius;
+//$dropdown-border-width:             $border-width;
+$dropdown-divider-bg:               $mutiny_purple;
+//$dropdown-box-shadow:               0 .5rem 1rem rgba($black, .175) !default;
+
+$dropdown-link-color:               $gray-100;
+$dropdown-link-hover-color:         $white;
+$dropdown-link-hover-bg:            $mutiny_pink;
+
+//$dropdown-link-active-color:        $component-active-color !default;
+//$dropdown-link-active-bg:           $component-active-bg !default;
+
+//$dropdown-link-disabled-color:      $gray-600 !default;
+
+//$dropdown-item-padding-y:           .25rem !default;
+//$dropdown-item-padding-x:           1.5rem !default;
+
+$dropdown-header-color:             $gray-100;
 
 // Buttons
 
@@ -166,3 +207,26 @@ $list-group-border:             $gray-900 !default;
 $list-group-link-color:         #e6a9b0 !default;
 $list-group-link-hover-color:   lighten($list-group-link-color, 10%) !default;
 // $list-group-link-heading-color: #333 !default;
+
+
+$border-color:                      $gray-200;
+
+// Navbar
+
+
+$navbar-brand-width:                220px;
+$navbar-brand-logo:                 url('/images/logo.png');
+$navbar-brand-logo-size:            220px auto;
+$navbar-color:                        $gray-100;
+$navbar-hover-color:                  $mutiny_pink;
+$navbar-active-color:                 $mutiny_pink;
+$navbar-disabled-color:               $gray-300;
+
+// Sidebar
+
+$sidebar-width:                     220px;
+$mobile-sidebar-width:              $sidebar-width;
+$sidebar-bg:                        $mutiny_purple;
+$sidebar-nav-link-hover-bg:         $mutiny_pink;
+$sidebar-nav-link-icon-color:       $body-color;
+

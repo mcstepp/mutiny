@@ -2,6 +2,7 @@
 
 namespace App\Models\Forum;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\RecordsActivity;
@@ -9,6 +10,7 @@ use App\Traits\RecordsActivity;
 class Post extends Model
 {
     use SoftDeletes, RecordsActivity;
+    use Cachable;
     //use Favoritable, RecordsActivity;
 
     protected $guarded = [];

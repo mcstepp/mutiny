@@ -3016,7 +3016,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     computed: {
-        listJson: function listJson() {
+        charactersJson: function charactersJson() {
             return this.characters;
         }
     }
@@ -3033,11 +3033,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "form-group row" }, [
-    _c(
-      "label",
-      { staticClass: "control-label col-sm-2", attrs: { for: "body" } },
-      [_vm._v("Post As:")]
-    ),
+    _c("label", { staticClass: "control-label col-sm-2" }, [
+      _vm._v("Post As:")
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -3092,7 +3090,7 @@ var render = function() {
           _vm._v("\n            " + _vm._s(_vm.user.username) + "\n        ")
         ]),
         _vm._v(" "),
-        _vm._l(_vm.listJson, function(character) {
+        _vm._l(_vm.charactersJson, function(character) {
           return [
             _c("label", [
               _c("input", {
