@@ -31,10 +31,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
    // compile your scss/css
    .sass('resources/assets/sass/app.scss', 'public/css')
    .styles([
-   		'resources/assets/css/vendor/icons/flag-icon.min.css',
-   		'resources/assets/css/vendor/icons/simple-line-icons.min.css',
-   	], 'public/css/icons.css')
-   .styles([
    	'resources/assets/css/vendor/daterangepicker.min.css',
    	'resources/assets/css/vendor/gauge.min.css',
    	'resources/assets/css/vendor/toastr.min.css',

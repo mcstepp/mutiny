@@ -2,6 +2,7 @@
 
 namespace App\Models\Forum;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Forum\Category;
 use App\Models\Forum\Thread;
@@ -9,6 +10,8 @@ use App\Models\Forum\Post;
 
 class Forum extends Model
 {
+    use Cachable;
+    
     protected $fillable = [
         'category_id', 
         'name', 

@@ -48,7 +48,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'code' => 'bail|required',
+            //'code' => 'bail|required',
             'g-recaptcha-response' => 'bail|required|captcha',
             'username' => 'required|string|max:255|unique:users',
             'alias' => 'required',
@@ -65,19 +65,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::create([
+        return User::create([
             'username' => $data['username'],
             'alias' => $data['alias'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
 
-        $invitation = Invitation::where('code', $data['code'])->get();
-        $invitation->update([
-            'user_id' => $invitation->id
-        ])
-
-        return Invitation::
+//        $invitation = Invitation::where('code', $data['code'])->get();
+//        $invitation->update([
+//            'user_id' => $invitation->id
+//        ]);
+//
+//        return Invitation::
     }
 
 

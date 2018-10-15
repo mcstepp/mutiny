@@ -2,6 +2,7 @@
 
 namespace App\Models\Character;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Models\Character\Rank;
@@ -9,6 +10,7 @@ use App\Models\Character\Faction;
 
 class PendingCharacter extends Model
 {
+    use Cachable;
     /**
      * The table associated with the model.
      *

@@ -1,0 +1,12 @@
+.sidebar .sidebar-header .m-sidebar-character .btn-link {
+  color: $body-color;
+  border: 0;
+}
+
+.m-sidebar-character {
+  a {
+    &:link, &:visited {
+      color: $body-color;
+    }
+  }
+}

@@ -3,6 +3,7 @@
 namespace App\Models\Forum;
 
 use App\Filters\ThreadFilters;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,6 +14,7 @@ class Thread extends Model
 {
     //use RecordsActivity;
     use SoftDeletes, RecordsActivity;
+    use Cachable;
 
     /**
      * Override mass assignment protection

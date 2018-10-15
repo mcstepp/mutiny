@@ -22,12 +22,14 @@
 // }
 
 .m-thread {
-	.card-top {
-
-		.tags {
-			font-style: italic;
-		}
-	}
+	//.card-top {
+    //
+	//	.tags {
+	//		font-style: italic;
+	//	}
+	//}
+    background-color: $mutiny_purple;
+	border: 1px solid $mutiny_purple_alt;
 }
 
 .m-thread,
@@ -55,24 +57,44 @@
 }
 
 .m-thread-post {
-	.m-miniprofile {
-		.author-metadata {
-			text-align: center;
-			width: 100%;
+
+	.miniprofile {
+		.m-traits {
+			//background-color: blue;
+			margin: 1em;
+		}
+		.m-trait {
+			text-transform: uppercase;
+			color: $gray-100;
+			font-style: italic;
 		}
 
-		.author-badges {
-			display: flex;
-			align-items: center;
-		}
+		.m-author-meta {
+			margin: 1em;
 
-		.author-avatar {
-			margin: 16px auto;
+			.m-author {
+				letter-spacing: 1px;
+				display: inline-block;
+
+				a {
+					&:hover {
+						color: inherit;
+						text-decoration: none;
+					}
+
+				}
+			}
 		}
 	}
 
-	.m-thread-post-card {
-		width: 100%;
+	.m-post {
+		padding: 2em;
+		//margin: 0 auto;
+	}
+
+	.post-metadata {
+		font-family: $title-font-family;
+		text-transform: uppercase;
 	}
 }
 
@@ -90,32 +112,6 @@
 	h3 {
 		margin: 0;
 	}
-}
-
-.m-author-container {
-	display: flex;
-	justify-content: flex-end;
-	background-color: red;
-	align-items: center;
-
-	.author-container-item {
-		flex: 1 1 auto;
-		border: 1px solid;
-		margin: 8px;
-	}
-
-	.author-avatar-container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.author-avatar {
-		border-radius: 50%;
-		max-width: 50px;
-		max-height: 50px;
-	}
-
 }
 
 .navbar-collapse {

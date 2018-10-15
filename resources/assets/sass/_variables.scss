@@ -1,33 +1,18 @@
-// core overrides
-
-$border-color:                      $gray-200;
-
-// Navbar
-
-
-$navbar-brand-width:                200px;
-$navbar-brand-logo:                 url('/images/logo.png');
-$navbar-brand-logo-size:            140px auto;
-
-// Sidebar
-
-$sidebar-width:                     220px;
-$mobile-sidebar-width:              $sidebar-width;
-
-
-// // Body
-// $body-bg: #020002;
-// $body-bg: #222;
+ /*
+  * Custom Variables
+  *
+  * Not Bootstrap Overrides
+  */
 
 // faction colors
-$abnegation:						desaturate(lighten(#522f00, 30%), 50%);
-$amity:								desaturate(lighten(#330, 50%), 50%);
-$candor:							desaturate(lighten(#030, 30%), 50%);
-$dauntless:							desaturate(lighten(#300, 50%), 50%);
-$erudite:							desaturate(lighten(#003, 50%), 50%);
-$factionless:						desaturate(lighten(#033, 30%), 50%);
+$abnegation:						desaturate(lighten(#522f00, 30%), 75%);
+$amity:								desaturate(lighten(#330, 50%), 75%);
+$candor:							desaturate(lighten(#030, 30%), 75%);
+$dauntless:							desaturate(lighten(#300, 50%), 75%);
+$erudite:							desaturate(lighten(#003, 50%), 75%);
+$factionless:						desaturate(lighten(#033, 30%), 75%);
 
-// $body-color: #69565C;
+$fa-font-path: '/fonts/vendor/@fortawesome/fontawesome-free';
 
 // // Borders
 // $laravel-border-color: darken($body-bg, 1%);
@@ -67,12 +52,6 @@ $factionless:						desaturate(lighten(#033, 30%), 50%);
 // // $breadcrumb-divider-color:          $gray-600 !default;
 // // $breadcrumb-active-color:           $gray-600 !default;
 // // $breadcrumb-divider:                "/" !default;
-
-// /* 
-//  * Custom Variables
-//  *
-//  * Not Bootstrap Overrides
-//  */
 
 
 //  // Forums

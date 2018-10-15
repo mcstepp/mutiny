@@ -3,9 +3,11 @@
 namespace App\Models\Character;
 
 use App\Models\Character\PendingCharacter;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
 class Character extends PendingCharacter
 {
+    use Cachable;
 
     protected $table = 'characters';
 

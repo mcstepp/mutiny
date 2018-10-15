@@ -1,5 +1,12 @@
 // Here you can add other styles
 
+// Utilities
+.bg-mutinydark {
+  background-color: $mutiny_darkpurple !important;
+}
+
+// Other
+
 .page-header {
   padding: $spacer 0;
   background: $breadcrumb-bg;
@@ -55,39 +62,51 @@
    background-repeat: no-repeat;
  }
 
+ .m-jumbotron {
+     background-image: url('/images/mutiny_header_01.png');
+     min-height: 400px;
+     // background-image: url(https://k.nickpic.host/vcQ3uA.png);
+     background-size: cover;
+     background-position: center center;
+     //background-attachment: fixed;
+     background-repeat: no-repeat;
+
+ }
+
  .m-wrapper {
     padding-right: 0;
     padding-left: 0;
-    color: $gray-100;
+    color: #cccccc;
  }
 
  .m-fancy-header {
-  font-family: Orbitron, serif;
+  font-family: $header-font-family;
  }
 
  .m-fancy-title {
-  font-family: "Oswald", sans-serif;
+  font-family: $title-font-family;
  }
 
  .m-card {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#42275a+0,734b6d+100&0.95+0,0.45+100 */
-  background: -moz-linear-gradient(135deg, rgba(66,39,90,0.35) 0%, rgba(115,75,109,0.1) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(135deg, rgba(66,39,90,35) 0%,rgba(115,75,109,0.1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg, rgba(66,39,90,0.35) 0%,rgba(115,75,109,0.1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f242275a', endColorstr='#73734b6d',GradientType=1 ); /* IE6-9 */
-
-  //     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#42275a+0,734b6d+100&0.95+0,0.45+100 */
-  // background: -moz-linear-gradient(135deg, rgba($factionless,0.35) 0%, rgba(115,75,109,0.1) 100%); /* FF3.6-15 */
-  // background: -webkit-linear-gradient(135deg, rgba($factionless,0.35) 0%,rgba(115,75,109,0.1) 100%); /* Chrome10-25,Safari5.1-6 */
-  // background: linear-gradient(135deg, rgba($factionless,0.35) 0%,rgba(115,75,109,0.1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f242275a', endColorstr='#73734b6d',GradientType=1 ); /* IE6-9 */
-
-  border-bottom: 1px solid rgba(#734b6d, 0.5);
-  border-top: 1px solid rgba(66,39,90,0.35);
-  border-right: 1px solid rgba(66,39,90,0.35);
-  border-left: 0;
-  box-shadow: -2px 1px 5px rgba($default, 0.25);
-
+  //background: -moz-linear-gradient(135deg, rgba(66,39,90,0.35) 0%, rgba(115,75,109,0.1) 100%); /* FF3.6-15 */
+  //background: -webkit-linear-gradient(135deg, rgba(66,39,90,35) 0%,rgba(115,75,109,0.1) 100%); /* Chrome10-25,Safari5.1-6 */
+  //background: linear-gradient(135deg, rgba(66,39,90,0.35) 0%,rgba(115,75,109,0.1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f242275a', endColorstr='#73734b6d',GradientType=1 ); /* IE6-9 */
+  //
+  ////     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#42275a+0,734b6d+100&0.95+0,0.45+100 */
+  //// background: -moz-linear-gradient(135deg, rgba($factionless,0.35) 0%, rgba(115,75,109,0.1) 100%); /* FF3.6-15 */
+  //// background: -webkit-linear-gradient(135deg, rgba($factionless,0.35) 0%,rgba(115,75,109,0.1) 100%); /* Chrome10-25,Safari5.1-6 */
+  //// background: linear-gradient(135deg, rgba($factionless,0.35) 0%,rgba(115,75,109,0.1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  //// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f242275a', endColorstr='#73734b6d',GradientType=1 ); /* IE6-9 */
+  //
+  //border-bottom: 1px solid rgba(#734b6d, 0.5);
+  //border-top: 1px solid rgba(66,39,90,0.35);
+  //border-right: 1px solid rgba(66,39,90,0.35);
+  //border-left: 0;
+  //box-shadow: -2px 1px 5px rgba($default, 0.25);
+   background-color: $mutiny_purple;
+   border: 1px solid $mutiny_purple_alt;
 
   .card-header, .card-footer {
     background: transparent;
@@ -134,6 +153,10 @@
 
  .abnegation {
   color: $abnegation !important;
+   border-color: $abnegation !important;
+ }
+ .abnegation-border {
+   border-color: $abnegation !important;
  }
  .abnegation-bg {
   background-color: $abnegation !important;
@@ -141,42 +164,95 @@
 
  .amity {
   color: $amity !important;
+   border-color: $amity !important;
  }
  .amity-bg {
   background-color: $amity !important;
  }
+.amity-border {
+  border-color: $amity !important;
+}
 
  .candor {
-  color: $candor !important;
+   color: $candor !important;
+   border-color: $candor !important;
  }
  .candor-bg {
   background-color: $candor !important;
  }
+.candor-border {
+  border-color: $candor !important;
+}
 
  .dauntless {
   color: $dauntless !important;
+   border-color: $dauntless !important;
  }
  .dauntless-bg {
   background-color: $dauntless !important;
  }
+.dauntless-border {
+  border-color: $dauntless !important;
+}
 
  .erudite {
-  color: $erudite !important;
+   color: $erudite !important;
+   border-color: $erudite !important;
  }
 .erudite-bg {
   background-color: $erudite !important;
 }
+.erudite-border {
+  border-color: $erudite !important;
+}
 
  .factionless {
-  color: $factionless !important;
+   color: $factionless !important;
+   border-color: $factionless !important;
  }
  .factionless-bg {
   background-color: $factionless !important;
  }
+.factionless-border {
+  border-color: $factionless !important;
+}
 
 .list-group-item {
   color: $list-group-link-color;
   &:hover {
     color: $list-group-link-hover-color;
+  }
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  opacity: 0.25;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+}
+
+// Pagination
+
+.pagination {
+  font-family: $title-font-family;
+  margin: 3rem;
+  justify-content: center;
+
+  li {
+
+    &.active, &.disabled {
+      background-color: $mutiny_darkpurple;
+      padding: 1.25em;
+    }
+
+
+    a {
+      background-color: $mutiny_darkpurple;
+      padding: 1.25em;
+      border: 0;
+
+      margin: 0;
+      line-height: inherit;
+    }
   }
 }
