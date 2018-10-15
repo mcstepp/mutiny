@@ -85,9 +85,21 @@ class Thread extends Model
         return $this->hasMany(Post::class);
     }
 
+    public function participants()
+    {
+        return $this->posts()->distinct()->get(['author_id', 'author_type']);
+
+    }
+
     public function getPostCountAttribute()
     {
         return $this->posts()->count();
+    }
+
+    public function getParticipantCountAttribute()
+    {
+        return $this->participants()->count();
+
     }
 
     public function lastPost()

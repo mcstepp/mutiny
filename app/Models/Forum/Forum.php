@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Forum\Category;
 use App\Models\Forum\Thread;
 use App\Models\Forum\Post;
+use App\User;
 
 class Forum extends Model
 {
@@ -21,6 +22,28 @@ class Forum extends Model
     ];
 
     protected $with = ['category'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('thread_count', function($builder){
+            $builder->withCount('threads');
+        });
+
+        static::addGlobalScope('post_count', function($builder){
+            $builder->withCount('posts');
+        });
+
+        static::deleting(function ($forum){
+            $forum->threads->each->delete();
+
+            /*$thread->posts->each(function ($post) {
+                $post->delete();
+             });*/
+        });
+
+    }
 
     public function path()
     {
@@ -40,5 +63,20 @@ class Forum extends Model
     public function posts()
     {
     	return $this->hasManyThrough(Post::class, Thread::class);
+    }
+
+    public function getThreadCountAttribute()
+    {
+        return $this->threads()->count();
+    }
+
+    public function getPostCountAttribute()
+    {
+        return $this->posts()->count();
+    }
+
+    public function getParticipantCountAttribute()
+    {
+        return $this->posts()->groupBy(['author_id', 'author_type'])->distinct()->count();
     }
 }

@@ -23,13 +23,13 @@
                 <div class="col-md-2">
                     <div class="callout callout-primary">
                         <small class="m-fancy-title text-uppercase">Replies:</small><br>
-                        <strong>40</strong>
+                        <strong>{{ $thread->post_count - 1 }}</strong>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="callout callout-primary">
                         <small class="m-fancy-title text-uppercase">Views:</small><br>
-                        <strong>800</strong>
+                        <strong>{{ $thread->participant_count }}</strong>
                     </div>
                 </div>
             </div>
@@ -57,13 +57,10 @@
                     </div>
                     <div class="callout callout-primary">
                             <p><small class="m-fancy-title text-uppercase">Participants</small></p>
-                            <a href="#" class="m-thread-participant"><img src="http://placehold.it/50"></a>
-                            <a href="#" class="m-thread-participant"><img src="http://placehold.it/50"></a>
-                            <a href="#" class="m-thread-participant"><img src="http://placehold.it/50"></a>
-                            <a href="#" class="m-thread-participant"><img src="http://placehold.it/50"></a>
-                            <a href="#" class="m-thread-participant"><img src="http://placehold.it/50"></a>
-                            <a href="#" class="m-thread-participant"><img src="http://placehold.it/50"></a>
 
+                        @foreach($thread->participants() as $post)
+                            <a href="{{ $post->author->path() }}" class="m-thread-participant"><img src="http://placehold.it/50"></a>
+                        @endforeach
                     </div>
                 </div>
 

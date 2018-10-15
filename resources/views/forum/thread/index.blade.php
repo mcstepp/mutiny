@@ -13,19 +13,19 @@
                     <div class="col-12 col-sm-4">
                         <div class="text-center title">
                             <span class="m-fancy-title">Threads: </span>
-                            <strong>4,100</strong>
+                            <strong>{{ $forum->thread_count }}</strong>
                         </div>
                     </div>
                     <div class="col-6 col-sm-4">
                         <div class="text-center title">
                             <span class="m-fancy-title">Replies: </span>
-                            <strong>10,456</strong>
+                            <strong>{{ $forum->post_count - $forum->thread_count }}</strong>
                         </div>
                     </div>
                     <div class="col-6 col-sm-4">
                         <div class="text-center title">
                             <span class="m-fancy-title">Participants: </span>
-                            <strong>17</strong>
+                            <strong>{{ $forum->participant_count }}</strong>
                         </div>
                     </div>
                 </div>
