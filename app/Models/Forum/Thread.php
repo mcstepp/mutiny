@@ -95,6 +95,11 @@ class Thread extends Model
         return $this->hasOne(Post::class)->orderBy('id','desc');
     }
 
+    public function firstPost()
+    {
+        return $this->hasOne(Post::class)->orderBy('id','asc');
+    }
+
     /**
      * Add a post to the thread
      *

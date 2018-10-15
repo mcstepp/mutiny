@@ -1,6 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
+    @include('layouts._breadcrumb')
+
     <div class="container-fluid my-3">
 
         <div class="row">

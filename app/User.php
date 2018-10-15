@@ -71,5 +71,11 @@ class User extends Authenticatable
      public function activity()
     {
         return $this->morphMany('App\Models\Activity', 'author');
-    }    
+    }
+
+    public function faction()
+    {
+        //return $this->role->name;
+        return "Dauntless";
+    }
 }

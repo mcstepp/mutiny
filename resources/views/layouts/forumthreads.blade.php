@@ -6,15 +6,18 @@
                 <div class="col-md-4">
                     <div class="callout callout-primary">
                         <h4 class="h3 m-fancy-title neon-default text-uppercase">
-                            <i class="fas fa-terminal neon-default"></i><a class="flicker" href="#">The Ultimate Test</a>
+                            <i class="fas fa-terminal neon-default"></i><a class="flicker" href="{{ $thread->path() }}"> {{ $thread->title }}</a>
                         </h4>
-                        <small class="font-xs">Last reply 14 hours ago on Dec 31, 2018</small>
+                        <small class="font-xs">Last reply {{ $thread->lastPost->created_at->diffForHumans() }} on {{ $thread->lastPost->created_at->format('M j, Y') }}</small>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="callout callout-primary">
                         <small class="m-fancy-title text-uppercase">Last Reply by:</small><br>
-                        <a href="#" class="flicker abnegation">Bree Duncan</a>
+                        <a href="{{ $thread->lastPost->author->path() }}"
+                           class="flicker dauntless">
+                            {{ $thread->lastPost->author->username }}
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -33,7 +36,7 @@
         </div>
     </div>
 
-    <div class="card-body bg-mutinydark collapse" id="multiCollapseExample1">
+    <div class="card-body bg-mutinydark collapse" id="thread{{ $thread->id }}">
         <div class="container-fluid">
             <div class="row">
 
@@ -67,12 +70,15 @@
                 <div class="col-lg-6">
                     <div class="callout callout-primary">
                         <small class="m-fancy-title text-uppercase">Started by:</small><br>
-                        <a href="#" class="flicker abnegation">Bree Duncan</a>
+                        <a href="{{ $thread->firstPost->author->path() }}"
+                           class="flicker dauntless">
+                            {{ $thread->firstPost->author->username }}
+                        </a>
                     </div>
                     <div class="callout callout-primary">
                         <small class="m-fancy-title text-uppercase">Description:</small><br>
                         <h5 class="m-fancy-header neon-default">May 30, YR 150</h5>
-                        <p>Bree hangs outs with her friends after work one night.</p>
+                        <p>{{ $thread->description }}</p>
                     </div>
                 </div>
             </div>
@@ -83,7 +89,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    <button class="btn-outline-primary m-1"  data-toggle="collapse" data-target="#multiCollapseExample1">
+                    <button class="btn-outline-primary m-1"  data-toggle="collapse" data-target="#thread{{$thread->id}}">
                         <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                         Expand
                     </button>

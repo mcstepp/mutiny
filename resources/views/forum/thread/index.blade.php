@@ -1,80 +1,80 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <a href="#">{{ $forum->category->name }}</a>
-    </li>
-    <li class="breadcrumb-item active">
-        <a href="{{ $forum->path() }}">{{ $forum->name}}</a>
-    </li>
-    <li class="breadcrumb-menu">
-        <div class="btn-group">
-            <a class="btn flicker" href="#">
-                <i class="fas fa-cogs"></i> Edit Forum
-            </a>
-        </div>
-    </li>
-</ol>
+    <div class="container-fluid my-3">
 
-<div class="page-header">
-    <div class="container-fluid">
         <div class="row">
-            <div class="col">
-                <h1 class="h2 m-fancy-header page-title neon-default">{{ $forum->name }}</h1>
-                <div class="page-desc">{{ $forum->description }}</div>
-            </div>
-        </div>
-        <div class="row py-3">
             <div class="col-md-7">
-                <a class="btn btn-outline-primary" href="#">Create New Thread</a>
+                <h1 class="h2 page-title m-fancy-header neon-default">{{ $forum->name }}</h1>
             </div>
-            <div class="col-md-5 m-forum-metadata align-self-end justify-content-end m-fancy-title">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col align-self-end">
-                            <span class="meta-label text-uppercase">Threads: </span>{{ $forum->threads->count() }}
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-12 col-sm-4">
+                        <div class="text-center title">
+                            <span class="m-fancy-title">Threads: </span>
+                            <strong>4,100</strong>
                         </div>
-
-                        <div class="col align-self-end">
-                            <span class="meta-label text-uppercase">Posts: </span>{{ $forum->posts->count() }} 
+                    </div>
+                    <div class="col-6 col-sm-4">
+                        <div class="text-center title">
+                            <span class="m-fancy-title">Replies: </span>
+                            <strong>10,456</strong>
                         </div>
-
-                        <div class="col align-self-end">
-                            <div class="btn-group">
-                              <button type="button" class="btn btn-outline-primary">Sort By</button>
-                              <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">Toggle Dropdown</span>
-                              </button>
-                              <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Last Reply (Default)</a>
-                                <a class="dropdown-item" href="#">Title (Asc)</a>
-                                <a class="dropdown-item" href="#">Title (Des)</a>
-                                <a class="dropdown-item" href="#">Chronological (Asc)</a>
-                                <a class="dropdown-item" href="#">Chronological (Des)</a>
-
-                              </div>
-                            </div>
+                    </div>
+                    <div class="col-6 col-sm-4">
+                        <div class="text-center title">
+                            <span class="m-fancy-title">Participants: </span>
+                            <strong>17</strong>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="page-desc">
+            <p>
+                {{--This is a forum description. In an IC forum, this text would be describing the IC setting of the forum.--}}
+                {{--It can be broad, like "Common areas" or narrow like "Headquarters".--}}
+                {{ $forum->description }}
+            </p>
+        </div>
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-outline-secondary m-1" href="{{ route('create-thread', $forum) }}">
+                    <i class="far fa-edit"></i>
+                    Create New Thread
+                </a>
+            </div>
+
+            <div class="col align-self-end text-right">
+                <div class="btn-group">
+                    <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort By
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Last reply</a>
+                        <a class="dropdown-item" href="#">Thread Start</a>
+                        <a class="dropdown-item" href="#">A-Z</a>
+                        <a class="dropdown-item" href="#">Z-A</a>
+                        <a class="dropdown-item" href="#">Chronological</a>
+                    </div>
+                </div>
+                <a class="btn btn-outline-primary m-1" role="button" href="#">
+                    <i class="fas fa-cogs"></i>
+                    Edit Forum
+                </a>
+            </div>
+        </div>
     </div>
-</div>
 
+    <div class="container-fluid my-3">
+        <div class="animated fadeId">
 
-<div class="container-fluid m-threads">
+            @foreach($threads as $thread)
+                @include('layouts.forumthreads', [$forum, $thread])
+            @endforeach
 
-   @include('thread.row')
-
-   @include('thread.row')
-
-   @include('thread.row')
-
-   @include('thread.row')
-
-</div>
-
+        </div>
+    </div>
 @endsection
