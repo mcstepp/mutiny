@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar bg-tall-city">
     <div class="sidebar-header">
         <img src="https://78.media.tumblr.com/28d98474a845d2fa0687015dd7623d79/tumblr_pa97isisBF1rp7llco3_r1_400.gif" class="img-avatar img-thumbnail" alt="Avatar">
         <div>

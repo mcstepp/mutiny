@@ -1,4 +1,4 @@
-<div class="card m-thread">
+<div class="card m-thread bg-industrial">
 
     <div class="card-top">
         <div class="container-fluid">
@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="card-body bg-mutinydark collapse" id="thread{{ $thread->id }}">
+    <div class="card-body collapse" id="thread{{ $thread->id }}">
         <div class="container-fluid">
             <div class="row">
 

@@ -1,4 +1,4 @@
-<div class="miniprofile card m-card bg-mutinydark col-12">
+<div class="miniprofile card m-card bg-industrial-dark col-12">
     <div class="card-body container-fluid">
         <div class="row">
             <div class="col-md-3 col-lg-2 text-center">
