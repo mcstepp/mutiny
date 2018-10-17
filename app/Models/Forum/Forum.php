@@ -77,6 +77,6 @@ class Forum extends Model
 
     public function getParticipantCountAttribute()
     {
-        return $this->posts()->groupBy(['author_id', 'author_type'])->distinct()->count();
+        return $this->posts()->distinct()->get(['posts.author_id', 'posts.author_type'])->groupBy(['author_id', 'author_type'])->count();
     }
 }
