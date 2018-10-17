@@ -147,6 +147,21 @@ class ThreadPostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
+    public function delete(Request $request, Forum $forum, Thread $thread, Post $post)
+    {
+        // TODO: check permission.
+
+        $post->delete();
+
+        return response("Deleted post", 200);
+    }
+
+    /**
+     * Permanently Remove the specified resource from storage.
+     *
+     * @param  \App\Post  $post
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Post $post)
     {
         //

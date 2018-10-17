@@ -17,6 +17,8 @@ window.Vue = require('vue');
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('post-as', require('./components/PostAsComponent.vue'));
+Vue.component('delete-button', require('./components/DeleteButtonComponent.vue'));
+
 
 const app = new Vue({
     el: '#app'

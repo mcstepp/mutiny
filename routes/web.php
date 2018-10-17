@@ -37,3 +37,5 @@ Route::put('/f/{forum}/t/{thread}/update', 'Forums\ForumThreadController@update'
 Route::post('/f/{forum}/t/{thread}', 'Forums\ThreadPostController@store')->name('reply');
 Route::get('/f/{forum}/t/{thread}/{post}/edit', 'Forums\ThreadPostController@edit')->name('edit-post');
 Route::put('/f/{forum}/t/{thread}/{post}/update', 'Forums\ThreadPostController@update')->name('update-post');
+Route::delete('/f/{forum}/t/{thread}/{post}', 'Forums\ThreadPostController@delete')->name('delete-post');
+
