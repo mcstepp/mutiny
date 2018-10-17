@@ -113,12 +113,16 @@ class ForumThreadController extends Controller
      * Show the form for editing the specified forum thread.
      * Editing Title, description, tags, move
      *
+     * @param Forum $forum
      * @param Thread $thread
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function edit(Thread $thread)
+    public function edit(Forum $forum, Thread $thread)
     {
-        //
+        return view('forum.thread.edit', [
+            'forum' => $forum,
+            'thread' => $thread
+        ]);
     }
 
     /**
@@ -126,11 +130,20 @@ class ForumThreadController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param Thread $thread
-     * @return void
      */
-    public function update(Request $request, Thread $thread)
+    public function update(Request $request, Forum $forum, Thread $thread)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:6|max:255',
+            'description' => 'nullable|min:6',
+        ]);
+
+        $thread->title = $request->title;
+        $thread->description = $request->description;
+
+        $thread->save();
+
+        return redirect()->route('view-forum', $forum);
     }
 
     /**

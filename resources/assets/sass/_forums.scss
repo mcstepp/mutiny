@@ -34,7 +34,7 @@
 
 .m-thread,
 .m-thread-metadata {
-	a {
+	a:not(.btn) {
 		text-decoration: none;
 		color: #fff;
 	}

@@ -27,11 +27,13 @@ Route::post('/admin/category', 'Forums\CategoryController@store');
 
 Route::get('/f', 'Forums\ForumController@index');
 
-Route::get('/f/{forum}', 'Forums\ForumThreadController@index');
+Route::get('/f/{forum}', 'Forums\ForumThreadController@index')->name('view-forum');
 Route::get('/f/{forum}/create', 'Forums\ForumThreadController@create')->name('create-thread');
 Route::post('/f/{forum}/create', 'Forums\ForumThreadController@store');
 
 Route::get('/f/{forum}/t/{thread}', 'Forums\ThreadPostController@index')->name('view-thread');
+Route::get('/f/{forum}/t/{thread}/edit', 'Forums\ForumThreadController@edit')->name('edit-thread');
+Route::put('/f/{forum}/t/{thread}/update', 'Forums\ForumThreadController@update')->name('update-thread');
 Route::post('/f/{forum}/t/{thread}', 'Forums\ThreadPostController@store')->name('reply');
 Route::get('/f/{forum}/t/{thread}/{post}/edit', 'Forums\ThreadPostController@edit')->name('edit-post');
-Route::put('/f/{forum}/t/{thread}/{post}', 'Forums\ThreadPostController@update')->name('update-post');
+Route::put('/f/{forum}/t/{thread}/{post}/update', 'Forums\ThreadPostController@update')->name('update-post');

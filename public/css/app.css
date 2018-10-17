@@ -25700,8 +25700,8 @@ hr {
   border: 1px solid #2A1225;
 }
 
-.m-thread a,
-.m-thread-metadata a {
+.m-thread a:not(.btn),
+.m-thread-metadata a:not(.btn) {
   text-decoration: none;
   color: #fff;
 }

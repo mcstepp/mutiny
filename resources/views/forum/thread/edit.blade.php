@@ -2,20 +2,13 @@
 
 @section('content')
 
-    {{--TODO: Update this view --}}
-    <ol class="breadcrumb">
+    {{--TODO: Update this view--}}
+    <ol class="breadcrumb bg-mutinydark">
         <li class="breadcrumb-item">
             <a href="#">{{ $forum->category->name }}</a>
         </li>
         <li class="breadcrumb-item active">
             <a href="{{ $forum->path() }}">{{ $forum->name}}</a>
-        </li>
-        <li class="breadcrumb-menu">
-            <div class="btn-group">
-                <a class="btn flicker" href="#">
-                    <i class="fas fa-cogs"></i> Edit Forum
-                </a>
-            </div>
         </li>
     </ol>
 
@@ -31,13 +24,15 @@
     </div>
 
     <div class="card m-card">
-        <h2 class="card-top m-fancy-title text-uppercase">Create a New Thread</h2>
+        <h2 class="card-top m-fancy-title text-uppercase">Edit Thread</h2>
 
         <div class="card-body container-fluid">
             <form method="POST"
-                  action="{{ route('create-thread', [$forum]) }}"
+                  action="{{ route('update-thread', [$forum, $thread]) }}"
                   class="form-horizontal">
                 {{ csrf_field() }}
+
+                <input type="hidden" name="_method" value="PUT">
 
                 <div class="form-group row">
                     <label class="col-sm-2">Forum Name:</label>
@@ -51,7 +46,12 @@
                         Thread Title:
                     </label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="title" id="title" placeholder="Thread Title" required>
+                        <input type="text"
+                               class="form-control"
+                               name="title" id="title"
+                               placeholder="Thread Title"
+                               value="{{ $thread->title }}"
+                               required>
                     </div>
                 </div>
 
@@ -60,7 +60,12 @@
                         Thread Description:
                     </label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="description" id="description" placeholder="Thread Description">
+                        <input type="text"
+                               class="form-control"
+                               name="description"
+                               id="description"
+                               placeholder="Thread Description"
+                               value="{{ $thread->description }}">
                     </div>
                 </div>
 
@@ -90,24 +95,11 @@
 
                 @endif
 
-                {{-- <div class="form-group row">
-                    <label for="body" class="control-label col-sm-2">Post Body:</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" name="body" id="body" placeholder="Thread text" required></textarea>
-                    </div>
-                </div> --}}
-
-                <div class="form-group row">
-                    <label for="body" class="control-label col-sm-2">Post Body:</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" rows="5" name="body" id="body" placeholder="Thread text" required></textarea>
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Post Thread</button>
+                        <button type="submit" class="btn btn-primary">Edit Thread</button>
                     </div>
                 </div>
             </form>

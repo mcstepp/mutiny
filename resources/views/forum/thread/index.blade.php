@@ -72,7 +72,7 @@
         <div class="animated fadeId">
 
             @foreach($threads as $thread)
-                @include('layouts.forumthreads', [$forum, $thread])
+                @include('forum.thread._thread', [$forum, $thread])
             @endforeach
 
         </div>
