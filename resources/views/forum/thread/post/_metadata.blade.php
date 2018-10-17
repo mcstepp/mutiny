@@ -4,7 +4,7 @@
     </div>
 </div>
 
-<a class="btn btn-outline-primary btn-block mb-4 m-fancy-title text-uppercase" href="#">
+<a class="btn btn-outline-primary btn-block mb-4 m-fancy-title text-uppercase" href=" {{ route('edit-post', [$forum, $thread, $post]) }}">
     <i class="fas fa-edit"></i> Edit Post
 </a>
 <a class="btn btn-outline-danger btn-block m-fancy-title text-uppercase" href="#">

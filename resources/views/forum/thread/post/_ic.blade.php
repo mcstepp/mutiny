@@ -21,7 +21,7 @@
 
                 <div class="col-md-3 m-0">
 
-                    @include("forum.thread.post._metadata", compact("post"))
+                    @include("forum.thread.post._metadata", [$forum, $thread, $post])
 
                 </div>
             </div>

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Character\PendingCharacter;
@@ -12,7 +13,7 @@ use App\Models\Forum\Post;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Cachable;
 
     /**
      * The attributes that are mass assignable.

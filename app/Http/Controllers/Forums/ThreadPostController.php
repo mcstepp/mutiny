@@ -94,9 +94,13 @@ class ThreadPostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Forum $forum, Thread $thread, Post $post)
     {
-        //
+        return view('forum.thread.post.edit', [
+            'forum' => $forum,
+            'thread' => $thread,
+            'post' => $post
+        ]);
     }
 
     /**
@@ -106,9 +110,35 @@ class ThreadPostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Forum $forum, Thread $thread, Post $post)
     {
-        //
+        // validate the post
+        // TODO: more validation/authorizations
+
+        $this->validate($request, [
+            'body' => 'required|min:6',
+            'author_id' => 'required',
+            'author_type' => 'required'
+        ]);
+
+        $author_id = request('author_id') === 'u' ? auth()->id() : request('author_id');
+
+        // Save for PostAudit
+//        $newPost = POST::make([
+//            'thread_id' => $thread->id,
+//            'author_id' => $author_id,
+//            'author_type' => request('author_type'),
+//            'body' => request('body')
+//        ])->toArray();
+
+        $post->author_id = $author_id;
+        $post->author_type = $request->author_type;
+        $post->body = $request->body;
+
+
+        $post->save();
+
+        return redirect()->route('view-thread', [$forum, $thread]);
     }
 
     /**

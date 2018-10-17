@@ -25,7 +25,7 @@ Route::post('/admin/forum', 'Forums\ForumController@store');
 Route::get('/admin/forum/create', 'Forums\ForumController@create');
 Route::post('/admin/category', 'Forums\CategoryController@store');
 
-Route::get('/forum', 'Forums\ForumController@show');
+Route::get('/f', 'Forums\ForumController@index');
 
 Route::get('/f/{forum}', 'Forums\ForumThreadController@index');
 Route::get('/f/{forum}/create', 'Forums\ForumThreadController@create')->name('create-thread');
@@ -33,3 +33,5 @@ Route::post('/f/{forum}/create', 'Forums\ForumThreadController@store');
 
 Route::get('/f/{forum}/t/{thread}', 'Forums\ThreadPostController@index')->name('view-thread');
 Route::post('/f/{forum}/t/{thread}', 'Forums\ThreadPostController@store')->name('reply');
+Route::get('/f/{forum}/t/{thread}/{post}/edit', 'Forums\ThreadPostController@edit')->name('edit-post');
+Route::put('/f/{forum}/t/{thread}/{post}', 'Forums\ThreadPostController@update')->name('update-post');

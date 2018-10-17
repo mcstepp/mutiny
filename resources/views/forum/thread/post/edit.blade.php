@@ -8,21 +8,23 @@
             <li class="breadcrumb-item">
                 <a href="#">{{ $forum->category->name }}</a>
             </li>
-            <li class="breadcrumb-item active">
+            <li class="breadcrumb-item">
                 <a href="{{ $forum->path() }}">{{ $forum->name}}</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ $thread->path() }}">{{ $thread->title}}</a>
+            </li>
+            <li class="breadcrumb-item active">
+                Edit Post
             </li>
         </ol>
 
         <h3>{{ $thread->title }}</h3>
 
-        @foreach($posts as $post)
-            @include('forum.thread.post.show', [$forum, $thread, $post])
-        @endforeach
-
-        {{ $posts->links() }}
+        @include('forum.thread.post.show', $post)
 
         <div class="row">
-            @include('forum.thread.post._reply', [$forum, $thread])
+            @include('forum.thread.post._update', [$forum, $thread, $post])
         </div>
 
     </div>
