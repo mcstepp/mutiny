@@ -33,7 +33,7 @@ class Thread extends Model
             $builder->withCount('posts');
         });
 
-        static::deleting(function ($thread){
+        static::deleting(function ($thread) {
             $thread->posts->each->delete();
 
            /*$thread->posts->each(function ($post) {

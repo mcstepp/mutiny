@@ -3233,6 +3233,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             confirm('Are you sure you want to delete this ' + this.deleteType + '?', this.delete());
         },
         delete: function _delete() {
+            var _this = this;
+
             var url = void 0;
             if (this.post) {
                 url = '/f/' + this.forum.id + '/t/' + this.thread.id + '/' + this.post.id;
@@ -3240,8 +3242,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 url = '/f/' + this.forum.id + '/t/' + this.thread.id;
             }
 
-            axios.delete(url, {}).then(function () {
-                return window.location.reload(true);
+            axios.delete(url, {}).then(function (res) {
+                if (res.status === 204) {
+                    window.location.href = '/f/' + _this.forum.id;
+                }
+
+                window.location.reload(true);
             }).catch(function (err) {
                 return console.error(err);
             });

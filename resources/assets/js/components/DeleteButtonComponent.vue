@@ -42,7 +42,13 @@
                 }
 
                 axios.delete(url, {})
-                    .then(() => window.location.reload(true))
+                    .then(res => {
+                        if (res.status === 204) {
+                            window.location.href = `/f/${this.forum.id}`;
+                        }
+
+                        window.location.reload(true)
+                    })
                     .catch(err => console.error(err));
             }
         }

@@ -151,7 +151,13 @@ class ThreadPostController extends Controller
     {
         // TODO: check permission.
 
-        $post->delete();
+        if ($thread->post_count === 1) {
+            $thread->delete();
+            return response("Deleted thread", 204);
+        }
+        else {
+            $post->delete();
+        }
 
         return response("Deleted post", 200);
     }

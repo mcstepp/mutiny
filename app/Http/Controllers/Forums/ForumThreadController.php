@@ -87,7 +87,7 @@ class ForumThreadController extends Controller
 
         $thread->addPost($post);
 
-        return redirect( route('view-thread', [$forum, $thread]));
+        return redirect()->route('view-thread', [$forum, $thread]);
     }
 
     /**
