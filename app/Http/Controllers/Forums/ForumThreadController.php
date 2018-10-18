@@ -152,7 +152,22 @@ class ForumThreadController extends Controller
      * @param  \App\Models\Forum\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function delete(Thread $thread)
+    public function delete(Forum $forum, Thread $thread)
+    {
+        //TODO: permissions
+
+        $thread->delete();
+
+        return response("Deleted thread", 200);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Forum\Thread  $thread
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Thread $thread)
     {
         //
     }

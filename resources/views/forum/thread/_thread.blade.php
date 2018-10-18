@@ -107,10 +107,12 @@
                         Lock
                     </button>
 
-                    <button class="btn btn-outline-danger m-1">
-                        <i class="fas fa-trash-alt"></i>
-                        Delete
-                    </button>
+                    <delete-button
+                            :thread="{{ $thread }}"
+                            :forum="{{ $forum }}"
+                            deleteType="thread" >
+
+                    </delete-button>
                 </div>
             </div>
         </div>

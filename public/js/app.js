@@ -3212,22 +3212,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'DeleteButton',
 
-    props: ['forum', 'thread', 'post', 'type'],
+    props: ['forum', 'thread', 'post'],
+
+    computed: {
+        deleteType: function deleteType() {
+            if (this.post) return 'post';else return 'thread';
+        }
+    },
 
     methods: {
         deleteHandler: function deleteHandler() {
-            confirm('Are you sure you want to delete this ' + type + '?', this.delete());
+            confirm('Are you sure you want to delete this ' + this.deleteType + '?', this.delete());
         },
         delete: function _delete() {
-
-            if (type === "post") {
-                var _url = '/f/' + this.forum.id + '/t/' + this.thread.id + '/' + this.post.id;
-            } else if (type === 'thread') {
-                var _url2 = '/f/' + this.forum.id + '/t/' + this.thread.id;
+            var url = void 0;
+            if (this.post) {
+                url = '/f/' + this.forum.id + '/t/' + this.thread.id + '/' + this.post.id;
+            } else {
+                url = '/f/' + this.forum.id + '/t/' + this.thread.id;
             }
 
             axios.delete(url, {}).then(function () {
@@ -3252,8 +3262,11 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass:
-        "btn btn-outline-danger btn-block mb-4 m-fancy-title text-uppercase",
+      staticClass: "btn btn-outline-danger",
+      class: {
+        "btn-block mb-4 m-fancy-title text-uppercase": _vm.post,
+        "m-1": !_vm.post
+      },
       on: {
         click: function($event) {
           _vm.deleteHandler()

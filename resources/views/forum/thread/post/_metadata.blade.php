@@ -11,6 +11,6 @@
 <delete-button
         :post="{{ $post }}"
         :thread="{{ $thread }}"
-        :forum="{{ $forum }}">
-
+        :forum="{{ $forum }}"
+        deleteType="post">
 </delete-button>

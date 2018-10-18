@@ -1,6 +1,10 @@
 <template>
     <button @click="deleteHandler()"
-            class="btn btn-outline-danger btn-block mb-4 m-fancy-title text-uppercase">
+            class="btn btn-outline-danger"
+            :class="{
+                'btn-block mb-4 m-fancy-title text-uppercase': post,
+                'm-1': !post
+                }">
         <i class="fas fa-trash-alt"></i>
         Delete
     </button>
@@ -13,22 +17,28 @@
         props: [
             'forum',
             'thread',
-            'post',
-            'type'
+            'post'
         ],
+
+        computed: {
+            deleteType() {
+                if (this.post) return 'post';
+                else return 'thread';
+            }
+        },
 
         methods: {
             deleteHandler() {
-                confirm(`Are you sure you want to delete this ${type}?`, this.delete())
+                confirm(`Are you sure you want to delete this ${this.deleteType}?`, this.delete())
             },
             delete() {
-
-                if (type === "post") {
-                    let url =  `/f/${this.forum.id}/t/${this.thread.id}/${this.post.id}`;
+                let url;
+                if (this.post) {
+                    url = `/f/${this.forum.id}/t/${this.thread.id}/${this.post.id}`;
                 }
 
-                else if (type === 'thread') {
-                    let url =  `/f/${this.forum.id}/t/${this.thread.id}`;
+                else {
+                    url = `/f/${this.forum.id}/t/${this.thread.id}`;
                 }
 
                 axios.delete(url, {})
