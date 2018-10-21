@@ -39,7 +39,9 @@
 
                             <div class="card m-card">
                                 <div class="card-body">
-                                    Achievements
+                                    <h3 class="m-fancy-header neon-default text-center card-title">Achievements</h3>
+                                    <hr class="glow-default">
+                                    Coming soon
                                 </div>
                             </div>
 
@@ -51,9 +53,11 @@
 
                         <div class="col-md-9">
 
-                            <div class="card m-card">
+                            <div class="card m-card bg-industrial">
                                 <div class="card-body">
-                                    Activity Feed
+                                    <h3 class="m-fancy-header neon-default text-center card-title">Activity</h3>
+                                    <hr class="glow-default">
+                                        @include('user.profile._activities', $activities)
                                 </div>
                             </div>
 
@@ -63,7 +67,9 @@
 
                             <div class="card m-card">
                                 <div class="card-body">
-                                    Characters
+                                    <h3 class="m-fancy-header neon-default text-center card-title">Characters</h3>
+                                    <hr class="glow-default">
+                                    Coming soon
                                 </div>
                             </div>
 

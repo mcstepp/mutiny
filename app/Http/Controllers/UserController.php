@@ -34,8 +34,12 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('user.profile', [
-            'user' => $user
+        $activities = $user->activities()->with('subject')->get();
+
+        return view('user.profile.show', [
+            'user' => $user,
+            //'characters' => $user->characters
+            'activities' => $activities
         ]);
     }
 

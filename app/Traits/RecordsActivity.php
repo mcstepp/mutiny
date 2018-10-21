@@ -14,6 +14,10 @@ trait RecordsActivity
             	$model->recordActivity($event);
         	});
 		}
+
+		static::deleting(function($model) {
+		    $model->activities()->delete();
+        });
 	}
 
 	protected static function getRecordEvents()
@@ -23,7 +27,7 @@ trait RecordsActivity
 
 	protected function recordActivity($event)
     {
-    	$this->activity()->create([
+    	$this->activities()->create([
     		'author_id' => $this->author_id,
             'author_type' => $this->author_type,
             'type' => $this->getActivityType($event)
@@ -38,7 +42,7 @@ trait RecordsActivity
         // ]);
     }
 
-    public function activity()
+    public function activities()
     {
     	return $this->morphMany('App\Models\Activity', 'subject');
     }

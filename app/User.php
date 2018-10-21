@@ -69,7 +69,7 @@ class User extends Authenticatable
         return "/u/{$this->id}";
     }
 
-     public function activity()
+     public function activities()
     {
         return $this->morphMany('App\Models\Activity', 'author');
     }

@@ -131,12 +131,11 @@ class ThreadPostController extends Controller
 //            'body' => request('body')
 //        ])->toArray();
 
-        $post->author_id = $author_id;
-        $post->author_type = $request->author_type;
-        $post->body = $request->body;
-
-
-        $post->save();
+        $post->update([
+            'author_id' => $author_id,
+            'author_type' => $request->author_type,
+            'body' => $request->body
+        ]);
 
         return redirect()->route('view-thread', [$forum, $thread]);
     }

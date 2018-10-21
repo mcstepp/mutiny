@@ -138,10 +138,10 @@ class ForumThreadController extends Controller
             'description' => 'nullable|min:6',
         ]);
 
-        $thread->title = $request->title;
-        $thread->description = $request->description;
-
-        $thread->save();
+        $thread->update([
+            'title' => $request->title,
+            'description' => $request->description
+        ]);
 
         return redirect()->route('view-forum', $forum);
     }
