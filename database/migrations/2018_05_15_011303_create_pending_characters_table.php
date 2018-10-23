@@ -19,6 +19,7 @@ class CreatePendingCharactersTable extends Migration
             $table->string('faceclaim')->nullable();
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('faction_id');
+            $table->unsignedInteger('origin_faction_id');
             $table->unsignedInteger('rank_id');
             $table->bigInteger('ic_birthday');
             $table->unsignedInteger('initiation_year');

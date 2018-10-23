@@ -71,10 +71,13 @@
     <div class="container-fluid my-3">
         <div class="animated fadeId">
 
+            @if(count($threads) === 0)
+                No threads to show.
+            @else
             @foreach($threads as $thread)
                 @include('forum.thread._thread', [$forum, $thread])
             @endforeach
-
+            @endif
         </div>
     </div>
 @endsection

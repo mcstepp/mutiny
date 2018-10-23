@@ -44,3 +44,5 @@ Route::delete('/f/{forum}/t/{thread}/{post}', 'Forums\ThreadPostController@delet
 Route::get('/u', 'UserController@index');
 Route::get('/u/{user}', 'UserController@show')->name('user-profile');
 
+Route::get('/c', 'CharacterController@index');
+Route::get('/c/create', 'PendingCharacterController@create')->name('create-character');
