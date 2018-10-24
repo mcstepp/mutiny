@@ -6,6 +6,10 @@ use App\Models\Forum\Forum;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+/**
+ * Class ForumController
+ * @package App\Http\Controllers\Forums
+ */
 class ForumController extends Controller
 {
     public function __construct()
@@ -65,7 +69,7 @@ class ForumController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Forum  $forum
+     * @param Forum $forum
      * @return \Illuminate\Http\Response
      */
     public function show(Forum $forum)
@@ -76,8 +80,8 @@ class ForumController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Forum  $forum
-     * @return \Illuminate\Http\Response
+     * @param Forum $forum
+     * @return void
      */
     public function edit(Forum $forum)
     {
@@ -87,9 +91,9 @@ class ForumController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Forum  $forum
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param Forum $forum
+     * @return void
      */
     public function update(Request $request, Forum $forum)
     {
@@ -99,8 +103,8 @@ class ForumController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Forum  $forum
-     * @return \Illuminate\Http\Response
+     * @param Forum $forum
+     * @return void
      */
     public function destroy(Forum $forum)
     {

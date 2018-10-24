@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="page-desc">
+        <div class="page-desc p-md-5 m-md-2">
             <p>
                 {{--This is a forum description. In an IC forum, this text would be describing the IC setting of the forum.--}}
                 {{--It can be broad, like "Common areas" or narrow like "Headquarters".--}}
@@ -71,13 +71,13 @@
     <div class="container-fluid my-3">
         <div class="animated fadeId">
 
-            @if(count($threads) === 0)
-                No threads to show.
-            @else
-            @foreach($threads as $thread)
+            @forelse($threads as $thread)
                 @include('forum.thread._thread', [$forum, $thread])
-            @endforeach
-            @endif
+            @empty
+                No threads to show.
+            @endforelse
+
         </div>
     </div>
+
 @endsection
