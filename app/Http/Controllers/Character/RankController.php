@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class RankController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +35,7 @@ class RankController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.rank.create');
     }
 
     /**
@@ -40,7 +46,22 @@ class RankController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // TODO: authorize
+
+        $this->validate($request, [
+            'name' => 'required|min:3|max:255',
+            'description' => 'required|min:6',
+        ]);
+
+        //dd($request);
+
+        Rank::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+        ]);
+
+        return redirect('/admin/rank');
+
     }
 
     /**

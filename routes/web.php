@@ -25,6 +25,8 @@ Route::post('/admin/forum', 'Forums\ForumController@store');
 Route::get('/admin/forum/create', 'Forums\ForumController@create');
 Route::post('/admin/category', 'Forums\CategoryController@store');
 Route::get('/admin/rank', 'Character\RankController@index')->name('admin-rank');
+Route::get('/admin/rank/create', 'Character\RankController@create')->name('admin-create-rank');
+Route::post('/admin/rank', 'Character\RankController@store')->name('admin-store-rank');
 
 Route::get('/f', 'Forums\ForumController@index');
 
