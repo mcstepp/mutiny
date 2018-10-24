@@ -1,7 +1,7 @@
 <div class="card m-card">
 
     <div class="card-body container-fluid">
-        <form method="POST" action="/admin/rank" class="form-horizontal">
+        <form method="POST" action="{{ route('admin-store-rank') }}" class="form-horizontal">
 
             {{ csrf_field() }}
 

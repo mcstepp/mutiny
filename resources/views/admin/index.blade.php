@@ -9,10 +9,28 @@
 
             <div class="card m-card">
                 <div class="card-body">
+                    <h2 class="card-title m-fancy-title text-uppercase">Game Settings</h2>
+
+                    <div class="list-group">
+
+                        <a href="{{ route('admin-factions') }}" class="list-group-item">
+                            Factions
+                        </a>
+
+                        <a href="{{ route('admin-ranks') }}" class="list-group-item">
+                            Ranks
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card m-card">
+                <div class="card-body">
                     <h2 class="card-title m-fancy-title text-uppercase">Forum Settings</h2>
 
                     <div class="list-group">
-                        <a href="/admin/forum/create" class="list-group-item">
+                        <a href="{{ route('admin-create-forum') }}" class="list-group-item">
                             Create a New Forum
                         </a>
                         <a href="#" class="list-group-item disabled">
@@ -33,14 +51,6 @@
                         </a>
                         <a href="#" class="list-group-item disabled">
                             Edit a Character
-                        </a>
-
-                        <a href="{{ route('admin-rank') }}" class="list-group-item">
-                            View All Ranks
-                        </a>
-
-                        <a href="{{ route('admin-create-rank') }}" class="list-group-item">
-                            Create A New Rank
                         </a>
                     </div>
 

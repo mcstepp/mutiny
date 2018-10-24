@@ -20,13 +20,18 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'Admin\AdminPanelController@index')->name('adminPanel');
-Route::get('/admin/forum', 'Admin\AdminPanelController@indexForum');
-Route::post('/admin/forum', 'Forums\ForumController@store');
-Route::get('/admin/forum/create', 'Forums\ForumController@create');
-Route::post('/admin/category', 'Forums\CategoryController@store');
-Route::get('/admin/rank', 'Character\RankController@index')->name('admin-rank');
-Route::get('/admin/rank/create', 'Character\RankController@create')->name('admin-create-rank');
-Route::post('/admin/rank', 'Character\RankController@store')->name('admin-store-rank');
+Route::get('/admin/forums', 'Admin\AdminPanelController@indexForum')->name('admin-forums');
+Route::post('/admin/forums', 'Forums\ForumController@store')->name('admin-store-forum');
+Route::get('/admin/forums/create', 'Forums\ForumController@create')->name('admin-create-forum');
+
+Route::post('/admin/categories', 'Forums\CategoryController@store')->name('admin-store-category');
+
+Route::get('/admin/ranks', 'Character\RankController@index')->name('admin-ranks');
+Route::get('/admin/ranks/create', 'Character\RankController@create')->name('admin-create-rank');
+Route::post('/admin/ranks', 'Character\RankController@store')->name('admin-store-rank');
+
+Route::get('/admin/factions', 'Character\FactionController@index')->name('admin-factions');
+Route::post('/admin/factions', 'Character\FactionController@store')->name('admin-store-faction');
 
 Route::get('/f', 'Forums\ForumController@index');
 

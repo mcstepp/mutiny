@@ -6,18 +6,20 @@
         <li class="breadcrumb-item active">Create a New Forum</li>
     </ol>
 
+    <div class="container-fluid">
+
     <div class="card m-card">
         <h2 class="card-top m-fancy-title text-uppercase">Create a New Category</h2>
 
         <div class="card-body container-fluid">
-            <form method="POST" action="/admin/category" class="form-horizontal">
+            <form method="POST" action="{{ route('admin-store-category') }}" class="form-horizontal">
 
                 {{ csrf_field() }}
 
                 <div class="form-group row">
                     <label for="name" class="col-sm-2 control-label">Category Name:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Forum Name">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Category Name">
                     </div>
                 </div>
 
@@ -25,7 +27,7 @@
                 <div class="form-group row">
                     <label for="description" class="col-sm-2 control-label">Category Description:</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="description" id="description" placeholder="Forum description" rows="5"></textarea>
+                        <textarea class="form-control" name="description" id="description" placeholder="Category description" rows="5"></textarea>
                     </div>
 
                 </div>
@@ -43,10 +45,10 @@
 
 
     <div class="card m-card">
-        <h2 class="card-top m-fancy-title text-uppercase">Create a New Forum</h2>
+        <h2 class="card-top m-fancy-title text-uppercase">Create a New Category</h2>
 
         <div class="card-body container-fluid">
-            <form method="POST" action="/admin/forum" class="form-horizontal">
+            <form method="POST" action="{{ route('admin-store-forum') }}" class="form-horizontal">
 
                 {{ csrf_field() }}
 
@@ -106,6 +108,7 @@
 
             </form>
         </div>
+    </div>
     </div>
 
 @endsection

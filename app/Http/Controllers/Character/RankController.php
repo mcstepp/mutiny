@@ -60,7 +60,7 @@ class RankController extends Controller
             'description' => $request->input('description'),
         ]);
 
-        return redirect('/admin/rank');
+        return redirect()->route('admin-ranks');
 
     }
 

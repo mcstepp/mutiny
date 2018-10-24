@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Forums;
+namespace App\Http\Controllers\Character;
 
-use App\Models\Forum\Forum;
 use App\Http\Controllers\Controller;
+use App\Models\Character\Faction;
 use Illuminate\Http\Request;
 
-/**
- * Class ForumController
- * @package App\Http\Controllers\Forums
- */
-class ForumController extends Controller
+class FactionController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,18 +21,21 @@ class ForumController extends Controller
      */
     public function index()
     {
-        $forums = Forum::latest()->get();
-        return view('forum.index', compact('forums'));
+        $factions = Faction::all();
+
+        return view('admin.faction.index', [
+            'factions' => $factions
+        ]);
     }
 
     /**
-     * Show the form for creating a new forum.
+     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin.forum.create');
+        return view('admin.faction.create');
     }
 
     /**
@@ -46,44 +46,42 @@ class ForumController extends Controller
      */
     public function store(Request $request)
     {
+        // TODO: authorize
 
         $this->validate($request, [
             'name' => 'required|min:3|max:255',
             'description' => 'required|min:6',
-            'category' => 'required'
         ]);
 
         //dd($request);
 
-        Forum::create([
+        Faction::create([
             'name' => $request->input('name'),
-            'category_id' => $request->input('category'),
             'description' => $request->input('description'),
-            'ic' => $request->has('ic'),
-            'private' => $request->has('private')
         ]);
 
-        return redirect()->route('admin-forums');
+        return redirect()->route('admin-factions');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Forum $forum
-     * @return \Illuminate\Http\Response
+     * @param Faction $faction
+     * @return void
      */
-    public function show(Forum $forum)
+    public function show(Faction $faction)
     {
-        return view('thread.index', compact($forum));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Forum $forum
+     * @param Faction $faction
      * @return void
      */
-    public function edit(Forum $forum)
+    public function edit(Faction $faction)
     {
         //
     }
@@ -92,10 +90,10 @@ class ForumController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param Forum $forum
+     * @param Faction $faction
      * @return void
      */
-    public function update(Request $request, Forum $forum)
+    public function update(Request $request, Faction $faction)
     {
         //
     }
@@ -103,10 +101,10 @@ class ForumController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Forum $forum
+     * @param Faction $faction
      * @return void
      */
-    public function destroy(Forum $forum)
+    public function destroy(Faction $faction)
     {
         //
     }

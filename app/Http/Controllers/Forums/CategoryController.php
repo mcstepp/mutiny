@@ -50,15 +50,8 @@ class CategoryController extends Controller
 
         //dd($request);
 
-        Category::create([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-        ]);
 
-        // bust cache
-        Cache::forget('categories');
-
-        return redirect('/admin/forum');
+        return redirect()->route('admin-forums');
     }
 
     /**
