@@ -13,14 +13,9 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Models\Forum\Category::class, function (Faker $faker) {
     return [
-        'username' => $faker->unique()->userName,
-        'alias' => $faker->firstName(),
-        'email' => $faker->unique()->safeEmail,
-        'points' => rand(0, 10000),
-        'password' => bcrypt('secret'),
-        'role' => 1,
-        'remember_token' => str_random(10),
+        'name' => $faker->state,
+        'description' => $faker->paragraph(5)
     ];
 });

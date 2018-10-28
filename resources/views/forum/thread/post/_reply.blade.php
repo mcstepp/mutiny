@@ -18,17 +18,17 @@
             </div>
         </div>
 
-        @if($forum->ic)
+        {{--@if($forum->ic)--}}
 
-            <post-as character_list='{{ ${$key} }}'
-                     user_data='{{ Auth::user() }}'
-                     default={{ ${$current}->id }}></post-as>
+            {{--<post-as character_list='{{ ${$key} }}'--}}
+                     {{--user_data='{{ Auth::user() }}'--}}
+                     {{--default={{ ${$current}->id }}></post-as>--}}
 
-        @else
+        {{--@else--}}
 
             <post-as user_data='{{ Auth::user() }}'></post-as>
 
-        @endif
+        {{--@endif--}}
 
         {{-- <div class="form-group row">
             <label for="body" class="control-label col-sm-2">Post Body:</label>

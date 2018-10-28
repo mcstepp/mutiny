@@ -64,6 +64,11 @@ class User extends Authenticatable
         return $this->hasMany(Character::class);
     }
 
+    public function current_character()
+    {
+        return $this->hasOne(Character::class);
+    }
+
     public function path() 
     {
         return "/u/{$this->id}";

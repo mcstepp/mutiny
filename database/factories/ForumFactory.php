@@ -13,14 +13,14 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Models\Forum\Forum::class, function (Faker $faker) {
     return [
-        'username' => $faker->unique()->userName,
-        'alias' => $faker->firstName(),
-        'email' => $faker->unique()->safeEmail,
-        'points' => rand(0, 10000),
-        'password' => bcrypt('secret'),
-        'role' => 1,
-        'remember_token' => str_random(10),
+        'category_id' => function() {
+            return factory('App\Models\Forum\Category')->create()->id;
+        },
+        'name' => $faker->unique()->city,
+        'description' => $faker->paragraph(5),
+        'private' => $faker->boolean,
+        'ic' => $faker->boolean
     ];
 });
