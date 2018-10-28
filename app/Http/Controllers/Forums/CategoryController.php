@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Forums;
 
 use App\Models\Forum\Category;
+use App\Models\Forum\Forum;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -57,7 +58,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Forum  $forum
+     * @param  \App\Models\Forum\Forum  $forum
      * @return \Illuminate\Http\Response
      */
     public function show(Forum $forum)
@@ -68,8 +69,8 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Forum  $forum
-     * @return \Illuminate\Http\Response
+     * @param Forum $forum
+     * @return void
      */
     public function edit(Forum $forum)
     {
@@ -79,9 +80,9 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Forum  $forum
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param Forum $forum
+     * @return void
      */
     public function update(Request $request, Forum $forum)
     {
@@ -91,8 +92,8 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Forum  $forum
-     * @return \Illuminate\Http\Response
+     * @param Forum $forum
+     * @return void
      */
     public function destroy(Forum $forum)
     {

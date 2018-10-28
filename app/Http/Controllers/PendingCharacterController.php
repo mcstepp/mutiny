@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePendingCharacter;
 use App\Models\Character\PendingCharacter;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,7 @@ class PendingCharacterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePendingCharacter $request)
     {
         $this->validate($request, [
             'username' => 'required|min:6|max:255',

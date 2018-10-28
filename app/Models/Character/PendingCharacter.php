@@ -31,6 +31,12 @@ class PendingCharacter extends Model
     	return $this->belongsTo(User::class);
     }
 
+    public function username()
+    {
+        $name = $this->chosen_name ?: $this->first_name;
+        return $name .' '. $this->last_name;
+    }
+
     public function rank()
     {
         return $this->belongsTo(Rank::class);
