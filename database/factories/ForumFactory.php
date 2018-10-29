@@ -24,3 +24,4 @@ $factory->define(App\Models\Forum\Forum::class, function (Faker $faker) {
         'ic' => $faker->boolean
     ];
 });
+
