@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePendingCharacter;
+use App\Models\Character\Faction;
 use App\Models\Character\PendingCharacter;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,15 @@ class PendingCharacterController extends Controller
        $pendings = PendingCharacter::latest()->get();
 
         return view('admin.pending.index', compact('pendings'));
+    }
+
+    public function create()
+    {
+        $factions = Faction::all();
+
+        return view('character.create', [
+            'factions' => $factions,
+        ]);
     }
 
     /**

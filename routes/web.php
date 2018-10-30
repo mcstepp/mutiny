@@ -54,3 +54,4 @@ Route::get('/u/{user}', 'UserController@show')->name('user-profile');
 
 Route::get('/c', 'CharacterController@index');
 Route::get('/c/create', 'PendingCharacterController@create')->name('create-character');
+Route::post('/c/create', 'PendingCharacterController@store')->name('store-pending-character');
