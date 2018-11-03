@@ -3308,11 +3308,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'CharacterTime',
 
-    props: ['month', 'year', 'years', 'ages', 'months', 'clazzes'],
+    props: ['month', 'year', 'years', 'ages', 'months'],
 
     data: function data() {
         return {
@@ -3320,10 +3322,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             birthMonth: 'May',
             birthDay: 31,
             birthYear: 132,
-            clazz: 150
+            clazz: 150,
+            hasAgeError: false,
+            hasClazzError: false
         };
     },
 
+
+    watch: {
+        current_age: function current_age(newAge) {
+            this.hasAgeError = newAge < 18;
+        },
+        clazz: function clazz(newClazz) {
+            this.hasClazzError = newClazz > this.year;
+        }
+    },
 
     computed: {
         days: function days() {
@@ -3540,61 +3553,93 @@ var render = function() {
     _c("div", { staticClass: "form-group row" }, [
       _vm._m(3),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-10 d-flex" }, [
-        _vm._v("\n            " + _vm._s(_vm.current_age) + "\n            "),
-        _c("input", {
-          directives: [
+      _c(
+        "div",
+        {
+          staticClass: "col-md-10 d-flex",
+          class: { "text-danger": _vm.hasAgeError }
+        },
+        [
+          _vm._v("\n            " + _vm._s(_vm.current_age) + "\n            "),
+          _c(
+            "span",
             {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.current_age,
-              expression: "current_age"
-            }
-          ],
-          attrs: { type: "hidden", id: "age", name: "age" },
-          domProps: { value: _vm.current_age },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+              staticClass: "d-none ml-2",
+              class: { "d-inline-block": _vm.hasAgeError }
+            },
+            [_vm._v("Age not allowed")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.current_age,
+                expression: "current_age"
               }
-              _vm.current_age = $event.target.value
+            ],
+            attrs: { type: "hidden", id: "age", name: "age" },
+            domProps: { value: _vm.current_age },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.current_age = $event.target.value
+              }
             }
-          }
-        })
-      ])
+          })
+        ]
+      )
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group row" }, [
       _vm._m(4),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-10 d-flex" }, [
-        _vm._v("\n            " + _vm._s(_vm.clazz) + "\n            "),
-        _c("input", {
-          directives: [
+      _c(
+        "div",
+        {
+          staticClass: "col-md-10 d-flex",
+          class: { "text-danger": _vm.hasClazzError }
+        },
+        [
+          _vm._v("\n        " + _vm._s(_vm.clazz) + "\n            "),
+          _c(
+            "span",
             {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.clazz,
-              expression: "clazz"
-            }
-          ],
-          attrs: {
-            type: "hidden",
-            id: "initiation_year",
-            name: "initiation_year"
-          },
-          domProps: { value: _vm.clazz },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+              staticClass: "d-none ml-2",
+              class: { "d-inline-block": _vm.hasClazzError }
+            },
+            [_vm._v("Initiation year not allowed")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.clazz,
+                expression: "clazz"
               }
-              _vm.clazz = $event.target.value
+            ],
+            attrs: {
+              type: "hidden",
+              id: "initiation_year",
+              name: "initiation_year"
+            },
+            domProps: { value: _vm.clazz },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.clazz = $event.target.value
+              }
             }
-          }
-        })
-      ])
+          })
+        ]
+      )
     ])
   ])
 }

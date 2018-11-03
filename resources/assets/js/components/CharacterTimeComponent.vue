@@ -56,8 +56,9 @@
                 <label for="age" class="control-label">Age:</label>
             </div>
 
-            <div class="col-md-10 d-flex">
+            <div class="col-md-10 d-flex" :class="{'text-danger': hasAgeError}">
                 {{ current_age }}
+                <span class="d-none ml-2" :class="{'d-inline-block': hasAgeError}">Age not allowed</span>
                 <input type="hidden" v-model="current_age" id="age" name="age">
             </div>
         </div>
@@ -67,8 +68,9 @@
                 <label for="initiation_year" class="control-label">Initiation Year:</label>
             </div>
 
-            <div class="col-md-10 d-flex">
-                {{ clazz }}
+            <div class="col-md-10 d-flex" :class="{'text-danger': hasClazzError}">
+            {{ clazz }}
+                <span class="d-none ml-2" :class="{'d-inline-block': hasClazzError}">Initiation year not allowed</span>
                 <input type="hidden" v-model="clazz" id="initiation_year" name="initiation_year">
             </div>
         </div>
@@ -85,7 +87,6 @@
             'years',
             'ages',
             'months',
-            'clazzes'
         ],
 
         data() {
@@ -94,7 +95,19 @@
                 birthMonth: 'May',
                 birthDay: 31,
                 birthYear: 132,
-                clazz: 150
+                clazz: 150,
+                hasAgeError: false,
+                hasClazzError: false
+            }
+        },
+
+        watch: {
+            current_age(newAge) {
+                this.hasAgeError = newAge < 18;
+            },
+
+            clazz(newClazz) {
+                this.hasClazzError = newClazz > this.year;
             }
         },
 
