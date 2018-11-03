@@ -1,15 +1,15 @@
 webpackJsonp([1],{
 
-/***/ 145:
+/***/ 146:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(146);
-module.exports = __webpack_require__(172);
+__webpack_require__(147);
+module.exports = __webpack_require__(178);
 
 
 /***/ }),
 
-/***/ 146:
+/***/ 147:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {
@@ -19,9 +19,9 @@ module.exports = __webpack_require__(172);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(147);
+__webpack_require__(148);
 
-window.Vue = __webpack_require__(16);
+window.Vue = __webpack_require__(17);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,8 +30,9 @@ window.Vue = __webpack_require__(16);
  */
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('post-as', __webpack_require__(168));
-Vue.component('delete-button', __webpack_require__(224));
+Vue.component('post-as', __webpack_require__(169));
+Vue.component('delete-button', __webpack_require__(172));
+Vue.component('character-time', __webpack_require__(175));
 
 var app = new Vue({
   el: '#app'
@@ -338,11 +339,11 @@ if (!Array.prototype.includes) {
 
 /***/ }),
 
-/***/ 147:
+/***/ 148:
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(8);
+window._ = __webpack_require__(9);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -353,7 +354,7 @@ window._ = __webpack_require__(8);
 try {
   window.$ = window.jQuery = __webpack_require__(3);
 
-  __webpack_require__(148);
+  __webpack_require__(149);
 } catch (e) {}
 
 /**
@@ -362,7 +363,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(10);
+window.axios = __webpack_require__(11);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -399,7 +400,7 @@ if (token) {
 
 /***/ }),
 
-/***/ 148:
+/***/ 149:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -2784,11 +2785,11 @@ if (typeof jQuery === 'undefined') {
 
 /***/ }),
 
-/***/ 168:
+/***/ 169:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(169)
+var normalizeComponent = __webpack_require__(7)
 /* script */
 var __vue_script__ = __webpack_require__(170)
 /* template */
@@ -2828,116 +2829,6 @@ if (false) {(function () {
 })()}
 
 module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 169:
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
 
 
 /***/ }),
@@ -3145,21 +3036,14 @@ if (false) {
 /***/ }),
 
 /***/ 172:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 224:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(169)
+var normalizeComponent = __webpack_require__(7)
 /* script */
-var __vue_script__ = __webpack_require__(225)
+var __vue_script__ = __webpack_require__(173)
 /* template */
-var __vue_template__ = __webpack_require__(226)
+var __vue_template__ = __webpack_require__(174)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -3199,7 +3083,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 225:
+/***/ 173:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3258,7 +3142,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 226:
+/***/ 174:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -3292,6 +3176,614 @@ if (false) {
   }
 }
 
+/***/ }),
+
+/***/ 175:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(7)
+/* script */
+var __vue_script__ = __webpack_require__(176)
+/* template */
+var __vue_template__ = __webpack_require__(177)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/CharacterTimeComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3e8a0904", Component.options)
+  } else {
+    hotAPI.reload("data-v-3e8a0904", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 176:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'CharacterTime',
+
+    props: ['month', 'year', 'years', 'ages', 'months', 'clazzes'],
+
+    data: function data() {
+        return {
+            current_age: 18,
+            birthMonth: 'May',
+            birthDay: 31,
+            birthYear: 132,
+            clazz: 150
+        };
+    },
+
+
+    computed: {
+        days: function days() {
+            var days = [];
+            for (var i = 1; i <= 31; i++) {
+                days.push(i);
+            }
+            return days;
+        }
+    },
+
+    methods: {
+        calcYears: function calcYears(_ref) {
+            var _ref$birthMonth = _ref.birthMonth,
+                birthMonth = _ref$birthMonth === undefined ? this.birthMonth : _ref$birthMonth,
+                _ref$birthYear = _ref.birthYear,
+                birthYear = _ref$birthYear === undefined ? this.birthYear : _ref$birthYear;
+
+            this._calcAge({
+                birthMonth: birthMonth,
+                birthYear: birthYear,
+                current_year: parseInt(this.year),
+                months: this.months,
+                month: this.month
+            });
+        },
+        _calcAge: function _calcAge(_ref2) {
+            var birthYear = _ref2.birthYear,
+                birthMonth = _ref2.birthMonth,
+                current_year = _ref2.current_year,
+                months = _ref2.months,
+                month = _ref2.month;
+
+
+            var age = current_year - birthYear;
+            var hasHadBirthday = months.indexOf(month) > months.indexOf(birthMonth);
+
+            if (!hasHadBirthday) {
+                age -= 1;
+            }
+            this.current_age = age;
+
+            var clazz = parseInt(birthYear) + 18;
+            if (!hasHadBirthday) {
+                clazz += 1;
+            }
+
+            this.clazz = clazz;
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 177:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card-body" }, [
+    _c("div", { staticClass: "form-group row" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-10 d-flex" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.birthMonth,
+                expression: "birthMonth"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "birth_month", id: "birth_month" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.birthMonth = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  _vm.calcYears({ birthMonth: _vm.birthMonth })
+                }
+              ]
+            }
+          },
+          [
+            _c("option", { attrs: { disabled: "", selected: "" } }, [
+              _vm._v("Please Choose One")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.months, function(_month) {
+              return _c("option", [_vm._v(" " + _vm._s(_month))])
+            })
+          ],
+          2
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-10 d-flex" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.birthDay,
+                expression: "birthDay"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "birth_day", id: "birth_day" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.birthDay = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { disabled: "", selected: "" } }, [
+              _vm._v("Please Choose One")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.days, function(_day) {
+              return _c("option", [_vm._v(" " + _vm._s(_day))])
+            })
+          ],
+          2
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row" }, [
+      _vm._m(2),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-10 d-flex" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.birthYear,
+                expression: "birthYear"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "birth_year", id: "birth_year" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.birthYear = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  _vm.calcYears({ birthYear: _vm.birthYear })
+                }
+              ]
+            }
+          },
+          [
+            _c("option", { attrs: { disabled: "", selected: "" } }, [
+              _vm._v("Please Choose One")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.years, function(_year) {
+              return _c("option", [_vm._v(" " + _vm._s(_year))])
+            })
+          ],
+          2
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row" }, [
+      _vm._m(3),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-10 d-flex" }, [
+        _vm._v("\n            " + _vm._s(_vm.current_age) + "\n            "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.current_age,
+              expression: "current_age"
+            }
+          ],
+          attrs: { type: "hidden", id: "age", name: "age" },
+          domProps: { value: _vm.current_age },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.current_age = $event.target.value
+            }
+          }
+        })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row" }, [
+      _vm._m(4),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-10 d-flex" }, [
+        _vm._v("\n            " + _vm._s(_vm.clazz) + "\n            "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.clazz,
+              expression: "clazz"
+            }
+          ],
+          attrs: {
+            type: "hidden",
+            id: "initiation_year",
+            name: "initiation_year"
+          },
+          domProps: { value: _vm.clazz },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.clazz = $event.target.value
+            }
+          }
+        })
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c(
+        "label",
+        { staticClass: "control-label", attrs: { for: "birth_month" } },
+        [_vm._v("Birth Month:")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c(
+        "label",
+        { staticClass: "control-label", attrs: { for: "birth_day" } },
+        [_vm._v("Birth Day:")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c(
+        "label",
+        { staticClass: "control-label", attrs: { for: "birth_year" } },
+        [_vm._v("Birth Year:")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c("label", { staticClass: "control-label", attrs: { for: "age" } }, [
+        _vm._v("Age:")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-2" }, [
+      _c(
+        "label",
+        { staticClass: "control-label", attrs: { for: "initiation_year" } },
+        [_vm._v("Initiation Year:")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3e8a0904", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 178:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
 /***/ })
 
-},[145]);
+},[146]);

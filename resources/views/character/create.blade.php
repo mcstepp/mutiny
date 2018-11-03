@@ -155,17 +155,13 @@
                 </div>
 
                 <div class="card m-card">
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <div class="col-md-2">
-                                <label for="first_name" class="control-label">Birth Month:</label>
-                            </div>
-
-                            <div class="col-md-10 d-flex">
-                                <input type="text" class="form-control align-self-center" name="first_name" id="first_name">
-                            </div>
-                        </div>
-                    </div>
+                    <character-time
+                        month="June"
+                        year=150
+                        :years="{{ json_encode($years) }}"
+                        :ages="{{ json_encode($ages) }}"
+                        :months="{{ json_encode($months) }}"
+                        :clazzes="{{ json_encode($clazzes) }}"></character-time>
                 </div>
 
                 <div class="card m-card bg-industrial-dark">

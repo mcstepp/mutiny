@@ -13,6 +13,11 @@ class PendingCharacterController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->startDay = 31;
+        $this->startMonth = "May";
+        $this->startYear = 150;
+        $this->maxAge = 78;
+        $this->minAge = 18;
     }
     /**
      * Show a list of all pending characters
@@ -29,9 +34,28 @@ class PendingCharacterController extends Controller
     public function create()
     {
         $factions = Faction::all();
+        $months = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ];
+
 
         return view('character.create', [
             'factions' => $factions,
+            'ages' => $this->getAges(),
+            'years' => $this->getBirthYears(),
+            'months' => $months,
+            'clazzes' => $this->getInitiationYears()
         ]);
     }
 
@@ -90,5 +114,38 @@ class PendingCharacterController extends Controller
     public function destroy(PendingCharacter $character)
     {
         //
+    }
+
+    private function getBirthYears()
+    {
+        $years = [];
+
+        for ($i = $this->startYear - $this->minAge; $i >= $this->startYear - $this->maxAge; $i--) {
+            $years[] = $i;
+        }
+
+        return $years;
+    }
+
+    private function getAges()
+    {
+        $ages = [];
+
+        for ($i = $this->minAge; $i <= $this->maxAge; $i++) {
+            $ages[] = $i;
+        }
+
+        return $ages;
+    }
+
+    private function getInitiationYears()
+    {
+        $years = [];
+
+        for ($i = $this->startYear; $i >= $this->startYear-$this->maxAge + $this->minAge; $i--) {
+            $years[] = $i;
+        }
+
+        return $years;
     }
 }
