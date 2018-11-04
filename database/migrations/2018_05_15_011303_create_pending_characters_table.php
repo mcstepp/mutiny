@@ -21,7 +21,10 @@ class CreatePendingCharactersTable extends Migration
             $table->string('last_name');
             $table->unsignedInteger('faction_id');
             $table->unsignedInteger('origin_faction_id');
-            $table->unsignedInteger('ic_birthday');
+            $table->string('occupation');
+            $table->unsignedInteger('ic_birth_month');
+            $table->unsignedInteger('ic_birth_day');
+            $table->unsignedInteger('ic_birth_year');
             $table->unsignedInteger('initiation_year');
             $table->unsignedInteger('age');
             $table->text('personality');

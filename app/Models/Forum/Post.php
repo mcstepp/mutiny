@@ -23,7 +23,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $touches = ['thread'];
+    //protected $touches = ['thread'];
 
     // character or user
     public function author()

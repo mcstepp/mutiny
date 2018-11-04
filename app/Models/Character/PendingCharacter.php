@@ -24,7 +24,7 @@ class PendingCharacter extends Model
      * @var array
      */
     protected $guarded = [];
-    protected $with = ['rank', 'faction'];
+    protected $with = ['faction'];
 
     public function user()
     {
@@ -39,12 +39,12 @@ class PendingCharacter extends Model
 
     public function rank()
     {
-        return $this->belongsTo(Rank::class);
+        //return $this->belongsTo(Rank::class);
     }
 
     public function faction()
     {
-        return $this->belongsTo(Faction::class)
-            ->with('rank');
+        return $this->belongsTo(Faction::class);
+            //->with('rank');
     }
 }

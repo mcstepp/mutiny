@@ -116,10 +116,12 @@ class Thread extends Model
      * Add a post to the thread
      *
      * @param $post
+     * @return Thread
      */
     public function addPost($post)
     {
         $this->posts()->create($post);
+        return $this;
     }
 
     /**

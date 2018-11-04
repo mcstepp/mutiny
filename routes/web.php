@@ -46,12 +46,16 @@ Route::get('/f/{forum}/t/{thread}', 'Forums\ThreadPostController@index')->name('
 Route::post('/f/{forum}/t/{thread}', 'Forums\ThreadPostController@store')->name('reply');
 Route::delete('/f/{forum}/t/{thread}', 'Forums\ForumThreadController@delete')->name('delete-thread');
 Route::get('/f/{forum}/t/{thread}/{post}/edit', 'Forums\ThreadPostController@edit')->name('edit-post');
+
 Route::put('/f/{forum}/t/{thread}/{post}/update', 'Forums\ThreadPostController@update')->name('update-post');
 Route::delete('/f/{forum}/t/{thread}/{post}', 'Forums\ThreadPostController@delete')->name('delete-post');
 
 Route::get('/u', 'UserController@index');
 Route::get('/u/{user}', 'UserController@show')->name('user-profile');
+Route::get('/u/{user}/pc', 'Character\UserPendingCharacterController@index')->name('view-pending-characters');
 
-Route::get('/c', 'CharacterController@index');
-Route::get('/c/create', 'PendingCharacterController@create')->name('create-character');
-Route::post('/c/create', 'PendingCharacterController@store')->name('store-pending-character');
+Route::get('/c', 'Character\CharacterController@index');
+
+Route::get('/pc/{pendingcharacter}', 'Character\PendingCharacterController@show')->name('show-pending-character');
+Route::get('/pc/create', 'Character\PendingCharacterController@create')->name('create-character');
+Route::post('/pc/create', 'Character\PendingCharacterController@store')->name('store-pending-character');

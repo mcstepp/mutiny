@@ -7,6 +7,7 @@
             </div>
 
             <div class="col-md-10 d-flex">
+                <input name="ic_birth_month" type="hidden" v-model="ic_birth_month">
                 <select v-model="birthMonth"
                         name="birth_month"
                         id="birth_month"
@@ -24,6 +25,7 @@
             </div>
 
             <div class="col-md-10 d-flex">
+                <input name="ic_birth_day" type="hidden" v-model="birthDay">
                 <select v-model="birthDay"
                         name="birth_day"
                         id="birth_day"
@@ -40,6 +42,7 @@
             </div>
 
             <div class="col-md-10 d-flex">
+                <input name="ic_birth_year" type="hidden" v-model="birthYear">
                 <select v-model="birthYear"
                         name="birth_year"
                         id="birth_year"
@@ -93,6 +96,7 @@
             return {
                 current_age: 18,
                 birthMonth: 'May',
+                ic_birth_month: 5,
                 birthDay: 31,
                 birthYear: 132,
                 clazz: 150,
@@ -108,13 +112,17 @@
 
             clazz(newClazz) {
                 this.hasClazzError = newClazz > this.year;
+            },
+
+            birthMonth(newMonth) {
+                this.ic_birth_month = this.months.indexOf(newMonth);
             }
         },
 
         computed: {
             days() {
                 let days = [];
-                for (let i = 1; i <= 31; i++){
+                for (let i = 1; i <= 31; i++) {
                     days.push(i);
                 }
                 return days;

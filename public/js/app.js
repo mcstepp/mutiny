@@ -3310,6 +3310,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'CharacterTime',
@@ -3320,6 +3323,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             current_age: 18,
             birthMonth: 'May',
+            ic_birth_month: 5,
             birthDay: 31,
             birthYear: 132,
             clazz: 150,
@@ -3335,6 +3339,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         clazz: function clazz(newClazz) {
             this.hasClazzError = newClazz > this.year;
+        },
+        birthMonth: function birthMonth(newMonth) {
+            this.ic_birth_month = this.months.indexOf(newMonth);
         }
     },
 
@@ -3403,6 +3410,27 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-10 d-flex" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.ic_birth_month,
+              expression: "ic_birth_month"
+            }
+          ],
+          attrs: { name: "ic_birth_month", type: "hidden" },
+          domProps: { value: _vm.ic_birth_month },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.ic_birth_month = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
         _c(
           "select",
           {
@@ -3455,6 +3483,27 @@ var render = function() {
       _vm._m(1),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-10 d-flex" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.birthDay,
+              expression: "birthDay"
+            }
+          ],
+          attrs: { name: "ic_birth_day", type: "hidden" },
+          domProps: { value: _vm.birthDay },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.birthDay = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
         _c(
           "select",
           {
@@ -3502,6 +3551,27 @@ var render = function() {
       _vm._m(2),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-10 d-flex" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.birthYear,
+              expression: "birthYear"
+            }
+          ],
+          attrs: { name: "ic_birth_year", type: "hidden" },
+          domProps: { value: _vm.birthYear },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.birthYear = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
         _c(
           "select",
           {

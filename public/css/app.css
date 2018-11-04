@@ -25451,12 +25451,15 @@ hr.transparent {
   background-attachment: fixed;
 }
 
-.bg-tall-city {
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #251a27), color-stop(50%, rgba(22, 16, 24, 0.85)), to(rgba(0, 0, 0, 0.95))), url("/images/tall-sidebar-gray-city.jpg");
-  background-image: linear-gradient(to bottom, #251a27 5%, rgba(22, 16, 24, 0.85) 50%, rgba(0, 0, 0, 0.95) 100%), url("/images/tall-sidebar-gray-city.jpg");
-  background-size: cover;
-  background-position: bottom center;
-  background-attachment: fixed;
+.form-control {
+  background-color: #222222;
+  border-color: #333;
+  color: #F4F3F4;
+}
+
+.form-control:focus {
+  background-color: #777777;
+  color: #000;
 }
 
 .page-header {

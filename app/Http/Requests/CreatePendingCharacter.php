@@ -13,7 +13,8 @@ class CreatePendingCharacter extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        //return false;
+        return 'true';
     }
 
     /**
@@ -27,13 +28,13 @@ class CreatePendingCharacter extends FormRequest
             'first_name' => 'required|max:32',
             'chosen_name' => 'max:32',
             'last_name' => 'required|max:32',
-            'faction' => 'required|exists:faction,id',
-            'origin_faction' => 'required|exists:faction,id',
+            'faction' => 'required|exists:factions,id',
+            'origin_faction' => 'required|exists:factions,id',
             'occupation' => 'required|max:64',
             'ic_birth_month' => 'required|between:1,12',
             'ic_birth_day' => 'required|between:1,31',
-            'ic_birth_year' => 'required|lte:132',
-            'initiation_year' => 'required|lte:150',
+            'ic_birth_year' => 'required|max:132',
+            'initiation_year' => 'required|max:150',
             'age' => 'required|digits:2',
             'history' => 'required|min:100',
             'personality' => 'required|min:100',

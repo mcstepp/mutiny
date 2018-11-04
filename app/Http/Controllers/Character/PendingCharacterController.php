@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Character;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePendingCharacter;
 use App\Models\Character\Faction;
 use App\Models\Character\PendingCharacter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PendingCharacterController extends Controller
 {
@@ -13,6 +15,7 @@ class PendingCharacterController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
         $this->startDay = 31;
         $this->startMonth = "May";
         $this->startYear = 150;
@@ -26,9 +29,11 @@ class PendingCharacterController extends Controller
      */
     public function index()
     {
-       $pendings = PendingCharacter::latest()->get();
+       $pending_characters = PendingCharacter::latest()->get();
 
-        return view('admin.pending.index', compact('pendings'));
+        return view('admin.pending.index', [
+            'pending_characters' => $pending_characters
+        ]);
     }
 
     public function create()
@@ -62,41 +67,44 @@ class PendingCharacterController extends Controller
     /**
      * Store a newly created character.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreatePendingCharacter $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreatePendingCharacter $request)
     {
-        $this->validate($request, [
-            'username' => 'required|min:6|max:255',
-            'species' => 'required',
-            'subspecies' => 'required',
-            'personality' => 'required|min:100',
-            'history' => 'required|min:100',
-            'appearance' => 'required|min:100',
-        ]);
+        $validated = $request->validated();
 
         // TODO: stricter validations and stuff, stripping out HTML, XSS stuff
 
-        PendingCharacter::create([
-            'username' => request('username'),
-            'user_id' => auth()->id(),
-            'species_id' => request('species'),
-            'subspecies_id' => request('subspecies'),
-            'personality' => request('personality'),
-            'history' => request('history'),
-            'appearance' => request('appearance'),
-            'faceclaim' => request('faceclaim')
+        $pending_character = PendingCharacter::make([
+            'user_id' => Auth::id(),
+            'first_name' => $validated['first_name'],
+            'chosen_name' => $validated['chosen_name'],
+            'last_name' => $validated['last_name'],
+            'faction_id' => $validated['faction'],
+            'origin_faction_id' => $validated['origin_faction'],
+            'occupation' => $validated['occupation'],
+            'ic_birth_month' => $validated['ic_birth_month'],
+            'ic_birth_day' => $validated['ic_birth_day'],
+            'ic_birth_year' => $validated['ic_birth_year'],
+            'initiation_year' => $validated['initiation_year'],
+            'age' => $validated['age'],
+            'history' => $validated['history'],
+            'personality' => $validated['personality'],
+            'appearance' => $validated['appearance'],
+            'faceclaim' => $validated['faceclaim']
         ]);
 
+        $pending_character->save();
 
-        return view('character.status');
+
+        return redirect()->route('view-pending-characters', Auth::user());
     }
 
     /**
      * Display a pending character application
      *
-     * @param  \App\Character  $character
+     * @param PendingCharacter $character
      * @return \Illuminate\Http\Response
      */
     public function show(PendingCharacter $character)

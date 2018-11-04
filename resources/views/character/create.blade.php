@@ -20,6 +20,17 @@
             class="form-horizontal">
                 {{ csrf_field() }}
 
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="card m-card bg-industrial-dark">
                     <div class="card-top">
                         <h3 class="m-fancy-title uppercase text-center">
@@ -72,11 +83,11 @@
                             </div>
 
                             <div class="col-md-10 d-flex">
-                                <input type="text" class="form-control align-self-center" name="first_name" id="first_name">
+                                <input type="text" class="form-control align-self-center" name="first_name" id="first_name" required>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="chosen_name" class="control-label col-md-2">Chosen Name:</label>
+                            <label for="chosen_name" class="control-label col-md-2">Chosen Name (Optional):</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" name="chosen_name" id="chosen_name">
                             </div>
@@ -84,14 +95,14 @@
                         <div class="form-group row">
                             <label for="last_name" class="control-label col-md-2">Last Name:</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="last_name" id="last_name">
+                                <input type="text" class="form-control" name="last_name" id="last_name" required>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="origin_faction" class="control-label col-md-2">Faction of Origin:</label>
                             <div class="col-md-10">
-                                <select class="form-control" name="origin_faction" id="origin_faction">
+                                <select class="form-control" name="origin_faction" id="origin_faction" required>
                                     <option selected disabled>Please Choose One</option>
                                     @foreach($factions as $faction)
                                         <option value="{{ $faction->id }}">{{ $faction->name }}</option>
@@ -158,6 +169,7 @@
                     <character-time
                         month="June"
                         year=150
+                        co_month="May"
                         :years="{{ json_encode($years) }}"
                         :ages="{{ json_encode($ages) }}"
                         :months="{{ json_encode($months) }}"
@@ -176,7 +188,62 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary text-uppercase">Submit Character</button>
+                <div class="card m-card">
+                    <div class="card-body">
+
+                        <div class="form-group row">
+                            <div class="col-md-2 d-flex">
+                                <label for="occupation" class="control-label align-self-center">Occupation:</label>
+                            </div>
+
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="occupation" id="occupation">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <label for="history" class="control-label">Back Story:</label>
+                            </div>
+
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="3" name="history" id="history"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <label for="history" class="control-label">Personality:</label>
+                            </div>
+
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="3" name="personality" id="personality"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <label for="appearance" class="control-label">Appearance:</label>
+                            </div>
+
+                            <div class="col-md-10">
+                                <textarea class="form-control" rows="3" name="appearance" id="appearance"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-2 d-flex">
+                                <label for="faceclaim" class="control-label align-self-center">Face Claim (Optional):</label>
+                            </div>
+
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="faceclaim" id="faceclaim">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary text-uppercase m-fancy-title">Submit Character</button>
             </form>
         </div>
 

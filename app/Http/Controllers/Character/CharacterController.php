@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Character;
 
+use App\Http\Controllers\Controller;
 use App\Models\Character\Character;
 use App\Models\Character\Faction;
 use App\Models\Character\Rank;

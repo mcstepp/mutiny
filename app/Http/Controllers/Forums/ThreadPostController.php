@@ -59,14 +59,14 @@ class ThreadPostController extends Controller
 
         $author_id = request('author_id') === 'u' ? auth()->id() : request('author_id');
 
-        $post = POST::make([
+        $post = Post::make([
             'thread_id' => $thread->id,
             'author_id' => $author_id,
             'author_type' => request('author_type'),
             'body' => request('body')
         ])->toArray();
 
-        $thread->addPost($post);
+        $thread->addPost($post)->touch();
 
         return back();
     }
@@ -74,7 +74,8 @@ class ThreadPostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param Forum $forum
+     * @param Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function show(Forum $forum, Thread $thread)
@@ -91,7 +92,9 @@ class ThreadPostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Post  $post
+     * @param Forum $forum
+     * @param Thread $thread
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Forum $forum, Thread $thread, Post $post)
@@ -106,8 +109,10 @@ class ThreadPostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
+     * @param  \Illuminate\Http\Request $request
+     * @param Forum $forum
+     * @param Thread $thread
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Forum $forum, Thread $thread, Post $post)
@@ -143,8 +148,12 @@ class ThreadPostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
+     * @param Request $request
+     * @param Forum $forum
+     * @param Thread $thread
+     * @param Post $post
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function delete(Request $request, Forum $forum, Thread $thread, Post $post)
     {
@@ -164,8 +173,8 @@ class ThreadPostController extends Controller
     /**
      * Permanently Remove the specified resource from storage.
      *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param Post $post
+     * @return void
      */
     public function destroy(Post $post)
     {
