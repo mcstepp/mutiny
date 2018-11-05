@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Character;
 
+use App\Models\Character\PendingCharacter;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserPendingCharacterController extends Controller
 {
@@ -14,8 +16,10 @@ class UserPendingCharacterController extends Controller
      * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
+    public function index(User $user = null)
     {
+        $user = $user ?: Auth::user();
+
         $pending_characters = $user->pending_characters()->get();
 
         return view('pending_characters.index', [
@@ -47,12 +51,14 @@ class UserPendingCharacterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param PendingCharacter $character
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(PendingCharacter $character)
     {
-        //
+        return view('pending_characters.show', [
+            'character' => $character
+        ]);
     }
 
     /**

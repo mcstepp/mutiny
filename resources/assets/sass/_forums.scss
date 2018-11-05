@@ -58,35 +58,6 @@
 
 .m-thread-post {
 
-	.miniprofile {
-		.m-traits {
-			//background-color: blue;
-			margin: 1em;
-		}
-		.m-trait {
-			text-transform: uppercase;
-			color: $gray-100;
-			font-style: italic;
-		}
-
-		.m-author-meta {
-			margin: 1em;
-
-			.m-author {
-				letter-spacing: 1px;
-				display: inline-block;
-
-				a {
-					&:hover {
-						color: inherit;
-						text-decoration: none;
-					}
-
-				}
-			}
-		}
-	}
-
 	.m-post {
 		padding: 2em;
 		//margin: 0 auto;
@@ -111,6 +82,35 @@
 
 	h3 {
 		margin: 0;
+	}
+}
+
+.miniprofile {
+	.m-traits {
+		//background-color: blue;
+		margin: 1em;
+	}
+	.m-trait {
+		text-transform: uppercase;
+		color: $gray-100;
+		font-style: italic;
+	}
+
+	.m-author-meta {
+		margin: 1em;
+
+		.m-author {
+			letter-spacing: 1px;
+			display: inline-block;
+
+			a {
+				&:hover {
+					color: inherit;
+					text-decoration: none;
+				}
+
+			}
+		}
 	}
 }
 

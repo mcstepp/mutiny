@@ -29,9 +29,9 @@ class PendingCharacterController extends Controller
      */
     public function index()
     {
-       $pending_characters = PendingCharacter::latest()->get();
+       $pending_characters = PendingCharacter::all();
 
-        return view('admin.pending.index', [
+        return view('admin.pending_characters.index', [
             'pending_characters' => $pending_characters
         ]);
     }
@@ -109,15 +109,17 @@ class PendingCharacterController extends Controller
      */
     public function show(PendingCharacter $character)
     {
-        return view('admin.pending.show', compact('character'));
+        return view('admin.pending_characters.show', [
+            'character' => $character
+        ]);
     }
 
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param PendingCharacter $character
+     * @return void
      */
     public function destroy(PendingCharacter $character)
     {

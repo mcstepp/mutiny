@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'Admin\AdminPanelController@index')->name('adminPanel');
+
 Route::get('/admin/forums', 'Admin\AdminPanelController@indexForum')->name('admin-forums');
 Route::post('/admin/forums', 'Forums\ForumController@store')->name('admin-store-forum');
 Route::get('/admin/forums/create', 'Forums\ForumController@create')->name('admin-create-forum');
@@ -32,6 +33,11 @@ Route::post('/admin/ranks', 'Character\RankController@store')->name('admin-store
 
 Route::get('/admin/factions', 'Character\FactionController@index')->name('admin-factions');
 Route::post('/admin/factions', 'Character\FactionController@store')->name('admin-store-faction');
+
+Route::get('/admin/pending', 'Character\PendingCharacterController@index')->name('admin-view-pending-characters');
+Route::get('admin/pending/{character}', 'Character\PendingCharacterController@show')->name('admin-show-pending-character');
+
+
 
 Route::get('/f', 'Forums\ForumController@index');
 
@@ -55,7 +61,9 @@ Route::get('/u/{user}', 'UserController@show')->name('user-profile');
 Route::get('/u/{user}/pc', 'Character\UserPendingCharacterController@index')->name('view-pending-characters');
 
 Route::get('/c', 'Character\CharacterController@index');
+Route::post('/c/create', 'Character\CharacterController@store')->name('store-new-character');
 
-Route::get('/pc/{pendingcharacter}', 'Character\PendingCharacterController@show')->name('show-pending-character');
+Route::get('/pc', 'Character\UserPendingCharacterController@index')->name('view-my-pending-characters');
+Route::get('/pc/{character}', 'Character\UserPendingCharacterController@show')->name('show-pending-character');
 Route::get('/pc/create', 'Character\PendingCharacterController@create')->name('create-character');
 Route::post('/pc/create', 'Character\PendingCharacterController@store')->name('store-pending-character');

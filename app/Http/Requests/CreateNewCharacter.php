@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePendingCharacter extends FormRequest
+class CreateNewCharacter extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,6 +26,7 @@ class CreatePendingCharacter extends FormRequest
     public function rules()
     {
         return [
+            'user_id' => 'required|exists',
             'first_name' => 'required|max:32',
             'chosen_name' => 'max:32',
             'last_name' => 'required|max:32',

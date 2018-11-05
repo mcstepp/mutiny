@@ -34,7 +34,7 @@ class PendingCharacter extends Model
     public function username()
     {
         $name = $this->chosen_name ?: $this->first_name;
-        return $name .' '. $this->last_name;
+        return "{$name} {$this->last_name}";
     }
 
     public function rank()
@@ -42,9 +42,20 @@ class PendingCharacter extends Model
         //return $this->belongsTo(Rank::class);
     }
 
+    public function origin_faction()
+    {
+        return $this->belongsTo(Faction::class);
+        //->with('rank');
+    }
+
     public function faction()
     {
         return $this->belongsTo(Faction::class);
             //->with('rank');
+    }
+
+    public function path()
+    {
+        return "/pc/{$this->id}";
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Character;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateNewCharacter;
 use App\Models\Character\Character;
 use App\Models\Character\Faction;
 use App\Models\Character\Rank;
@@ -39,55 +40,40 @@ class CharacterController extends Controller
     }
 
     /**
-     * Store a newly accepted character.
+     * Store a newly created character.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreateNewCharacter $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateNewCharacter $request)
     {
-        $this->validate($request, [
-            'name' => 'required|min:6|max:255',
-            'faction' => 'required',
-            'rank' => 'required',
-            'user_id' => 'required',
-            'personality' => 'required|min:100',
-            'history' => 'required|min:100',
-            'appearance' => 'required|min:100',
-            'ic_birthday' => 'required',
-            'initiation_year' => 'required',
-            'faceclaim' => 'nullable'
+        $validated = $request->validated();
+
+        // TODO: stricter validations and stuff, stripping out HTML, XSS stuff
+
+        $character = Character::make([
+            'user_id' => Auth::id(),
+            'first_name' => $validated['first_name'],
+            'chosen_name' => $validated['chosen_name'],
+            'last_name' => $validated['last_name'],
+            'faction_id' => $validated['faction'],
+            'origin_faction_id' => $validated['origin_faction'],
+            'occupation' => $validated['occupation'],
+            'ic_birth_month' => $validated['ic_birth_month'],
+            'ic_birth_day' => $validated['ic_birth_day'],
+            'ic_birth_year' => $validated['ic_birth_year'],
+            'initiation_year' => $validated['initiation_year'],
+            'age' => $validated['age'],
+            'history' => $validated['history'],
+            'personality' => $validated['personality'],
+            'appearance' => $validated['appearance'],
+            'faceclaim' => $validated['faceclaim']
         ]);
 
-        // TODO: stricter validations and sanitizing, stripping out HTML, XSS stuff
+        $character->save();
 
-        Character::create([
-            'user_id' => request('user_id'),
-            'name' => request('name'),
-            'faction_id' => request('faction'),
-            'rank_id' => request('rank'),
-            'personality' => request('personality'),
-            'history' => request('history'),
-            'appearance' => request('appearance'),
-            'ic_birthday' => request('ic_birthday'),
-            'initiation_year' => request('initiation_year'),
-            'faceclaim' => request('faceclaim')
-        ]);
 
-        $deleted = request('id');
-        $user_id = request('user_id');
-        $key = "characters_{$user_id}";
-
-        //delete that users character cache
-        Cache::forget($key);
-
-        // delete from pending
-
-        \DB::delete('delete from pending_characters where id = :id', [
-            'id' => $deleted
-        ]);
-
-        return redirect('/admin/pending');
+        return redirect()->route('view-pending-characters', Auth::user());
     }
 
     /**

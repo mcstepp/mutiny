@@ -19,6 +19,16 @@ class Character extends PendingCharacter
     protected $guarded = []; 
     protected $with = ['faction'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('posts_count', function($builder){
+            $builder->withCount('posts');
+        });
+
+    }
+
 
     public function threads()
     {

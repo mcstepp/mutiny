@@ -3341,7 +3341,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.hasClazzError = newClazz > this.year;
         },
         birthMonth: function birthMonth(newMonth) {
-            this.ic_birth_month = this.months.indexOf(newMonth);
+            this.ic_birth_month = this.months.indexOf(newMonth) + 1;
         }
     },
 
