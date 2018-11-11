@@ -11,7 +11,7 @@
                         <span class="callout callout-secondary m-trait m-fancy-title">Admin</span>
                         <span class="callout callout-info m-trait m-fancy-title">Global Moderator</span>
                         <span class="callout callout-primary m-trait m-fancy-title">Member</span>
-                        <span class="callout callout-primary m-trait m-fancy-title">{{ $user->posts_count }}</span>
+                        <span class="callout callout-primary m-trait m-fancy-title">{{ $author->posts_count }} {{  }}</span>
                     </div>
 
                     <hr class="glow-default">
