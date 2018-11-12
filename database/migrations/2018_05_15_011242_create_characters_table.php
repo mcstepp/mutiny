@@ -15,18 +15,24 @@ class CreateCharactersTable extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username');
-            $table->string('faceclaim')->nullable();
             $table->unsignedInteger('user_id');
+            $table->string('first_name');
+            $table->string('chosen_name')->nullable();
+            $table->string('last_name');
             $table->unsignedInteger('faction_id');
-            $table->unsignedInteger('rank_id');
-            $table->unsignedInteger('credit')->default(1000);
+            $table->unsignedInteger('origin_faction_id');
+            $table->string('occupation');
+            $table->unsignedInteger('ic_birth_month');
+            $table->unsignedInteger('ic_birth_day');
+            $table->unsignedInteger('ic_birth_year');
             $table->unsignedInteger('initiation_year');
-            $table->bigInteger('ic_birthday');
+            $table->unsignedInteger('age');
             $table->text('personality');
             $table->text('history');
             $table->text('appearance');
-            $table->boolean('current')->default(0);
+            $table->string('faceclaim')->nullable();
+            $table->unsignedInteger('credit')->default(0);
+            $table->unsignedInteger('current')->default(0);
             $table->timestamps();
         });
     }

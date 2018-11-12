@@ -11,7 +11,7 @@ class PostsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
 
         $users = App\User::all();

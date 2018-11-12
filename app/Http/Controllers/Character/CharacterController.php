@@ -52,7 +52,7 @@ class CharacterController extends Controller
         // TODO: stricter validations and stuff, stripping out HTML, XSS stuff
 
         $character = Character::make([
-            'user_id' => Auth::id(),
+            'user_id' => $validated['user_id'],
             'first_name' => $validated['first_name'],
             'chosen_name' => $validated['chosen_name'],
             'last_name' => $validated['last_name'],

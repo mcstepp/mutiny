@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\Character\Character::class, function (Faker $faker) {
+$factory->define(App\Models\Character\PendingCharacter::class, function (Faker $faker) {
 
     $user = factory('App\User')->create();
     $faction = factory('App\Models\Character\Faction')->create();
@@ -51,8 +51,6 @@ $factory->define(App\Models\Character\Character::class, function (Faker $faker) 
         'history' => $faker->paragraph,
         'personality' => $faker->paragraph,
         'appearance' => $faker->paragraph,
-        'faceclaim' => $faker->unique()->name,
-        'credit' => $faker->numberBetween(0,9999),
-        'current' => false
+        'faceclaim' => $faker->unique()->name
     ];
 });
