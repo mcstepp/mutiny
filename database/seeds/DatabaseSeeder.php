@@ -18,5 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ThreadsTableSeeder::class);
         $this->call(PostsTableSeeder::class);
         $this->call(PendingCharactersTableSeeder::class);
+        $this->call(CharactersTableSeeder::class);
+
+
     }
 }

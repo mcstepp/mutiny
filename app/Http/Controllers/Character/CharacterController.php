@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateNewCharacter;
 use App\Models\Character\Character;
 use App\Models\Character\Faction;
+use App\Models\Character\PendingCharacter;
 use App\Models\Character\Rank;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 
 class CharacterController extends Controller
@@ -72,8 +72,19 @@ class CharacterController extends Controller
 
         $character->save();
 
+        // Delete the pending character
+        // TODO: move this to event model create
+        $pendingcharacter = PendingCharacter::where([
+            'user_id' => $validated['user_id'],
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name']
+        ])
+            ->first();
 
-        return redirect()->route('view-pending-characters', Auth::user());
+            $pendingcharacter->delete();
+
+
+        return redirect()->route('admin-view-pending-characters');
     }
 
     /**

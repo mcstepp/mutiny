@@ -26,7 +26,7 @@ class CreateNewCharacter extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists',
+            'user_id' => 'required|exists:users,id',
             'first_name' => 'required|max:32',
             'chosen_name' => 'max:32',
             'last_name' => 'required|max:32',
