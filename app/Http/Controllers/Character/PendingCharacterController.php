@@ -29,7 +29,7 @@ class PendingCharacterController extends Controller
      */
     public function index()
     {
-       $pending_characters = PendingCharacter::all();
+       $pending_characters = PendingCharacter::currentStatus('In Review')->get();
 
         return view('admin.pending_characters.index', [
             'pending_characters' => $pending_characters
@@ -95,8 +95,8 @@ class PendingCharacterController extends Controller
             'faceclaim' => $validated['faceclaim']
         ]);
 
-        $pending_character->save();
-
+        $pending_character->save()
+            ->setStatus('In Review');
 
         return redirect()->route('view-pending-characters', Auth::user());
     }
@@ -112,6 +112,25 @@ class PendingCharacterController extends Controller
         return view('admin.pending_characters.show', [
             'character' => $character
         ]);
+    }
+
+    /**
+     * Update a pending character's status
+     *
+     * @param Request $request
+     * @param PendingCharacter $character
+     * @return \Illuminate\Http\Response
+     * @throws \Spatie\ModelStatus\Exceptions\InvalidStatus
+     */
+    public function update(Request $request, PendingCharacter $character)
+    {
+        $validated = $request->validate([
+            'reason' => 'required'
+        ]);
+
+        $character->setStatus('Pending Modifications', $validated['reason']);
+
+        return redirect()->route('admin-view-pending-characters');
     }
 
 

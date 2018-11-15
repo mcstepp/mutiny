@@ -249,21 +249,24 @@
 
         <div class="card bg-dark border-danger my-5">
             <div class="card-body">
-                <h3 class="m-fancy-header text-center">Pend Character</h3>
-                <hr class="glow-default">
-                <div class="form-group row">
-                    <div class="col-md-2">
-                        <label for="reason" class="control-label">Reason:</label>
-                    </div>
+                <form action="{{ route('admin-pend-character', $character) }}" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="_method" value="PUT">
+                    <h3 class="m-fancy-header text-center">Pend Character</h3>
+                    <hr class="glow-default">
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <label for="reason" class="control-label">Reason:</label>
+                        </div>
 
-                    <div class="col-md-10">
-                        <textarea name="reason" id="reason" class="form-control" rows="3"></textarea>
+                        <div class="col-md-10">
+                            <textarea name="reason" id="reason" class="form-control" rows="3"></textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-outline-danger text-uppercase m-fancy-title">Pend Character</button>
-                </div>
-
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-outline-danger text-uppercase m-fancy-title">Pend Character</button>
+                    </div>
+                </form>
             </div>
         </div>
 

@@ -36,6 +36,7 @@ Route::post('/admin/factions', 'Character\FactionController@store')->name('admin
 
 Route::get('/admin/pending', 'Character\PendingCharacterController@index')->name('admin-view-pending-characters');
 Route::get('admin/pending/{character}', 'Character\PendingCharacterController@show')->name('admin-show-pending-character');
+Route::put('/admin/pending/{character}', 'Character\PendingCharacterController@update')->name('admin-pend-character');
 
 
 

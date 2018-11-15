@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Models\Character\Rank;
 use App\Models\Character\Faction;
+use Spatie\ModelStatus\HasStatuses;
 
 class PendingCharacter extends Model
 {
-    use Cachable;
+    //use Cachable;
+    use HasStatuses;
     /**
      * The table associated with the model.
      *
@@ -25,6 +27,17 @@ class PendingCharacter extends Model
      */
     protected $guarded = [];
     protected $with = ['faction'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($character){
+            if (strtolower((new \ReflectionClass($character))->getShortName()) === 'pendingcharacter') {
+                $character->setStatus('In Review');
+            }
+        });
+    }
 
     public function user()
     {

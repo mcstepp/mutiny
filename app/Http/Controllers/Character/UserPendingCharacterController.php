@@ -18,9 +18,11 @@ class UserPendingCharacterController extends Controller
      */
     public function index(User $user = null)
     {
-        $user = $user ?: Auth::user();
+        $user_id = $user ? $user->id : Auth::id();
 
-        $pending_characters = $user->pending_characters()->get();
+        $pending_characters = PendingCharacter::currentStatus('Pending Modifications')
+                                ->where('user_id', $user_id)
+                                ->get();
 
         return view('pending_characters.index', [
             'pending_characters' => $pending_characters
