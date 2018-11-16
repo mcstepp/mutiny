@@ -26967,6 +26967,15 @@ hr.transparent {
   background-attachment: fixed;
 }
 
+.bg-tall-city {
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(5%, #251a27), color-stop(50%, rgba(22, 16, 24, 0.85)), to(rgba(0, 0, 0, 0.95)));
+  background-image: linear-gradient(to bottom, #251a27 5%, rgba(22, 16, 24, 0.85) 50%, rgba(0, 0, 0, 0.95) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background-size: cover;
+  background-position: bottom center;
+  background-attachment: fixed;
+}
+
 .form-control {
   background-color: #222222;
   border-color: #333;

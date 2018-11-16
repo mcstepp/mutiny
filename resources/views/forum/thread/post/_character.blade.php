@@ -6,10 +6,14 @@
             <div class="col-md-9 col-lg-10 align-self-center">
                 <div class="container-fluid p-0">
                     <div class="m-traits text-md-right text-sm-center align-self-center">
-                        <span class="callout callout-{{ strtolower($character->faction->name) }} m-trait m-fancy-title">{{ $author->faction->name }}</span>
-                        <span class="callout callout-{{ strtolower($character->faction->name) }} m-trait m-fancy-title">D-4</span>
-                        <span class="callout callout-{{ strtolower($character->faction->name) }} m-trait m-fancy-title">{{ $author->occupation }}</span>
-                        <span class="callout callout-{{ strtolower($character->faction->name) }} m-trait m-fancy-title">Class of {{ $author->initiation_year }}</span>
+                        <i class="fas fa-{{ $author->faction->icon }} text-{{ strtolower($author->faction->name) }}"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="callout callout-{{ strtolower($author->faction->name) }} m-trait m-fancy-title">
+                           {{ $author->faction->name }}
+                        </span>
+                        <span class="callout callout-{{ strtolower($author->faction->name) }} m-trait m-fancy-title">D-4</span>
+                        <span class="callout callout-{{ strtolower($author->faction->name) }} m-trait m-fancy-title">{{ $author->occupation }}</span>
+                        <span class="callout callout-{{ strtolower($author->faction->name) }} m-trait m-fancy-title">Class of {{ $author->initiation_year }}</span>
+                        <i class="fas fa-{{ $author->faction->icon }} text-{{ strtolower($author->faction->name) }}"></i>
                     </div>
 
                     <hr class="glow-default">

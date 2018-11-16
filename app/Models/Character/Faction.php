@@ -23,4 +23,18 @@ class Faction extends Model
     {
     	return $this->belongsToMany(PendingCharacter::class);
     }
+
+    public function getIconAttribute()
+    {
+        $icons = [
+            'Amity' => 'leaf',
+            'Abnegation' => 'hands-helping',
+            'Candor' => 'balance-scale',
+            'Dauntless' => 'fire',
+            'Erudite' => 'eye',
+            'Factionless' => 'fist-raised',
+        ];
+
+        return $icons[$this->name];
+    }
 }
