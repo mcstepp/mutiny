@@ -21,16 +21,23 @@ class UserPendingCharacterController extends Controller
      * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user = null)
+    public function index(Request $request, User $user = null)
     {
-        $user_id = $user ? $user->id : Auth::id();
+
+        $user = $user ?: $request->user();
 
         $pending_characters = PendingCharacter::currentStatus('Pending Modifications')
-                                ->where('user_id', $user_id)
+                                ->where('user_id', $user->id)
                                 ->get();
 
+        $in_review_characters = PendingCharacter::currentStatus('In Review')
+                                    ->where('user_id', $user->id)
+                                    ->get();
+
         return view('pending_characters.index', [
-            'pending_characters' => $pending_characters
+            'pending_characters' => $pending_characters,
+            'in_review_characters' => $in_review_characters,
+            'user' => $user
         ]);
     }
 

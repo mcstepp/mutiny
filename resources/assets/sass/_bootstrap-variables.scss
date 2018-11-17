@@ -14,12 +14,20 @@ $mutiny_pink: #9A3F3D;
 $mutiny_darkpink: darken($mutiny_pink, 5%);
 
 // faction colors
-$abnegation:						desaturate(lighten(#522f00, 30%), 75%);
-$amity:								desaturate(lighten(#330, 50%), 75%);
-$candor:							desaturate(lighten(#030, 30%), 75%);
-$dauntless:							desaturate(lighten(#300, 50%), 75%);
-$erudite:							desaturate(lighten(#003, 50%), 75%);
-$factionless:						desaturate(lighten(#033, 30%), 75%);
+//$abnegation:						desaturate(lighten(#754d3a, 5%), 75%);
+//$amity:								desaturate(lighten(#879143, 5%), 75%);
+//$candor:							desaturate(lighten(#030, 5%), 75%);
+//$dauntless:							desaturate(lighten(#300, 5%), 75%);
+//$erudite:							desaturate(lighten(#003, 5%), 75%);
+//$factionless:						desaturate(lighten(#033, 5%), 75%);
+
+$dauntless:							#FF847C;
+$abnegation:                        #bf8e7c;
+$amity:								#F2D694;
+$candor:							#99B898;
+$factionless:                       #739999;
+$erudite:							#9cc7df;
+
 
 
 $white:                           #fff;
