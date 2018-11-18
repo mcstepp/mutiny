@@ -66,5 +66,7 @@ Route::post('/c/create', 'Character\CharacterController@store')->name('store-new
 
 Route::get('/pc', 'Character\UserPendingCharacterController@index')->name('view-my-pending-characters');
 Route::get('/pc/{character}', 'Character\UserPendingCharacterController@show')->name('show-pending-character');
+Route::get('/pc/{character}/edit', 'Character\UserPendingCharacterController@edit')->name('edit-pending-character');
+Route::put('/pc/{character}/update', 'Character\UserPendingCharacterController@update')->name('update-pending-character');
 Route::get('/pc/create', 'Character\PendingCharacterController@create')->name('create-character');
 Route::post('/pc/create', 'Character\PendingCharacterController@store')->name('store-pending-character');

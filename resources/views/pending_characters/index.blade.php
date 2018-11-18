@@ -22,7 +22,7 @@
                     <div class="list-group m-card">
 
                         @forelse($pending_characters as $pending_character)
-                        <a href="{{ route('show-pending-character', $pending_character) }}" class="list-group-item">
+                        <a href="{{ route('edit-pending-character', $pending_character) }}" class="list-group-item">
                             {{ $pending_character->username() }}
                             <small style="color: #999999; display: inline-block; margin-left: 1em;">reason: {{ $pending_character->latestStatus()->reason }}</small>
                         </a>
