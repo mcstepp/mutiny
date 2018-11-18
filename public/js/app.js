@@ -2865,37 +2865,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'PostAs',
 
-    props: ['character_list', 'user_data', 'default'],
+    props: ['characters', 'user'],
 
+    created: function created() {
+        if (this.characters && this.characters.length) {
+            var character = this.characters.find(function (character) {
+                return character.current === 1;
+            });
+            this.author_id = character.id;
+            this.author_type = 'character';
+        } else if (this.user) {
+            this.author_id = "u";
+            this.author_type = 'user';
+        }
+    },
     data: function data() {
         return {
             author_type: 'user',
-            author_id: '',
-            characters: [],
-            user: {}
+            author_id: ''
         };
-    },
-    created: function created() {
-
-        if (this.user_data) {
-            this.user = JSON.parse(this.user_data);
-            this.author_id = 'u';
-        }
-
-        if (this.default) {
-            this.author_type = 'character';
-            this.author_id = this.default;
-        }
-
-        if (this.character_list) {
-            this.characters = JSON.parse(this.character_list);
-        }
     },
 
 
@@ -2904,12 +2896,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.author_type !== type) {
                 this.author_type = type;
             }
-        }
-    },
-
-    computed: {
-        charactersJson: function charactersJson() {
-            return this.characters;
+        },
+        username: function username(character) {
+            var name = character.chosen_name || character.first_name;
+            return name + ' ' + character.last_name;
         }
     }
 
@@ -2954,9 +2944,46 @@ var render = function() {
           }
         }),
         _vm._v(" "),
-        _c("label", [
-          _vm.user_data
-            ? _c("input", {
+        _vm.characters
+          ? _vm._l(_vm.characters, function(character) {
+              return _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.author_id,
+                      expression: "author_id"
+                    }
+                  ],
+                  attrs: { type: "radio", name: "author_id" },
+                  domProps: {
+                    value: character.id,
+                    checked: _vm._q(_vm.author_id, character.id)
+                  },
+                  on: {
+                    change: [
+                      function($event) {
+                        _vm.author_id = character.id
+                      },
+                      function($event) {
+                        _vm.setType("character")
+                      }
+                    ]
+                  }
+                }),
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.username(character)) +
+                    "\n            "
+                )
+              ])
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.user
+          ? _c("label", [
+              _c("input", {
                 directives: [
                   {
                     name: "model",
@@ -2977,47 +3004,12 @@ var render = function() {
                     }
                   ]
                 }
-              })
-            : _vm._e(),
-          _vm._v("\n            " + _vm._s(_vm.user.username) + "\n        ")
-        ]),
-        _vm._v(" "),
-        _vm._l(_vm.charactersJson, function(character) {
-          return [
-            _c("label", [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.author_id,
-                    expression: "author_id"
-                  }
-                ],
-                attrs: { type: "radio", name: "author_id" },
-                domProps: {
-                  value: character.id,
-                  checked: _vm._q(_vm.author_id, character.id)
-                },
-                on: {
-                  change: [
-                    function($event) {
-                      _vm.author_id = character.id
-                    },
-                    function($event) {
-                      _vm.setType("character")
-                    }
-                  ]
-                }
               }),
               _vm._v(
-                "\n                " +
-                  _vm._s(character.username) +
-                  "\n            "
+                "\n            " + _vm._s(_vm.user.username) + "\n        "
               )
             ])
-          ]
-        })
+          : _vm._e()
       ],
       2
     )

@@ -50,6 +50,11 @@ class PendingCharacter extends Model
         return "{$name} {$this->last_name}";
     }
 
+    public function getUsernameAttribute()
+    {
+        return $this->username();
+    }
+
     public function rank()
     {
         //return $this->belongsTo(Rank::class);

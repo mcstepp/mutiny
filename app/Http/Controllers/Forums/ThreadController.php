@@ -19,6 +19,7 @@ class ThreadController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Forum $forum
      * @return \Illuminate\Http\Response
      */
     public function index(Forum $forum)
@@ -89,7 +90,7 @@ class ThreadController extends Controller
      * Display the specified resource.
      *
      * @param Forum $forum
-     * @param  \App\Thread $thread
+     * @param Thread $thread
      * @return \Illuminate\Http\Response
      */
     public function show(Forum $forum, Thread $thread)
@@ -106,8 +107,8 @@ class ThreadController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Thread  $thread
-     * @return \Illuminate\Http\Response
+     * @param Thread $thread
+     * @return void
      */
     public function edit(Thread $thread)
     {
@@ -117,9 +118,9 @@ class ThreadController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Thread  $thread
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param Thread $thread
+     * @return void
      */
     public function update(Request $request, Thread $thread)
     {
@@ -129,8 +130,8 @@ class ThreadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Thread  $thread
-     * @return \Illuminate\Http\Response
+     * @param Thread $thread
+     * @return void
      */
     public function destroy(Thread $thread)
     {

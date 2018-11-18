@@ -51,7 +51,8 @@
 
     <div class="container-fluid my-3">
         <div class="card m-card bg-industrial-dark">
-            <h2 class="card-top m-fancy-title text-uppercase">Create a New Thread</h2>
+            <h2 class="card-top m-fancy-title text-uppercase text-center">Create a New Thread</h2>
+            <hr class="glow-default mt-0">
 
             <div class="card-body container-fluid">
                 <form method="POST"
@@ -98,17 +99,16 @@
                         </div>
                     </div>
 
-                    {{--@if($forum->ic)--}}
+                    @if($forum->ic)
 
-                        {{--<post-as :character_list='{{ Auth::user()->characters }}'--}}
-                                 {{--:user_data='{{ Auth::user() }}'--}}
-                                 {{--:default={{ $ }}></post-as>--}}
+                        <post-as :characters="{{ json_encode(Auth::user()->characters) }}"
+                                 :user="{{ json_encode(Auth::user()) }}"></post-as>
 
-                    {{--@else--}}
+                    @else
 
-                        <post-as user_data='{{ Auth::user() }}'></post-as>
+                        <post-as :user="{{ json_encode(Auth::user()) }}"></post-as>
 
-                    {{--@endif--}}
+                    @endif
 
                     {{-- <div class="form-group row">
                         <label for="body" class="control-label col-sm-2">Post Body:</label>
