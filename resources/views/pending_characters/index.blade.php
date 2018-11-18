@@ -27,7 +27,7 @@
                             <small style="color: #999999; display: inline-block; margin-left: 1em;">reason: {{ $pending_character->latestStatus()->reason }}</small>
                         </a>
                         @empty
-                            None to show.
+                            <div class="list-group-item disabled">None to show.</div>
                         @endforelse
                     </div>
 
@@ -45,7 +45,7 @@
                                 {{ $pending_character->username() }}
                             </a>
                         @empty
-                            None to show.
+                            <div class="list-group-item disabled">None to show.</div>
                         @endforelse
                     </div>
 
@@ -63,7 +63,7 @@
                                 {{ $pending_character->username() }}
                             </a>
                         @empty
-                            None to show.
+                            <div class="list-group-item disabled">None to show.</div>
                         @endforelse
                     </div>
 

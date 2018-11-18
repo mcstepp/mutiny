@@ -126,14 +126,14 @@
                 this.hasClazzError = newClazz > this.year;
             },
 
-            birthMonth(newMonth) {
-                if (newMonth !== this.birthMonth) {
+            birthMonth(newMonth, oldMonth) {
+                if (newMonth !== oldMonth) {
                     this.ic_birth_month = this.months.indexOf(newMonth) + 1;
                 }
             },
 
-            ic_birth_month(newMonth) {
-                if (newMonth !== this.birthMonth) {
+            ic_birth_month(newMonth, oldMonth) {
+                if (newMonth !== oldMonth) {
                     this.birthMonth = this.months[newMonth - 1];
                 }
             }
