@@ -90,6 +90,7 @@
             'years',
             'ages',
             'months',
+            'character'
         ],
 
         data() {
@@ -103,6 +104,13 @@
                 hasAgeError: false,
                 hasClazzError: false
             }
+        },
+
+        created() {
+            this.birthMonth = this.character.ic_birth_month;
+            this.birthDay = this.character.ic_birth_day;
+            this.birthYear = this.character.ic_birth_year;
+            this.clazz = this.character.initiation_year;
         },
 
         watch: {
