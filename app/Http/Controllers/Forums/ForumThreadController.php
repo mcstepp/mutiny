@@ -119,6 +119,8 @@ class ForumThreadController extends Controller
      */
     public function edit(Forum $forum, Thread $thread)
     {
+        $this->authorize('update', $thread);
+
         return view('forum.thread.edit', [
             'forum' => $forum,
             'thread' => $thread
@@ -133,6 +135,8 @@ class ForumThreadController extends Controller
      */
     public function update(Request $request, Forum $forum, Thread $thread)
     {
+        $this->authorize('update', $thread);
+
         $this->validate($request, [
             'title' => 'required|min:6|max:255',
             'description' => 'nullable|min:6',
@@ -155,6 +159,7 @@ class ForumThreadController extends Controller
     public function delete(Forum $forum, Thread $thread)
     {
         //TODO: permissions
+        $this->authorize('delete', $thread);
 
         $thread->delete();
 

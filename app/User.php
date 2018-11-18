@@ -84,4 +84,9 @@ class User extends Authenticatable
         //return $this->role->name;
         return "Dauntless";
     }
+
+    public function isAdmin()
+    {
+        return $this->role === '5';
+    }
 }

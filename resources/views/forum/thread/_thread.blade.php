@@ -92,10 +92,12 @@
                     </button>
                 </div>
                 <div class="col text-right">
-                    <a href="{{ route('edit-thread', [$forum, $thread]) }}" class="btn btn-outline-primary m-1">
+                    @can('update', $thread)
+                        <a href="{{ route('edit-thread', [$forum, $thread]) }}" class="btn btn-outline-primary m-1">
                         <i class="fas fa-cog" aria-hidden="true"></i>
                         Edit
                     </a>
+                    @endcan
 
                     <button class="btn btn-outline-success m-1">
                         <i class="fas fa-thumbtack" aria-hidden="true"></i>
@@ -107,12 +109,13 @@
                         Lock
                     </button>
 
-                    <delete-button
-                            :thread="{{ $thread }}"
-                            :forum="{{ $forum }}"
-                            deleteType="thread" >
-
-                    </delete-button>
+                    @can('delete', $thread)
+                        <delete-button
+                                :thread="{{ $thread }}"
+                                :forum="{{ $forum }}"
+                                deleteType="thread" >
+                        </delete-button>
+                    @endcan
                 </div>
             </div>
         </div>

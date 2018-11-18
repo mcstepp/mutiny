@@ -99,6 +99,8 @@ class ThreadPostController extends Controller
      */
     public function edit(Forum $forum, Thread $thread, Post $post)
     {
+        $this->authorize('update', $post);
+
         return view('forum.thread.post.edit', [
             'forum' => $forum,
             'thread' => $thread,
@@ -119,6 +121,7 @@ class ThreadPostController extends Controller
     {
         // validate the post
         // TODO: more validation/authorizations
+        $this->authorize('update', $post);
 
         $this->validate($request, [
             'body' => 'required|min:6',
@@ -158,6 +161,7 @@ class ThreadPostController extends Controller
     public function delete(Request $request, Forum $forum, Thread $thread, Post $post)
     {
         // TODO: check permission.
+        $this->authorize('delete', $post);
 
         if ($thread->post_count === 1) {
             $thread->delete();

@@ -15,16 +15,16 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\Character\Character::class, function (Faker $faker) {
 
-    $user = factory('App\User')->create();
     $faction_id = $faker->numberBetween(1,6);
     $origin_faction_id = $faker->numberBetween(1,6);
-    $chosen_name = $faker->boolean;
     $switched = $faker->boolean;
     $ic_birth_month = $faker->numberBetween(1,12);
     $ic_birth_year = $faker->numberBetween(50,132);
 
     return [
-        'user_id' => $user->id,
+        'user_id' => function() {
+           return factory('App\User')->create()->id;
+        },
         'faction_id' => $faction_id,
         'origin_faction_id' => function() use ($switched, $faction_id, $origin_faction_id) {
             if ($switched) {

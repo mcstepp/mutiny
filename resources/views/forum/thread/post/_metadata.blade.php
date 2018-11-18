@@ -4,13 +4,17 @@
     </div>
 </div>
 
-<a class="btn btn-outline-primary btn-block mb-4 m-fancy-title text-uppercase" href=" {{ route('edit-post', [$forum, $thread, $post]) }}">
-    <i class="fas fa-edit"></i> Edit Post
-</a>
+@can('update', $post)
+    <a class="btn btn-outline-primary btn-block mb-4 m-fancy-title text-uppercase" href=" {{ route('edit-post', [$forum, $thread, $post]) }}">
+        <i class="fas fa-edit"></i> Edit Post
+    </a>
+@endcan
 
-<delete-button
-        :post="{{ $post }}"
-        :thread="{{ $thread }}"
-        :forum="{{ $forum }}"
-        deleteType="post">
-</delete-button>
+@can('delete', $post)
+    <delete-button
+            :post="{{ $post }}"
+            :thread="{{ $thread }}"
+            :forum="{{ $forum }}"
+            deleteType="post">
+    </delete-button>
+@endcan
