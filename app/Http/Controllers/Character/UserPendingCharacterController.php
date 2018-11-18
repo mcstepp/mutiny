@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Character;
 
+use App\Http\Requests\CreatePendingCharacter;
 use App\Models\Character\PendingCharacter;
 use App\Models\Character\Faction;
 use App\User;
@@ -41,9 +42,14 @@ class UserPendingCharacterController extends Controller
                                     ->where('user_id', $user->id)
                                     ->get();
 
+        $wip_characters = PendingCharacter::currentStatus('Work In Progress')
+            ->where('user_id', $user->id)
+            ->get();
+
         return view('pending_characters.index', [
             'pending_characters' => $pending_characters,
             'in_review_characters' => $in_review_characters,
+            'wip_characters' => $wip_characters,
             'user' => $user
         ]);
     }
@@ -120,13 +126,44 @@ class UserPendingCharacterController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CreatePendingCharacter $request
+     * @param PendingCharacter $character
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Spatie\ModelStatus\Exceptions\InvalidStatus
      */
-    public function update(Request $request, $id)
+    public function update(CreatePendingCharacter $request, PendingCharacter $character)
     {
-        //
+        $validated = $request->validated();
+
+        //TODO: XSS and spam protection
+
+        $character->update([
+            'first_name' => $validated['first_name'],
+            'chosen_name' => $validated['chosen_name'],
+            'last_name' => $validated['last_name'],
+            'faction_id' => $validated['faction'],
+            'origin_faction_id' => $validated['origin_faction'],
+            'occupation' => $validated['occupation'],
+            'ic_birth_month' => $validated['ic_birth_month'],
+            'ic_birth_day' => $validated['ic_birth_day'],
+            'ic_birth_year' => $validated['ic_birth_year'],
+            'initiation_year' => $validated['initiation_year'],
+            'age' => $validated['age'],
+            'history' => $validated['history'],
+            'personality' => $validated['personality'],
+            'appearance' => $validated['appearance'],
+            'faceclaim' => $validated['faceclaim']
+        ]);
+
+        if ($request['save']) {
+            $character->setStatus('Work In Progress');
+        }
+
+        else {
+            $character->setStatus('In Review');
+        }
+
+        return redirect()->route('view-my-pending-characters');
     }
 
     /**

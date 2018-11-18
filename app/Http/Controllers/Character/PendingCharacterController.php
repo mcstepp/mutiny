@@ -76,7 +76,7 @@ class PendingCharacterController extends Controller
 
         // TODO: stricter validations and stuff, stripping out HTML, XSS stuff
 
-        $pending_character = PendingCharacter::make([
+        $character = PendingCharacter::make([
             'user_id' => Auth::id(),
             'first_name' => $validated['first_name'],
             'chosen_name' => $validated['chosen_name'],
@@ -95,8 +95,13 @@ class PendingCharacterController extends Controller
             'faceclaim' => $validated['faceclaim']
         ]);
 
-        $pending_character->save()
-            ->setStatus('In Review');
+        if ($request['save']) {
+            $character->setStatus('Work In Progress');
+        }
+
+        else {
+            $character->setStatus('In Review');
+        }
 
         return redirect()->route('view-pending-characters', Auth::user());
     }

@@ -52,6 +52,24 @@
                 </div>
             </div>
 
+            <div class="card m-card bg-industrial">
+                <div class="card-body">
+                    <h2 class="card-title m-fancy-title text-uppercase">Work In Progress</h2>
+
+                    <div class="list-group m-card">
+
+                        @forelse($wip_characters as $pending_character)
+                            <a href="{{ route('edit-pending-character', $pending_character) }}" class="list-group-item">
+                                {{ $pending_character->username() }}
+                            </a>
+                        @empty
+                            None to show.
+                        @endforelse
+                    </div>
+
+                </div>
+            </div>
+
         </div>
 
 

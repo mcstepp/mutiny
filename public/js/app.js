@@ -3317,7 +3317,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'CharacterTime',
 
-    props: ['month', 'year', 'years', 'ages', 'months'],
+    props: ['month', 'year', 'years', 'ages', 'months', 'character'],
 
     data: function data() {
         return {
@@ -3331,6 +3331,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             hasClazzError: false
         };
     },
+    created: function created() {
+        if (this.character) {
+            this.ic_birth_month = this.character.ic_birth_month || this.ic_birth_month;
+            this.birthDay = this.character.ic_birth_day || this.birthDay;
+            this.birthYear = this.character.ic_birth_year || this.birthYear;
+            this.clazz = this.character.initiation_year || this.clazz;
+
+            this.calcYears(this.birthYear);
+        }
+    },
 
 
     watch: {
@@ -3341,7 +3351,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.hasClazzError = newClazz > this.year;
         },
         birthMonth: function birthMonth(newMonth) {
-            this.ic_birth_month = this.months.indexOf(newMonth) + 1;
+            if (newMonth !== this.birthMonth) {
+                this.ic_birth_month = this.months.indexOf(newMonth) + 1;
+            }
+        },
+        ic_birth_month: function ic_birth_month(newMonth) {
+            if (newMonth !== this.birthMonth) {
+                this.birthMonth = this.months[newMonth - 1];
+            }
         }
     },
 

@@ -107,10 +107,14 @@
         },
 
         created() {
-            this.birthMonth = this.character.ic_birth_month;
-            this.birthDay = this.character.ic_birth_day;
-            this.birthYear = this.character.ic_birth_year;
-            this.clazz = this.character.initiation_year;
+            if(this.character) {
+                this.ic_birth_month = this.character.ic_birth_month || this.ic_birth_month;
+                this.birthDay = this.character.ic_birth_day || this.birthDay;
+                this.birthYear = this.character.ic_birth_year || this.birthYear;
+                this.clazz = this.character.initiation_year || this.clazz;
+
+                this.calcYears(this.birthYear);
+            }
         },
 
         watch: {
@@ -123,7 +127,15 @@
             },
 
             birthMonth(newMonth) {
-                this.ic_birth_month = this.months.indexOf(newMonth) + 1;
+                if (newMonth !== this.birthMonth) {
+                    this.ic_birth_month = this.months.indexOf(newMonth) + 1;
+                }
+            },
+
+            ic_birth_month(newMonth) {
+                if (newMonth !== this.birthMonth) {
+                    this.birthMonth = this.months[newMonth - 1];
+                }
             }
         },
 
