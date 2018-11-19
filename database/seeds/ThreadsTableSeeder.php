@@ -27,6 +27,22 @@ class ThreadsTableSeeder extends Seeder
             ]));
         });
 
+        $characters = App\Models\Character\Character::all();
+
+        $characters->each(function ($character) {
+            $character->posts()->save(factory('App\Models\Forum\Post')->make([
+                'author_id' => $character->id,
+                'author_type' => 'character',
+                'thread_id' => function(array $post) {
+                    return factory('App\Models\Forum\Thread')->create([
+                        'forum_id' => 4,
+                        'author_id' => $post['author_id'],
+                        'author_type' => $post['author_type']
+                    ])->id;
+                }
+            ]));
+        });
+
 //        factory('App\Models\Forum\Thread')->create([
 //            'forum_id' => 1,
 //            'author_type' => 'user',

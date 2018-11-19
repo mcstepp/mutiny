@@ -13,9 +13,7 @@ class ForumsTableSeeder extends Seeder
     {
         // staff room
         factory('App\Models\Forum\Forum')->create([
-           'category_id' => function() {
-                return 1;
-           },
+           'category_id' => 1,
            'name' => 'Staff',
            'description' => 'Important staff room stuff',
            'private' => true,
@@ -24,9 +22,7 @@ class ForumsTableSeeder extends Seeder
 
         // welcome forum
         factory('App\Models\Forum\Forum')->create([
-            'category_id' => function() {
-                return 1;
-            },
+            'category_id' => 1,
             'name' => 'Welcome',
             'description' => 'Welcome to MUTINY!',
             'private' => false,
@@ -35,9 +31,7 @@ class ForumsTableSeeder extends Seeder
 
         // ooc chat
         factory('App\Models\Forum\Forum')->create([
-            'category_id' => function() {
-                return 1;
-            },
+            'category_id' => 1,
             'name' => 'OOC Chat',
             'description' => 'Out of Character chat',
             'private' => false,
@@ -46,9 +40,7 @@ class ForumsTableSeeder extends Seeder
 
         // City Central forums
         factory('App\Models\Forum\Forum')->create([
-            'category_id' => function() {
-                return 2;
-            },
+            'category_id' => 2,
             'name' => 'Common Grounds',
             'description' => 'Public areas of the City Central',
             'private' => false,
@@ -56,9 +48,7 @@ class ForumsTableSeeder extends Seeder
         ]);
 
         factory('App\Models\Forum\Forum')->create([
-            'category_id' => function() {
-                return 2;
-            },
+            'category_id' => 2,
             'name' => 'Council Chambers',
             'description' => 'Main headquarters and courthouse for the City Council members, the faction leaders of all five factions., ',
             'private' => false,
@@ -66,9 +56,7 @@ class ForumsTableSeeder extends Seeder
         ]);
 
         factory('App\Models\Forum\Forum')->create([
-            'category_id' => function() {
-                return 2;
-            },
+            'category_id' => 2,
             'name' => 'Initiation Hall',
             'description' => 'The auditorium for Choosing Ceremonies, large enough to hold thousands of people',
             'private' => false,
@@ -76,9 +64,7 @@ class ForumsTableSeeder extends Seeder
         ]);
 
         factory('App\Models\Forum\Forum')->create([
-            'category_id' => function() {
-                return 2;
-            },
+            'category_id' => 2,
             'name' => 'Factionless Underground',
             'description' => 'Beneath the city streets is the Factionless Underground, the main camp for factionless people. The only free market in the city is located here also.',
             'private' => false,

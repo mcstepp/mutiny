@@ -35,6 +35,8 @@ class ForumController extends Controller
      */
     public function create()
     {
+        $this->middleware('admin');
+
         return view('admin.forum.create');
     }
 
@@ -46,6 +48,7 @@ class ForumController extends Controller
      */
     public function store(Request $request)
     {
+        $this->middleware('admin');
 
         $this->validate($request, [
             'name' => 'required|min:3|max:255',

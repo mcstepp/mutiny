@@ -10,6 +10,13 @@ class ThreadPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user)
+    {
+        return
+            $user->isSuperAdmin() ||
+            $user->isAdmin() ||
+            $user->isGlobalMod();
+    }
     /**
      * Determine whether the user can view the thread.
      *
@@ -42,7 +49,7 @@ class ThreadPolicy
      */
     public function update(User $user, Thread $thread)
     {
-        $author = $thread->author;
+        $author = $thread->author();
         $owner = $thread->author_type === 'user' ? $author : $author->user;
 
         return $owner->id === $user->id;

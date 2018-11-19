@@ -15,13 +15,26 @@ class PostsTableSeeder extends Seeder
     {
 
         $users = App\User::all();
-        $threads = App\Models\Forum\Thread::all();
+        $octhreads = App\Models\Forum\Thread::where('author_type', 'user')->get();
 
-        $users->each(function ($user) use ($threads) {
-            $threads->each(function ($thread) use ($user) {
+        $users->each(function ($user) use ($octhreads) {
+            $octhreads->each(function ($thread) use ($user) {
                 $user->posts()->save(factory('App\Models\Forum\Post')->make([
                     'author_id' => $user->id,
                     'author_type' => 'user',
+                    'thread_id' => $thread->id
+                ]));
+            });
+        });
+
+        $characters = App\Models\Character\Character::all();
+        $icthreads = App\Models\Forum\Thread::where('author_type', 'character')->get();
+
+        $characters->each(function ($character) use ($icthreads) {
+            $icthreads->each(function ($thread) use ($character) {
+                $character->posts()->save(factory('App\Models\Forum\Post')->make([
+                    'author_id' => $character->id,
+                    'author_type' => 'character',
                     'thread_id' => $thread->id
                 ]));
             });

@@ -85,8 +85,23 @@ class User extends Authenticatable
         return "Dauntless";
     }
 
+    public function role()
+    {
+        return $this->belongsTo('App\Models\User\Role');
+    }
+
+    public function isSuperAdmin()
+    {
+        return $this->role->name === 'Super Admin';
+    }
+
     public function isAdmin()
     {
-        return $this->role === '5';
+        return $this->role->name === 'Admin';
+    }
+
+    public function isGlobalMod()
+    {
+        return $this->role->name === 'Global Moderator';
     }
 }

@@ -11,12 +11,21 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+
+        factory('App\User')->create([
+            'username' => 'MUTINY!',
+            'password' => bcrypt('secret'),
+            'alias' => 'MUTINY!',
+            'email' => 'mutiny@email.com',
+            'role_id' => '5'
+        ]);
+
         factory('App\User')->create([
             'username' => 'disco before the breakdown',
             'password' => bcrypt('secret'),
             'alias' => 'disco',
             'email' => 'disco@email.com',
-            'role' => '5'
+            'role_id' => '5'
         ]);
 
         factory('App\User')->create([
@@ -24,7 +33,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('secret'),
             'alias' => 'cowboy',
             'email' => 'cowboy@email.com',
-            'role' => '4'
+            'role_id' => '4'
         ]);
 
         factory('App\User')->create([
@@ -32,7 +41,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('secret'),
             'alias' => 'bruce banner',
             'email' => 'bruceisloose@email.com',
-            'role' => '3'
+            'role_id' => '3'
         ]);
 
         factory('App\User')->create([
@@ -40,7 +49,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('secret'),
             'alias' => 'johnny',
             'email' => 'johnny@email.com',
-            'role' => '2'
+            'role_id' => '2'
         ]);
 
         factory('App\User')->create([
@@ -48,7 +57,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('secret'),
             'alias' => 'Ruby',
             'email' => 'ruby@email.com',
-            'role' => '1'
+            'role_id' => '1'
         ]);
     }
 }
