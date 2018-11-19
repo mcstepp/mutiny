@@ -12,10 +12,13 @@ class PostPolicy
 
     public function before(User $user)
     {
-        return
+        if (
             $user->isSuperAdmin() ||
             $user->isAdmin() ||
-            $user->isGlobalMod();
+            $user->isGlobalMod()
+        ) {
+            return true;
+        }
     }
 
     /**

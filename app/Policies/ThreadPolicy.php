@@ -12,10 +12,13 @@ class ThreadPolicy
 
     public function before(User $user)
     {
-        return
+        if (
             $user->isSuperAdmin() ||
             $user->isAdmin() ||
-            $user->isGlobalMod();
+            $user->isGlobalMod()
+        ) {
+            return true;
+        }
     }
     /**
      * Determine whether the user can view the thread.
@@ -49,7 +52,9 @@ class ThreadPolicy
      */
     public function update(User $user, Thread $thread)
     {
-        $author = $thread->author();
+
+
+        $author = $thread->author;
         $owner = $thread->author_type === 'user' ? $author : $author->user;
 
         return $owner->id === $user->id;

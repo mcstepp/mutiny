@@ -60,10 +60,14 @@
                         <a class="dropdown-item" href="#">Chronological</a>
                     </div>
                 </div>
-                <a class="btn btn-outline-primary m-1" role="button" href="#">
-                    <i class="fas fa-cogs"></i>
-                    Edit Forum
-                </a>
+
+                @can('update', $forum)
+                    <a class="btn btn-outline-primary m-1" role="button" href="#">
+                        <i class="fas fa-cogs"></i>
+                        Edit Forum
+                    </a>
+                @endcan
+
             </div>
         </div>
     </div>
