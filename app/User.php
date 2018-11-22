@@ -104,4 +104,16 @@ class User extends Authenticatable
     {
         return $this->role->name === 'Global Moderator';
     }
+
+    public function isSiteStaff()
+    {
+        return $this->isSuperAdmin() ||
+            $this->isAdmin() ||
+            $this->isGlobalMod();
+    }
+
+    public function isFullMember()
+    {
+        return $this->isSiteStaff() || $this->role->name === 'Member';
+    }
 }

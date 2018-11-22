@@ -12,13 +12,7 @@ class ThreadPolicy
 
     public function before(User $user)
     {
-        if (
-            $user->isSuperAdmin() ||
-            $user->isAdmin() ||
-            $user->isGlobalMod()
-        ) {
-            return true;
-        }
+        return $user->isSiteStaff() ?: null;
     }
     /**
      * Determine whether the user can view the thread.
@@ -57,7 +51,10 @@ class ThreadPolicy
         $author = $thread->author;
         $owner = $thread->author_type === 'user' ? $author : $author->user;
 
-        return $owner->id === $user->id;
+        return (
+            $owner->id === $user->id &&
+            $user->isFullMember()
+        );
     }
 
     /**
@@ -72,6 +69,9 @@ class ThreadPolicy
         $author = $thread->author;
         $owner = $thread->author_type === 'user' ? $author : $author->user;
 
-        return $owner->id === $user->id;
+        return (
+            $owner->id === $user->id &&
+            $user->isFullMember()
+        );
     }
 }

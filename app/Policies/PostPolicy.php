@@ -12,13 +12,7 @@ class PostPolicy
 
     public function before(User $user)
     {
-        if (
-            $user->isSuperAdmin() ||
-            $user->isAdmin() ||
-            $user->isGlobalMod()
-        ) {
-            return true;
-        }
+        return $user->isSiteStaff() ?: null;
     }
 
     /**
@@ -56,7 +50,10 @@ class PostPolicy
         $author = $post->author;
         $owner = $post->author_type === 'user' ? $author : $author->user;
 
-        return $owner->id === $user->id;
+        return (
+            $owner->id === $user->id &&
+            $user->isFullMember()
+        );
     }
 
     /**
@@ -71,6 +68,9 @@ class PostPolicy
         $author = $post->author;
         $owner = $post->author_type === 'user' ? $author : $author->user;
 
-        return $owner->id === $user->id;
+        return (
+            $owner->id === $user->id &&
+            $user->isFullMember()
+        );
     }
 }
