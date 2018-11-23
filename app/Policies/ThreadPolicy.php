@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Forum\Forum;
 use App\User;
 use App\Models\Forum\Thread;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -29,12 +30,13 @@ class ThreadPolicy
     /**
      * Determine whether the user can create threads.
      *
-     * @param  \App\User  $user
+     * @param  \App\User $user
+     * @param Forum $forum
      * @return mixed
      */
-    public function create(User $user)
+    public function create(User $user, Forum $forum)
     {
-        //
+        return $user->canAccessForumIndex($forum);
     }
 
     /**

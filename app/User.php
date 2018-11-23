@@ -116,4 +116,35 @@ class User extends Authenticatable
     {
         return $this->isSiteStaff() || $this->role->name === 'Member';
     }
+
+    public function private_forums()
+    {
+        return $this->belongsToMany('App\Models\Forum\Forum', 'private_forum_users');
+    }
+
+//    public function canAccessForumIndex(Forum $forum)
+//    {
+//        if ($forum->ic && !$this->isFullMember()) {
+//            return false;
+//        }
+//
+//        else if ($forum->private) {
+//            return DB::table('private_forum_users')->where([
+//                'forum' => $forum->id,
+//                'user_id' => $this->id
+//            ])->exists();
+//        }
+//
+//        return true;
+//    }
+//
+//    public function canAccessForumThreads(Forum $forum, Thread $thread)
+//    {
+//
+//    }
+//
+//    public function canAccessPrivateForum(Forum $forum)
+//    {
+//
+//    }
 }

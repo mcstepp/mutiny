@@ -79,4 +79,9 @@ class Forum extends Model
     {
         return $this->posts()->distinct()->get(['posts.author_id', 'posts.author_type'])->groupBy(['author_id', 'author_type'])->count();
     }
+
+    public function users()
+    {
+        $this->belongsToMany('App\User', 'private_forum_users');
+    }
 }
