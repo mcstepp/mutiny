@@ -57,7 +57,7 @@ class CharactersTableSeeder extends Seeder
                 'ic_birth_day' => '12',
                 'ic_birth_year' => '124',
                 'initiation_year' => '143',
-                'age' => 32,
+                'age' => 25,
                 'faceclaim' => 'Clare Bowen',
                 'credit' => 500,
                 'current' => 1
