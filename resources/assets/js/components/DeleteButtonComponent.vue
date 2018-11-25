@@ -29,16 +29,19 @@
 
         methods: {
             deleteHandler() {
-                confirm(`Are you sure you want to delete this ${this.deleteType}?`, this.delete())
+                let deleteConfirm = confirm(`Are you sure you want to delete this ${this.deleteType}?`);
+                if (deleteConfirm) {
+                    this.delete();
+                }
             },
             delete() {
                 let url;
                 if (this.post) {
-                    url = `/f/${this.forum.id}/t/${this.thread.id}/${this.post.id}`;
+                    url = `/f/${this.forum.id}/t/${this.thread.slug}/${this.post.id}`;
                 }
 
                 else {
-                    url = `/f/${this.forum.id}/t/${this.thread.id}`;
+                    url = `/f/${this.forum.id}/t/${this.thread.slug}`;
                 }
 
                 axios.delete(url, {})

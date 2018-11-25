@@ -23,9 +23,27 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+
+        Route::bind('uid', function ($value) {
+            return App\User::where('id', $value)->first() ?? abort(404);
+        });
+
+        Route::bind('fid', function ($value) {
+            return App\Models\Forum\Forum::where('id', $value)->first() ?? abort(404);
+        });
+
+        Route::bind('tid', function ($value) {
+            return App\Models\Forum\Thread::where('id', $value)->first() ?? abort(404);
+        });
+
+        Route::bind('pcid', function ($value) {
+            return App\Models\Character\PendingCharacter::where('id', $value)->first() ?? abort(404);
+        });
+
+        Route::bind('cid', function ($value) {
+            return App\Models\Character\Character::where('id', $value)->first() ?? abort(404);
+        });
     }
 
     /**

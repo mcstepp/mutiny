@@ -19,6 +19,7 @@ class CreateCharactersTable extends Migration
             $table->string('first_name');
             $table->string('chosen_name')->nullable();
             $table->string('last_name');
+            $table->string('slug');
             $table->unsignedInteger('faction_id');
             $table->unsignedInteger('origin_faction_id');
             $table->string('occupation');

@@ -8,10 +8,13 @@ use App\User;
 use App\Models\Character\Rank;
 use App\Models\Character\Faction;
 use Spatie\ModelStatus\HasStatuses;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class PendingCharacter extends Model
 {
     //use Cachable;
+    use HasSlug;
     use HasStatuses;
     /**
      * The table associated with the model.
@@ -37,6 +40,26 @@ class PendingCharacter extends Model
                 $character->setStatus('In Review');
             }
         });
+    }
+
+    public function getSlugOptions(): SlugOptions
+    {
+        if ($this->chosen_name) {
+            return SlugOptions::create()
+                ->generateSlugsFrom(['chosen_name','last_name'])
+                ->saveSlugsTo('slug')
+                ->usingSeparator('_');
+        } else {
+            return SlugOptions::create()
+                ->generateSlugsFrom(['first_name', 'last_name'])
+                ->saveSlugsTo('slug')
+                ->usingSeparator('_');
+        }
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     public function user()
@@ -74,6 +97,7 @@ class PendingCharacter extends Model
 
     public function path()
     {
-        return "/pc/{$this->id}";
+        $key = $this->getRouteKeyName();
+        return "/pc/" . $this[$key];
     }
 }

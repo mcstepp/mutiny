@@ -3106,16 +3106,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         deleteHandler: function deleteHandler() {
-            confirm('Are you sure you want to delete this ' + this.deleteType + '?', this.delete());
+            var deleteConfirm = confirm('Are you sure you want to delete this ' + this.deleteType + '?');
+            if (deleteConfirm) {
+                this.delete();
+            }
         },
         delete: function _delete() {
             var _this = this;
 
             var url = void 0;
             if (this.post) {
-                url = '/f/' + this.forum.id + '/t/' + this.thread.id + '/' + this.post.id;
+                url = '/f/' + this.forum.id + '/t/' + this.thread.slug + '/' + this.post.id;
             } else {
-                url = '/f/' + this.forum.id + '/t/' + this.thread.id;
+                url = '/f/' + this.forum.id + '/t/' + this.thread.slug;
             }
 
             axios.delete(url, {}).then(function (res) {

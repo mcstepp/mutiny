@@ -72,18 +72,6 @@ class CharacterController extends Controller
 
         $character->save();
 
-        // Delete the pending character
-        // TODO: move this to event model create
-        $pendingcharacter = PendingCharacter::where([
-            'user_id' => $validated['user_id'],
-            'first_name' => $validated['first_name'],
-            'last_name' => $validated['last_name']
-        ])
-            ->first();
-
-            $pendingcharacter->delete();
-
-
         return redirect()->route('admin-view-pending-characters');
     }
 

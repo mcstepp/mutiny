@@ -11,8 +11,10 @@
         "genealabs/laravel-model-caching": "^0.3.1",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "owen-it/laravel-auditing": "^8.0",
         "predis/predis": "^1.1",
         "spatie/laravel-model-status": "^1.6",
+        "spatie/laravel-sluggable": "^2.1",
         "spatie/laravel-tags": "^2.0"
     },
     "require-dev": {

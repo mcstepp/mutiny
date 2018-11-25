@@ -9,11 +9,13 @@ use App\Models\Character\PendingCharacter;
 use App\Models\Character\Character;
 use App\Models\Forum\Thread;
 use App\Models\Forum\Post;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 
 class User extends Authenticatable
 {
-    use Notifiable, Cachable;
+    use Notifiable, Cachable, HasSlug;
 
     /**
      * The attributes that are mass assignable.
@@ -44,6 +46,14 @@ class User extends Authenticatable
 
     }
 
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('username')
+            ->saveSlugsTo('slug')
+            ->usingSeparator('_');
+    }
+
     public function threads()
     {
         return $this->morphMany('App\Models\Forum\Thread', 'author');
@@ -66,12 +76,13 @@ class User extends Authenticatable
 
     public function current_character()
     {
-        return $this->hasOne(Character::class);
+        return $this->characters()->where('current', '=', '1')->first();
     }
 
     public function path() 
     {
-        return "/u/{$this->id}";
+        $key = $this->getRouteKeyName();
+        return "/u/". $this[$key];
     }
 
      public function activities()
@@ -122,29 +133,8 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Forum\Forum', 'private_forum_users');
     }
 
-//    public function canAccessForumIndex(Forum $forum)
-//    {
-//        if ($forum->ic && !$this->isFullMember()) {
-//            return false;
-//        }
-//
-//        else if ($forum->private) {
-//            return DB::table('private_forum_users')->where([
-//                'forum' => $forum->id,
-//                'user_id' => $this->id
-//            ])->exists();
-//        }
-//
-//        return true;
-//    }
-//
-//    public function canAccessForumThreads(Forum $forum, Thread $thread)
-//    {
-//
-//    }
-//
-//    public function canAccessPrivateForum(Forum $forum)
-//    {
-//
-//    }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

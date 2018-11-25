@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -41,8 +43,12 @@ Route::put('/admin/pending/{character}', 'Character\PendingCharacterController@u
 
 
 Route::get('/f', 'Forums\ForumController@index');
+Route::get('/forums', 'Forums\ForumController@index');
+
 
 Route::get('/f/{forum}', 'Forums\ForumThreadController@index')->name('view-forum');
+Route::get('/forums/{fid}', 'Forums\ForumThreadController@index');
+
 Route::get('/f/{forum}/create', 'Forums\ForumThreadController@create')->name('create-thread');
 Route::post('/f/{forum}/create', 'Forums\ForumThreadController@store');
 
@@ -50,6 +56,8 @@ Route::post('/f/{forum}/create', 'Forums\ForumThreadController@store');
 Route::get('/f/{forum}/t/{thread}/edit', 'Forums\ForumThreadController@edit')->name('edit-thread');
 Route::put('/f/{forum}/t/{thread}/update', 'Forums\ForumThreadController@update')->name('update-thread');
 Route::get('/f/{forum}/t/{thread}', 'Forums\ThreadPostController@index')->name('view-thread');
+Route::get('/f/{forum}/thread/{tid}', 'Forums\ThreadPostController@index');
+
 Route::post('/f/{forum}/t/{thread}', 'Forums\ThreadPostController@store')->name('reply');
 Route::delete('/f/{forum}/t/{thread}', 'Forums\ForumThreadController@delete')->name('delete-thread');
 Route::get('/f/{forum}/t/{thread}/{post}/edit', 'Forums\ThreadPostController@edit')->name('edit-post');

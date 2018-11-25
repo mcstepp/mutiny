@@ -9,12 +9,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\RecordsActivity;
 use App\Models\Forum\Post;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Thread extends Model
 {
     //use RecordsActivity;
     use SoftDeletes, RecordsActivity;
     use Cachable;
+    use HasSlug;
 
     /**
      * Override mass assignment protection
@@ -43,6 +46,19 @@ class Thread extends Model
 
     }
 
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug')
+            ->slugsShouldBeNoLongerThan(20);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 
     /**
      * Get a string path for the thread
@@ -51,7 +67,8 @@ class Thread extends Model
      */
     public function path()
     {
-        return "/f/{$this->forum->id}/t/{$this->id}";
+        $key = $this->getRouteKeyName();
+        return "/f/{$this->forum->id}/t/" . $this[$key];
     }
 
     /**

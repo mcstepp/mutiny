@@ -24,6 +24,7 @@ class CreateThreadsTable extends Migration
             $table->boolean('pinned')->default(false);
             $table->boolean('announcement')->default(false);
             $table->bigInteger('ic_time')->nullable();
+            $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
         });

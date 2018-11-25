@@ -2,12 +2,14 @@
 
 namespace App\Models\Character;
 
-use App\Models\Character\PendingCharacter;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Character extends PendingCharacter
 {
     use Cachable;
+    use HasSlug;
 
     protected $table = 'characters';
 
@@ -27,8 +29,24 @@ class Character extends PendingCharacter
             $builder->withCount('posts');
         });
 
+        static::created(function($character) {
+            PendingCharacter::where([
+                'user_id' => $character->user_id,
+                'first_name' => $character->first_name,
+                'chosen_name' => $character->chosen_name,
+                'last_name' => $character->last_name,
+                'ic_birth_day' => $character->ic_birth_day,
+                'ic_birth_month' => $character->ic_birth_month,
+                'ic_birth_year' => $character->ic_birth_year
+            ])->delete();
+        });
+
     }
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     public function threads()
     {
@@ -38,12 +56,12 @@ class Character extends PendingCharacter
     public function posts()
     {
         return $this->morphMany('App\Models\Forum\Post', 'author');
-
     }
 
     public function path() 
     {
-        return "/c/{$this->id}";
+        $key = $this->getRouteKeyName();
+        return "/c/" . $this[$key];
     }
 
      public function activity()
