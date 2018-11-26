@@ -43,15 +43,15 @@
                 <div class="col-lg-6 align-self-center">
                     <div class="callout callout-primary text-uppercase">
                         <p><small class="m-fancy-title text-uppercase">Tags:</small></p>
-                        <span class="badge badge-pill badge-info m-1">Info:</span>
+                        <span class="badge badge-pill badge-info m-1">Info</span>
                         <span class="badge badge-pill badge-primary m-1">Primary</span>
                         <span class="badge badge-pill badge-secondary m-1">Secondary</span>
-                        <span class="badge badge-pill dauntless-bg m-1">Dauntless</span>
-                        <span class="badge badge-pill abnegation-bg m-1">Abnegation</span>
-                        <span class="badge badge-pill candor-bg m-1">candor</span>
-                        <span class="badge badge-pill erudite-bg m-1">Erudite</span>
-                        <span class="badge badge-pill factionless-bg m-1">Factionless</span>
-                        <span class="badge badge-pill amity-bg m-1">Amity</span>
+                        <span class="badge badge-pill dauntless-bg m-1"><i class="fas fa-fire"></i> Dauntless</span>
+                        <span class="badge badge-pill abnegation-bg m-1"><i class="fas fa-hands-helping"></i> Abnegation</span>
+                        <span class="badge badge-pill candor-bg m-1"><i class="fas fa-balance-scale"></i> candor</span>
+                        <span class="badge badge-pill erudite-bg m-1"><i class="fas fa-eye"></i> Erudite</span>
+                        <span class="badge badge-pill factionless-bg m-1"><i class="fas fa-fist-raised"></i> Factionless</span>
+                        <span class="badge badge-pill amity-bg m-1"><i class="fas fa-leaf"></i> Amity</span>
                         <span class="badge badge-pill badge-light m-1">Light</span>
                         <span class="badge badge-pill badge-dark m-1">Dark</span>
                     </div>

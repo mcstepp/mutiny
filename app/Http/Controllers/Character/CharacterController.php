@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Character;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use App\Http\Requests\CreateNewCharacter;
 use App\Models\Character\Character;
 use App\Models\Character\Faction;
@@ -51,6 +52,8 @@ class CharacterController extends Controller
 
         // TODO: stricter validations and stuff, stripping out HTML, XSS stuff
 
+        $user = User::find($validated['user_id']);
+
         $character = Character::make([
             'user_id' => $validated['user_id'],
             'first_name' => $validated['first_name'],
@@ -69,6 +72,15 @@ class CharacterController extends Controller
             'appearance' => $validated['appearance'],
             'faceclaim' => $validated['faceclaim']
         ]);
+
+        if (!$user->current_character()) {
+            $character->current = true;
+        }
+
+        if ($user->role_id == 1) {
+            $user->role_id = 2;
+            $user->save();
+        }
 
         $character->save();
 

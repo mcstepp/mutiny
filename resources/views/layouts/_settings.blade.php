@@ -19,10 +19,14 @@
         <a class="dropdown-item" href="#"><i class="fas fa-user"></i> Profile</a>
         <a class="dropdown-item" href="#"><i class="fas fa-user-cog"></i> Preferences</a>
         <a class="dropdown-item" href="#"><i class="fas fa-flip-horizontal fa-reply"></i> Subscriptions<span class="badge badge-primary">42</span></a>
-        <div class="dropdown-header text-center">
-            <strong>Staff</strong>
-        </div>
-        <a class="dropdown-item" href="/admin"><i class="fas fa-user-shield"></i> Admin Panel</a>
+
+        @if(auth()->user()->isAdmin())
+            <div class="dropdown-header text-center">
+                <strong>Staff</strong>
+            </div>
+            <a class="dropdown-item" href="/admin"><i class="fas fa-user-shield"></i> Admin Panel</a>
+        @endif
+
         <div class="dropdown-header text-center">
             <strong>Account</strong>
         </div>

@@ -12,7 +12,7 @@
             <hr class="glow-default">
         </div>
         <div class="card-body">
-            {{ $exception->getMessage() }}
+            Not found.
         </div>
     </div>
 
