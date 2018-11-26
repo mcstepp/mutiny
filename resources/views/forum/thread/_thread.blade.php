@@ -111,8 +111,8 @@
 
                     @can('delete', $thread)
                         <delete-button
-                                :thread="{{ $thread }}"
-                                :forum="{{ $forum }}"
+                                :thread="{{ json_encode($thread) }}"
+                                :forum="{{ json_encode($forum) }}"
                                 deleteType="thread" >
                         </delete-button>
                     @endcan

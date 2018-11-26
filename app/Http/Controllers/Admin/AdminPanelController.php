@@ -9,8 +9,9 @@ class AdminPanelController extends Controller
 {
     public function __construct()
     {
-        // TODO: create middleware for admin, staff levels, etc (permissions/roles)
         $this->middleware('auth');
+        $this->middleware('admin');
+
     }
 
     public function index()

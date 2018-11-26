@@ -54,6 +54,11 @@ class User extends Authenticatable
             ->usingSeparator('_');
     }
 
+    public function user()
+    {
+        return $this;
+    }
+
     public function threads()
     {
         return $this->morphMany('App\Models\Forum\Thread', 'author');
@@ -108,7 +113,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role->name === 'Admin';
+        return $this->isSuperAdmin() || $this->role->name === 'Admin';
     }
 
     public function isGlobalMod()
@@ -131,6 +136,11 @@ class User extends Authenticatable
     public function private_forums()
     {
         return $this->belongsToMany('App\Models\Forum\Forum', 'private_forum_users');
+    }
+
+    public function moderates()
+    {
+        return $this->belongsToMany('App\Models\Forum\Forum', 'forum_moderators');
     }
 
     public function getRouteKeyName()

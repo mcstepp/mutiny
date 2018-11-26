@@ -82,6 +82,11 @@ class Forum extends Model
 
     public function users()
     {
-        $this->belongsToMany('App\User', 'private_forum_users');
+        return $this->belongsToMany('App\User', 'private_forum_users');
+    }
+
+    public function moderators()
+    {
+        return $this->belongsToMany('App\User', 'forum_moderators');
     }
 }

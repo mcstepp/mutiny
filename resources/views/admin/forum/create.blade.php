@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
     <ol class="breadcrumb">
@@ -8,7 +8,7 @@
 
     <div class="container-fluid">
 
-    <div class="card m-card">
+    <div class="card m-card bg-industrial-dark">
         <h2 class="card-top m-fancy-title text-uppercase">Create a New Category</h2>
 
         <div class="card-body container-fluid">
@@ -44,8 +44,8 @@
     </div>
 
 
-    <div class="card m-card">
-        <h2 class="card-top m-fancy-title text-uppercase">Create a New Category</h2>
+    <div class="card m-card bg-industrial-dark">
+        <h2 class="card-top m-fancy-title text-uppercase">Create a New Forum</h2>
 
         <div class="card-body container-fluid">
             <form method="POST" action="{{ route('admin-store-forum') }}" class="form-horizontal">

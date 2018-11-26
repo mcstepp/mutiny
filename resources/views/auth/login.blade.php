@@ -1,11 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.main_guest')
 
 @section('content')
 <div class="container-fluid">
     <div class="row justify-content-md-center mt-5">
         <div class="col-lg-10">
-            <div class="card m-card">
-                <div class="card-header">Login</div>
+            <div class="card m-card bg-industrial">
+                <div class="card-top">
+                    <h1 class="h2 m-fancy-header neon-default">
+                        Login
+                    </h1>
+                </div>
 
                 <div class="card-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">

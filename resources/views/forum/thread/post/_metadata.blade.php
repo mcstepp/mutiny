@@ -1,7 +1,19 @@
 <div class="card m-card bg-mutinydark">
     <div class="post-metadata text-center card-body">
-        <span class="date-posted">posted {{ $post->created_at->diffForHumans() }} on {{ $post->created_at->format('M j, Y') }}</span>
+        <span class="date-posted">Posted {{ $post->created_at->diffForHumans() }} on
+            <br>{{ $post->created_at->format('M j, Y') }}</span>
     </div>
+
+    @if($post->created_at != $post->updated_at)
+    <div class="post-metadata text-center card-body">
+        <span class="date-posted">Last updated {{ $post->updated_at->diffForHumans() }} on
+            <br>{{ $post->updated_at->format('M j, Y') }}</span>
+            <br><small><a class="text-gray-300" href="#">
+                <i class="fa fa-history"></i>
+                    History
+                </a></small>
+    </div>
+    @endif
 </div>
 
 @can('update', $post)

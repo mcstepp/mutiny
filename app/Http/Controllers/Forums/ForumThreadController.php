@@ -19,10 +19,15 @@ class ForumThreadController extends Controller
     /**
      * Show a Forum's Threads
      *
+     * @param Forum $forum
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Forum $forum)
     {
+
+        $this->authorize('view', $forum);
+
         $threads = $this->getThreads($forum);
 
         if ( request()->wantsJson() ) {
@@ -38,10 +43,15 @@ class ForumThreadController extends Controller
     /**
      * Show the form for creating a new thread in a given forum.
      *
+     * @param Forum $forum
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Forum $forum)
     {
+        // TODO: update later with specific rules
+        $this->authorize('view', $forum);
+
         return view('forum.thread.create', compact('forum'));
     }
 
@@ -54,6 +64,9 @@ class ForumThreadController extends Controller
      */
     public function store(Request $request, Forum $forum)
     {
+        // TODO: update later with specific rules
+        $this->authorize('view', $forum);
+
         $this->validate($request, [
             'title' => 'required|min:6|max:255',
             'body' => 'required|min:6',
@@ -90,24 +103,6 @@ class ForumThreadController extends Controller
         return redirect()->route('view-thread', [$forum, $thread]);
     }
 
-    /**
-     * Display the specified resource.
-     * TODO: Move this logic to ThreadPostController@index
-     *
-     * @param Forum $forum
-     * @param Thread $thread
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Forum $forum, Thread $thread)
-    {
-        $posts = $this->getThreadPosts($thread);
-
-        return view('thread.show', [
-            'forum' => $forum,
-            'thread' => $thread,
-            'posts' => $posts
-        ]);
-    }
 
     /**
      * Show the form for editing the specified forum thread.
@@ -116,6 +111,7 @@ class ForumThreadController extends Controller
      * @param Forum $forum
      * @param Thread $thread
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Forum $forum, Thread $thread)
     {
@@ -131,7 +127,10 @@ class ForumThreadController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
+     * @param Forum $forum
      * @param Thread $thread
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Forum $forum, Thread $thread)
     {
@@ -153,12 +152,14 @@ class ForumThreadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Forum\Thread  $thread
+     * @param Forum $forum
+     * @param  \App\Models\Forum\Thread $thread
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function delete(Forum $forum, Thread $thread)
     {
-        //TODO: permissions
+
         $this->authorize('delete', $thread);
 
         $thread->delete();
@@ -169,16 +170,21 @@ class ForumThreadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Forum\Thread  $thread
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Forum\Thread $thread
+     * @return void
      */
     public function destroy(Thread $thread)
     {
         //
     }
 
+    /**
+     * @param Forum $forum
+     * @return mixed
+     */
     public function getThreads(Forum $forum)
     {
+        // TODO: get threads that user is authorized to see
         $threads = Thread::latest('updated_at')
             ->with([
                 'author:id,username',
@@ -197,8 +203,13 @@ class ForumThreadController extends Controller
         return $threads->paginate(5);
     }
 
+    /**
+     * @param Thread $thread
+     * @return mixed
+     */
     public function getThreadPosts(Thread $thread)
     {
+        // TODO: get thread posts that user is authorized to see
         $posts = Post::oldest()
             ->with('author:id,username');
 

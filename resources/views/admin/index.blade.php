@@ -7,7 +7,8 @@
 
         <div class="container-fluid">
 
-            <div class="card m-card">
+            @if(auth()->user()->isSuperAdmin())
+            <div class="card m-card bg-industrial">
                 <div class="card-body">
                     <h2 class="card-title m-fancy-title text-uppercase">Game Settings</h2>
 
@@ -24,8 +25,9 @@
 
                 </div>
             </div>
+            @endif
 
-            <div class="card m-card">
+            <div class="card m-card bg-industrial">
                 <div class="card-body">
                     <h2 class="card-title m-fancy-title text-uppercase">Forum Settings</h2>
 
@@ -41,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="card m-card">
+            <div class="card m-card bg-industrial">
                 <div class="card-body">
                     <h2 class="card-title m-fancy-title text-uppercase">Character Settings</h2>
 

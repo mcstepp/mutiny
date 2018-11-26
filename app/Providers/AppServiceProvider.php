@@ -19,27 +19,6 @@ class AppServiceProvider extends ServiceProvider
 
         // Load relationmap
         $this->loadRelationMap();
-
-        \View::composer([
-            'admin.forum.create',
-        ], function ($view) {
-            $categories = Cache::rememberForever('categories', function (){
-                return Category::orderBy('name')->get();
-            });
-
-            $view->with('categories', $categories);
-        });
-
-        // \View::composer([
-        //     'character.create',
-        //     'admin.pending.show'
-        // ], function ($view) {
-        //     $species = Cache::rememberForever('species', function (){
-        //         return Species::with('subspecies')->get();
-        //     });
-
-        //     $view->with('species', $species);
-        // });
     }
 
     /**

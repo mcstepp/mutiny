@@ -8,10 +8,18 @@
             <div class="col-md-9 col-lg-10 align-self-center">
                 <div class="container-fluid p-0">
                     <div class="m-traits text-md-left text-sm-center align-self-center">
-                        <span class="callout callout-secondary m-trait m-fancy-title">Admin</span>
-                        <span class="callout callout-info m-trait m-fancy-title">Global Moderator</span>
-                        <span class="callout callout-primary m-trait m-fancy-title">Member</span>
-                        <span class="callout callout-primary m-trait m-fancy-title">{{ $author->posts()->count() }}</span>
+
+                        @if($author->isAdmin())
+                        <span class="callout callout-secondary m-trait m-fancy-title">
+                        @elseif($author->isGlobalMod())
+                        <span class="callout callout-info m-trait m-fancy-title">
+                        @elseif($author->isFullMember())
+                        <span class="callout callout-primary m-trait m-fancy-title">
+                        @else
+                        <span class="callout callout-light m-trait m-fancy-title">
+                        @endif
+                            {{ $author->role->name }}</span>
+                        <span class="callout callout-primary m-trait m-fancy-title">{{ $author->posts()->count() }} {{ str_plural('posts', $author->posts()->count()) }}</span>
                     </div>
 
                     <hr class="glow-default">

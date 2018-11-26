@@ -44,17 +44,10 @@ class PendingCharacter extends Model
 
     public function getSlugOptions(): SlugOptions
     {
-        if ($this->chosen_name) {
             return SlugOptions::create()
-                ->generateSlugsFrom(['chosen_name','last_name'])
+                ->generateSlugsFrom('username')
                 ->saveSlugsTo('slug')
                 ->usingSeparator('_');
-        } else {
-            return SlugOptions::create()
-                ->generateSlugsFrom(['first_name', 'last_name'])
-                ->saveSlugsTo('slug')
-                ->usingSeparator('_');
-        }
     }
 
     public function getRouteKeyName()
@@ -65,6 +58,10 @@ class PendingCharacter extends Model
     public function user()
     {
     	return $this->belongsTo(User::class);
+    }
+    public function character()
+    {
+        return $this;
     }
 
     public function username()
@@ -100,4 +97,6 @@ class PendingCharacter extends Model
         $key = $this->getRouteKeyName();
         return "/pc/" . $this[$key];
     }
+
+
 }

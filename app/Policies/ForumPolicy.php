@@ -23,7 +23,19 @@ class ForumPolicy
      */
     public function view(User $user, Forum $forum)
     {
-        //
+        /**
+         * 1. New members may not view forum indexes of IC forums
+         */
+
+        if ($forum->ic) {
+            return $user->isFullMember();
+        }
+
+        if ($forum->private) {
+            return $forum->users->contains($user);
+        }
+
+        return true;
     }
 
     /**
@@ -46,8 +58,11 @@ class ForumPolicy
      */
     public function update(User $user, Forum $forum)
     {
-        // TODO: IFMs
-        return $user->isSiteStaff();
+
+        return (
+            $user->isSiteStaff() ||
+            $forum->moderators->contains($user)
+        );
     }
 
     /**

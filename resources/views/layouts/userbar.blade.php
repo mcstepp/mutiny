@@ -4,7 +4,7 @@
     </button>
     <a class="navbar-brand" href="#"></a>
 
-    <ul class="nav navbar-nav ml-auto">
+    <ul class="nav navbar-nav ml-auto mr-2">
 
         @if (Auth::guest())
             <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>
@@ -15,9 +15,9 @@
         @include('layouts._messages')
         @include('layouts._settings')
 
-        <button class="navbar-toggler aside-menu-toggler" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        {{--<button class="navbar-toggler aside-menu-toggler" type="button">--}}
+            {{--<span class="navbar-toggler-icon"></span>--}}
+        {{--</button>--}}
         @endif
 
     </ul>

@@ -19,18 +19,22 @@
             </div>
         </div>
 
-        @if($forum->ic)
+        @if($forum->ic && $forum->moderators->contains($post->author->user()))
 
-            <post-as character_list='{{ ${$key} }}'
-                     user_data='{{ Auth::user() }}'
-                     default={{ ${$current}->id }}></post-as>
+            <post-as :characters="{{ json_encode($post->author->user()->characters) }}"
+                     :user="{{ json_encode($post->author->user()) }}"></post-as>
+
+        @elseif($forum->ic && !$forum->moderators->contains($post->author->user()))
+
+            <post-as :characters="{{ json_encode($post->author->user()->characters) }}">
+
+            </post-as>
 
         @else
 
-            <post-as user_data='{{ Auth::user() }}'></post-as>
+            <post-as :user="{{ json_encode($post->author->user()) }}"></post-as>
 
         @endif
-
 
         <div class="form-group row">
             <label for="body" class="control-label col-sm-2">Post Body:</label>

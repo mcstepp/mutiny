@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Forums;
 
+use App\Models\Forum\Category;
 use App\Models\Forum\Forum;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -37,7 +38,11 @@ class ForumController extends Controller
     {
         $this->middleware('admin');
 
-        return view('admin.forum.create');
+        $categories = Category::all();
+
+        return view('admin.forum.create', [
+            'categories' => $categories
+        ]);
     }
 
     /**

@@ -18,14 +18,22 @@
             </div>
         </div>
 
-        @if($forum->ic)
+        @if($forum->ic &&
+        ($forum->moderators->contains(auth()->user()) ||
+        auth()->user()->isSiteStaff()))
 
-            <post-as :characters="{{ json_encode(Auth::user()->characters) }}"
-                     :user="{{ json_encode(Auth::user()) }}"></post-as>
+            <post-as :characters="{{ json_encode(auth()->user()->characters) }}"
+                     :user="{{ json_encode(auth()->user()) }}"></post-as>
+
+        @elseif($forum->ic && !$forum->moderators->contains(auth()->user()))
+
+            <post-as :characters="{{ json_encode(auth()->user()->characters) }}">
+
+            </post-as>
 
         @else
 
-            <post-as :user="{{ json_encode(Auth::user()) }}"></post-as>
+            <post-as :user="{{ json_encode(auth()->user()) }}"></post-as>
 
         @endif
 

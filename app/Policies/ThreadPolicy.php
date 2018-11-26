@@ -36,7 +36,7 @@ class ThreadPolicy
      */
     public function create(User $user, Forum $forum)
     {
-        return $user->canAccessForumIndex($forum);
+
     }
 
     /**
