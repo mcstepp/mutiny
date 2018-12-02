@@ -26,7 +26,7 @@
 
                     <div class="m-author-meta text-md-left text-sm-center">
                         <h3 class="m-fancy-header m-author"><a class="flicker neon-default" href="{{ $author->path() }}">{{$author->username}}</a></h3>
-                        <span class="m-fancy-title">Online</span>
+                        <online-status online="{{ $author->isOnline() }}"></online-status>
                     </div>
                 </div>
 

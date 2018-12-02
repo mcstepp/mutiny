@@ -19,6 +19,8 @@ window.Vue = require('vue');
 Vue.component('post-as', require('./components/PostAsComponent.vue'));
 Vue.component('delete-button', require('./components/DeleteButtonComponent.vue'));
 Vue.component('character-time', require('./components/CharacterTimeComponent'));
+Vue.component('online-status', require('./components/OnlineStatusComponent'));
+Vue.component('show-more', require('./components/ShowMoreComponent.vue'));
 
 
 const app = new Vue({

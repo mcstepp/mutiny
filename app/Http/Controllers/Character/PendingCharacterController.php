@@ -29,6 +29,8 @@ class PendingCharacterController extends Controller
      */
     public function index()
     {
+        // Only admin can see this view
+        $this->middleware('admin');
        $pending_characters = PendingCharacter::currentStatus('In Review')->get();
 
         return view('admin.pending_characters.index', [
@@ -38,6 +40,8 @@ class PendingCharacterController extends Controller
 
     public function create()
     {
+        // TODO: authorization (new members, points, etc)
+
         $factions = Faction::all();
         $months = [
             'January',
@@ -72,6 +76,7 @@ class PendingCharacterController extends Controller
      */
     public function store(CreatePendingCharacter $request)
     {
+        // TODO: authorization (new members, points, etc)
         $validated = $request->validated();
 
         // TODO: stricter validations and stuff, stripping out HTML, XSS stuff
@@ -114,6 +119,9 @@ class PendingCharacterController extends Controller
      */
     public function show(PendingCharacter $character)
     {
+        // only admin can see the pending character application form
+        $this->middleware('admin');
+
         return view('admin.pending_characters.show', [
             'character' => $character
         ]);
@@ -129,6 +137,9 @@ class PendingCharacterController extends Controller
      */
     public function update(Request $request, PendingCharacter $character)
     {
+        // only admin can update the pending character application status
+        $this->middleware('admin');
+
         $validated = $request->validate([
             'reason' => 'required'
         ]);

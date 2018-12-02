@@ -1024,11 +1024,13 @@
         <!-- /.conainer-fluid -->
     </main>
 
-    @include('layouts.aside')
+    {{--@include('layouts.aside')--}}
 </div>
 <footer class="app-footer">
-    <span class="text-muted font-xs">MUTINY! Copyright © 2018 M.S. All rights reserved.</span>
-    <span class="text-muted ml-auto font-xs">MUTINY! is an independent fan website. Images, content, Divergent © Veronica Roth, and/or their respective owners. User content on this website is credited to the individuals.</span>
+    <p class="text-muted text-center font-xs m-auto">
+        MUTINY! Copyright © 2018 M.S. All rights reserved.<br>
+        MUTINY! is an independent fan website. Images, content, Divergent © Veronica Roth, and/or their respective owners. User content on this website is credited to the individuals.
+    </p>
 </footer>
 
 

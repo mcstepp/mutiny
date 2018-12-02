@@ -3,6 +3,7 @@
 namespace App;
 
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
+use HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Character\PendingCharacter;
@@ -15,7 +16,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class User extends Authenticatable
 {
-    use Notifiable, Cachable, HasSlug;
+    use Notifiable, Cachable, HasSlug, UsersOnlineTrait;
 
     /**
      * The attributes that are mass assignable.

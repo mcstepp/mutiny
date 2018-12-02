@@ -20,7 +20,7 @@ class CharacterController extends Controller
         $this->middleware('auth');
     }
     /**
-     * Display a listing of the resource.
+     * Display a listing of the characters.
      *
      * @return \Illuminate\Http\Response
      */
@@ -30,7 +30,7 @@ class CharacterController extends Controller
     }
 
     /**
-     * Show the form for creating a new character
+     * Show the form for creating a new (pending) character
      *
      * @return \Illuminate\Http\Response
      */
@@ -48,6 +48,9 @@ class CharacterController extends Controller
      */
     public function store(CreateNewCharacter $request)
     {
+        // Only admin can approve characters
+        $this->middleware('admin');
+
         $validated = $request->validated();
 
         // TODO: stricter validations and stuff, stripping out HTML, XSS stuff
@@ -77,6 +80,9 @@ class CharacterController extends Controller
             $character->current = true;
         }
 
+        // If the member is a new member
+        // promote the new member to member
+
         if ($user->role_id == 1) {
             $user->role_id = 2;
             $user->save();
@@ -88,10 +94,10 @@ class CharacterController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified character's profile.
      *
-     * @param  \App\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param Character $character
+     * @return void
      */
     public function show(Character $character)
     {
@@ -99,10 +105,10 @@ class CharacterController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified character's profile.
      *
-     * @param  \App\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param Character $character
+     * @return void
      */
     public function edit(Character $character)
     {
@@ -110,39 +116,25 @@ class CharacterController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified character in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param Character $character
+     * @return void
      */
     public function update(Request $request, Character $character)
     {
         // TODO: authorize, validate
-        $data = $request->all();
 
-        if ($data['ocharacter']) {
-            $original = Character::find($data['ocharacter']);
-            $original->update(['current' => 0]);
-        }
 
-        $character->update($data['data']);
-
-        $user_id = $character->user->id;
-
-        $current = "current_{$user_id}";
-        $key = "characters_{$user_id}";
-
-        Cache::forget($current);
-        Cache::forget($key);
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Character  $character
-     * @return \Illuminate\Http\Response
+     * @param Character $character
+     * @return void
      */
     public function destroy(Character $character)
     {

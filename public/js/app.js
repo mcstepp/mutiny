@@ -4,7 +4,7 @@ webpackJsonp([1],{
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(147);
-module.exports = __webpack_require__(178);
+module.exports = __webpack_require__(184);
 
 
 /***/ }),
@@ -33,6 +33,8 @@ window.Vue = __webpack_require__(17);
 Vue.component('post-as', __webpack_require__(169));
 Vue.component('delete-button', __webpack_require__(172));
 Vue.component('character-time', __webpack_require__(175));
+Vue.component('online-status', __webpack_require__(178));
+Vue.component('show-more', __webpack_require__(181));
 
 var app = new Vue({
   el: '#app'
@@ -353,7 +355,6 @@ window._ = __webpack_require__(9);
 
 try {
   window.$ = window.jQuery = __webpack_require__(3);
-
   __webpack_require__(149);
 } catch (e) {}
 
@@ -2789,7 +2790,7 @@ if (typeof jQuery === 'undefined') {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(7)
+var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(170)
 /* template */
@@ -3031,7 +3032,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(7)
+var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(173)
 /* template */
@@ -3192,7 +3193,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(7)
+var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(176)
 /* template */
@@ -3812,13 +3813,251 @@ if (false) {
 /***/ }),
 
 /***/ 178:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(179)
+/* template */
+var __vue_template__ = __webpack_require__(180)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/OnlineStatusComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-672d68b1", Component.options)
+  } else {
+    hotAPI.reload("data-v-672d68b1", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 179:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'OnlineStatus',
+    props: ['online'],
+    mounted: function mounted() {
+        if (this.online) {
+            this.status = 'Online';
+        }
+    },
+    data: function data() {
+        return {
+            status: 'Offline'
+        };
+    }
+});
+
+/***/ }),
+
+/***/ 180:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("span", { staticClass: "m-fancy-title" }, [
+    _vm._v(_vm._s(_vm.status))
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-672d68b1", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 181:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(182)
+/* template */
+var __vue_template__ = __webpack_require__(183)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/ShowMoreComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a9c5aaf8", Component.options)
+  } else {
+    hotAPI.reload("data-v-a9c5aaf8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 182:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'ShowMore',
+    props: ['thread', 'collapse'],
+    mounted: function mounted() {
+        if (!this.collapse) {
+            this.status = 'Collapse';
+            this.expand = true;
+        }
+    },
+    data: function data() {
+        return {
+            expand: false,
+            status: 'Expand',
+            dataTarget: '#thread' + this.thread
+        };
+    },
+
+    watch: {
+        expand: function expand() {
+            if (this.expand) {
+                this.status = 'Expand';
+            } else {
+                this.status = 'Collapse';
+            }
+        }
+    },
+    methods: {
+        toggleExpand: function toggleExpand() {
+            this.expand = !this.expand;
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 183:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "btn btn-outline-primary m-1",
+      attrs: { "data-toggle": "collapse", "data-target": _vm.dataTarget },
+      on: { click: _vm.toggleExpand }
+    },
+    [
+      _vm.expand
+        ? _c("i", {
+            staticClass: "fa fa-chevron-circle-right",
+            attrs: { "aria-hidden": "true" }
+          })
+        : _c("i", {
+            staticClass: "fa fa-chevron-circle-up",
+            attrs: { "aria-hidden": "true" }
+          }),
+      _vm._v("\n    " + _vm._s(_vm.status) + "\n")
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a9c5aaf8", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 184:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 7:
+/***/ 5:
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */

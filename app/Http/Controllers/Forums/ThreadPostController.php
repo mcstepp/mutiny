@@ -14,16 +14,20 @@ class ThreadPostController extends Controller
 {
     public function __construct()
     {
-
+        $this->middleware('auth');
     }
 
     /**
      * Display a listing of the resource.
      *
+     * @param Forum $forum
+     * @param Thread $thread
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Forum $forum, Thread $thread)
     {
+        $this->authorize('view', $thread);
 
         $posts = $this->getThreadPosts($thread);
 
@@ -48,13 +52,15 @@ class ThreadPostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
+     * @param Forum $forum
      * @param Thread $thread
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Forum $forum, Thread $thread)
     {
         // validate the post
-        // TODO: more validation/authorizations
+        $this->authorize('view', $forum);
 
         $this->validate($request, [
             'body' => 'required|min:6',
@@ -85,13 +91,7 @@ class ThreadPostController extends Controller
      */
     public function show(Forum $forum, Thread $thread)
     {
-        $posts = $this->getThreadPosts($thread);
 
-        return view('forum.thread.show', [
-            'forum' => $forum,
-            'thread' => $thread,
-            'posts' => $posts
-        ]);
     }
 
     /**
@@ -101,6 +101,7 @@ class ThreadPostController extends Controller
      * @param Thread $thread
      * @param Post $post
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Forum $forum, Thread $thread, Post $post)
     {

@@ -86,10 +86,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    <button class="btn btn-outline-primary m-1"  data-toggle="collapse" data-target="#thread{{$thread->id}}">
-                        <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                        Expand
-                    </button>
+                    <show-more thread="{{ $thread->id }}" collapse></show-more>
                 </div>
                 <div class="col text-right">
                     @can('update', $thread)

@@ -24,7 +24,12 @@ class ThreadPolicy
      */
     public function view(User $user, Thread $thread)
     {
-        //
+        $forum = $thread->forum;
+        if ($forum->private) {
+            return $forum->users->contains($user);
+        }
+
+        return true;
     }
 
     /**
