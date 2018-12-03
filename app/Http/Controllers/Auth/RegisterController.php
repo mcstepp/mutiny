@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Invitation;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -48,7 +49,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            //'code' => 'bail|required',
+            'code' => 'bail|required|unique:invitations',
             'g-recaptcha-response' => 'bail|required|captcha',
             'username' => 'required|string|max:255|unique:users',
             'alias' => 'required',
@@ -65,19 +66,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $invitation = Invitation::where('code', $data['code'])->firstOrFail();
+
+        $user = User::create([
             'username' => $data['username'],
             'alias' => $data['alias'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'parent_id' => $invitation['user_id']
         ]);
 
-//        $invitation = Invitation::where('code', $data['code'])->get();
-//        $invitation->update([
-//            'user_id' => $invitation->id
-//        ]);
-//
-//        return Invitation::
+        $invitation->delete();
+
+        return $user;
+
     }
 
 

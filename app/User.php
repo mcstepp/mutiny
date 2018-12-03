@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Invitation;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 use Illuminate\Notifications\Notifiable;
@@ -83,6 +84,16 @@ class User extends Authenticatable
     public function current_character()
     {
         return $this->characters()->where('current', '=', '1')->first();
+    }
+
+    public function invitations()
+    {
+        return $this->hasMany(Invitation::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function path() 

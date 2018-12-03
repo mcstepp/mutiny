@@ -58,11 +58,19 @@
 1. '.footer-fixed'					- Fixed footer
 
 -->
-
+@auth
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+@endauth
+@guest
+<body class="app header-fixed sidebar-hidden aside-menu-hidden">
+@endguest
 @include('layouts.userbar')
 <div id ="app" class="app-body">
+
+    @auth
     @include('layouts.sidebar')
+    @endauth
+
     <!-- Main content -->
     <main class="main">
 

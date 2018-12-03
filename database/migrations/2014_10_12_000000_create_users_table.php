@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->unsignedInteger('points')->default(0);
             $table->string('slug');
+            $table->unsignedInteger('parent_id')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

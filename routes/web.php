@@ -19,6 +19,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Docs/static pages with guest views
+Route::get('/site/terms', 'DocsController@terms')->name('terms');
+Route::get('/site/rules', 'DocsController@rules')->name('rules');
+Route::get('/site/privacy', 'DocsController@privacy')->name('privacy');
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'Admin\AdminPanelController@index')->name('adminPanel');
