@@ -35,7 +35,7 @@ class ThreadsTableSeeder extends Seeder
                 'author_type' => 'character',
                 'thread_id' => function(array $post) {
                     return factory('App\Models\Forum\Thread')->create([
-                        'forum_id' => 4,
+                        'forum_id' => 8,
                         'author_id' => $post['author_id'],
                         'author_type' => $post['author_type']
                     ])->id;
