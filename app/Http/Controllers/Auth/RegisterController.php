@@ -49,7 +49,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'code' => 'bail|required|unique:invitations',
+            'code' => 'required|exists:invitations',
             'g-recaptcha-response' => 'bail|required|captcha',
             'username' => 'required|string|max:255|unique:users',
             'alias' => 'required',

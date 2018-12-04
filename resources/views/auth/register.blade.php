@@ -18,9 +18,9 @@
                     <div class="col-md-8">
                         <input id="code" type="text" class="form-control" name="code" required autofocus>
 
-                        @if ($errors->has('username'))
+                        @if ($errors->has('code'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('username') }}</strong>
+                                <strong>{{ $errors->first('code') }}</strong>
                             </span>
                         @endif
                     </div>

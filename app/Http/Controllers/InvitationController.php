@@ -4,17 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Models\Invitation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InvitationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index()
     {
         //
+        $this->authorize('create', Invitation::class);
+
+        $user = Auth::user();
+        $invitations = $user->invitations()->get();
+
+        return view('user.invitations.index', [
+            'user' => $user,
+            'invitations' => $invitations
+        ]);
+
     }
 
     /**
@@ -24,14 +41,14 @@ class InvitationController extends Controller
      */
     public function create()
     {   
-
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
     public function store(Request $request)
@@ -39,15 +56,20 @@ class InvitationController extends Controller
         //TODO: is the user allowed to invite someone?
         // full members only, has invites
 
-        $length = 16;
-        $code = substr(bin2hex(random_bytes($length)), 0, $length);
+        $this->authorize('create', Invitation::class);
 
-        Invitation::create([
+
+        $length = 16;
+        $invitation = Invitation::make([
             'user_id' => auth()->id(),
-            'code' => $code
         ]);
 
-        // redirect to code display page (index)
+        $code = substr(bin2hex(random_bytes($length)), 0, $length);
+
+        $invitation->code = $code;
+        $invitation->save();
+
+        return redirect()->route('my-invites');
     }
 
     /**

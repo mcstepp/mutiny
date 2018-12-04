@@ -47,6 +47,8 @@ Route::get('/admin/pending', 'Character\PendingCharacterController@index')->name
 Route::get('admin/pending/{character}', 'Character\PendingCharacterController@show')->name('admin-show-pending-character');
 Route::put('/admin/pending/{character}', 'Character\PendingCharacterController@update')->name('admin-pend-character');
 
+Route::get('/invites', 'InvitationController@index')->name('my-invites');
+Route::post('/invites', 'InvitationController@store')->name('generate-invite');
 
 
 Route::get('/f', 'Forums\ForumController@index');
