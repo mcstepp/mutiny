@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
             'username' => 'disco before the breakdown',
             'password' => bcrypt('Db4tbam!'),
             'alias' => 'disco',
-            'email' => 'theoriginalcowboy5@gmail.com',
+            'email' => 'agirlnamedboxcar@gmail.com',
             'role_id' => '5',
             'parent_id' => '1'
         ]);
