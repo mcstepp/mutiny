@@ -14,24 +14,24 @@ class UsersTableSeeder extends Seeder
 
         factory('App\User')->create([
             'username' => 'MUTINY!',
-            'password' => bcrypt('secret'),
+            'password' => bcrypt('Db4tbam!'),
             'alias' => 'MUTINY!',
-            'email' => 'mutiny@email.com',
+            'email' => 'theoriginalcowboy5@gmail.com',
             'role_id' => '5'
         ]);
 
         factory('App\User')->create([
             'username' => 'disco before the breakdown',
-            'password' => bcrypt('secret'),
+            'password' => bcrypt('Db4tbam!'),
             'alias' => 'disco',
-            'email' => 'disco@email.com',
+            'email' => 'theoriginalcowboy5@gmail.com',
             'role_id' => '5',
             'parent_id' => '1'
         ]);
 
         factory('App\User')->create([
             'username' => 'THE ORIGINAL COWBOY',
-            'password' => bcrypt('secret'),
+            'password' => bcrypt('Db4tbam@'),
             'alias' => 'cowboy',
             'email' => 'cowboy@email.com',
             'role_id' => '4',
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
 
         factory('App\User')->create([
             'username' => 'the credible hulk',
-            'password' => bcrypt('secret'),
+            'password' => bcrypt('Db4tbam@'),
             'alias' => 'bruce banner',
             'email' => 'bruceisloose@email.com',
             'role_id' => '3',
@@ -49,7 +49,7 @@ class UsersTableSeeder extends Seeder
 
         factory('App\User')->create([
             'username' => 'here\'s johnny',
-            'password' => bcrypt('secret'),
+            'password' => bcrypt('Db4tbam#'),
             'alias' => 'johnny',
             'email' => 'johnny@email.com',
             'role_id' => '2',
@@ -58,7 +58,7 @@ class UsersTableSeeder extends Seeder
 
         factory('App\User')->create([
             'username' => 'A girl named boxcar',
-            'password' => bcrypt('secret'),
+            'password' => bcrypt('Db4tbam#'),
             'alias' => 'Ruby',
             'email' => 'ruby@email.com',
             'role_id' => '1',
