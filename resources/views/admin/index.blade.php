@@ -1,10 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Admin Panel</li>
-        </ol>
-
+    @include('layouts._breadcrumb', ['menu' => [
+    [
+    'link-route' => route('adminPanel'),
+    'link-name' => 'Admin Panel'
+    ]
+    ]])
         <div class="container-fluid">
 
             @if(auth()->user()->isSuperAdmin())

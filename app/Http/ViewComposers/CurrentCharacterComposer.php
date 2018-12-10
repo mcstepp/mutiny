@@ -2,23 +2,22 @@
 
 namespace App\Http\ViewComposers;
 
+use App\User;
 use Illuminate\View\View;
-use App\Repositories\UserRepository;
 
 class CurrentCharacterComposer
 {
     /**
      * The user repository implementation.
      *
-     * @var UserRepository
+     * @var $user;
      */
     protected $user;
 
     /**
      * Create a new profile composer.
      *
-     * @param  UserRepository  $users
-     * @return void
+     * @param User $user
      */
     public function __construct(User $user)
     {

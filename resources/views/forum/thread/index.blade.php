@@ -2,6 +2,15 @@
 
 @section('content')
 
+    @include('layouts._breadcrumb', ['menu' => [
+    [
+    'link-name' => $forum->category->name
+    ],
+    [
+    'link-route' => $forum->path(),
+    'link-name' => $forum->name]
+    ]])
+
     <div class="container-fluid my-3">
 
         <div class="row">

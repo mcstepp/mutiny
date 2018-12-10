@@ -26987,6 +26987,14 @@ hr.transparent {
   color: #000;
 }
 
+.breadcrumb .breadcrumb-item {
+  color: #444444;
+}
+
+.breadcrumb .breadcrumb-item.active {
+  color: #888888;
+}
+
 .page-header {
   padding: 1rem 0;
   background: #000;

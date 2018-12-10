@@ -12,7 +12,6 @@
 
                     <div class="card m-card m-0">
                         <div class="m-post">
-                            hey yo its meg
                             {!!  nl2br($post->body) !!}
                         </div>
                     </div>

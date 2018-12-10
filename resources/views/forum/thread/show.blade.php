@@ -2,16 +2,18 @@
 
 @section('content')
 
-    <div class="container-fluid">
+    @include('layouts._breadcrumb', ['menu' => [
+    [
+    'link-name' => $forum->category->name
+    ],[
+    'link-route' => $forum->path(),
+    'link-name' => $forum->name
+    ],[
+    'link-name' => $thread->title
+    ]
+    ]])
 
-        <ol class="breadcrumb bg-mutinydark">
-            <li class="breadcrumb-item">
-                <a href="#">{{ $forum->category->name }}</a>
-            </li>
-            <li class="breadcrumb-item active">
-                <a href="{{ $forum->path() }}">{{ $forum->name}}</a>
-            </li>
-        </ol>
+    <div class="container-fluid my-3">
 
         <h3>{{ $thread->title }}</h3>
 

@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
         // View Composers for sidebar, character section, and userbar data
         View::composer( 'current_character', 'App\Http\ViewComposers\CurrentCharacterComposer');
 
-        View::composer('navigation', 'App\Http\ViewComposers\NavigationComposer');
+        View::composer('layouts._navigation', 'App\Http\ViewComposers\NavigationComposer');
 
         View::composer('userbar', 'App\Http\ViewComposers\UserbarComposer');
     }

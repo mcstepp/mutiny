@@ -84,7 +84,10 @@
 
 .breadcrumb {
   .breadcrumb-item {
-
+    color: $gray-600;
+    &.active {
+      color: $gray-200;
+    }
   }
 }
 

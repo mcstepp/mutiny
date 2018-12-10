@@ -1,80 +1,95 @@
 @extends('layouts.main')
 
 @section('content')
-    @include('layouts._breadcrumb')
+    @include('layouts._breadcrumb', ['menu' => [
+        [
+        'link-route' => route('dashboard'),
+        'link-name' => 'Dashboard'
+        ],[
+        'link-name' => 'Dashboard'
+        ],
+        [
+        'link-name' => 'Dashboard'
+        ]
+    ]])
 
     <div class="container-fluid my-3">
 
-        <div class="row">
-            <div class="col-md-7">
-                <h1 class="h2 page-title m-fancy-header neon-default">Forum Name</h1>
-            </div>
-            <div class="col-md-5">
-                <div class="row">
-                    <div class="col-12 col-sm-4">
-                        <div class="text-center title">
-                            <span class="m-fancy-title">Threads: </span>
-                            <strong>4,100</strong>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4">
-                        <div class="text-center title">
-                            <span class="m-fancy-title">Replies: </span>
-                            <strong>10,456</strong>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-4">
-                        <div class="text-center title">
-                            <span class="m-fancy-title">Participants: </span>
-                            <strong>17</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       <h1 class="m-fancy-header neon-default">Dashboard</h1>
+
         <div class="page-desc">
             <p>
-                This is a forum description. In an IC forum, this text would be describing the IC setting of the forum.
-                It can be broad, like "Common areas" or narrow like "Headquarters".
+                Dashboard description
             </p>
         </div>
+
         <div class="row">
-            <div class="col">
-                <button class="btn btn-outline-secondary m-1">
-                    <i class="far fa-edit"></i>
-                    Create New Thread
-                </button>
-            </div>
-
-            <div class="col align-self-end text-right">
-                <div class="btn-group">
-                    <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Sort By
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">Last reply</a>
-                        <a class="dropdown-item" href="#">Thread Start</a>
-                        <a class="dropdown-item" href="#">A-Z</a>
-                        <a class="dropdown-item" href="#">Z-A</a>
-                        <a class="dropdown-item" href="#">Chronological</a>
+            <div class="col-md-4">
+                <div class="card m-card bg-industrial">
+                    <div class="card-body">
+                        <h2 class="m-fancy-title">Site Links</h2>
+                        <hr class="neon-default">
+                        <ul>
+                            <li>
+                                <a href="{{ route('terms') }}">Terms and Conditions</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('rules') }}">Rules</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('privacy') }}">Privacy Notice</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <a class="btn btn-outline-primary m-1" role="button" href="#">
-                    <i class="fas fa-cogs"></i>
-                    Edit Forum
-                </a>
             </div>
-        </div>
-    </div>
 
-    <div class="container-fluid my-3">
-        <div class="animated fadeId">
-            @include('layouts.forumthreads')
-            @include('layouts.forumthreads')
-            @include('layouts.forumthreads')
-            @include('layouts.forumthreads')
-            @include('layouts.forumthreads')
+            <div class="col-md-4">
+                <div class="card m-card bg-industrial">
+                    <div class="card-body">
+                        <h2 class="m-fancy-title">My Links</h2>
+                        <hr class="neon-default">
+                        <ul>
+                            <li>
+                                <a href="{{ route('create-character') }}">Create a Character</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('view-my-pending-characters') }}">My Pending Characters</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('view-my-pending-characters') }}">Character List</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('view-my-pending-characters') }}">User List</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card m-card bg-industrial">
+                    <div class="card-body">
+                        <h2 class="m-fancy-title">Other Links</h2>
+                        <hr class="neon-default">
+                        <ul>
+                            <li>
+                                <a href="{{ route('view-my-pending-characters') }}">Create a Character</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('view-my-pending-characters') }}">My Pending Characters</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('view-my-pending-characters') }}">Character List</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('view-my-pending-characters') }}">User List</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection

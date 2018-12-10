@@ -27,6 +27,8 @@ Route::get('/site/privacy', 'DocsController@privacy')->name('privacy');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
 
 Route::get('/admin', 'Admin\AdminPanelController@index')->name('adminPanel');
 

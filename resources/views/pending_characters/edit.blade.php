@@ -236,20 +236,18 @@
 
                             <div class="col-md-10">
                                 <textarea class="form-control" rows="3" name="history"
-                                          id="history">{{ $pending_character->history }}"
-                                </textarea>
+                                          id="history">{{ $pending_character->history }}</textarea>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-md-2">
-                                <label for="history" class="control-label">Personality:</label>
+                                <label for="personality" class="control-label">Personality:</label>
                             </div>
 
                             <div class="col-md-10">
                                 <textarea class="form-control" rows="3" name="personality"
-                                          id="personality">{{ $pending_character->personality }}"
-                                </textarea>
+                                  id="personality">{{ $pending_character->personality }}</textarea>
                             </div>
                         </div>
 
@@ -260,8 +258,7 @@
 
                             <div class="col-md-10">
                                 <textarea class="form-control" rows="3" name="appearance"
-                                          id="appearance">{{ $pending_character->appearance }}
-                                </textarea>
+                                      id="appearance">{{ $pending_character->appearance }}</textarea>
                             </div>
                         </div>
 
