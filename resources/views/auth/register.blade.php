@@ -100,10 +100,57 @@
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                     </div>
                 </div>
+            </div>
+
+            <hr class="glow-default">
+
+            <div class="card-body">
+
+                <div class="row {{ $errors->has('rules') ? ' has-error' : '' }}">
+
+                    <div class="col-md-8 offset-md-4">
+                        <div class="form-check my-1">
+                            <input class="form-check-input" type="checkbox" name="rules" value="true" id="rules" required>
+                            <label class="form-check-label" for="rules">
+                                I am at least 18 years old and I have read and agreed to the <a href="{{ route('rules') }}" target="_blank">Site Rules</a>.
+                            </label>
+                            @if ($errors->has('rules'))
+                                <span class="help-block">
+                                <strong>{{ $errors->first('rules') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-check my-1">
+                            <input class="form-check-input" type="checkbox" name="terms" value="true" id="terms" required>
+                            <label class="form-check-label" for="rules">
+                                I have read and agreed to the <a href="{{ route('terms') }}" target="_blank">Terms of Service</a>.
+                            </label>
+                            @if ($errors->has('terms'))
+                                <span class="help-block">
+                                <strong>{{ $errors->first('terms') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-check my-1">
+                            <input class="form-check-input" type="checkbox" name="privacy" value="true" id="privacy" required>
+                            <label class="form-check-label" for="privacy">
+                                I have read and agreed to the <a href="{{ route('privacy') }}" target="_blank">Privacy Policy</a>.
+                            </label>
+                            @if ($errors->has('privacy'))
+                                <span class="help-block">
+                                <strong>{{ $errors->first('privacy') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
 
                 <div class="form-group row">
                     <div class="col-md-8 offset-md-4">
-                        {!! NoCaptcha::display() !!}
+                        <div class="my-3">
+                            {!! NoCaptcha::display() !!}
+                        </div>
+
                     </div>
                 </div>
 

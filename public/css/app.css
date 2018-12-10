@@ -22963,6 +22963,7 @@ base-chart.chart {
   padding: 0;
   color: #fff;
   background: #251a27;
+  overflow: auto;
 }
 
 .sidebar .sidebar-close {
@@ -27036,7 +27037,7 @@ hr.transparent {
 
 .m-jumbotron {
   background-image: url("/images/mutiny_header_01.png");
-  min-height: 400px;
+  min-height: 300px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
