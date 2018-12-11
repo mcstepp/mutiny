@@ -6,7 +6,6 @@
   color: $sidebar-color;
   background: $sidebar-bg;
   @include borders($sidebar-borders);
-  overflow: auto;
 
   .sidebar-close {
     position: absolute;
