@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Character;
 
+use App\Filters\CharacterFilters;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Http\Requests\CreateNewCharacter;
@@ -24,9 +25,14 @@ class CharacterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CharacterFilters $filters)
     {
         // show a list of all characters
+        $characters = $this->getCharacters($filters);
+
+        return view('character.index', [
+            'characters' => $characters
+        ]);
     }
 
     /**
@@ -139,6 +145,16 @@ class CharacterController extends Controller
     public function destroy(Character $character)
     {
         //
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder|\Illuminate\Support\Collection|static|static[]
+     */
+    protected function getCharacters(CharacterFilters $filters)
+    {
+        $characters = Character::latest()->filter($filters);
+
+        return $characters->get();
     }
 
 

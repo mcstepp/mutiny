@@ -2,7 +2,9 @@
 
 namespace App\Models\Character;
 
+use App\Filters\CharacterFilters;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\Models\Character\Rank;
@@ -96,6 +98,16 @@ class PendingCharacter extends Model
     {
         $key = $this->getRouteKeyName();
         return "/pc/" . $this[$key];
+    }
+
+    /**
+     * @param $query
+     * @param CharacterFilters $filters
+     * @return Builder
+     */
+    public function scopeFilter($query, CharacterFilters $filters)
+    {
+        return $filters->apply($query);
     }
 
 
