@@ -80,7 +80,7 @@ Route::get('/u', 'UserController@index');
 Route::get('/u/{user}', 'UserController@show')->name('user-profile');
 Route::get('/u/{user}/pc', 'Character\UserPendingCharacterController@index')->name('view-pending-characters');
 
-Route::get('/c', 'Character\CharacterController@index');
+Route::get('/c', 'Character\CharacterController@index')->name('character-list');
 Route::post('/c/create', 'Character\CharacterController@store')->name('store-new-character');
 
 Route::get('/pc', 'Character\UserPendingCharacterController@index')->name('view-my-pending-characters');
