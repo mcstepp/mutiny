@@ -11,18 +11,17 @@ class UserFilters extends Filters
      *
      * @var array
      */
-    protected $filters = ['age'];
+    protected $filters = ['faction'];
 
     /**
      * Filter the query by a given username
      *
      * @return Builder
      */
-    protected function age()
+    protected function faction()
     {
         return $this->builder
-            ->orderBy('ic_birth_year')
-            ->orderBy('ic_birth_month')
-            ->orderBy('ic_birth_day');
+            ->orderBy('faction_id')
+            ->orderBy('slug');
     }
 }

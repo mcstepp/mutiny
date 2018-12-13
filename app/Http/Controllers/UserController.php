@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\UserFilters;
 use App\User;
 use App\Models\Character\Character;
 use Illuminate\Http\Request;
@@ -15,15 +16,17 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
+     * @param UserFilters $filters
      * @return \Illuminate\Http\Response
      */
     public function index(UserFilters $filters)
     {
         // show a list of all users
-        $users = $this->getUser($filters);
+        $users = $this->getUsers($filters);
 
         return view('user.index', [
             'users' => $users
@@ -74,7 +77,8 @@ class UserController extends Controller
 
     public function getUsers(UserFilters $filters)
     {
-        $users = User::latest()->filter($filters);
+        $users = User::latest()
+            ->orderBy('role_id', 'desc');
 
         return $users->get();
     }
