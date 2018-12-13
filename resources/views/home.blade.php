@@ -60,7 +60,7 @@
                                 <a href="{{ route('character-list') }}">Character List</a>
                             </li>
                             <li>
-                                <a href="{{ route('view-my-pending-characters') }}">User List</a>
+                                <a href="{{ route('user-list') }}">User List</a>
                             </li>
                         </ul>
                     </div>

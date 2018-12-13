@@ -20,9 +20,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UserFilters $filters)
     {
         // show a list of all users
+        $users = $this->getUser($filters);
+
+        return view('user.index', [
+            'users' => $users
+        ]);
     }
 
 
@@ -65,6 +70,13 @@ class UserController extends Controller
     {
 
 
+    }
+
+    public function getUsers(UserFilters $filters)
+    {
+        $users = User::latest()->filter($filters);
+
+        return $users->get();
     }
 
 
