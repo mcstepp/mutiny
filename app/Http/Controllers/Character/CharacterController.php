@@ -152,7 +152,7 @@ class CharacterController extends Controller
      */
     protected function getCharacters(CharacterFilters $filters)
     {
-        $characters = Character::latest()->filter($filters);
+        $characters = Character::filter($filters);
 
         return $characters->get();
     }
