@@ -89,7 +89,7 @@ class CharactersTableSeeder extends Seeder
                 'ic_birth_day' => '9',
                 'ic_birth_year' => '118',
                 'initiation_year' => '136',
-                'age' => 27,
+                'age' => 31,
                 'faceclaim' => 'Sam Palladio',
                 'credit' => 500,
                 'current' => 1

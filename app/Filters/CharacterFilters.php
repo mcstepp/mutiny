@@ -11,7 +11,7 @@ class CharacterFilters extends Filters
      *
      * @var array
      */
-    protected $filters = ['age', 'faction'];
+    protected $filters = ['age', 'faction', 'name'];
 
     /**
      * Filter the query by a given username
@@ -21,7 +21,7 @@ class CharacterFilters extends Filters
      */
     protected function age($direction = 'desc')
     {
-        if ($direction == 'asc') {
+        if ($direction === 'asc') {
             $this->builder->orderByDesc('ic_birth_year');
         }
         else {
@@ -39,6 +39,15 @@ class CharacterFilters extends Filters
         return $this->builder
             ->orderBy('faction_id')
             ->orderBy('slug');
+    }
+
+    protected function name($direction = 'asc')
+    {
+        if ($direction !== 'asc') {
+            $direction = 'desc';
+        }
+
+        return $this->builder->orderBy('slug', $direction);
     }
 }
 

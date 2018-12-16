@@ -16,6 +16,17 @@
         </div>
         <div class="row">
             <div class="btn-group m-3">
+                <button type="button" class="btn btn-outline-primary">Sort By Name</button>
+                <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{ route('character-list',['name' => 'asc']) }}">A-Z</a>
+                    <a class="dropdown-item" href="{{ route('character-list',['name' => 'desc']) }}">Z-A</a>
+                </div>
+            </div>
+
+            <div class="btn-group m-3">
                 <button type="button" class="btn btn-outline-primary">Sort By Age</button>
                 <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="sr-only">Toggle Dropdown</span>
