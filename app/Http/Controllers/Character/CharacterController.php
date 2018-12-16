@@ -167,8 +167,8 @@ class CharacterController extends Controller
     {
         $characters = PendingCharacter::orderBy('faction_id')
             ->orderByDesc('ic_birth_year')
-            ->orderByDesc('ic_birth_month')
-            ->orderByDesc('ic_birth_day');
+            ->orderBy('ic_birth_month')
+            ->orderBy('ic_birth_day');
 
         return $characters->get();
     }

@@ -77,10 +77,9 @@ class UserController extends Controller
 
     public function getUsers(UserFilters $filters)
     {
-        $users = User::orderBy('role_id', 'desc');
+        $users = User::filter($filters);
 
         return $users->get();
     }
-
 
 }

@@ -11,17 +11,31 @@ class UserFilters extends Filters
      *
      * @var array
      */
-    protected $filters = ['faction'];
+    protected $filters = ['name', 'role'];
 
     /**
      * Filter the query by a given username
      *
-     * @return Builder
+     * @param string $direction
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    protected function faction()
+    protected function name($direction = 'asc')
     {
-        return $this->builder
-            ->orderBy('faction_id')
-            ->orderBy('slug');
+        if ($direction !== 'asc')
+        {
+            $direction = 'desc';
+        }
+
+        return $this->builder->orderBy('slug', $direction);
+    }
+
+    protected function role($direction = 'desc')
+    {
+        if ($direction !== 'desc')
+        {
+            $direction = 'asc';
+        }
+
+        return $this->builder->orderBy('role_id', $direction);
     }
 }

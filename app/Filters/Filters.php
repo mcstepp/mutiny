@@ -38,7 +38,7 @@ abstract class Filters
      * Apply the filters
      *
      * @param $builder
-     * @return $builder
+     * @return \Illuminate\Database\Eloquent\Builder $builder
      */
     public function apply($builder)
     {

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Filters\UserFilters;
 use App\Models\Invitation;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
@@ -158,5 +159,15 @@ class User extends Authenticatable
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * @param $query
+     * @param UserFilters $filters
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilter($query, UserFilters $filters)
+    {
+        return $filters->apply($query);
     }
 }
