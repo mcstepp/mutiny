@@ -17,8 +17,10 @@
             <a href="#" title="Character Inventory" class="flicker">
                 <i class="fas fa-box-open"></i>
             </a></div>
+        @if(count($user->characters) >= 2)
         <div class="col">
             <switch-character :characters="{{ json_encode($user->characters) }}"></switch-character>
         </div>
+        @endif
     </div>
 </div>
