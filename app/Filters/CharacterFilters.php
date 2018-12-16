@@ -30,7 +30,8 @@ class CharacterFilters extends Filters
 
         return $this->builder
             ->orderBy('ic_birth_month')
-            ->orderBy('ic_birth_day');
+            ->orderBy('ic_birth_day')
+            ->orderBy('slug');
     }
 
     protected function faction()
@@ -40,3 +41,4 @@ class CharacterFilters extends Filters
             ->orderBy('slug');
     }
 }
+
