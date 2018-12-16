@@ -82,6 +82,7 @@ Route::get('/u/{user}/pc', 'Character\UserPendingCharacterController@index')->na
 
 Route::get('/c', 'Character\CharacterController@index')->name('character-list');
 Route::post('/c/create', 'Character\CharacterController@store')->name('store-new-character');
+Route::put('/c/current', 'Character\CharacterController@switch')->name('switch-character');
 
 Route::get('/pc', 'Character\UserPendingCharacterController@index')->name('view-my-pending-characters');
 Route::get('/pc/create', 'Character\PendingCharacterController@create')->name('create-character');

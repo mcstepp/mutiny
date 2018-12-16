@@ -136,8 +136,6 @@ class CharacterController extends Controller
      */
     public function update(Request $request, Character $character)
     {
-        // TODO: authorize, validate
-
 
 
     }
@@ -151,6 +149,19 @@ class CharacterController extends Controller
     public function destroy(Character $character)
     {
         //
+    }
+
+    public function switch(Request $request)
+    {
+        // TODO: authorize, validate
+        // $this->authorize('switch');
+
+        $user = $request->user();
+        $character = Character::find($request->character);
+
+        $oldCurrent = $user->current_character();
+        $oldCurrent->update(['current' => false]);
+        $character->update(['current' => true]);
     }
 
     /**

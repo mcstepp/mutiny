@@ -18,18 +18,7 @@
                 <i class="fas fa-box-open"></i>
             </a></div>
         <div class="col">
-            <div class="btn-group">
-                <button class="btn-link flicker" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Switch Character">
-                    <i class="fas fa-exchange-alt"></i>
-                </button>
-                <ul class="dropdown-menu">
-                    @foreach($user->characters as $character)
-                        @if(!$character->current)
-                        <li class="dropdown-item">{{ $character->username }}</li>
-                        @endif
-                    @endforeach
-                </ul>
-            </div>
+            <switch-character :characters="{{ json_encode($user->characters) }}"></switch-character>
         </div>
     </div>
 </div>

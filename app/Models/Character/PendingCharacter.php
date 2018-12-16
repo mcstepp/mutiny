@@ -32,6 +32,7 @@ class PendingCharacter extends Model
      */
     protected $guarded = [];
     protected $with = ['faction'];
+    protected $appends = ['username'];
 
     protected static function boot()
     {

@@ -21,6 +21,7 @@ Vue.component('delete-button', require('./components/DeleteButtonComponent.vue')
 Vue.component('character-time', require('./components/CharacterTimeComponent'));
 Vue.component('online-status', require('./components/OnlineStatusComponent'));
 Vue.component('show-more', require('./components/ShowMoreComponent.vue'));
+Vue.component('switch-character', require('./components/SwitchCharacterComponent.vue'));
 
 
 const app = new Vue({
