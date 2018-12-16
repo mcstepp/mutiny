@@ -25,10 +25,16 @@ class CharacterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(CharacterFilters $filters)
+    public function index(Request $request, CharacterFilters $filters)
     {
         // show a list of all characters
-        $characters = $this->getCharacters($filters);
+        if ($request->has('pending')) {
+            $characters = $this->getPendingCharacters();
+        }
+
+        else {
+            $characters = $this->getCharacters($filters);
+        }
 
         return view('character.index', [
             'characters' => $characters
@@ -153,6 +159,16 @@ class CharacterController extends Controller
     protected function getCharacters(CharacterFilters $filters)
     {
         $characters = Character::filter($filters);
+
+        return $characters->get();
+    }
+
+    protected function getPendingCharacters()
+    {
+        $characters = PendingCharacter::orderBy('faction_id')
+            ->orderByDesc('ic_birth_year')
+            ->orderByDesc('ic_birth_month')
+            ->orderByDesc('ic_birth_day');
 
         return $characters->get();
     }
