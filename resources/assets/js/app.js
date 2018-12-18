@@ -22,6 +22,7 @@ Vue.component('character-time', require('./components/CharacterTimeComponent'));
 Vue.component('online-status', require('./components/OnlineStatusComponent'));
 Vue.component('show-more', require('./components/ShowMoreComponent.vue'));
 Vue.component('switch-character', require('./components/SwitchCharacterComponent.vue'));
+Vue.component('subscribe-button', require('./components/SubscribeButtonComponent.vue'));
 
 
 const app = new Vue({

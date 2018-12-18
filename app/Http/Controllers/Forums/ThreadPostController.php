@@ -27,6 +27,9 @@ class ThreadPostController extends Controller
      */
     public function index(Forum $forum, Thread $thread)
     {
+        //dd($thread->isSubscribedTo);
+        abort_if($thread->forum_id !== $forum->id, 404);
+
         $this->authorize('view', $thread);
 
         $posts = $this->getThreadPosts($thread);
@@ -169,7 +172,7 @@ class ThreadPostController extends Controller
         // TODO: check permission.
         $this->authorize('delete', $post);
 
-        if ($thread->post_count === 1) {
+        if ($thread->post_count == 1) {
             $thread->delete();
             return response("Deleted thread", 204);
         }

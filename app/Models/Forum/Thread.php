@@ -3,6 +3,7 @@
 namespace App\Models\Forum;
 
 use App\Filters\ThreadFilters;
+use App\Models\Subscriptions\ThreadSubscription;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -39,9 +40,7 @@ class Thread extends Model
         static::deleting(function ($thread) {
             $thread->posts->each->delete();
 
-           /*$thread->posts->each(function ($post) {
-               $post->delete();
-            });*/
+            $thread->subscriptions->each->delete();
         });
 
     }
@@ -104,7 +103,7 @@ class Thread extends Model
 
     public function subscriptions()
     {
-        return $this->hasMany(ThreadSubscriptions::class);
+        return $this->hasMany(ThreadSubscription::class);
     }
 
     public function participants()
@@ -122,6 +121,13 @@ class Thread extends Model
     {
         return $this->participants()->count();
 
+    }
+
+    public function getIsSubscribedToAttribute()
+    {
+        return $this->subscriptions()
+                ->where('user_id', auth()->id())
+                ->exists();
     }
 
     public function lastPost()

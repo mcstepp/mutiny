@@ -73,6 +73,9 @@ Route::post('/f/{forum}/t/{thread}', 'Forums\ThreadPostController@store')->name(
 Route::delete('/f/{forum}/t/{thread}', 'Forums\ForumThreadController@delete')->name('delete-thread');
 Route::get('/f/{forum}/t/{thread}/{post}/edit', 'Forums\ThreadPostController@edit')->name('edit-post');
 
+Route::post('/f/{forum}/t/{thread}/subscription', 'Forums\ThreadSubscriptionsController@store')->name('subscribe-to-thread');
+Route::delete('/f/{forum}/t/{thread}/subscription', 'Forums\ThreadSubscriptionsController@destroy')->name('unsubscribe-from-thread');
+
 Route::put('/f/{forum}/t/{thread}/{post}/update', 'Forums\ThreadPostController@update')->name('update-post');
 Route::delete('/f/{forum}/t/{thread}/{post}', 'Forums\ThreadPostController@delete')->name('delete-post');
 

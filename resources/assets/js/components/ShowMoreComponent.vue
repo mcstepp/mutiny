@@ -19,8 +19,6 @@
                 this.status = 'Collapse';
                 this.expand = true;
             }
-
-
         },
         data() {
             return {
