@@ -1,10 +1,10 @@
 <li class="nav-item dropdown d-md-down-none">
     <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-        <i class="far fa-bell"></i><span class="badge badge-pill badge-primary">5</span>
+        <i class="far fa-bell"></i><span class="badge badge-pill badge-primary">{{ $notifications->count() }}</span>
     </a>
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg m-userbar-notifications">
         <div class="dropdown-header text-center">
-            <strong>You have 5 notifications</strong>
+            <strong>You have {{ $notifications->count() }} unread notifications.</strong>
         </div>
         <a href="#" class="dropdown-item">
             <div class="container-fluid m-0">

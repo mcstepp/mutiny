@@ -81,7 +81,12 @@ Route::delete('/f/{forum}/t/{thread}/{post}', 'Forums\ThreadPostController@delet
 
 Route::get('/u', 'UserController@index')->name('user-list');
 Route::get('/u/{user}', 'UserController@show')->name('user-profile');
+
 Route::get('/u/{user}/pc', 'Character\UserPendingCharacterController@index')->name('view-pending-characters');
+
+Route::get('/notifications','User\UserNotificationsController@index')->name('my-notifications');
+Route::delete('/notifications/{notification}','User\UserNotificationsController@destroy')->name('delete-notification');
+
 
 Route::get('/c', 'Character\CharacterController@index')->name('character-list');
 Route::post('/c/create', 'Character\CharacterController@store')->name('store-new-character');

@@ -21,11 +21,13 @@ class AppServiceProvider extends ServiceProvider
         $this->loadRelationMap();
 
         // View Composers for sidebar, character section, and userbar data
-        View::composer( 'current_character', 'App\Http\ViewComposers\CurrentCharacterComposer');
+        View::composer( 'layouts._current_character', 'App\Http\ViewComposers\CurrentCharacterComposer');
 
         View::composer('layouts._navigation', 'App\Http\ViewComposers\NavigationComposer');
 
-        View::composer('userbar', 'App\Http\ViewComposers\UserbarComposer');
+        //View::composer('userbar', 'App\Http\ViewComposers\UserbarComposer');
+
+        View::composer('layouts._unread_notifications', 'App\Http\ViewComposers\UnreadNotificationsComposer');
     }
 
     /**

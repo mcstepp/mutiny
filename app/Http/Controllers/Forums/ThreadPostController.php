@@ -169,7 +169,9 @@ class ThreadPostController extends Controller
      */
     public function delete(Request $request, Forum $forum, Thread $thread, Post $post)
     {
-        // TODO: check permission.
+
+        abort_if($forum->id != $thread->forum_id, 404);
+
         $this->authorize('delete', $post);
 
         if ($thread->post_count == 1) {

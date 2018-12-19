@@ -4,6 +4,7 @@ namespace App\Models\Forum;
 
 use App\Filters\ThreadFilters;
 use App\Models\Subscriptions\ThreadSubscription;
+use App\Notifications\ThreadWasReplied;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -148,7 +149,15 @@ class Thread extends Model
      */
     public function addPost($post)
     {
-        $this->posts()->create($post);
+        $post = $this->posts()->create($post);
+
+        $this->subscriptions->filter(function ($sub) use ($post){
+
+            return (!$post->ic && $sub->user_id != $post->author_id) ||
+                ($post->ic && $sub->user_id != $post->author->owner->id);
+
+        })->each->notify($post);
+
         return $this;
     }
 
