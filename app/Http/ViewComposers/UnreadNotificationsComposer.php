@@ -17,7 +17,7 @@ class UnreadNotificationsComposer
      */
     public function compose(View $view)
     {
-        $notifications = auth()->user()->unreadNotifications();
+        $notifications = auth()->user()->unreadNotifications;
 
         $view->with('notifications', $notifications);
     }

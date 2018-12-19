@@ -23,6 +23,7 @@ Vue.component('online-status', require('./components/OnlineStatusComponent'));
 Vue.component('show-more', require('./components/ShowMoreComponent.vue'));
 Vue.component('switch-character', require('./components/SwitchCharacterComponent.vue'));
 Vue.component('subscribe-button', require('./components/SubscribeButtonComponent.vue'));
+Vue.component('unread-notifications', require('./components/UnreadNotificationsComponent.vue'));
 
 
 const app = new Vue({

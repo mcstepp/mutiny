@@ -47,7 +47,9 @@ class ThreadWasReplied extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => 'Temporary placeholder'
+            'message' => $this->post->author->username . " replied to " . $this->thread->title,
+            'link' => $this->thread->path(),
+            'icon' => 'fa-comments text-info'
         ];
     }
 }
