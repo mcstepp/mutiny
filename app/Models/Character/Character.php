@@ -2,6 +2,7 @@
 
 namespace App\Models\Character;
 
+use App\Notifications\CharacterWasAccepted;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -39,6 +40,8 @@ class Character extends PendingCharacter
                 'ic_birth_month' => $character->ic_birth_month,
                 'ic_birth_year' => $character->ic_birth_year
             ])->delete();
+
+            $character->owner->notify(new CharacterWasAccepted($character));
         });
 
     }
