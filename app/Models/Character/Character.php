@@ -41,7 +41,7 @@ class Character extends PendingCharacter
                 'ic_birth_year' => $character->ic_birth_year
             ])->delete();
 
-            $character->owner->notify(new CharacterWasAccepted($character));
+            $character->user->notify(new CharacterWasAccepted($character));
         });
 
     }

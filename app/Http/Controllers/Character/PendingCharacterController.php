@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePendingCharacter;
 use App\Models\Character\Faction;
 use App\Models\Character\PendingCharacter;
+use App\Notifications\CharacterWasPended;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -145,6 +146,9 @@ class PendingCharacterController extends Controller
         ]);
 
         $character->setStatus('Pending Modifications', $validated['reason']);
+
+        $character->user->notify(new CharacterWasPended($character));
+
 
         return redirect()->route('admin-view-pending-characters');
     }

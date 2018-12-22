@@ -45,9 +45,9 @@ class CharacterWasPended extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => '',
-            'link' => '',
-            'icon' => ''
+            'message' => "Your application for " . $this->character->username . " was pended for modifications.",
+            'link' => route('view-my-pending-characters'),
+            'icon' => 'fa-user-times text-danger'
         ];
     }
 }
