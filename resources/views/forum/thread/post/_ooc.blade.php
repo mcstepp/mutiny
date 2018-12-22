@@ -18,7 +18,7 @@
 
                     <div class="card m-card m-0">
                         <div class="m-post">
-                            {!!  nl2br($post->body) !!}
+                            {!!  nl2br(BBCode::parse($post->body)) !!}
                         </div>
                     </div>
 
