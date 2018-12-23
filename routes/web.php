@@ -78,6 +78,8 @@ Route::delete('/f/{forum}/t/{thread}/subscription', 'Forums\ThreadSubscriptionsC
 
 Route::put('/f/{forum}/t/{thread}/{post}/update', 'Forums\ThreadPostController@update')->name('update-post');
 Route::delete('/f/{forum}/t/{thread}/{post}', 'Forums\ThreadPostController@delete')->name('delete-post');
+Route::get('/f/{forum}/t/{thread}/{post}/history', 'AuditController@post')->name('post-history');
+
 
 Route::get('/u', 'UserController@index')->name('user-list');
 Route::get('/u/{user}', 'UserController@show')->name('user-profile');

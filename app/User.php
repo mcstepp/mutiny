@@ -12,6 +12,7 @@ use App\Models\Character\PendingCharacter;
 use App\Models\Character\Character;
 use App\Models\Forum\Thread;
 use App\Models\Forum\Post;
+use App\Models\Audit;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -39,6 +40,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $appends = ['path'];
+
     protected static function boot()
     {
         parent::boot();
@@ -60,6 +63,11 @@ class User extends Authenticatable
     public function user()
     {
         return $this;
+    }
+
+    public function audits()
+    {
+        return $this->hasMany(Audit::class);
     }
 
     public function threads()
@@ -101,6 +109,11 @@ class User extends Authenticatable
     {
         $key = $this->getRouteKeyName();
         return "/u/". $this[$key];
+    }
+
+    public function getPathAttribute()
+    {
+        return $this->path();
     }
 
      public function activities()

@@ -168,7 +168,7 @@ return [
          * Package Service Providers...
          */
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
-        PheRum\BBCode\BBCodeServiceProvider::class,
+        App\Providers\BBCodeServiceProvider::class,
 
         /*
          * Application Service Providers...

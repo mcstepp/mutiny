@@ -8,10 +8,12 @@
     <div class="post-metadata text-center card-body">
         <span class="date-posted">Last updated {{ $post->updated_at->diffForHumans() }} on
             <br>{{ $post->updated_at->format('M j, Y') }}</span>
-            <br><small><a class="text-gray-300" href="#">
-                <i class="fa fa-history"></i>
-                    History
-                </a></small>
+            <br>
+        {{--<small><a class="text-gray-300" href="#">--}}
+                {{--<i class="fa fa-history"></i>--}}
+                    {{--History--}}
+                {{--</a></small>--}}
+        <post-history path="{{ $post->path() }}"></post-history>
     </div>
     @endif
 </div>

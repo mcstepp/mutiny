@@ -6,11 +6,15 @@ use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\RecordsActivity;
+use Illuminate\Support\Arr;
+use OwenIt\Auditing\Contracts\Auditable;
+use PheRum\BBCode\Facades\BBCode;
 
-class Post extends Model
+class Post extends Model implements Auditable
 {
     use SoftDeletes, RecordsActivity;
     use Cachable;
+    use \OwenIt\Auditing\Auditable;
     //use Favoritable, RecordsActivity;
 
     protected $guarded = [];
@@ -34,6 +38,21 @@ class Post extends Model
     public function thread()
     {
         return $this->belongsTo(Thread::class);
+    }
+
+    public function path()
+    {
+        $thread = $this->thread->path();
+        return $thread . "/" . $this->id;
+    }
+
+    public function transformAudit(array $data): array
+    {
+
+        $data['old_values']['body'] = BBCode::stripBBCodeTags($data['old_values']['body']);
+        $data['new_values']['body'] = BBCode::stripBBCodeTags($data['new_values']['body']);
+
+        return $data;
     }
 
 }
