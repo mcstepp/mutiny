@@ -4,7 +4,7 @@ webpackJsonp([1],{
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(147);
-module.exports = __webpack_require__(196);
+module.exports = __webpack_require__(199);
 
 
 /***/ }),
@@ -39,6 +39,8 @@ Vue.component('switch-character', __webpack_require__(184));
 Vue.component('subscribe-button', __webpack_require__(187));
 Vue.component('unread-notifications', __webpack_require__(190));
 Vue.component('post-history', __webpack_require__(193));
+Vue.component('lock-button', __webpack_require__(196));
+Vue.component('pin-button', __webpack_require__(251));
 
 var app = new Vue({
   el: '#app'
@@ -4904,6 +4906,126 @@ if (false) {
 /***/ }),
 
 /***/ 196:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(197)
+/* template */
+var __vue_template__ = __webpack_require__(198)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/LockButtonComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6d9ae7d9", Component.options)
+  } else {
+    hotAPI.reload("data-v-6d9ae7d9", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 197:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['thread'],
+    mounted: function mounted() {
+        this.locked = this.thread.locked;
+    },
+    data: function data() {
+        return {
+            locked: false
+        };
+    },
+
+    methods: {
+        handleClick: function handleClick() {
+            this.toggleLock();
+            alert('Locked: ' + this.locked);
+        },
+        toggleLock: function toggleLock() {
+            this.locked = !this.locked;
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 198:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "btn btn-outline-warning m-1",
+      on: { click: _vm.handleClick }
+    },
+    [
+      _c("i", {
+        staticClass: "fas",
+        class: _vm.locked ? "fa-lock-open" : "fa-lock",
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v("\n    " + _vm._s(_vm.locked ? "Unlock" : "Lock") + "\n")
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6d9ae7d9", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 199:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -5017,6 +5139,126 @@ module.exports = function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ 251:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(252)
+/* template */
+var __vue_template__ = __webpack_require__(253)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/PinButtonComponent.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-566f49e6", Component.options)
+  } else {
+    hotAPI.reload("data-v-566f49e6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 252:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['thread'],
+    mounted: function mounted() {
+        this.pinned = this.thread.pinned;
+    },
+    data: function data() {
+        return {
+            pinned: false
+        };
+    },
+
+    methods: {
+        handleClick: function handleClick() {
+            this.togglePin();
+            alert('Pinned: ' + this.pinned);
+        },
+        togglePin: function togglePin() {
+            this.pinned = !this.pinned;
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 253:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "btn btn-outline-success m-1",
+      on: { click: _vm.handleClick }
+    },
+    [
+      _c("i", {
+        staticClass: "fas",
+        class: _vm.pinned ? "fa-level-down-alt" : "fa-thumbtack",
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v("\n    " + _vm._s(_vm.pinned ? "Unpin" : "Pin") + "\n")
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-566f49e6", module.exports)
+  }
+}
 
 /***/ })
 

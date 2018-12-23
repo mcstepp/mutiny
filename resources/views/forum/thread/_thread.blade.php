@@ -96,15 +96,9 @@
                     </a>
                     @endcan
 
-                    <button class="btn btn-outline-success m-1">
-                        <i class="fas fa-thumbtack" aria-hidden="true"></i>
-                        Pin
-                    </button>
+                    <pin-button :thread="{{ json_encode($thread)}}"></pin-button>
 
-                    <button class="btn btn-outline-warning m-1">
-                        <i class="fas fa-lock" aria-hidden="true"></i>
-                        Lock
-                    </button>
+                    <lock-button :thread="{{ json_encode($thread)}}"></lock-button>
 
                     @can('delete', $thread)
                         <delete-button

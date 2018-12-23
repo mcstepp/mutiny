@@ -25,6 +25,8 @@ Vue.component('switch-character', require('./components/SwitchCharacterComponent
 Vue.component('subscribe-button', require('./components/SubscribeButtonComponent.vue'));
 Vue.component('unread-notifications', require('./components/UnreadNotificationsComponent.vue'));
 Vue.component('post-history', require('./components/PostHistoryComponent'));
+Vue.component('lock-button', require('./components/LockButtonComponent'));
+Vue.component('pin-button', require('./components/PinButtonComponent'));
 
 
 const app = new Vue({

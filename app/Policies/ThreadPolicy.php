@@ -81,4 +81,14 @@ class ThreadPolicy
             $user->isFullMember()
         );
     }
+
+    public function pin(User $user, Thread $thread)
+    {
+
+    }
+
+    public function lock(User $user, Thread $thread)
+    {
+
+    }
 }

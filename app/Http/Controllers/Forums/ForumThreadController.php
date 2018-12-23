@@ -136,15 +136,35 @@ class ForumThreadController extends Controller
     {
         $this->authorize('update', $thread);
 
-        $this->validate($request, [
-            'title' => 'required|min:6|max:255',
-            'description' => 'nullable|min:6',
-        ]);
+        if ($request->filled('title')) {
+            $this->validate($request, [
+                'title' => 'min:6|max:255',
+                'description' => 'nullable|min:6',
+            ]);
 
-        $thread->update([
-            'title' => $request->title,
-            'description' => $request->description
-        ]);
+            $thread->fill([
+                'title' => $request->title
+            ]);
+
+            if ($request->has('description')) {
+                $thread->fill([
+                    'description' => $request->description
+                ]);
+            }
+
+            $thread->save();
+        }
+
+
+        if ($request->has('pin'))
+        {
+            $this->updatePin($thread, $request->pin);
+        }
+
+        if ($request->has('lock'))
+        {
+            $this->updateLock($thread, $request->lock);
+        }
 
         return redirect()->route('view-forum', $forum);
     }
@@ -219,5 +239,19 @@ class ForumThreadController extends Controller
         }
 
         return $posts->paginate(5);
+    }
+
+    public function updatePin(Thread $thread, $pin)
+    {
+        $this->authorize('pin', $thread);
+
+        $thread->pin($pin);
+    }
+
+    public function updateLock(Thread $thread, $lock)
+    {
+        $this->authorize('lock', $thread);
+
+        $thread->lock($lock);
     }
 }

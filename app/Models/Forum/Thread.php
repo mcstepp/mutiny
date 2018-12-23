@@ -183,4 +183,18 @@ class Thread extends Model
     {
         return $filters->apply($query);
     }
+
+    public function pin($status = true)
+    {
+        $this->pinned = $status;
+        return $this;
+    }
+
+
+    public function lock($status = true)
+    {
+        $this->locked = $status;
+        return $this;
+    }
+
 }
