@@ -129,7 +129,7 @@ class ForumThreadController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @param Forum $forum
      * @param Thread $thread
-     * @return \Illuminate\Http\RedirectResponse
+     * @return Thread|\Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Forum $forum, Thread $thread)
@@ -164,6 +164,10 @@ class ForumThreadController extends Controller
         if ($request->has('lock'))
         {
             $this->updateLock($thread, $request->lock);
+        }
+
+        if ($request->wantsJson()){
+            return $thread;
         }
 
         return redirect()->route('view-forum', $forum);

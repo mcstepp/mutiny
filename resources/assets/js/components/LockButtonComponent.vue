@@ -10,6 +10,7 @@
         props: ['thread'],
         mounted() {
             this.locked = this.thread.locked;
+            this.path = `${this.thread.path}/update`;
         },
         data() {
             return {
@@ -19,7 +20,11 @@
         methods: {
             handleClick(){
                 this.toggleLock();
-                alert('Locked: ' + this.locked);
+                axios.put(this.path, {
+                    'lock': this.locked
+                }).then(function(){
+                    window.location.reload();
+                });
             },
 
             toggleLock() {

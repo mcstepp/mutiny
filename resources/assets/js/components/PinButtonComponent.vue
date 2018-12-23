@@ -10,16 +10,22 @@
         props: ['thread'],
         mounted() {
             this.pinned = this.thread.pinned;
+            this.path = `${this.thread.path}/update`;
         },
         data() {
             return {
-                pinned: false
+                pinned: false,
+                path: ''
             };
         },
         methods: {
             handleClick(){
                 this.togglePin();
-                alert('Pinned: ' + this.pinned);
+                axios.put(this.path, {
+                    'pin': this.pinned
+                }).then(function(){
+                    window.location.reload();
+                });
             },
 
             togglePin() {

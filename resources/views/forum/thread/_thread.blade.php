@@ -96,9 +96,13 @@
                     </a>
                     @endcan
 
+                    @can('pin', $thread)
                     <pin-button :thread="{{ json_encode($thread)}}"></pin-button>
+                    @endcan
 
+                    @can('lock', $thread)
                     <lock-button :thread="{{ json_encode($thread)}}"></lock-button>
+                    @endcan
 
                     @can('delete', $thread)
                         <delete-button

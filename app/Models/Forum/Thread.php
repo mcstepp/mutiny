@@ -27,6 +27,8 @@ class Thread extends Model
      * @var array
      */
     protected $guarded = [];
+
+    protected $appends = ['path'];
     
     protected $dates = ['deleted_at'];
 
@@ -69,6 +71,11 @@ class Thread extends Model
     {
         $key = $this->getRouteKeyName();
         return "/f/{$this->forum->id}/t/" . $this[$key];
+    }
+
+    public function getPathAttribute()
+    {
+        return $this->path();
     }
 
     /**
@@ -186,14 +193,14 @@ class Thread extends Model
 
     public function pin($status = true)
     {
-        $this->pinned = $status;
+        $this->update(['pinned' => $status]);
         return $this;
     }
 
 
     public function lock($status = true)
     {
-        $this->locked = $status;
+        $this->update(['locked' => $status]);
         return $this;
     }
 
