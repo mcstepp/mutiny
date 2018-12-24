@@ -13,13 +13,17 @@ use App\Traits\RecordsActivity;
 use App\Models\Forum\Post;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Thread extends Model
+
+class Thread extends Model implements Auditable
 {
-    //use RecordsActivity;
-    use SoftDeletes, RecordsActivity;
+    use SoftDeletes;
+    use RecordsActivity;
     use Cachable;
     use HasSlug;
+    use \OwenIt\Auditing\Auditable;
+
 
     /**
      * Override mass assignment protection

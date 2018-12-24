@@ -4,13 +4,16 @@ namespace App\Models\Character;
 
 use App\Notifications\CharacterWasAccepted;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
+use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Character extends PendingCharacter
+class Character extends PendingCharacter implements Auditable
 {
     use Cachable;
     use HasSlug;
+    use \OwenIt\Auditing\Auditable;
+
 
     protected $table = 'characters';
 

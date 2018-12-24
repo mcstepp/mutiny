@@ -8,10 +8,13 @@ use App\Models\Forum\Category;
 use App\Models\Forum\Thread;
 use App\Models\Forum\Post;
 use App\User;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Forum extends Model
+class Forum extends Model implements Auditable
 {
     use Cachable;
+    use \OwenIt\Auditing\Auditable;
+
     
     protected $fillable = [
         'category_id', 

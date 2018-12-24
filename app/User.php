@@ -13,13 +13,16 @@ use App\Models\Character\Character;
 use App\Models\Forum\Thread;
 use App\Models\Forum\Post;
 use App\Models\Audit;
+use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements Auditable
 {
     use Notifiable, Cachable, HasSlug, UsersOnlineTrait;
+    use \OwenIt\Auditing\Auditable;
+
 
     /**
      * The attributes that are mass assignable.

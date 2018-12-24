@@ -46,17 +46,17 @@ class Post extends Model implements Auditable
         return $thread . "/" . $this->id;
     }
 
-    public function transformAudit(array $data): array
-    {
-
-        if ($data && $data['old_values']) {
-            $data['old_values']['body'] = BBCode::stripBBCodeTags($data['old_values']['body']);
-        }
-
-        $data['new_values']['body'] = BBCode::stripBBCodeTags($data['new_values']['body']);
-
-        return $data;
-    }
+//    public function transformAudit(array $data): array
+//    {
+//
+//        if ($data && $data['old_values']) {
+//            $data['old_values']['body'] = BBCode::stripBBCodeTags($data['old_values']['body']);
+//        }
+//
+//        $data['new_values']['body'] = BBCode::stripBBCodeTags($data['new_values']['body']);
+//
+//        return $data;
+//    }
 
 }
 
