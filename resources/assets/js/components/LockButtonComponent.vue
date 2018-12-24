@@ -1,6 +1,6 @@
 <template>
     <button class="btn btn-outline-warning m-1" @click="handleClick">
-        <i class="fas" :class="locked ? 'fa-lock-open' : 'fa-lock'"aria-hidden="true"></i>
+        <i class="fas" :class="locked ? 'fa-lock-open' : 'fa-lock'" aria-hidden="true"></i>
         {{ locked ? 'Unlock' : 'Lock' }}
     </button>
 </template>

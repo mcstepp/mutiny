@@ -92,12 +92,12 @@
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10 checkbox">
                             <label>
-                                <input type="checkbox" name="pinned" id="pinned" value="true">
-                                Pinned (Non-functional)
+                                <input type="checkbox" name="pin" id="pin" value="true">
+                                Pin
                             </label><br>
                             <label>
-                                <input type="checkbox" name="closed" id="closed" value="true">
-                                Closed (No Replies) (Non-functional)
+                                <input type="checkbox" name="lock" id="closed" value="true">
+                                Lock
                             </label>
                         </div>
                     </div>

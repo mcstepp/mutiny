@@ -84,11 +84,15 @@
     <div class="container-fluid my-3">
         <div class="animated fadeId">
 
+            {{ $threads->links() }}
+
             @forelse($threads as $thread)
                 @include('forum.thread._thread', [$forum, $thread])
             @empty
                 No threads to show.
             @endforelse
+
+            {{ $threads->links() }}
 
         </div>
     </div>

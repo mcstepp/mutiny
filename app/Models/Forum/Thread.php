@@ -193,14 +193,18 @@ class Thread extends Model
 
     public function pin($status = true)
     {
-        $this->update(['pinned' => $status]);
+        $this->pinned = $status;
+        $this->timestamps = false;
+        $this->save();
         return $this;
     }
 
 
     public function lock($status = true)
     {
-        $this->update(['locked' => $status]);
+        $this->locked = $status;
+        $this->timestamps = false;
+        $this->save();
         return $this;
     }
 

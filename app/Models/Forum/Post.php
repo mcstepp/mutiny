@@ -49,7 +49,10 @@ class Post extends Model implements Auditable
     public function transformAudit(array $data): array
     {
 
-        $data['old_values']['body'] = BBCode::stripBBCodeTags($data['old_values']['body']);
+        if ($data && $data['old_values']) {
+            $data['old_values']['body'] = BBCode::stripBBCodeTags($data['old_values']['body']);
+        }
+
         $data['new_values']['body'] = BBCode::stripBBCodeTags($data['new_values']['body']);
 
         return $data;

@@ -87,7 +87,8 @@ class ForumThreadController extends Controller
             'description' => request('description'),
             'author_id' => $author_id,
             'author_type' => request('author_type'),
-            'pinned' => request('pinned') || false
+            'pinned' => request('pin') || false,
+            'locked' => request('lock') || false
         ]);
 
         // make post with thread id
@@ -209,8 +210,7 @@ class ForumThreadController extends Controller
     public function getThreads(Forum $forum)
     {
         // TODO: get threads that user is authorized to see
-        $threads = Thread::latest('updated_at')
-            ->with([
+        $threads = Thread::with([
                 'author:id,username',
                 'forum:id,name,ic',
                 'posts:id,thread_id',
@@ -221,10 +221,14 @@ class ForumThreadController extends Controller
 
 
         if ( $forum->exists ) {
-            $threads->where('forum_id', $forum->id);
+            $threads->where('forum_id', $forum->id)
+                ->orderBy('pinned','desc')
+                ->orderBy('updated_at', 'desc');
+
         }
 
         return $threads->paginate(5);
+        //return $threads->get();
     }
 
     /**
