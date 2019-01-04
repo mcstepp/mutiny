@@ -21,14 +21,12 @@
 
         @if($forum->ic && $forum->moderators->contains($post->author->user()))
 
-            <post-as :characters="{{ json_encode($post->author->user()->characters) }}"
+            <post-as :characters="{{ json_encode($post->author->user->characters) }}"
                      :user="{{ json_encode($post->author->user()) }}"></post-as>
 
         @elseif($forum->ic && !$forum->moderators->contains($post->author->user()))
 
-            <post-as :characters="{{ json_encode($post->author->user()->characters) }}">
-
-            </post-as>
+            <post-as :characters="{{ json_encode($post->author->user->characters) }}"></post-as>
 
         @else
 

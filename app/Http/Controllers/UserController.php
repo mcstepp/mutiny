@@ -55,11 +55,16 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param User $user
-     * @return void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(User $user)
     {
-        //
+        $this->authorize('update', $user);
+
+        return view('user.profile.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -71,6 +76,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $this->authorize('update', $user);
 
 
     }

@@ -25,11 +25,11 @@ Route::get('/site/rules', 'DocsController@rules')->name('rules');
 Route::get('/site/privacy', 'DocsController@privacy')->name('privacy');
 
 
-
+// Dashboard/home
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
-
+// Admin Panel
 Route::get('/admin', 'Admin\AdminPanelController@index')->name('adminPanel');
 
 Route::get('/admin/forums', 'Admin\AdminPanelController@indexForum')->name('admin-forums');
@@ -49,10 +49,11 @@ Route::get('/admin/pending', 'Character\PendingCharacterController@index')->name
 Route::get('admin/pending/{character}', 'Character\PendingCharacterController@show')->name('admin-show-pending-character');
 Route::put('/admin/pending/{character}', 'Character\PendingCharacterController@update')->name('admin-pend-character');
 
+// Invitations
 Route::get('/invites', 'InvitationController@index')->name('my-invites');
 Route::post('/invites', 'InvitationController@store')->name('generate-invite');
 
-
+// Forums
 Route::get('/f', 'Forums\ForumController@index');
 Route::get('/forums', 'Forums\ForumController@index');
 
@@ -80,16 +81,20 @@ Route::put('/f/{forum}/t/{thread}/{post}/update', 'Forums\ThreadPostController@u
 Route::delete('/f/{forum}/t/{thread}/{post}', 'Forums\ThreadPostController@delete')->name('delete-post');
 Route::get('/f/{forum}/t/{thread}/{post}/history', 'AuditController@post')->name('post-history');
 
-
+// Users
 Route::get('/u', 'UserController@index')->name('user-list');
 Route::get('/u/{user}', 'UserController@show')->name('user-profile');
-
 Route::get('/u/{user}/pc', 'Character\UserPendingCharacterController@index')->name('view-pending-characters');
 
+Route::get('/u/{user}/edit', 'UserController@edit')->name('edit-user');
+Route::put('/u/{user}/update', 'UserController@update')->name('update-user');
+
+
+// Notifications
 Route::get('/notifications','User\UserNotificationsController@index')->name('my-notifications');
 Route::delete('/notifications/{notification}','User\UserNotificationsController@destroy')->name('delete-notification');
 
-
+// Characters
 Route::get('/c', 'Character\CharacterController@index')->name('character-list');
 Route::post('/c/create', 'Character\CharacterController@store')->name('store-new-character');
 Route::put('/c/current', 'Character\CharacterController@switch')->name('switch-character');
@@ -100,3 +105,4 @@ Route::post('/pc/create', 'Character\PendingCharacterController@store')->name('s
 Route::get('/pc/{character}', 'Character\UserPendingCharacterController@show')->name('show-pending-character');
 Route::get('/pc/{character}/edit', 'Character\UserPendingCharacterController@edit')->name('edit-pending-character');
 Route::put('/pc/{character}/update', 'Character\UserPendingCharacterController@update')->name('update-pending-character');
+

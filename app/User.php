@@ -13,15 +13,13 @@ use App\Models\Character\Character;
 use App\Models\Forum\Thread;
 use App\Models\Forum\Post;
 use App\Models\Audit;
-use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 
-class User extends Authenticatable implements Auditable
+class User extends Authenticatable
 {
     use Notifiable, Cachable, HasSlug, UsersOnlineTrait;
-    use \OwenIt\Auditing\Auditable;
 
 
     /**
@@ -119,9 +117,14 @@ class User extends Authenticatable implements Auditable
         return $this->path();
     }
 
-     public function activities()
+    public function activities()
     {
         return $this->morphMany('App\Models\Activity', 'author');
+    }
+
+    public function graphics()
+    {
+        return $this->morphOne('App\Models\Graphics', 'owner');
     }
 
     public function faction()
@@ -185,5 +188,10 @@ class User extends Authenticatable implements Auditable
     public function scopeFilter($query, UserFilters $filters)
     {
         return $filters->apply($query);
+    }
+
+    public function isSelf()
+    {
+        return auth()->id() == $this->id;
     }
 }

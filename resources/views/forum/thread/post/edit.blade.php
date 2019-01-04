@@ -2,22 +2,21 @@
 
 @section('content')
 
-    <div class="container-fluid">
+    @include('layouts._breadcrumb', ['menu' => [
+    [
+    'link-name' => $forum->category->name
+    ],[
+    'link-route' => $forum->path(),
+    'link-name' => $forum->name
+    ],[
+    'link-route' => $thread->path(),
+    'link-name' => $thread->title
+    ],[
+    'link-name' => 'Edit Post'
+    ]
+    ]])
 
-        <ol class="breadcrumb bg-mutinydark">
-            <li class="breadcrumb-item">
-                <a href="#">{{ $forum->category->name }}</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{ $forum->path() }}">{{ $forum->name}}</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{ $thread->path() }}">{{ $thread->title}}</a>
-            </li>
-            <li class="breadcrumb-item active">
-                Edit Post
-            </li>
-        </ol>
+    <div class="container-fluid my-3">
 
         <h3>{{ $thread->title }}</h3>
 

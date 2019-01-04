@@ -70,9 +70,14 @@ class Character extends PendingCharacter implements Auditable
         return "/c/" . $this[$key];
     }
 
-     public function activity()
+    public function activity()
     {
         return $this->morphMany('App\Models\Activity', 'author');
+    }
+
+    public function graphics()
+    {
+        return $this->morphOne('App\Models\Graphics', 'owner');
     }
 
 }
