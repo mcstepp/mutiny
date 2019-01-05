@@ -10,7 +10,7 @@
     'link-route' => route('user-profile', $user),
     'link-name' => $user->username
     ],[
-    'link-name' => 'Preferences'
+    'link-name' => 'User Preferences'
     ]
     ]])
 
@@ -39,6 +39,15 @@
                         </h3>
                         <hr class="glow-default">
                     </div>
+
+                    @if($errors)
+                        @foreach($errors->all() as $error)
+                            <div class="alert alert-danger m-3" role="alert">
+                                {{ $error }}
+                            </div>
+                        @endforeach
+                    @endif
+
                     <div class="card-body">
 
                         <form method="POST" action="{{ route('update-user', $user) }}" class="form-horizontal">
@@ -76,14 +85,14 @@
                                     </label>
                                 </div>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" name="email" id="email" value="{{ $user->email }}">
+                                    <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <div class="col-md-2">
                                     <label for="new_password" class="control-label">
-                                        New Password:
+                                        New Password:<br /> <small>(if you want to change your current password)</small>
                                     </label>
                                 </div>
                                 <div class="col-md-10">
@@ -93,8 +102,19 @@
 
                             <div class="form-group row">
                                 <div class="col-md-2">
+                                    <label for="new_password_confirmation" class="control-label">
+                                        Confirm New Password:<br /> <small>(if you want to change your current password)</small>
+                                    </label>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="new_password_confirmation" id="new_password_confirmation">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-2">
                                     <label for="password" class="control-label">
-                                        Current Password:
+                                        Current Password:<br/><small class="text-danger">(required)</small>
                                     </label>
                                 </div>
                                 <div class="col-md-10">

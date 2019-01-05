@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
-class UpdateCharacter extends FormRequest
+class UpdateUser extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +28,31 @@ class UpdateCharacter extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|string|max:255|unique:users',
+            'username' => [
+                'required',
+                'string',
+                'min:2',
+                'max:255',
+                Rule::unique('users')->ignore($this->user()->id)
+            ],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($this->user()->id)
+                ],
             'alias' => 'required',
-            'email' => 'required|string|email|max:255|unique:users',
-            'new_password' => 'required|exists:factions,id',
-            'password' => 'required|exists:factions,id'
+            'new_password' => 'nullable|string|min:6|confirmed',
+            'password' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    if (password_verify($value,$this->user()->getAuthPassword())) {
+                        return true;
+                    }
+                    return $fail('The '.$attribute.' is invalid.');
+                },
+                ]
         ];
     }
 }

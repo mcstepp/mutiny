@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\Invitation;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -75,8 +76,8 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'alias' => $data['alias'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'parent_id' => $invitation['user_id']
+            'password' => Hash::make($data['password']),
+            'parent_id' => $invitation->user_id
         ]);
 
         $invitation->delete();

@@ -227,7 +227,7 @@ class ForumsTableSeeder extends Seeder
                 'name' => 'Staff Room',
                 'description' => 'Official staff room stuff',
                 'private' => true,
-                'ic' => true
+                'ic' => false
             ]
 
         ];

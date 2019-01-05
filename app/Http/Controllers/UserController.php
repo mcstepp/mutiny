@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Filters\UserFilters;
+use App\Http\Requests\UpdateUser;
 use App\User;
 use App\Models\Character\Character;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -70,15 +72,37 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param UpdateUser $request
      * @param User $user
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUser $request, User $user)
     {
         $this->authorize('update', $user);
 
+        if ( trim($request->username) != $user->username)
+        {
+            $user->fill(['username' => trim($request->username)]);
+        }
 
+        if ( trim($request->alias) != $user->alias)
+        {
+            $user->fill(['alias' => trim($request->alias)]);
+        }
+
+        if ( trim($request->email) != $user->email)
+        {
+            $user->fill(['email' => trim($request->email)]);
+        }
+
+        if ( $request->filled('new_password')) {
+            $user->fill(['password' => bcrypt($request->new_password)]);
+        }
+
+        $user->save();
+
+        return redirect()->route('edit-user',$user);
     }
 
     public function getUsers(UserFilters $filters)
