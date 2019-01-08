@@ -88,7 +88,7 @@ Route::get('/u/{user}/pc', 'Character\UserPendingCharacterController@index')->na
 
 Route::get('/u/{user}/edit', 'UserController@edit')->name('edit-user');
 Route::put('/u/{user}/update', 'UserController@update')->name('update-user');
-
+Route::put('/u/{user}/graphics', 'GraphicsController@update')->name('update-graphics');
 
 // Notifications
 Route::get('/notifications','User\UserNotificationsController@index')->name('my-notifications');

@@ -1,7 +1,11 @@
 <li class="nav-item dropdown">
     <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         <div class="media">
-            <img src="https://78.media.tumblr.com/f6902ba79148622f9b4def52cd340015/tumblr_o9a99nE9fI1udp3vfo1_250.png" width="35" class="img-avatar img-thumbnail" alt="username">
+            @if(Auth::user()->graphics && Auth::user()->graphics->icon_url)
+                <img src="{{ Auth::user()->graphics->icon_url }}" class="img-avatar img-thumbnail" width="35" height="35" alt="Icon">
+            @else
+                <img src="https://via.placeholder.com/35" class="img-thumbnail img-avatar" width="35" height="35"  alt="Icon">
+            @endif
             <div class="media-body m-1">
                 <strong class="align-middle"> {{ Auth::user()->username }}</strong>
             </div>

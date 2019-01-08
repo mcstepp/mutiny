@@ -147,8 +147,7 @@
                     </div>
                     <div class="card-body">
 
-                        {{--<form method="POST" action="{{ route('update-user-graphics', $user) }}" class="form-horizontal">--}}
-                            <form method="POST" action="#" class="form-horizontal">
+                        <form method="POST" action="{{ route('update-graphics', $user) }}" class="form-horizontal">
 
                             <input type="hidden" name="_method" value="PUT">
 
@@ -165,15 +164,16 @@
                                         </label>
                                     </div>
                                     <div class="col-md-8 d-flex align-content-stretch">
-                                        <input type="text" class="form-control align-self-center" name="avatar" id="avatar" value="https://via.placeholder.com/150">
+                                        <input type="text" class="form-control align-self-center" name="avatar" id="avatar" value="{{ $user->graphics->avatar_url }}">
                                     </div>
 
                                     <div class="col-md-2">
-                                        @if($user->graphics)
-                                            <img src="{{ $user->graphics->avatar }}" class="img-avatar" alt="Avatar">
+                                        @if($user->graphics && $user->graphics->avatar_url)
+                                            <img src="{{ $user->graphics->avatar_url }}" class="m-avatar img-thumbnail" alt="Avatar">
+                                            @else
+                                            <img src="https://via.placeholder.com/200x300" class="m-avatar img-thumbnail" alt="Avatar">
                                         @endif
 
-                                        <img src="https://via.placeholder.com/150" class="img-avatar" alt="Avatar">
                                     </div>
                                 </div>
 
@@ -185,15 +185,16 @@
                                         </label>
                                     </div>
                                     <div class="col-md-8 d-flex align-content-stretch">
-                                        <input type="text" class="form-control align-self-center" name="icon" id="icon" value="https://via.placeholder.com/80">
+                                        <input type="text" class="form-control align-self-center" name="icon" id="icon" value="{{ $user->graphics->icon_url }}">
                                     </div>
 
                                     <div class="col-md-2 text-center">
-                                        @if($user->graphics)
-                                            <img src="{{ $user->graphics->icon }}" class="img-avatar" alt="icon">
+                                        @if($user->graphics && $user->graphics->icon_url)
+                                            <img src="{{ $user->graphics->icon_url }}" class="img-avatar img-thumbnail m-icon" alt="icon">
+                                            @else
+                                            <img src="https://via.placeholder.com/150" class="img-avatar img-thumbnail m-icon" alt="Icon">
                                         @endif
 
-                                        <img src="https://via.placeholder.com/80" class="img-avatar" alt="Icon">
                                     </div>
                                 </div>
 
