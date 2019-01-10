@@ -65,7 +65,8 @@ class UserController extends Controller
         $this->authorize('update', $user);
 
         return view('user.profile.edit', [
-            'user' => $user
+            'user' => $user,
+            'type' => 'user'
         ]);
     }
 

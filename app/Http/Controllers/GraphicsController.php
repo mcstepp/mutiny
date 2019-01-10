@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Interfaces\IGraphics;
 use Illuminate\Http\Request;
 
 class GraphicsController extends Controller
@@ -12,7 +12,7 @@ class GraphicsController extends Controller
         $this->middleware('auth');
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request, IGraphics $owner)
     {
         //$this->authorize('update', $user);
 
@@ -21,14 +21,18 @@ class GraphicsController extends Controller
             'icon' => ['nullable','url','regex:/https:\/\/([a-z0-9]+(?:[a-z0-9-]*[a-z0-9])?[.])*nickpic[.]host\/?(.*)/']
         ]);
 
-        $user->graphics()->updateOrCreate([
-            'owner_type' => 'user',
-            'owner_id' => $user->id
+        $type = strtolower(class_basename($owner));
+
+        $owner->graphics()->updateOrCreate([
+            'owner_type' => $type,
+            'owner_id' => $owner->id
         ],[
             'avatar_url' => $validated['avatar'],
             'icon_url' => $validated['icon']
         ]);
 
-        return redirect()->route('edit-user', $user);
+        //return redirect()->route(`edit-{$type}`, $owner);
+
+        return redirect()->back();
     }
 }

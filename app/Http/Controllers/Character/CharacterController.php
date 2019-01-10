@@ -120,11 +120,18 @@ class CharacterController extends Controller
      * Show the form for editing the specified character's profile.
      *
      * @param Character $character
-     * @return void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Character $character)
     {
-        //
+        // TODO: authorize
+
+        //$this->authorize('update', $character);
+
+        return view('character.edit', [
+            'character' => $character,
+            'type' => 'character'
+        ]);
     }
 
     /**

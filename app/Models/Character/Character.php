@@ -2,17 +2,20 @@
 
 namespace App\Models\Character;
 
+use App\Interfaces\IGraphics;
 use App\Notifications\CharacterWasAccepted;
+use App\Traits\HasGraphics;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Character extends PendingCharacter implements Auditable
+class Character extends PendingCharacter implements Auditable, IGraphics
 {
     use Cachable;
     use HasSlug;
     use \OwenIt\Auditing\Auditable;
+    use HasGraphics;
 
 
     protected $table = 'characters';

@@ -3,7 +3,9 @@
 namespace App;
 
 use App\Filters\UserFilters;
+use App\Interfaces\IGraphics;
 use App\Models\Invitation;
+use App\Traits\HasGraphics;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 use Illuminate\Notifications\Notifiable;
@@ -17,9 +19,10 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements IGraphics
 {
     use Notifiable, Cachable, HasSlug, UsersOnlineTrait;
+    use HasGraphics;
 
 
     /**
@@ -122,10 +125,6 @@ class User extends Authenticatable
         return $this->morphMany('App\Models\Activity', 'author');
     }
 
-    public function graphics()
-    {
-        return $this->morphOne('App\Models\Graphics', 'owner');
-    }
 
     public function faction()
     {

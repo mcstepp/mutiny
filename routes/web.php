@@ -19,6 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Binding
+Route::bind('user', 'App\User');
+Route::bind('character', 'App\Models\Character\Character');
+Route::bind('pcharacter', 'App\Models\PendingCharacter\Character');
+
 // Docs/static pages with guest views
 Route::get('/site/terms', 'DocsController@terms')->name('terms');
 Route::get('/site/rules', 'DocsController@rules')->name('rules');
@@ -88,7 +93,7 @@ Route::get('/u/{user}/pc', 'Character\UserPendingCharacterController@index')->na
 
 Route::get('/u/{user}/edit', 'UserController@edit')->name('edit-user');
 Route::put('/u/{user}/update', 'UserController@update')->name('update-user');
-Route::put('/u/{user}/graphics', 'GraphicsController@update')->name('update-graphics');
+Route::put('/u/{user}/graphics', 'GraphicsController@update')->name('update-user-graphics');
 
 // Notifications
 Route::get('/notifications','User\UserNotificationsController@index')->name('my-notifications');
@@ -98,11 +103,15 @@ Route::delete('/notifications/{notification}','User\UserNotificationsController@
 Route::get('/c', 'Character\CharacterController@index')->name('character-list');
 Route::post('/c/create', 'Character\CharacterController@store')->name('store-new-character');
 Route::put('/c/current', 'Character\CharacterController@switch')->name('switch-character');
+Route::get('/c/{character}','Character\CharacterController@show')->name('character-profile');
+Route::get('/c/{character}/edit', 'Character\CharacterController@edit')->name('edit-character');
+Route::put('/c/{character}/update', 'Character\CharacterController@update')->name('update-character');
+Route::put('/c/{character}/graphics', 'GraphicsController@update')->name('update-character-graphics');
 
 Route::get('/pc', 'Character\UserPendingCharacterController@index')->name('view-my-pending-characters');
 Route::get('/pc/create', 'Character\PendingCharacterController@create')->name('create-character');
 Route::post('/pc/create', 'Character\PendingCharacterController@store')->name('store-pending-character');
-Route::get('/pc/{character}', 'Character\UserPendingCharacterController@show')->name('show-pending-character');
-Route::get('/pc/{character}/edit', 'Character\UserPendingCharacterController@edit')->name('edit-pending-character');
-Route::put('/pc/{character}/update', 'Character\UserPendingCharacterController@update')->name('update-pending-character');
+Route::get('/pc/{pcharacter}', 'Character\UserPendingCharacterController@show')->name('show-pending-character');
+Route::get('/pc/{pcharacter}/edit', 'Character\UserPendingCharacterController@edit')->name('edit-pending-character');
+Route::put('/pc/{pcharacter}/update', 'Character\UserPendingCharacterController@update')->name('update-pending-character');
 
