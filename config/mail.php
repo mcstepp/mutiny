@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'admin@mutinyrpg.com'),
-        'name' => env('MAIL_FROM_NAME', 'MUTINY!'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@mutinyrpg.com'),
+        'name' => env('MAIL_FROM_NAME', 'MUTINY! rpg'),
     ],
 
     /*
