@@ -164,7 +164,7 @@
                                         </label>
                                     </div>
                                     <div class="col-md-8 d-flex align-content-stretch">
-                                        <input type="text" class="form-control align-self-center" name="avatar" id="avatar" value="{{ $user->graphics->avatar_url }}">
+                                        <input type="text" class="form-control align-self-center" name="avatar" id="avatar" value="{{ $user->graphics && $user->graphics->avatar_url ? $user->graphics->avatar_url : null }}">
                                     </div>
 
                                     <div class="col-md-2">
@@ -185,7 +185,7 @@
                                         </label>
                                     </div>
                                     <div class="col-md-8 d-flex align-content-stretch">
-                                        <input type="text" class="form-control align-self-center" name="icon" id="icon" value="{{ $user->graphics->icon_url }}">
+                                        <input type="text" class="form-control align-self-center" name="icon" id="icon" value="{{ $user->graphics && $user->graphics->icon_url ? $user->graphics->icon_url : null }}">
                                     </div>
 
                                     <div class="col-md-2 text-center">
