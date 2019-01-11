@@ -28,12 +28,9 @@
                 </div>
 
                 <div class="col-md-2">
-                    @if($owner->graphics && $owner->graphics->avatar_url)
-                        <img src="{{ $owner->graphics->avatar_url }}" class="m-avatar img-thumbnail" alt="Avatar">
-                    @else
-                        <img src="https://via.placeholder.com/200x300" class="m-avatar img-thumbnail" alt="Avatar">
-                    @endif
-
+                    @include('graphics._avatar', [
+                    'author' => $owner,
+                    'type' => strtolower(class_basename($owner))])
                 </div>
             </div>
 
@@ -49,11 +46,9 @@
                 </div>
 
                 <div class="col-md-2 text-center">
-                    @if($owner->graphics && $owner->graphics->icon_url)
-                        <img src="{{ $owner->graphics->icon_url }}" class="img-avatar img-thumbnail m-icon" alt="icon">
-                    @else
-                        <img src="https://via.placeholder.com/150" class="img-avatar img-thumbnail m-icon" alt="Icon">
-                    @endif
+                    @include('graphics._icon', [
+                    'author' => $owner,
+                    'type' => strtolower(class_basename($owner))])
 
                 </div>
             </div>

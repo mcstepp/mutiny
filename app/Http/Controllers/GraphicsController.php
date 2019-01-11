@@ -14,7 +14,7 @@ class GraphicsController extends Controller
 
     public function update(Request $request, IGraphics $owner)
     {
-        //$this->authorize('update', $user);
+        $this->authorize('update', $owner);
 
         $validated = $request->validate([
            'avatar' => ['nullable','url','regex:/https:\/\/([a-z0-9]+(?:[a-z0-9-]*[a-z0-9])?[.])*nickpic[.]host\/?(.*)/'],

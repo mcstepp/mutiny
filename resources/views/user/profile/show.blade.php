@@ -29,11 +29,9 @@
                                 <div class="card-body text-center">
                                     <h3 class="m-fancy-header neon-default text-center card-title">User metadata</h3>
                                     <hr class="glow-default">
-                                    @if($user->graphics && $user->graphics->avatar_url)
-                                        <img src="{{ $user->graphics->avatar_url }}" class="m-avatar img-thumbnail" alt="Avatar">
-                                    @else
-                                        <img src="https://via.placeholder.com/200x300" class="m-avatar img-thumbnail" alt="Avatar">
-                                    @endif
+                                    @include('graphics._avatar', [
+                                    'author' => $user,
+                                    'type' => strtolower(class_basename($user))])
                                     <br/>
                                     <p>Member since {{ $user->created_at->format('M j, Y') }}</p>
                                 </div>

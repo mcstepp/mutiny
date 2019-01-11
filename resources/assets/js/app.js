@@ -27,7 +27,8 @@ Vue.component('unread-notifications', require('./components/UnreadNotificationsC
 Vue.component('post-history', require('./components/PostHistoryComponent'));
 Vue.component('lock-button', require('./components/LockButtonComponent'));
 Vue.component('pin-button', require('./components/PinButtonComponent'));
-
+Vue.component('author-avatar', require('./components/AuthorAvatarComponent'));
+Vue.component('author-icon', require('./components/AuthorIconComponent'));
 
 const app = new Vue({
     el: '#app'

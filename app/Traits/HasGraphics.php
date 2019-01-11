@@ -6,7 +6,6 @@ namespace App\Traits;
 
 trait HasGraphics
 {
-
     protected static function bootHasGraphics()
     {
 

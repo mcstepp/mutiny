@@ -125,6 +125,7 @@ class ThreadPostController extends Controller
      * @param Thread $thread
      * @param Post $post
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Forum $forum, Thread $thread, Post $post)
     {

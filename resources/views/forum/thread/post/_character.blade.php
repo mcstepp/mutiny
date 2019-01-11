@@ -26,7 +26,9 @@
             </div>
 
             <div class="col-md-3 col-lg-2 text-center">
-                <img src="http://placehold.it/150" class="img-avatar text-center">
+                @include('graphics._icon', [
+                'author' => $author,
+                'type' => strtolower(class_basename($author))])
             </div>
 
         </div>

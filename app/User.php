@@ -41,10 +41,12 @@ class User extends Authenticatable implements IGraphics
      */
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'email'
     ];
 
     protected $appends = ['path'];
+
+    protected $with = ['graphics'];
 
     protected static function boot()
     {

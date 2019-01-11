@@ -25,8 +25,10 @@ class Character extends PendingCharacter implements Auditable, IGraphics
      *
      * @var array
      */
-    protected $guarded = []; 
-    protected $with = ['faction'];
+    protected $guarded = [];
+
+    protected $with = ['faction','graphics'];
+
 
     protected static function boot()
     {

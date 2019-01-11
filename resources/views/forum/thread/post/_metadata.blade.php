@@ -1,3 +1,11 @@
+<div class="text-center mb-4">
+    @include('graphics._avatar', [
+                    'author' => $post->author,
+                    'type' => strtolower(class_basename($post->author)),
+                    'hide' => true])
+</div>
+
+
 <div class="card m-card bg-mutinydark">
     <div class="post-metadata text-center card-body">
         <span class="date-posted">Posted {{ $post->created_at->diffForHumans() }} on
