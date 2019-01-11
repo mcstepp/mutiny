@@ -12,7 +12,7 @@ class CharacterPolicy
 
     public function before(User $user)
     {
-        return $user->isSuperAdmin();
+        return $user->isSuperAdmin() ?: null;
     }
 
     public function update(User $user, Character $owner)

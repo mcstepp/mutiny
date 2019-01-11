@@ -48,7 +48,6 @@ class CharacterController extends Controller
      */
     public function create()
     {
-
         return view('character.create');
     }
 
@@ -121,10 +120,10 @@ class CharacterController extends Controller
      *
      * @param Character $character
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Character $character)
     {
-        // TODO: authorize
 
         $this->authorize('update', $character);
 

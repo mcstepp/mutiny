@@ -15,7 +15,7 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can view the forum.
+     * Determine whether the user can view the user.
      *
      * @param User $auth_user
      * @param  \App\User $user
@@ -27,7 +27,7 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can create forums.
+     * Determine whether the user can create users.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -38,7 +38,7 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can update the forum.
+     * Determine whether the user can update the user.
      *
      * @param  \App\User  $user
      * @param  \App\Models\Forum\Forum  $forum
@@ -47,21 +47,9 @@ class UserPolicy
     public function update(User $auth_user, User $user)
     {
 
-        return (
-            $auth_user->isAdmin() ||
-            $user->isSelf()
-        );
+        return $user->isSelf();
     }
 
-    /**
-     * Determine whether the user can delete the forum.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Models\Forum\Forum  $forum
-     * @return mixed
-     */
-    public function delete(User $user, Forum $forum)
-    {
-        //
-    }
+    //TODO: adminUpdate for adminPanel editing users
+
 }
