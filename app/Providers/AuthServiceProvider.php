@@ -18,7 +18,9 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Forum\Forum' => 'App\Policies\ForumPolicy',
         'App\Models\Forum\Thread' => 'App\Policies\ThreadPolicy',
         'App\Models\Forum\Post' => 'App\Policies\PostPolicy',
+        'App\Models\Character\Character' => 'App\Policies\CharacterPolicy',
         'App\Models\Invitation' => 'App\Policies\InvitationPolicy',
+        'App\Models\Graphics' => 'App\Policies\GraphicsPolicy'
     ];
 
     /**

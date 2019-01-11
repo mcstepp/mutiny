@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Interfaces\IGraphics;
+use App\Models\Character\Character;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class GraphicsPolicy
+class CharacterPolicy
 {
     use HandlesAuthorization;
 
@@ -15,8 +15,9 @@ class GraphicsPolicy
         return $user->isSuperAdmin();
     }
 
-    public function update(User $user, IGraphics $owner)
+    public function update(User $user, Character $owner)
     {
         return $owner->isSelf();
     }
+
 }

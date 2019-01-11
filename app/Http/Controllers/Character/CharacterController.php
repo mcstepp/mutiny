@@ -126,7 +126,7 @@ class CharacterController extends Controller
     {
         // TODO: authorize
 
-        //$this->authorize('update', $character);
+        $this->authorize('update', $character);
 
         return view('character.edit', [
             'character' => $character,

@@ -111,5 +111,10 @@ class PendingCharacter extends Model
         return $filters->apply($query);
     }
 
+    public function isSelf()
+    {
+        return auth()->id() == $this->user->id;
+    }
+
 
 }
