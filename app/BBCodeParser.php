@@ -29,17 +29,17 @@ class BBCodeParser extends VendorBBCodeParser
         ],
         'linethrough' => [
             'pattern' => '/\[s\](.*?)\[\/s\]/s',
-            'replace' => '<strike>$1</strike>',
+            'replace' => '<span style="text-decoration:line-through">$1</span>',
             'content' => '$1',
         ],
         'size' => [
             'pattern' => '/\[size\=([1-7])\](.*?)\[\/size\]/s',
-            'replace' => '<font size="$1">$2</font>',
+            'replace' => '<span style="font-size:$1;">$2</span>',
             'content' => '$2',
         ],
         'color' => [
             'pattern' => '/\[color\=(#[A-f0-9]{6}|#[A-f0-9]{3})\](.*?)\[\/color\]/s',
-            'replace' => '<font color="$1">$2</font>',
+            'replace' => '<span style="color:$1;">$2</font>',
             'content' => '$2',
         ],
         'center' => [
@@ -59,12 +59,12 @@ class BBCodeParser extends VendorBBCodeParser
         ],
         'quote' => [
             'pattern' => '/\[quote\](.*?)\[\/quote\]/s',
-            'replace' => '<blockquote>$1</blockquote>',
+            'replace' => '<blockquote class="m-blockquote">$1</blockquote>',
             'content' => '$1',
         ],
         'namedquote' => [
             'pattern' => '/\[quote\=(.*?)\](.*)\[\/quote\]/s',
-            'replace' => '<blockquote><small>$1</small>$2</blockquote>',
+            'replace' => '<blockquote class="m-blockquote"><small>$1</small>$2</blockquote>',
             'content' => '$2',
         ],
         'link' => [
@@ -112,5 +112,11 @@ class BBCodeParser extends VendorBBCodeParser
             'replace' => '<iframe width="560" height="315" src="//www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>',
             'content' => '$1',
         ],
+
+        'post' => [
+            'pattern' => '/\[post\](.*?)\[\/post\]/s',
+            'replace' => '<div class="m-post-content">$1</div>',
+            'content' => '$1'
+        ]
     ];
 }
