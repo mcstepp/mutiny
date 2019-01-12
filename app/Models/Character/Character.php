@@ -75,7 +75,7 @@ class Character extends PendingCharacter implements Auditable, IGraphics
         return "/c/" . $this[$key];
     }
 
-    public function activity()
+    public function activities()
     {
         return $this->morphMany('App\Models\Activity', 'author');
     }

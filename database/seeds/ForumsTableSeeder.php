@@ -202,19 +202,19 @@ class ForumsTableSeeder extends Seeder
 
             // Factionless Alexandria
             [
-                'category_id' => 7,
+                'category_id' => 8,
                 'name' => 'Fighting Pits',
                 'description' => 'Where all the action happens',
                 'private' => false,
                 'ic' => true
             ], [
-                'category_id' => 7,
+                'category_id' => 8,
                 'name' => 'Residential Quarters',
                 'description' => 'Factionless Alexandria residences',
                 'private' => false,
                 'ic' => true
             ], [
-                'category_id' => 7,
+                'category_id' => 8,
                 'name' => 'Common Grounds',
                 'description' => 'Factionless Alexandria public areas',
                 'private' => false,

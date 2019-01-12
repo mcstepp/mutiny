@@ -7,21 +7,32 @@
     'link-name' => 'Characters',
     'link-route' => route('character-list')
     ],[
-    'link-name' => $character->username
+    'link-name' => $character->username,
+    'link-route' => route('character-profile', compact('character'))
     ]
     ]])
 
+
         <div class="container-fluid">
             <div class="row">
-                @include("forum.thread.post._character", ['author' => $character])
+                <div class="col">
+                    @include("forum.thread.post._character", ['author' => $character])
+                </div>
             </div>
 
             <div class="row">
 
-                <div class="container-fluid p-0">
-                    <div class="row">
+                <div class="col-md-3">
 
-                        <div class="col-md-3">
+                    <div class="card m-card text-center mb-4">
+                        <div class="card-body">
+                            @include('graphics._avatar', [
+                                        'author' => $character,
+                                        'type' => strtolower(class_basename($character)),
+                                        'hide' => true])
+                        </div>
+
+                    </div>
 
                             <div class="card m-card">
                                 <div class="card-body">
@@ -30,7 +41,7 @@
                                     <p><span class="m-fancy-title text-uppercase">Created On:</span>
                                         {{ $character->created_at->format('M j, Y') }}</p>
                                     {{--<p><span class="m-fancy-title text-uppercase">Posts:</span>--}}
-                                        {{--{{ $character->posts_count }}</p>--}}
+                                    {{--{{ $character->posts_count }}</p>--}}
                                     <p><span class="m-fancy-title text-uppercase">Played By:</span>
                                         {{ $character->user->username }}</p>
                                     <p><span class="m-fancy-title text-uppercase">Portrayed by:</span>
@@ -40,9 +51,9 @@
 
                         </div>
 
-                        <div class="col-md-9">
+                <div class="col-md-9 d-flex">
 
-                            <div class="card m-card bg-industrial">
+                            <div class="card m-card bg-industrial align-content-stretch">
                                 <div class="card-body">
                                     <h3 class="m-fancy-header neon-default text-center card-title">Profile</h3>
                                     <hr class="glow-default">
@@ -66,7 +77,7 @@
                                                role="tab">Appearance</a>
                                         </li>
                                     </ul>
-                                    <div class="tab-content">
+                                    <div class="tab-content m-profile">
                                         <div class="tab-pane active show" id="backstory" role="tabpanel">
                                             {{ $character->history }}
                                         </div>
@@ -82,10 +93,37 @@
 
                         </div>
 
-                    </div>
-
-                </div>
             </div>
+
+            <div class="row">
+
+                <div class="col-md-9">
+
+                            <div class="card m-card bg-industrial">
+                                <div class="card-body">
+                                    <h3 class="m-fancy-header neon-default text-center card-title">Activity</h3>
+                                    <hr class="glow-default">
+                                    @include('user.profile._activities', $activities)
+                                </div>
+                            </div>
+
+                        </div>
+
+                <div class="col-md-3">
+
+                            <div class="card m-card">
+                                <div class="card-body">
+                                    <h3 class="m-fancy-header neon-default text-center card-title">Notable Relations</h3>
+                                    <hr class="glow-default">
+                                    Coming soon
+                                </div>
+                            </div>
+
+                        </div>
+
+            </div>
+
         </div>
+
 
 @endsection

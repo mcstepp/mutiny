@@ -108,11 +108,16 @@ class CharacterController extends Controller
      * Display the specified character's profile.
      *
      * @param Character $character
-     * @return void
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Character $character)
     {
-        //
+        $activities = $character->activities()->with('subject')->get();
+
+        return view('character.show', [
+            'character' => $character,
+            'activities' => $activities
+        ]);
     }
 
     /**
