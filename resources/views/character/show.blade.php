@@ -43,7 +43,7 @@
                                     {{--<p><span class="m-fancy-title text-uppercase">Posts:</span>--}}
                                     {{--{{ $character->posts_count }}</p>--}}
                                     <p><span class="m-fancy-title text-uppercase">Played By:</span>
-                                        {{ $character->user->username }}</p>
+                                        <a class="flicker" href="{{route('user-profile', $character->user)}}">{{ $character->user->username }}</a></p>
                                     <p><span class="m-fancy-title text-uppercase">Portrayed by:</span>
                                         {{ $character->faceclaim }}</p>
                                 </div>

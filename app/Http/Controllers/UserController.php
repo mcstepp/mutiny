@@ -45,11 +45,13 @@ class UserController extends Controller
     public function show(User $user)
     {
         $activities = $user->activities()->with('subject')->get();
+        $characters = $user->characters;
 
         return view('user.profile.show', [
             'user' => $user,
             //'characters' => $user->characters
-            'activities' => $activities
+            'activities' => $activities,
+            'characters' => $characters
         ]);
     }
 

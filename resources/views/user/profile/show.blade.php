@@ -2,16 +2,16 @@
 
 @section('content')
 
-    <div class="container-fluid">
+    @include('layouts._breadcrumb', ['menu' => [
+    [
+    'link-name' => 'Users',
+    'link-route' => route('user-list')
+    ],[
+    'link-name' => $user->username
+    ]
+    ]])
 
-        <ol class="breadcrumb bg-mutinydark">
-            <li class="breadcrumb-item">
-                <a href="#">Users</a>
-            </li>
-            <li class="breadcrumb-item active">
-                <a href="{{ $user->path() }}">{{ $user->username}}</a>
-            </li>
-        </ol>
+    <div class="container-fluid">
 
         <div class="container-fluid">
             <div class="row">
@@ -41,7 +41,7 @@
 
                         <div class="col-md-9">
 
-                            <div class="card m-card">
+                            <div class="card m-card bg-industrial">
                                 <div class="card-body">
                                     <h3 class="m-fancy-header neon-default text-center card-title">Achievements</h3>
                                     <hr class="glow-default">
@@ -73,7 +73,9 @@
                                 <div class="card-body">
                                     <h3 class="m-fancy-header neon-default text-center card-title">Characters</h3>
                                     <hr class="glow-default">
-                                    Coming soon
+                                    @foreach($characters as $character)
+                                        <a class="d-block text-{{ strtolower($character->faction->name)}}" href="{{ $character->path() }}"><i class="fas fa-{{ $character->faction->icon }}"></i> {{ $character->username }}</a>
+                                    @endforeach
                                 </div>
                             </div>
 

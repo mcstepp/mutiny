@@ -1,6 +1,9 @@
-@include('graphics._icon', [
+<a href="{{ route('character-profile', $user->current_character()) }}">
+    @include('graphics._icon', [
                     'author' => $user->current_character(),
                     'type' => strtolower(class_basename($user->current_character())) ])
+</a>
+
 <div class="m-fancy-title text-uppercase">
     <strong>{{ $user->current_character()->username }}</strong>
 </div>
@@ -12,7 +15,7 @@
 <div class="container-fluid px-4 pt-4 m-sidebar-character">
     <div class="row">
         <div class="col">
-            <a href="#" title="Edit Character" class="flicker">
+            <a href="{{ route('edit-character', $user->current_character()) }}" title="Edit Character" class="flicker">
                 <i class="fas fa-user-edit"></i>
             </a></div>
         <div class="col">
