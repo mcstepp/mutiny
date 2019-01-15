@@ -147,6 +147,8 @@ class CharacterController extends Controller
      */
     public function update(Request $request, Character $character)
     {
+        $this->authorize('update', $character);
+
 
 
     }
