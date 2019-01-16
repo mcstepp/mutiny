@@ -48,7 +48,9 @@ class CharacterController extends Controller
      */
     public function create()
     {
-        return view('character.create');
+        return view('character.create', [
+            'character' => new Character
+        ]);
     }
 
     /**
