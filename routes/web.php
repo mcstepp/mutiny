@@ -51,8 +51,8 @@ Route::get('/admin/factions', 'Character\FactionController@index')->name('admin-
 Route::post('/admin/factions', 'Character\FactionController@store')->name('admin-store-faction');
 
 Route::get('/admin/pending', 'Character\PendingCharacterController@index')->name('admin-view-pending-characters');
-Route::get('admin/pending/{character}', 'Character\PendingCharacterController@show')->name('admin-show-pending-character');
-Route::put('/admin/pending/{character}', 'Character\PendingCharacterController@update')->name('admin-pend-character');
+Route::get('admin/pending/{pcharacter}', 'Character\PendingCharacterController@show')->name('admin-show-pending-character');
+Route::put('/admin/pending/{pcharacter}', 'Character\PendingCharacterController@update')->name('admin-pend-character');
 
 // Invitations
 Route::get('/invites', 'InvitationController@index')->name('my-invites');

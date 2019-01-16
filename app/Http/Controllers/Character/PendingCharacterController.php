@@ -116,16 +116,16 @@ class PendingCharacterController extends Controller
     /**
      * Display a pending character application
      *
-     * @param PendingCharacter $character
+     * @param PendingCharacter $pcharacter
      * @return \Illuminate\Http\Response
      */
-    public function show(PendingCharacter $character)
+    public function show(PendingCharacter $pcharacter)
     {
         // only admin can see the pending character application form
         $this->middleware('admin');
 
         return view('admin.pending_characters.show', [
-            'character' => $character
+            'character' => $pcharacter
         ]);
     }
 
