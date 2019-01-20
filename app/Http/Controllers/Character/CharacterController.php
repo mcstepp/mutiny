@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Character;
 
 use App\Filters\CharacterFilters;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateCharacter;
 use App\User;
 use App\Http\Requests\CreateNewCharacter;
 use App\Models\Character\Character;
@@ -143,16 +144,24 @@ class CharacterController extends Controller
     /**
      * Update the specified character in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param UpdateCharacter $request
      * @param Character $character
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(Request $request, Character $character)
+    public function update(UpdateCharacter $request, Character $character)
     {
         $this->authorize('update', $character);
 
+        $character->update([
+            'faceclaim' => trim($request->faceclaim),
+            'history' => trim($request->history),
+            'appearance' => trim($request->appearance),
+            'personality' => trim($request->personality),
+            'occupation' => trim($request->occupation)
+        ]);
 
-
+        return redirect()->back();
     }
 
     /**
@@ -198,6 +207,5 @@ class CharacterController extends Controller
 
         return $characters->get();
     }
-
 
 }

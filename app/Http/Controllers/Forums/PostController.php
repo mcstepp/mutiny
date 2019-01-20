@@ -55,8 +55,8 @@ class PostController extends Controller
         $post = POST::make([
             'thread_id' => $thread->id,
             'author_id' => $author_id,
-            'author_type' => request('author_type'),
-            'body' => request('body')
+            'author_type' => trim(request('author_type')),
+            'body' => trim(request('body'))
         ])->toArray();
 
         $thread->addPost($post);

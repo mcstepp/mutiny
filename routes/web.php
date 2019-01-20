@@ -108,6 +108,7 @@ Route::get('/c/{character}/edit', 'Character\CharacterController@edit')->name('e
 Route::put('/c/{character}/update', 'Character\CharacterController@update')->name('update-character');
 Route::put('/c/{character}/graphics', 'GraphicsController@update')->name('update-character-graphics');
 
+// Pending characters
 Route::get('/pc', 'Character\UserPendingCharacterController@index')->name('view-my-pending-characters');
 Route::get('/pc/create', 'Character\PendingCharacterController@create')->name('create-character');
 Route::post('/pc/create', 'Character\PendingCharacterController@store')->name('store-pending-character');

@@ -19,7 +19,7 @@
             </div>
 
             <div class="col-md-10">
-                <input type="text" class="form-control" name="occupation" id="occupation">
+                <input type="text" class="form-control" name="occupation" id="occupation" value="{{ $character->occupation ?: null }}">
             </div>
         </div>
         <div class="form-group row">
@@ -28,7 +28,7 @@
             </div>
 
             <div class="col-md-10">
-                <textarea class="form-control" rows="3" name="history" id="history"></textarea>
+                <textarea class="form-control" rows="3" name="history" id="history">{{ $character->history ?: null }}</textarea>
             </div>
         </div>
 
@@ -38,7 +38,7 @@
             </div>
 
             <div class="col-md-10">
-                <textarea class="form-control" rows="3" name="personality" id="personality"></textarea>
+                <textarea class="form-control" rows="3" name="personality" id="personality">{{ $character->personality ?: null }}</textarea>
             </div>
         </div>
 
