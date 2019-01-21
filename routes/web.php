@@ -37,11 +37,15 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 // Admin Panel
 Route::get('/admin', 'Admin\AdminPanelController@index')->name('adminPanel');
 
+// Admin Forum
 Route::get('/admin/forums', 'Admin\AdminPanelController@indexForum')->name('admin-forums');
 Route::post('/admin/forums', 'Forums\ForumController@store')->name('admin-store-forum');
 Route::get('/admin/forums/create', 'Forums\ForumController@create')->name('admin-create-forum');
 
 Route::post('/admin/categories', 'Forums\CategoryController@store')->name('admin-store-category');
+
+// Admin character
+Route::get('/admin/character/{character}/edit', 'Admin\AdminCharacterController@edit')->name('admin-edit-character');
 
 Route::get('/admin/ranks', 'Character\RankController@index')->name('admin-ranks');
 Route::get('/admin/ranks/create', 'Character\RankController@create')->name('admin-create-rank');
