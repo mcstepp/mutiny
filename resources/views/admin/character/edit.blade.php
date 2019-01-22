@@ -14,9 +14,20 @@
         ]
         ]])
 
+    <form>
+        <div class="container-fluid my-3">
+            <div class="row"></div>
+            <div class="row">
+                <div class="col">
+                    @include('character._basics')
+                </div>
+            </div>
 
-    <div class="container-fluid my-3">
-
-    </div>
-
+            <div class="row">
+                <div class="col">
+                    @include('character._details')
+                </div>
+            </div>
+        </div>
+    </form>
 @endsection
