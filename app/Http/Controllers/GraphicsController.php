@@ -35,7 +35,8 @@ class GraphicsController extends Controller
             'owner_id' => $owner->id
         ],[
             'avatar_url' => $validated['avatar'],
-            'icon_url' => $validated['icon']
+            'icon_url' => $validated['icon'],
+            'signature' => null
         ]);
 
         //return redirect()->route(`edit-{$type}`, $owner);
