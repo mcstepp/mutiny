@@ -32,7 +32,7 @@ class PendingCharacter extends Model
      */
     protected $guarded = [];
     protected $with = ['faction'];
-    protected $appends = ['username'];
+    protected $appends = ['username','path'];
 
     protected static function boot()
     {
@@ -100,6 +100,11 @@ class PendingCharacter extends Model
     {
         $key = $this->getRouteKeyName();
         return "/pc/" . $this[$key];
+    }
+
+    public function getPathAttribute()
+    {
+        return $this->path();
     }
 
     /**

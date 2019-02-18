@@ -7,7 +7,8 @@
     'link-name' => 'Admin Panel'
     ]
     ]])
-        <div class="container-fluid">
+        <div class="container-fluid my-3">
+            <h1 class="m-fancy-header neon-default">Admin Panel</h1>
 
             @if(auth()->user()->isSuperAdmin())
             <div class="card m-card bg-industrial">
@@ -53,7 +54,7 @@
                         <a href="/admin/pending" class="list-group-item default">
                             New Applications
                         </a>
-                        <a href="#" class="list-group-item disabled">
+                        <a href="{{ route('admin-character-list') }}" class="list-group-item">
                             Edit a Character
                         </a>
                     </div>

@@ -13,6 +13,7 @@ class Faction extends Model
     use Cachable;
     protected $guarded = [];
     public $timestamps = false;
+    public $appends = ['icon'];
 
     public function characters()
     {

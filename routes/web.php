@@ -45,6 +45,7 @@ Route::get('/admin/forums/create', 'Forums\ForumController@create')->name('admin
 Route::post('/admin/categories', 'Forums\CategoryController@store')->name('admin-store-category');
 
 // Admin character
+Route::get('/admin/character', 'Admin\AdminCharacterController@index')->name('admin-character-list');
 Route::get('/admin/character/{character}/edit', 'Admin\AdminCharacterController@edit')->name('admin-edit-character');
 
 Route::get('/admin/ranks', 'Character\RankController@index')->name('admin-ranks');

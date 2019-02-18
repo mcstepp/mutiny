@@ -15,7 +15,7 @@
 
         <div class="row">
             <div class="col-md-7">
-                <h1 class="h2 page-title m-fancy-header neon-default">{{ $forum->name }}</h1>
+                <h1 class="m-fancy-header neon-default">{{ $forum->name }}</h1>
             </div>
             <div class="col-md-5">
                 <div class="row">
@@ -55,6 +55,10 @@
                 </a>
             </div>
 
+            <div class="col">
+                {{ $threads->links() }}
+            </div>
+
             <div class="col align-self-end text-right">
                 <div class="btn-group">
                     <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -83,8 +87,6 @@
 
     <div class="container-fluid my-3">
         <div class="animated fadeId">
-
-            {{ $threads->links() }}
 
             @forelse($threads as $thread)
                 @include('forum.thread._thread', [$forum, $thread])

@@ -29,6 +29,7 @@ Vue.component('lock-button', require('./components/LockButtonComponent'));
 Vue.component('pin-button', require('./components/PinButtonComponent'));
 Vue.component('author-avatar', require('./components/AuthorAvatarComponent'));
 Vue.component('author-icon', require('./components/AuthorIconComponent'));
+Vue.component('character-filter', require('./components/CharacterFilterComponent'));
 
 const app = new Vue({
     el: '#app'
