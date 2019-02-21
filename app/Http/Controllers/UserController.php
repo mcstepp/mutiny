@@ -49,7 +49,6 @@ class UserController extends Controller
 
         return view('user.profile.show', [
             'user' => $user,
-            //'characters' => $user->characters
             'activities' => $activities,
             'characters' => $characters
         ]);

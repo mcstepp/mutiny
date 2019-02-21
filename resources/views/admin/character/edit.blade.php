@@ -19,6 +19,7 @@
             <div class="row"></div>
             <div class="row">
                 <div class="col">
+                    <input type="hidden" name="owner" value="{{ $character->user()->id }}">
                     @include('character._basics')
                 </div>
             </div>

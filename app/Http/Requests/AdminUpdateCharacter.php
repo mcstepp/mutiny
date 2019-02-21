@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
-class UpdateCharacter extends FormRequest
+class AdminUpdateCharacter extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,9 +15,7 @@ class UpdateCharacter extends FormRequest
      */
     public function authorize()
     {
-        // TODO: Check if they are allowed to make request
-        //return false;
-        return 'true';
+        return $this->user()->isAdmin();
     }
 
     /**
@@ -28,9 +26,10 @@ class UpdateCharacter extends FormRequest
     public function rules()
     {
         return [
+            'owner' => 'required|numeric|exists:users,id',
             'faceclaim' => [
                 'string',
-                Rule::unique('characters')->ignore($this->user()->id)
+                Rule::unique('characters')->ignore()
             ],
             'occupation' => 'required',
             'history' => 'required|min:100',
