@@ -28,6 +28,13 @@ class CharacterFilters extends Filters
                 ->orderByDesc('ic_birth_day');
         }
 
+        else {
+            $this->builder
+                ->orderBy('ic_birth_year')
+                ->orderBy('ic_birth_month')
+                ->orderBy('ic_birth_day');
+        }
+
         return $this->builder
             ->orderBy('slug');
     }
