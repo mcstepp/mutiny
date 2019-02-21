@@ -22,14 +22,15 @@ class CharacterFilters extends Filters
     protected function age($direction = 'desc')
     {
         if ($direction === 'asc') {
-            $this->builder->orderByDesc('ic_birth_year');
+            $this->builder->orderByDesc('ic_birth_year')
+                ->orderBy('ic_birth_month');
         }
         else {
-            $this->builder->orderBy('ic_birth_year');
+            $this->builder->orderBy('ic_birth_year')
+            ->orderByDesc('ic_birth_month');
         }
 
         return $this->builder
-            ->orderBy('ic_birth_month')
             ->orderBy('ic_birth_day')
             ->orderBy('slug');
     }
