@@ -39,7 +39,7 @@ class CreatePendingCharacter extends FormRequest
             'age' => 'required|digits:2',
             'history' => 'required|min:100',
             'personality' => 'required|min:100',
-            'appearance' => 'required:min:100',
+            'appearance' => 'required|min:100',
             'faceclaim' => 'unique:characters,faceclaim'
         ];
     }

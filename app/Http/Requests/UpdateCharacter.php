@@ -30,7 +30,7 @@ class UpdateCharacter extends FormRequest
         return [
             'faceclaim' => [
                 'string',
-                Rule::unique('characters')->ignore($this->user()->id)
+                Rule::unique('characters', 'user_id')->ignore($this->user()->id)
             ],
             'occupation' => 'required',
             'history' => 'required|min:100',
