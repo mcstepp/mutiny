@@ -1,15 +1,9 @@
 <div class="miniprofile card m-card bg-industrial-dark col-12">
     <div class="card-body container-fluid">
         <div class="row">
-            <div class="col-md-3 col-lg-2 text-center">
-                @include('graphics._icon', [
-                'author' => $author,
-                'type' => strtolower(class_basename($author))])
-            </div>
-
             <div class="col-md-9 col-lg-10 align-self-center">
                 <div class="container-fluid p-0">
-                    <div class="m-traits text-md-left text-sm-center align-self-center">
+                    <div class="m-traits text-md-right text-sm-center align-self-center">
 
                         @if($author->isAdmin())
                         <span class="callout callout-secondary m-trait m-fancy-title">
@@ -26,12 +20,18 @@
 
                     <hr class="glow-default">
 
-                    <div class="m-author-meta text-md-left text-sm-center">
+                    <div class="m-author-meta text-md-right text-sm-center">
                         <h3 class="m-fancy-header m-author"><a class="flicker neon-default" href="{{ $author->path() }}">{{$author->username}}</a></h3>
                         <online-status online="{{ $author->isOnline() }}"></online-status>
                     </div>
                 </div>
 
+            </div>
+
+            <div class="col-md-3 col-lg-2 text-center">
+                @include('graphics._icon', [
+                'author' => $author,
+                'type' => strtolower(class_basename($author))])
             </div>
         </div>
     </div>

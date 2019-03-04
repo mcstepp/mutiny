@@ -73,20 +73,20 @@
                             </div>
 
 
-                            @if($forum->ic && $forum->moderators->contains($thread->author->user()))
+                            @if($forum->ic && $forum->moderators->contains($thread->author->user))
 
-                                <post-as :characters="{{ json_encode($thread->author->user()->characters) }}"
-                                         :user="{{ json_encode($thread->author->user()) }}"></post-as>
+                                <post-as :characters="{{ json_encode($thread->author->user->characters) }}"
+                                         :user="{{ json_encode($thread->author->user) }}"></post-as>
 
                             @elseif($forum->ic && !$forum->moderators->contains($thread->author->user()))
 
-                                <post-as :characters="{{ json_encode($thread->author->user()->characters) }}">
+                                <post-as :characters="{{ json_encode($thread->author->user->characters) }}">
 
                                 </post-as>
 
                             @else
 
-                                <post-as :user="{{ json_encode($thread->author->user()) }}"></post-as>
+                                <post-as :user="{{ json_encode($thread->author->user) }}"></post-as>
 
                             @endif
 

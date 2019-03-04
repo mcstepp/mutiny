@@ -54,7 +54,7 @@
                        class="form-control align-self-center"
                        name="first_name"
                        id="first_name"
-                       value="{{ $character->first_name }}"
+                       value="{{ old('first_name', $character->first_name) }}"
                        required>
             </div>
         </div>
@@ -65,7 +65,7 @@
                        class="form-control"
                        name="chosen_name"
                        id="chosen_name"
-                       value="{{ $character->chosen_name }}">
+                       value="{{ old('chosen_name', $character->chosen_name) }}">
             </div>
         </div>
         <div class="form-group row">
@@ -75,7 +75,7 @@
                        class="form-control"
                        name="last_name"
                        id="last_name"
-                       value="{{ $character->last_name }}"
+                       value="{{ old('last_name', $character->last_name) }}"
                        required>
             </div>
         </div>
@@ -86,7 +86,7 @@
                 <select class="form-control" name="origin_faction" id="origin_faction" required>
                     <option selected disabled>Please Choose One</option>
                     @foreach($factions as $faction)
-                        @if($character->origin_faction_id === $faction->id)
+                        @if( old('origin_faction', $character->origin_faction_id) == $faction->id)
                             <option value="{{ $faction->id }}" selected>{{ $faction->name }}</option>
                         @else
                             <option value="{{ $faction->id }}">{{ $faction->name }}</option>
@@ -102,7 +102,7 @@
                 <select class="form-control" name="faction" id="faction">
                     <option selected disabled>Please Choose One</option>
                     @foreach($factions as $faction)
-                        @if($character->faction_id === $faction->id)
+                        @if(old('faction', $character->faction_id)  == $faction->id)
                             <option value="{{ $faction->id }}" selected>{{ $faction->name }}</option>
                         @else
                             <option value="{{ $faction->id }}">{{ $faction->name }}</option>

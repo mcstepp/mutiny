@@ -1,9 +1,9 @@
-<div class="text-center mb-4">
-    @include('graphics._avatar', [
-                    'author' => $post->author,
-                    'type' => strtolower(class_basename($post->author)),
-                    'hide' => true])
-</div>
+
+@include('graphics._avatar', [
+    'author' => $post->author,
+    'type' => strtolower(class_basename($post->author)),
+    'hide' => true
+])
 
 
 <div class="card m-card bg-mutinydark">

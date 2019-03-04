@@ -7,21 +7,17 @@ use App\Http\Requests\CreatePendingCharacter;
 use App\Models\Character\Faction;
 use App\Models\Character\PendingCharacter;
 use App\Notifications\CharacterWasPended;
+use App\Traits\Time;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PendingCharacterController extends Controller
 {
+    use Time;
     // only registered users can use characters
     public function __construct()
     {
         $this->middleware('auth');
-
-        $this->startDay = 31;
-        $this->startMonth = "May";
-        $this->startYear = 150;
-        $this->maxAge = 78;
-        $this->minAge = 18;
     }
     /**
      * Show a list of all pending characters
@@ -32,7 +28,8 @@ class PendingCharacterController extends Controller
     {
         // Only admin can see this view
         $this->middleware('admin');
-       $pending_characters = PendingCharacter::currentStatus('In Review')->get();
+
+        $pending_characters = PendingCharacter::currentStatus('In Review')->get();
 
         return view('admin.pending_characters.index', [
             'pending_characters' => $pending_characters
@@ -44,27 +41,12 @@ class PendingCharacterController extends Controller
         // TODO: authorization (new members, points, etc)
 
         $factions = Faction::all();
-        $months = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December'
-        ];
-
 
         return view('character.create', [
             'factions' => $factions,
             'ages' => $this->getAges(),
             'years' => $this->getBirthYears(),
-            'months' => $months,
+            'months' => $this->getMonths(),
             'clazzes' => $this->getInitiationYears(),
             'character' => new \App\Models\Character\Character
         ]);
@@ -79,6 +61,7 @@ class PendingCharacterController extends Controller
     public function store(CreatePendingCharacter $request)
     {
         // TODO: authorization (new members, points, etc)
+        $request->flash();
         $validated = $request->validated();
 
         // TODO: stricter validations and stuff, stripping out HTML, XSS stuff
@@ -164,38 +147,5 @@ class PendingCharacterController extends Controller
     public function destroy(PendingCharacter $character)
     {
         //
-    }
-
-    private function getBirthYears()
-    {
-        $years = [];
-
-        for ($i = $this->startYear - $this->minAge; $i >= $this->startYear - $this->maxAge; $i--) {
-            $years[] = $i;
-        }
-
-        return $years;
-    }
-
-    private function getAges()
-    {
-        $ages = [];
-
-        for ($i = $this->minAge; $i <= $this->maxAge; $i++) {
-            $ages[] = $i;
-        }
-
-        return $ages;
-    }
-
-    private function getInitiationYears()
-    {
-        $years = [];
-
-        for ($i = $this->startYear; $i >= $this->startYear-$this->maxAge + $this->minAge; $i--) {
-            $years[] = $i;
-        }
-
-        return $years;
     }
 }

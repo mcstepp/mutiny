@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -9,7 +10,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 class ThreadWasReplied extends Notification
 {
-    use Queueable;
+    use Queueable, Cachable;
 
     protected $thread;
 

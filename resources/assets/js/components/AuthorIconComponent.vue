@@ -1,15 +1,12 @@
 <template>
-    <div>
         <img v-if="hasGraphics" :src="author.graphics.icon_url" class="img-avatar img-thumbnail m-icon" alt="Icon">
 
-        <img v-else src="https://via.placeholder.com/150" class="img-thumbnail img-avatar m-icon" alt="Icon">
-    </div>
-
+        <img v-else-if="!hasGraphics && useDefault" src="https://via.placeholder.com/150" class="img-thumbnail img-avatar m-icon" alt="Icon">
 </template>
 
 <script>
     export default {
-        props: ['author'],
+        props: ['author', 'use-default'],
 
         computed: {
             hasGraphics() {

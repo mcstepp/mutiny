@@ -90,7 +90,8 @@
             'years',
             'ages',
             'months',
-            'character'
+            'character',
+            'old'
         ],
 
         data() {
@@ -107,11 +108,22 @@
         },
 
         created() {
-            if(this.character) {
-                this.ic_birth_month = this.character.ic_birth_month || this.ic_birth_month;
-                this.birthDay = this.character.ic_birth_day || this.birthDay;
-                this.birthYear = this.character.ic_birth_year || this.birthYear;
-                this.clazz = this.character.initiation_year || this.clazz;
+            if(this.character || this.old) {
+                this.ic_birth_month = this.old.ic_birth_month ||
+                    this.character.ic_birth_month ||
+                    this.ic_birth_month;
+
+                this.birthDay = this.old.ic_birth_day ||
+                    this.character.ic_birth_day ||
+                    this.birthDay;
+
+                this.birthYear = this.old.ic_birth_year ||
+                    this.character.ic_birth_year ||
+                    this.birthYear;
+
+                this.clazz = this.old.initiation_year ||
+                    this.character.initiation_year ||
+                    this.clazz;
 
                 this.calcYears(this.birthYear);
             }
@@ -152,8 +164,8 @@
         methods: {
             calcYears({birthMonth = this.birthMonth, birthYear = this.birthYear}) {
                     this._calcAge({
-                        birthMonth,
-                        birthYear,
+                        birthMonth: parseInt(birthMonth),
+                        birthYear: parseInt(birthYear),
                         current_year: parseInt(this.year),
                         months: this.months,
                         month: this.month
@@ -163,7 +175,7 @@
             _calcAge({birthYear, birthMonth,current_year, months, month}) {
 
                 let age = current_year - birthYear;
-                let hasHadBirthday = months.indexOf(month) > months.indexOf(birthMonth);
+                let hasHadBirthday = months.indexOf(month) >= months.indexOf(birthMonth);
 
                 if (!hasHadBirthday) {
                     age -= 1;

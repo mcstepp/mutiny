@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Character\Character;
 use App\Models\Character\Faction;
+use App\Traits\Time;
 use Illuminate\Http\Request;
 
 class AdminCharacterController extends AdminController
 {
+    use Time;
     public function index()
     {
         $characters = Character::orderBy('slug', 'asc')
@@ -44,9 +46,14 @@ class AdminCharacterController extends AdminController
     public function edit(Request $request, Character $character)
     {
         $factions = Faction::all();
-        return view('admin.character.edit',[
-            'character' => $character,
-            'factions' => $factions
+
+        return view('admin.character.edit', [
+                'factions' => $factions,
+                'ages' => $this->getAges(),
+                'years' => $this->getBirthYears(),
+                'months' => $this->getMonths(),
+                'clazzes' => $this->getInitiationYears(),
+                'character' => $character
         ]);
     }
 }

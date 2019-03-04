@@ -10,7 +10,6 @@ use App\Http\Requests\CreateNewCharacter;
 use App\Models\Character\Character;
 use App\Models\Character\Faction;
 use App\Models\Character\PendingCharacter;
-use App\Models\Character\Rank;
 use Illuminate\Http\Request;
 
 
@@ -65,6 +64,7 @@ class CharacterController extends Controller
         // Only admin can approve characters
         $this->middleware('admin');
 
+        $request->flash();
         $validated = $request->validated();
 
         // TODO: stricter validations and stuff, stripping out HTML, XSS stuff
@@ -152,6 +152,7 @@ class CharacterController extends Controller
     public function update(UpdateCharacter $request, Character $character)
     {
         $this->authorize('update', $character);
+        $request->flash();
 
         $character->update([
             'faceclaim' => trim($request->faceclaim),

@@ -8,6 +8,7 @@ use App\Models\Forum\Thread;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class ForumThreadController extends Controller
 {
@@ -170,6 +171,8 @@ class ForumThreadController extends Controller
         if ($request->wantsJson()){
             return $thread;
         }
+
+        Artisan::call('modelCache:clear');
 
         return redirect()->route('view-forum', $forum);
     }

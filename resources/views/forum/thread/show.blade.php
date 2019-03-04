@@ -15,17 +15,17 @@
 
     <div class="container-fluid my-3">
 
+        <h1 class="m-fancy-header neon-default">{{ $thread->title }}</h1>
+
         <div class="row">
-            <div class="col-md-6">
-                <h3>{{ $thread->title }}</h3>
+            <div class="col-md-6 left-pagination">
+                {{ $posts->links() }}
             </div>
 
             <div class="col-md-6 text-right">
                 <subscribe-button is-subscribed="{{ $thread->isSubscribedTo }}" path="{{ $thread->path() }}"></subscribe-button>
             </div>
         </div>
-
-
 
         @foreach($posts as $post)
             @include('forum.thread.post.show', [$forum, $thread, $post])
