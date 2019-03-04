@@ -88,8 +88,8 @@
     <div class="container-fluid my-3">
         <div class="animated fadeId">
             @if(count($pinned) > 0)
-                @foreach($pinned as $thread)
-                    @include('forum.thread._thread', [$forum, $thread])
+                @foreach($pinned as $pin)
+                    @include('forum.thread._thread', [$forum, 'thread' => $pin])
                 @endforeach
             @endif
 
