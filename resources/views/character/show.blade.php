@@ -24,7 +24,7 @@
 
                 <div class="col-md-3">
 
-                    <div class="card m-card text-center mb-4">
+                    <div class="card m-card">
                         <div class="card-body">
                             @include('graphics._avatar', [
                                         'author' => $character,
@@ -79,13 +79,13 @@
                                     </ul>
                                     <div class="tab-content m-profile">
                                         <div class="tab-pane active show" id="backstory" role="tabpanel">
-                                            {{ $character->history }}
+                                            {!! nl2br($character->history) !!}
                                         </div>
                                         <div class="tab-pane" id="personality" role="tabpanel">
-                                            {{ $character->personality }}
+                                            {!! nl2br($character->personality) !!}
                                         </div>
                                         <div class="tab-pane" id="appearance" role="tabpanel">
-                                            {{ $character->appearance }}
+                                            {!! nl2br($character->appearance) !!}
                                         </div>
                                     </div>
                                 </div>

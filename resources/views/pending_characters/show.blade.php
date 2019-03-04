@@ -68,13 +68,13 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane active show" id="backstory" role="tabpanel">
-                                            {{ $character->history }}
+                                            {!! nl2br($character->history) !!}
                                         </div>
                                         <div class="tab-pane" id="personality" role="tabpanel">
-                                            {{ $character->personality }}
+                                            {!! nl2br($character->personality) !!}
                                         </div>
                                         <div class="tab-pane" id="appearance" role="tabpanel">
-                                            {{ $character->appearance }}
+                                            {!! nl2br($character->appearance) !!}
                                         </div>
                                     </div>
                                 </div>
