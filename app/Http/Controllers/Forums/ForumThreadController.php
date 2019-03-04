@@ -37,8 +37,7 @@ class ForumThreadController extends Controller
 
         return view('forum.thread.index', [
             'threads' => $threads,
-            'forum' => $forum,
-            'pinned' => $pinned
+            'forum' => $forum
         ]);
     }
 
