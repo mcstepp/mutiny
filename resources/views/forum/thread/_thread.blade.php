@@ -1,13 +1,23 @@
-<div class="card m-thread bg-industrial">
-
+@if($thread->pinned)
+    <div class="card m-thread bg-industrial glow-default">
+@else
+    <div class="card m-thread bg-industrial">
+@endif
     <div class="card-top">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4">
                     <div class="callout callout-primary">
-                        <h4 class="h3 m-fancy-title neon-default text-uppercase">
-                            <i class="fas fa-terminal neon-default"></i><a class="flicker" href="{{ $thread->path() }}"> {{ $thread->title }}</a>
-                        </h4>
+                        <h3 class="m-fancy-title neon-default text-uppercase">
+                            @if($thread->pinned)
+                                <i class="fas fa-thumbtack neon-default"></i>
+                            @else
+                                <i class="fas fa-terminal neon-default"></i>
+                            @endif
+
+
+                            <a class="flicker" href="{{ $thread->path() }}"> {{ $thread->title }}</a>
+                        </h3>
                         <small class="font-xs">Last reply {{ $thread->lastPost->created_at->diffForHumans() }} on {{ $thread->lastPost->created_at->format('M j, Y') }}</small>
                     </div>
                 </div>
