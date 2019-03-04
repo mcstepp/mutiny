@@ -227,12 +227,9 @@ class ForumThreadController extends Controller
 
 
         if ( $forum->exists ) {
-            $threads->where([
-                'forum_id' => $forum->id,
-                ])
+            $threads->where('forum_id',$forum->id)
                 ->orderBy('pinned')
                 ->orderBy('updated_at', 'desc');
-
         }
 
         return $threads->paginate(5);
