@@ -29,7 +29,6 @@ class ForumThreadController extends Controller
 
         $this->authorize('view', $forum);
 
-        $pinned = $this->getThreads($forum, true);
         $threads = $this->getThreads($forum);
 
         if ( request()->wantsJson() ) {
@@ -214,7 +213,7 @@ class ForumThreadController extends Controller
      * @param bool $pinned
      * @return mixed
      */
-    public function getThreads(Forum $forum, $pinned = false)
+    public function getThreads(Forum $forum)
     {
         // TODO: get threads that user is authorized to see
         $threads = Thread::with([
@@ -230,8 +229,8 @@ class ForumThreadController extends Controller
         if ( $forum->exists ) {
             $threads->where([
                 'forum_id' => $forum->id,
-                'pinned'=> $pinned
                 ])
+                ->orderBy('pinned')
                 ->orderBy('updated_at', 'desc');
 
         }
