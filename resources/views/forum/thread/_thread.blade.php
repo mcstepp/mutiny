@@ -69,7 +69,14 @@
                         <p><small class="m-fancy-title text-uppercase">Participants</small></p>
 
                         @foreach($thread->participants() as $post)
-                            <a href="{{ $post->author->path() }}" class="m-thread-participant"><img src="http://placehold.it/50"></a>
+                            <a href="{{ $post->author->path() }}" class="m-thread-participant">
+                                @include("graphics._icon", [
+                                    'author' => $post->author,
+                                    'type' => strtolower(class_basename($post->author)),
+                                    'size' => 50,
+                                    'hide'
+                                ])
+                            </a>
                         @endforeach
                     </div>
                 </div>
