@@ -14,9 +14,11 @@
         ]
         ]])
 
-    <form>
+    <form action="{{ route('admin-update-character', ['character' => $character]) }}" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
         <div class="container-fluid my-3">
-            <div class="row"></div>
             <div class="row">
                 <div class="col">
                     <input type="hidden" name="owner" value="{{ $character->user->id }}">
@@ -36,7 +38,11 @@
                 </div>
             </div>
 
-
+            <div class="row">
+                <div class="col">
+                    <button type="submit"> Edit Character </button>
+                </div>
+            </div>
 
         </div>
     </form>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\AdminUpdateCharacter;
 use App\Models\Character\Character;
 use App\Models\Character\Faction;
 use App\Traits\Time;
@@ -55,5 +56,21 @@ class AdminCharacterController extends AdminController
                 'clazzes' => $this->getInitiationYears(),
                 'character' => $character
         ]);
+    }
+
+    public function update(AdminUpdateCharacter $request, Character $character)
+    {
+        $request->flash();
+
+        $character->update([
+            'faceclaim' => trim($request->faceclaim),
+            'history' => trim($request->history),
+            'appearance' => trim($request->appearance),
+            'personality' => trim($request->personality),
+            'occupation' => trim($request->occupation)
+        ]);
+
+        return redirect()->route('admin-character-list');
+
     }
 }

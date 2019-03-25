@@ -27,10 +27,7 @@ class AdminUpdateCharacter extends FormRequest
     {
         return [
             'owner' => 'required|numeric|exists:users,id',
-            'faceclaim' => [
-                'string',
-                Rule::unique('characters')->ignore()
-            ],
+            'faceclaim' => 'string',
             'occupation' => 'required',
             'history' => 'required|min:100',
             'personality' => 'required|min:100',

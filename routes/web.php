@@ -47,6 +47,7 @@ Route::post('/admin/categories', 'Forums\CategoryController@store')->name('admin
 // Admin character
 Route::get('/admin/character', 'Admin\AdminCharacterController@index')->name('admin-character-list');
 Route::get('/admin/character/{character}/edit', 'Admin\AdminCharacterController@edit')->name('admin-edit-character');
+Route::put('/admin/character/{character}', 'Admin\AdminCharacterController@update')->name('admin-update-character');
 
 Route::get('/admin/ranks', 'Character\RankController@index')->name('admin-ranks');
 Route::get('/admin/ranks/create', 'Character\RankController@create')->name('admin-create-rank');
