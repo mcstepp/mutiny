@@ -58,6 +58,7 @@
     <p class="text-muted text-center font-xs m-auto">
         MUTINY! Copyright © 2018 M.S. All rights reserved.<br>
         MUTINY! is an independent fan website. Images, content, Divergent © Veronica Roth, and/or their respective owners. User content on this website is credited to the individuals.
+        <a href='http://dryicons.com/icon/fist-icon-13099'> Icon by Dryicons </a>
     </p>
 </footer>
 </div>
