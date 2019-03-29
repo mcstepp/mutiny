@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.Vuex = require('vuex');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,9 +31,20 @@ Vue.component('pin-button', require('./components/PinButtonComponent'));
 Vue.component('author-avatar', require('./components/AuthorAvatarComponent'));
 Vue.component('author-icon', require('./components/AuthorIconComponent'));
 Vue.component('character-filter', require('./components/CharacterFilterComponent'));
+Vue.component('occupation-claims', require('./components/OccupationClaimsComponent'));
+
+const store = new Vuex.Store({
+    state: {
+        faction: 0
+    },
+    mutations: {
+        updateFaction: (state, faction_id) => state.faction = faction_id,
+    }
+});
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store: store
 });
 
 /*****

@@ -83,16 +83,7 @@
         <div class="form-group row">
             <label for="origin_faction" class="control-label col-md-2">Faction of Origin:</label>
             <div class="col-md-10">
-                <select class="form-control" name="origin_faction" id="origin_faction" required>
-                    <option selected disabled>Please Choose One</option>
-                    @foreach($factions as $faction)
-                        @if( old('origin_faction', $character->origin_faction_id) == $faction->id)
-                            <option value="{{ $faction->id }}" selected>{{ $faction->name }}</option>
-                        @else
-                            <option value="{{ $faction->id }}">{{ $faction->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
+                <faction-selection :name="origin_faction" :id="origin_faction" :factions="{{ json_encode($factions) }}" selected_faction="{{ old('origin_faction', $character->origin_faction_id) }}"></faction-selection>
             </div>
         </div>
 
