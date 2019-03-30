@@ -1846,7 +1846,7 @@ function loadLocale(name) {
         try {
             oldLocale = globalLocale._abbr;
             var aliasedRequire = require;
-            __webpack_require__(220)("./" + name);
+            __webpack_require__(230)("./" + name);
             getSetGlobalLocale(oldLocale);
         } catch (e) {}
     }
@@ -15446,8 +15446,8 @@ module.exports = g;
 "use strict";
 
 var stripAnsi = __webpack_require__(141);
-var codePointAt = __webpack_require__(227);
-var isFullwidthCodePoint = __webpack_require__(228);
+var codePointAt = __webpack_require__(237);
+var isFullwidthCodePoint = __webpack_require__(238);
 
 // https://github.com/nodejs/io.js/blob/cff7300a578be1b10001f2d967aaedc88aee6402/lib/readline.js#L1345
 module.exports = function (str) {
@@ -58466,12 +58466,12 @@ function colorNameToCode (color) {
 
 "use strict";
 
-var align = __webpack_require__(225)
+var align = __webpack_require__(235)
 var validate = __webpack_require__(8)
 var objectAssign = __webpack_require__(142)
 var wideTruncate = __webpack_require__(143)
-var error = __webpack_require__(230)
-var TemplateItem = __webpack_require__(233)
+var error = __webpack_require__(240)
+var TemplateItem = __webpack_require__(243)
 
 function renderValueWithValues (values) {
   return function (item) {
@@ -58654,7 +58654,7 @@ function renderValue (item, values) {
 
 "use strict";
 
-var ansiRegex = __webpack_require__(226)();
+var ansiRegex = __webpack_require__(236)();
 
 module.exports = function (str) {
 	return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
@@ -59319,7 +59319,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = __webpack_require__(231);
+exports.isBuffer = __webpack_require__(241);
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -59363,7 +59363,7 @@ exports.log = function() {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = __webpack_require__(232);
+exports.inherits = __webpack_require__(242);
 
 exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
@@ -60524,23 +60524,33 @@ module.exports = function spread(callback) {
 /* 214 */,
 /* 215 */,
 /* 216 */,
-/* 217 */
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(4);
 __webpack_require__(17);
 __webpack_require__(19);
-__webpack_require__(218);
+__webpack_require__(228);
 __webpack_require__(11);
 __webpack_require__(9);
-__webpack_require__(219);
-__webpack_require__(221);
+__webpack_require__(229);
+__webpack_require__(231);
 __webpack_require__(0);
-module.exports = __webpack_require__(223);
+module.exports = __webpack_require__(233);
 
 
 /***/ }),
-/* 218 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -64471,7 +64481,7 @@ module.exports = __webpack_require__(223);
 
 
 /***/ }),
-/* 219 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -66131,7 +66141,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 
 /***/ }),
-/* 220 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -66388,10 +66398,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 220;
+webpackContext.id = 230;
 
 /***/ }),
-/* 221 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -66864,11 +66874,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
         })();
     }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-}(__webpack_require__(222)));
+}(__webpack_require__(232)));
 
 
 /***/ }),
-/* 222 */
+/* 232 */
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -66877,19 +66887,19 @@ module.exports = function() {
 
 
 /***/ }),
-/* 223 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var Plumbing = __webpack_require__(224)
-var hasUnicode = __webpack_require__(234)
-var hasColor = __webpack_require__(236)
-var onExit = __webpack_require__(237)
-var defaultThemes = __webpack_require__(241)
-var setInterval = __webpack_require__(246)
+var Plumbing = __webpack_require__(234)
+var hasUnicode = __webpack_require__(244)
+var hasColor = __webpack_require__(246)
+var onExit = __webpack_require__(247)
+var defaultThemes = __webpack_require__(251)
+var setInterval = __webpack_require__(256)
 var process = __webpack_require__(145)
-var setImmediate = __webpack_require__(247)
+var setImmediate = __webpack_require__(257)
 
 module.exports = Gauge
 
@@ -67117,7 +67127,7 @@ Gauge.prototype._doRedraw = function () {
 
 
 /***/ }),
-/* 224 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67172,7 +67182,7 @@ Plumbing.prototype.show = function (status) {
 
 
 /***/ }),
-/* 225 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67244,7 +67254,7 @@ function alignCenter (str, width) {
 
 
 /***/ }),
-/* 226 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67255,7 +67265,7 @@ module.exports = function () {
 
 
 /***/ }),
-/* 227 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67294,12 +67304,12 @@ module.exports = function (str, pos) {
 
 
 /***/ }),
-/* 228 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var numberIsNan = __webpack_require__(229);
+var numberIsNan = __webpack_require__(239);
 
 module.exports = function (x) {
 	if (numberIsNan(x)) {
@@ -67347,7 +67357,7 @@ module.exports = function (x) {
 
 
 /***/ }),
-/* 229 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67358,7 +67368,7 @@ module.exports = Number.isNaN || function (x) {
 
 
 /***/ }),
-/* 230 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67389,7 +67399,7 @@ exports.Internal = function Internal (msg) {
 
 
 /***/ }),
-/* 231 */
+/* 241 */
 /***/ (function(module, exports) {
 
 module.exports = function isBuffer(arg) {
@@ -67400,7 +67410,7 @@ module.exports = function isBuffer(arg) {
 }
 
 /***/ }),
-/* 232 */
+/* 242 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -67429,7 +67439,7 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 233 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67509,12 +67519,12 @@ TemplateItem.prototype.getMinLength = function () {
 
 
 /***/ }),
-/* 234 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var os = __webpack_require__(235)
+var os = __webpack_require__(245)
 
 var hasUnicode = module.exports = function () {
   // Recent Win32 platforms (>XP) CAN support unicode in the console but
@@ -67532,7 +67542,7 @@ var hasUnicode = module.exports = function () {
 
 
 /***/ }),
-/* 235 */
+/* 245 */
 /***/ (function(module, exports) {
 
 exports.endianness = function () { return 'LE' };
@@ -67587,7 +67597,7 @@ exports.homedir = function () {
 
 
 /***/ }),
-/* 236 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -67607,16 +67617,16 @@ function isColorTerm () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 237 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// Note: since nyc uses this module to output coverage, any lines
 // that are in the direct sync flow of nyc's outputCoverage are
 // ignored, since we can never get coverage for them.
-var assert = __webpack_require__(238)
-var signals = __webpack_require__(239)
+var assert = __webpack_require__(248)
+var signals = __webpack_require__(249)
 
-var EE = __webpack_require__(240)
+var EE = __webpack_require__(250)
 /* istanbul ignore if */
 if (typeof EE !== 'function') {
   EE = EE.EventEmitter
@@ -67771,7 +67781,7 @@ function processEmit (ev, arg) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 238 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68269,7 +68279,7 @@ var objectKeys = Object.keys || function (obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 239 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// This is not the set of all possible signals.
@@ -68329,7 +68339,7 @@ if (process.platform === 'linux') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 240 */
+/* 250 */
 /***/ (function(module, exports) {
 
 // Copyright Joyent, Inc. and other Node contributors.
@@ -68637,13 +68647,13 @@ function isUndefined(arg) {
 
 
 /***/ }),
-/* 241 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var consoleControl = __webpack_require__(139)
-var ThemeSet = __webpack_require__(242)
+var ThemeSet = __webpack_require__(252)
 
 var themes = module.exports = new ThemeSet()
 
@@ -68698,7 +68708,7 @@ themes.setDefault({platform: 'darwin', hasUnicode: true, hasColor: true}, 'color
 
 
 /***/ }),
-/* 242 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68711,7 +68721,7 @@ module.exports = function () {
 
 var ThemeSetProto = {}
 
-ThemeSetProto.baseTheme = __webpack_require__(243)
+ThemeSetProto.baseTheme = __webpack_require__(253)
 
 ThemeSetProto.newTheme = function (parent, theme) {
   if (!theme) {
@@ -68821,13 +68831,13 @@ ThemeSetProto.newThemeSet = function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 243 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var spin = __webpack_require__(244)
-var progressBar = __webpack_require__(245)
+var spin = __webpack_require__(254)
+var progressBar = __webpack_require__(255)
 
 module.exports = {
   activityIndicator: function (values, theme, width) {
@@ -68842,7 +68852,7 @@ module.exports = {
 
 
 /***/ }),
-/* 244 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68854,7 +68864,7 @@ module.exports = function spin (spinstr, spun) {
 
 
 /***/ }),
-/* 245 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68896,7 +68906,7 @@ function repeat (string, width) {
 
 
 /***/ }),
-/* 246 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68906,7 +68916,7 @@ module.exports = setInterval
 
 
 /***/ }),
-/* 247 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68921,4 +68931,4 @@ try {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18).setImmediate))
 
 /***/ })
-],[217]);
+],[227]);

@@ -32,13 +32,17 @@ Vue.component('author-avatar', require('./components/AuthorAvatarComponent'));
 Vue.component('author-icon', require('./components/AuthorIconComponent'));
 Vue.component('character-filter', require('./components/CharacterFilterComponent'));
 Vue.component('occupation-claims', require('./components/OccupationClaimsComponent'));
+Vue.component('faction-container', require('./components/FactionContainer'));
+Vue.component('faction-select', require('./components/FactionSelectComponent'));
 
 const store = new Vuex.Store({
     state: {
-        faction: 0
+        faction: 0,
+        origin_faction: 0
     },
     mutations: {
         updateFaction: (state, faction_id) => state.faction = faction_id,
+        updateOriginFaction: (state, faction_id) => state.origin_faction = faction_id
     }
 });
 

@@ -1,15 +1,31 @@
 <template>
-    <select class="form-control" v-model="selected_faction" required>
-        <option selected disabled>Please Choose One</option>
+    <select class="form-control" v-model="selected_faction" @change="handleChange" required>
+        <option disabled value="">Please Choose One</option>
 
-        <option v-for="faction in factions">{{ faction.name }}</option>
+        <option v-for="faction in factions" :value="faction.id">{{ faction.name }}</option>
 
     </select>
 </template>
 
 <script>
     export default {
-        props: ['factions', 'selected_faction'],
+        props: ['factions', 'faction'],
+
+        data() {
+            return {
+                selected_faction: ""
+            }
+        },
+
+        created() {
+          if (this.faction) this.selected_faction = this.faction;
+        },
+
+        methods: {
+            handleChange() {
+                this.$emit('select:faction', this.selected_faction);
+            }
+        }
 
     }
 </script>
