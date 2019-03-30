@@ -45,7 +45,7 @@ const store = new Vuex.Store({
         updateOriginFaction: (state, faction_id) => state.origin_faction = faction_id
     }
 });
-
+s
 const app = new Vue({
     el: '#app',
     store: store
