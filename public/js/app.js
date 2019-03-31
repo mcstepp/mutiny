@@ -315,7 +315,7 @@ var store = new Vuex.Store({
     }
   }
 });
-
+s;
 var app = new Vue({
   el: '#app',
   store: store
@@ -7301,29 +7301,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        faction: {
-            type: Number,
-            default: 0
-        },
-
-        jobs: {
-            type: Array,
-            default: function _default() {
-                return [];
-            }
-        }
-
-    },
-
     data: function data() {
         return {
-            selected_industry: 0
+            selected_industry: 0,
+            selected_job: 0,
+            other_job: ''
         };
     },
 
 
     computed: {
+        industry_list: function industry_list() {
+            var factionId = this.faction_id();
+            var url = '/industry?faction=' + factionId;
+
+            return axios.get(url).then(function (res) {
+                return res.data.json;
+            }).catch(function (err) {
+                return console.error(err);
+            });
+        },
+        faction_id: function faction_id() {
+            return this.$store.state.faction_id;
+        },
         filtered_jobs: function filtered_jobs() {
             var _this = this;
 
@@ -7353,7 +7353,7 @@ var render = function() {
   return _c("div", [
     _c(
       "select",
-      _vm._l(_vm.filtered_industry, function(industry) {
+      _vm._l(_vm.industry_list, function(industry) {
         return _c("option", [
           _vm._v("\n            " + _vm._s(industry.name) + "\n        ")
         ])

@@ -1,7 +1,7 @@
 <template>
     <div>
         <select>
-            <option v-for="industry in filtered_industry">
+            <option v-for="industry in industry_list">
                 {{ industry.name }}
             </option>
         </select>
@@ -17,33 +17,36 @@
 
 <script>
     export default {
-        props: {
-            faction: {
-                type: Number,
-                default: 0
-            },
-
-            jobs: {
-                type: Array,
-                default: () => []
-            }
-
-        },
-
         data() {
             return {
-                selected_industry: 0
+                selected_industry: 0,
+                selected_job: 0,
+                other_job: '',
             }
         },
 
         computed: {
-            filtered_jobs() {
-                return this.jobs.map(role => role.industry_id === this.selected_industry)
+            industry_list() {
+                const factionId = this.faction_id();
+                const url = `/industry?faction=${factionId}`;
+
+
+                return axios.get(url)
+                    .then(res => res.data.json)
+                    .catch(err => console.error(err));
             },
 
-            filtered_industry() {
-                return this.jobs.map(role => role.faction_id === this.faction);
+            faction_id() {
+                return this.$store.state.faction_id;
             }
+
+            // filtered_jobs() {
+            //     return this.jobs.map(role => role.industry_id === this.selected_industry)
+            // },
+            //
+            // filtered_industry() {
+            //     return this.jobs.map(role => role.faction_id === this.faction);
+            // }
         }
 
 

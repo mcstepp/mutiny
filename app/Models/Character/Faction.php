@@ -38,4 +38,9 @@ class Faction extends Model
 
         return $icons[$this->name];
     }
+
+    public function industries()
+    {
+        return $this->hasMany('App\Models\Character\Industry');
+    }
 }
