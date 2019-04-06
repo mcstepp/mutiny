@@ -29,6 +29,9 @@ Route::get('/site/terms', 'DocsController@terms')->name('terms');
 Route::get('/site/rules', 'DocsController@rules')->name('rules');
 Route::get('/site/privacy', 'DocsController@privacy')->name('privacy');
 
+// API Industries
+Route::get('/industry', 'Character\IndustryController@index')->name('industry-list');
+
 
 // Dashboard/home
 Route::get('/home', 'HomeController@index')->name('home');

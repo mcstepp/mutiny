@@ -19,7 +19,8 @@
             </div>
 
             <div class="col-md-10">
-                <input type="text" class="form-control" name="occupation" id="occupation" value="{{ old('occupation', $character->occupation) }}">
+                <occupation-claims></occupation-claims>
+                {{--<input type="text" class="form-control" name="occupation" id="occupation" value="{{ old('occupation', $character->occupation) }}">--}}
             </div>
         </div>
         <div class="form-group row">

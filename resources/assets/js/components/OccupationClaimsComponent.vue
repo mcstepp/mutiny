@@ -1,17 +1,17 @@
 <template>
-    <div>
+    <span>
         <select>
             <option v-for="industry in industry_list">
                 {{ industry.name }}
             </option>
         </select>
 
-        <select>
-            <option v-for="job in filtered_jobs">
-                {{ job.name }}
-            </option>
-        </select>
-    </div>
+        <!--<select>-->
+            <!--<option v-for="job in filtered_jobs">-->
+                <!--{{ job.name }}-->
+            <!--</option>-->
+        <!--</select>-->
+    </span>
 
 </template>
 
@@ -22,22 +22,39 @@
                 selected_industry: 0,
                 selected_job: 0,
                 other_job: '',
+                industries: []
+            }
+        },
+
+        created() {
+          this.fetchIndustryList();
+        },
+
+        methods: {
+            fetchIndustryList() {
+                const factionId = this.faction_id;
+                const url = `/industry?faction=${factionId}`;
+
+
+                return axios.get(url)
+                    .then(res => this.industries = res.data)
+                    .catch(err => console.error(err));
+            }
+        },
+
+        watch: {
+            faction_id() {
+                this.fetchIndustryList();
             }
         },
 
         computed: {
             industry_list() {
-                const factionId = this.faction_id();
-                const url = `/industry?faction=${factionId}`;
-
-
-                return axios.get(url)
-                    .then(res => res.data.json)
-                    .catch(err => console.error(err));
+                return this.industries;
             },
 
             faction_id() {
-                return this.$store.state.faction_id;
+                return this.$store.getters.faction
             }
 
             // filtered_jobs() {

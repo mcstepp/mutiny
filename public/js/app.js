@@ -313,9 +313,17 @@ var store = new Vuex.Store({
     updateOriginFaction: function updateOriginFaction(state, faction_id) {
       return state.origin_faction = faction_id;
     }
+  },
+  getters: {
+    faction: function faction(state) {
+      return state.faction;
+    },
+    origin_faction: function origin_faction(state) {
+      return state.origin_faction;
+    }
   }
 });
-s;
+
 var app = new Vue({
   el: '#app',
   store: store
@@ -7305,39 +7313,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             selected_industry: 0,
             selected_job: 0,
-            other_job: ''
+            other_job: '',
+            industries: []
         };
+    },
+    created: function created() {
+        this.fetchIndustryList();
     },
 
 
-    computed: {
-        industry_list: function industry_list() {
-            var factionId = this.faction_id();
+    methods: {
+        fetchIndustryList: function fetchIndustryList() {
+            var _this = this;
+
+            var factionId = this.faction_id;
             var url = '/industry?faction=' + factionId;
 
             return axios.get(url).then(function (res) {
-                return res.data.json;
+                return _this.industries = res.data;
             }).catch(function (err) {
                 return console.error(err);
             });
+        }
+    },
+
+    watch: {
+        faction_id: function faction_id() {
+            this.fetchIndustryList();
+        }
+    },
+
+    computed: {
+        industry_list: function industry_list() {
+            return this.industries;
         },
         faction_id: function faction_id() {
-            return this.$store.state.faction_id;
-        },
-        filtered_jobs: function filtered_jobs() {
-            var _this = this;
-
-            return this.jobs.map(function (role) {
-                return role.industry_id === _this.selected_industry;
-            });
-        },
-        filtered_industry: function filtered_industry() {
-            var _this2 = this;
-
-            return this.jobs.map(function (role) {
-                return role.faction_id === _this2.faction;
-            });
+            return this.$store.getters.faction;
         }
+
+        // filtered_jobs() {
+        //     return this.jobs.map(role => role.industry_id === this.selected_industry)
+        // },
+        //
+        // filtered_industry() {
+        //     return this.jobs.map(role => role.faction_id === this.faction);
+        // }
+
     }
 
 });
@@ -7350,21 +7371,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("span", [
     _c(
       "select",
       _vm._l(_vm.industry_list, function(industry) {
         return _c("option", [
           _vm._v("\n            " + _vm._s(industry.name) + "\n        ")
-        ])
-      })
-    ),
-    _vm._v(" "),
-    _c(
-      "select",
-      _vm._l(_vm.filtered_jobs, function(job) {
-        return _c("option", [
-          _vm._v("\n            " + _vm._s(job.name) + "\n        ")
         ])
       })
     )
@@ -7611,6 +7623,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         if (this.faction) this.selected_faction = this.faction;
+
+        this.$emit('select:faction', this.selected_faction);
     },
 
 

@@ -28,7 +28,7 @@ class IndustryTableSeeder extends Seeder
             ], [
                 'faction_id' => 1,
                 'name' => 'Agriculture',
-                'description' => 'Agricultural and related jobs, including farmers.'
+                'description' => 'Jobs related to agriculture, including farmers.'
             ],[
                 'faction_id' => 1,
                 'name' => 'Manufacturing',
@@ -185,5 +185,13 @@ class IndustryTableSeeder extends Seeder
                 'description' => 'Other jobs not listed, including unemployed.'
             ]
         ];
+
+        foreach ($industries as $industry) {
+            factory('App\Models\Character\Industry')->create([
+                'faction_id' => $industry['faction_id'],
+                'name' => $industry['name'],
+                'description' => $industry['description']
+            ]);
+        }
     }
 }

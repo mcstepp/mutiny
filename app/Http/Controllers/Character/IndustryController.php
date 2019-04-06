@@ -22,9 +22,15 @@ class IndustryController extends Controller
     public function index(Request $request)
     {
         $faction = $request->query('faction');
-        $industries = $faction ? Industry::faction($faction) : Industry::all();
+        $industries = $faction ? Industry::whereFaction($faction)->get() : Industry::all();
 
-        return $industries;
+        if ($request->wantsJson()) {
+            return response()->json($industries, 200);
+        }
+
+        else {
+            dd($industries);
+        }
 
     }
 

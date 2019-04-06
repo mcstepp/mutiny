@@ -43,9 +43,13 @@ const store = new Vuex.Store({
     mutations: {
         updateFaction: (state, faction_id) => state.faction = faction_id,
         updateOriginFaction: (state, faction_id) => state.origin_faction = faction_id
+    },
+    getters: {
+      faction: state => state.faction,
+      origin_faction: state => state.origin_faction
     }
 });
-s
+
 const app = new Vue({
     el: '#app',
     store: store

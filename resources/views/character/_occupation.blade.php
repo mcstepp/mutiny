@@ -1,3 +1,3 @@
-<occupation-claims :jobs="">
+<occupation-claims>
 
 </occupation-claims>

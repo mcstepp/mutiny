@@ -19,6 +19,8 @@
 
         created() {
           if (this.faction) this.selected_faction = this.faction;
+
+          this.$emit('select:faction', this.selected_faction);
         },
 
         methods: {
