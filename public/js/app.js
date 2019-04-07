@@ -7307,18 +7307,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['current_industry', 'current_job'],
+
     data: function data() {
         return {
-            selected_industry: 0,
-            selected_job: 0,
+            selected_industry: '',
+            selected_job: '',
             other_job: '',
-            industries: []
+            industries: [],
+            jobs: []
         };
     },
     created: function created() {
-        this.fetchIndustryList();
+        this.fetchIndustryList().then(this.setOccupation);
     },
 
 
@@ -7334,12 +7354,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).catch(function (err) {
                 return console.error(err);
             });
+        },
+        fetchJobsList: function fetchJobsList() {
+            var _this2 = this;
+
+            var industryId = this.selected_industry;
+            var url = '/industry/jobs?industry=' + industryId;
+
+            console.log("fetching jobs");
+            return axios.get(url).then(function (res) {
+                return _this2.jobs = res.data;
+            }).catch(function (err) {
+                return console.error(err);
+            });
+        },
+        setOccupation: function setOccupation() {
+            if (this.current_industry) this.selected_industry = this.current_industry;
+            if (this.current_job) this.selected_job = this.current_job;
         }
     },
 
     watch: {
         faction_id: function faction_id() {
             this.fetchIndustryList();
+        },
+        selected_industry: function selected_industry() {
+            this.fetchJobsList();
         }
     },
 
@@ -7349,16 +7389,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         faction_id: function faction_id() {
             return this.$store.getters.faction;
+        },
+        jobs_list: function jobs_list() {
+            return this.jobs;
+        },
+        industry_description: function industry_description() {
+            var industry_id = this.selected_industry;
+            var industry = this.industry_list.length && industry_id ? this.industry_list.find(function (industry) {
+                return industry.id == industry_id;
+            }) : { id: '', description: '' };
+
+            return industry ? industry.description : '';
+        },
+        job_description: function job_description() {
+            var job_id = this.selected_job;
+            var job = this.jobs_list.length && job_id ? this.jobs_list.find(function (job) {
+                return job.id == job_id;
+            }) : { id: '', description: '' };
+
+            return job ? job.description : '';
+        },
+        showOther: function showOther() {
+            var job_id = this.selected_job;
+            var job = this.jobs_list.length && job_id ? this.jobs_list.find(function (job) {
+                return job.id == job_id;
+            }) : { id: '', name: '' };
+            console.log("showOther", job);
+
+            return job ? job.name == 'Other' : '';
         }
-
-        // filtered_jobs() {
-        //     return this.jobs.map(role => role.industry_id === this.selected_industry)
-        // },
-        //
-        // filtered_industry() {
-        //     return this.jobs.map(role => role.faction_id === this.faction);
-        // }
-
     }
 
 });
@@ -7371,15 +7430,136 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("span", [
-    _c(
-      "select",
-      _vm._l(_vm.industry_list, function(industry) {
-        return _c("option", [
-          _vm._v("\n            " + _vm._s(industry.name) + "\n        ")
-        ])
-      })
-    )
+  return _c("div", { staticClass: "container-fluid px-0" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selected_industry,
+                expression: "selected_industry"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selected_industry = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "" } }, [
+              _vm._v("Please Select Industry")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.industry_list, function(myindustry) {
+              return _c("option", { domProps: { value: myindustry.id } }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(myindustry.name) +
+                    "\n            "
+                )
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.industry_description))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selected_job,
+                expression: "selected_job"
+              }
+            ],
+            staticClass: "form-control",
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selected_job = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "", disabled: "" } }, [
+              _vm._v("Please Select Job")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.jobs_list, function(myjob) {
+              return _c("option", { domProps: { value: myjob.id } }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(myjob.name) +
+                    "\n                "
+                )
+              ])
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.job_description))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col" }, [
+        _vm.showOther
+          ? _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.other_job,
+                  expression: "other_job"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Enter job" },
+              domProps: { value: _vm.other_job },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.other_job = $event.target.value
+                }
+              }
+            })
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.showOther ? _c("p", [_vm._v("Specific Job Title")]) : _vm._e()
+      ])
+    ])
   ])
 }
 var staticRenderFns = []

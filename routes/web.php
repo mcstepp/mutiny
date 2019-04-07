@@ -32,6 +32,8 @@ Route::get('/site/privacy', 'DocsController@privacy')->name('privacy');
 // API Industries
 Route::get('/industry', 'Character\IndustryController@index')->name('industry-list');
 
+Route::get('/industry/jobs', 'Character\IndustryJobController@index')->name('jobs-list');
+
 
 // Dashboard/home
 Route::get('/home', 'HomeController@index')->name('home');

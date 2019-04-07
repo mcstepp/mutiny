@@ -1,33 +1,54 @@
 <template>
-    <span>
-        <select>
-            <option v-for="industry in industry_list">
-                {{ industry.name }}
-            </option>
-        </select>
+    <div class="container-fluid px-0">
+        <div class="row">
+            <div class="col">
+            <select v-model="selected_industry" class="form-control">
+                <option value="" disabled>Please Select Industry</option>
+                <option v-for="myindustry in industry_list" :value="myindustry.id">
+                    {{ myindustry.name }}
+                </option>
+            </select>
 
-        <!--<select>-->
-            <!--<option v-for="job in filtered_jobs">-->
-                <!--{{ job.name }}-->
-            <!--</option>-->
-        <!--</select>-->
-    </span>
+            <p>{{ industry_description }}</p>
+        </div>
+
+            <div class="col">
+                <select v-model="selected_job" class="form-control">
+                    <option value="" disabled>Please Select Job</option>
+                    <option v-for="myjob in jobs_list" :value="myjob.id">
+                        {{ myjob.name }}
+                    </option>
+                </select>
+
+                <p>{{ job_description }}</p>
+            </div>
+            <div class="col">
+                <input v-if="showOther" type="text" class="form-control" v-model="other_job" placeholder="Enter job">
+                <p v-if="showOther">Specific Job Title</p>
+            </div>
+        </div>
+
+    </div>
 
 </template>
 
 <script>
     export default {
+        props: ['current_industry', 'current_job'],
+
         data() {
             return {
-                selected_industry: 0,
-                selected_job: 0,
+                selected_industry: '',
+                selected_job: '',
                 other_job: '',
-                industries: []
+                industries: [],
+                jobs: []
             }
         },
 
         created() {
-          this.fetchIndustryList();
+            this.fetchIndustryList()
+                .then(this.setOccupation);
         },
 
         methods: {
@@ -35,16 +56,34 @@
                 const factionId = this.faction_id;
                 const url = `/industry?faction=${factionId}`;
 
-
                 return axios.get(url)
                     .then(res => this.industries = res.data)
                     .catch(err => console.error(err));
+            },
+
+            fetchJobsList() {
+                const industryId = this.selected_industry;
+                const url = `/industry/jobs?industry=${industryId}`;
+
+                console.log("fetching jobs");
+                return axios.get(url)
+                    .then(res => this.jobs = res.data)
+                    .catch(err => console.error(err));
+            },
+
+            setOccupation() {
+                if (this.current_industry) this.selected_industry = this.current_industry;
+                if (this.current_job) this.selected_job = this.current_job;
             }
         },
 
         watch: {
             faction_id() {
                 this.fetchIndustryList();
+            },
+
+            selected_industry() {
+                this.fetchJobsList();
             }
         },
 
@@ -55,15 +94,42 @@
 
             faction_id() {
                 return this.$store.getters.faction
-            }
+            },
 
-            // filtered_jobs() {
-            //     return this.jobs.map(role => role.industry_id === this.selected_industry)
-            // },
-            //
-            // filtered_industry() {
-            //     return this.jobs.map(role => role.faction_id === this.faction);
-            // }
+            jobs_list() {
+                return this.jobs;
+            },
+
+            industry_description() {
+                const industry_id = this.selected_industry;
+                const industry = this.industry_list.length && industry_id
+                    ? this.industry_list
+                        .find(industry => industry.id == industry_id)
+                    : {id: '', description: ''};
+
+                return industry ? industry.description : '';
+            },
+
+            job_description() {
+                const job_id = this.selected_job;
+                const job = this.jobs_list.length && job_id
+                    ? this.jobs_list
+                        .find(job => job.id == job_id)
+                    : {id: '', description: ''};
+
+                return job ? job.description : '';
+            },
+
+            showOther() {
+                const job_id = this.selected_job;
+                let job = this.jobs_list.length && job_id
+                    ? this.jobs_list
+                        .find(job => job.id == job_id)
+                    : {id: '', name: ''};
+                console.log("showOther", job);
+
+                return job ? job.name == 'Other': '';
+            }
         }
 
 
