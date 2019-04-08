@@ -1,8 +1,8 @@
 <template>
     <div class="container-fluid px-0">
         <div class="row">
-            <div class="col">
-            <select v-model="selected_industry" class="form-control">
+            <div class="col-md-4">
+            <select v-model="selected_industry" class="form-control form-control-lg" name="industry" id="industry">
                 <option value="" disabled>Please Select Industry</option>
                 <option v-for="myindustry in industry_list" :value="myindustry.id">
                     {{ myindustry.name }}
@@ -12,8 +12,8 @@
             <p>{{ industry_description }}</p>
         </div>
 
-            <div class="col">
-                <select v-model="selected_job" class="form-control">
+            <div class="col-md-4">
+                <select v-model="selected_job" class="form-control form-control-lg" name="industry_job" id="industry_job">
                     <option value="" disabled>Please Select Job</option>
                     <option v-for="myjob in jobs_list" :value="myjob.id">
                         {{ myjob.name }}
@@ -22,8 +22,8 @@
 
                 <p>{{ job_description }}</p>
             </div>
-            <div class="col">
-                <input v-if="showOther" type="text" class="form-control" v-model="other_job" placeholder="Enter job">
+            <div class="col-md-4">
+                <input v-if="showOther" type="text" class="form-control form-control-lg" v-model="other_job" placeholder="Enter job" required name="other_job" id="other_job">
                 <p v-if="showOther">Specific Job Title</p>
             </div>
         </div>
@@ -34,7 +34,7 @@
 
 <script>
     export default {
-        props: ['current_industry', 'current_job'],
+        props: ['current_industry', 'current_job', 'current_other'],
 
         data() {
             return {
@@ -74,6 +74,7 @@
             setOccupation() {
                 if (this.current_industry) this.selected_industry = this.current_industry;
                 if (this.current_job) this.selected_job = this.current_job;
+                if (this.current_other) this.other_job = this.current_other;
             }
         },
 
@@ -84,6 +85,10 @@
 
             selected_industry() {
                 this.fetchJobsList();
+            },
+
+            jobs() {
+                this.selected_job = '';
             }
         },
 

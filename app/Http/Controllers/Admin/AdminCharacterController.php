@@ -50,11 +50,14 @@ class AdminCharacterController extends AdminController
 
         return view('admin.character.edit', [
                 'factions' => $factions,
+                'character' => $character,
                 'ages' => $this->getAges(),
                 'years' => $this->getBirthYears(),
                 'months' => $this->getMonths(),
                 'clazzes' => $this->getInitiationYears(),
-                'character' => $character
+                'current' => $this->getCurrent(),
+                'period' => $this->getPeriod(),
+                'asOf' => $this->getAsOf(),
         ]);
     }
 

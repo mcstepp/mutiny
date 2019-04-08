@@ -1,5 +1,5 @@
 <template>
-    <select class="form-control" v-model="selected_faction" @change="handleChange" required>
+    <select class="form-control form-control-lg" v-model="selected_faction" @change="handleChange" required>
         <option disabled value="">Please Choose One</option>
 
         <option v-for="faction in factions" :value="faction.id">{{ faction.name }}</option>

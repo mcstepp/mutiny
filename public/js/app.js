@@ -4636,54 +4636,81 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'CharacterTime',
 
-    props: ['month', 'year', 'years', 'ages', 'months', 'character', 'old'],
+    props: ['current', 'period', 'asof', 'character', 'old', 'years', 'ages', 'months', 'clazzes'],
 
     data: function data() {
         return {
-            current_age: 18,
-            birthMonth: 'May',
             ic_birth_month: 5,
+            birthMonth: 'May',
             birthDay: 31,
             birthYear: 132,
-            clazz: 150,
             hasAgeError: false,
             hasClazzError: false
         };
     },
     created: function created() {
+        console.log("time", this.period, this.current, this.asof);
+
         if (this.character || this.old) {
-            this.ic_birth_month = this.old.ic_birth_month || this.character.ic_birth_month || this.ic_birth_month;
 
-            this.birthDay = this.old.ic_birth_day || this.character.ic_birth_day || this.birthDay;
+            this.ic_birth_month = this.old.ic_birth_month || this.character.ic_birth_month;
 
-            this.birthYear = this.old.ic_birth_year || this.character.ic_birth_year || this.birthYear;
+            this.birthDay = this.old.ic_birth_day || this.character.ic_birth_day;
 
-            this.clazz = this.old.initiation_year || this.character.initiation_year || this.clazz;
+            this.birthYear = this.old.ic_birth_year || this.character.ic_birth_year;
 
-            this.calcYears(this.birthYear);
+            this.initiationYear = this.old.initiation_year || this.character.initiation_year;
         }
     },
 
 
     watch: {
+        asOf_age: function asOf_age(newAge) {
+            this.hasAgeError = newAge < 18;
+        },
         current_age: function current_age(newAge) {
             this.hasAgeError = newAge < 18;
         },
-        clazz: function clazz(newClazz) {
-            this.hasClazzError = newClazz > this.year;
+        initiationYear: function initiationYear(newClazz) {
+            this.hasClazzError = newClazz > this.asof.asOfYear;
         },
         birthMonth: function birthMonth(newMonth, oldMonth) {
             if (newMonth !== oldMonth) {
-                this.ic_birth_month = this.months.indexOf(newMonth) + 1;
+                this.ic_birth_month = this.showMonthInt(newMonth);
             }
         },
         ic_birth_month: function ic_birth_month(newMonth, oldMonth) {
             if (newMonth !== oldMonth) {
-                this.birthMonth = this.months[newMonth - 1];
+                this.birthMonth = this.showMonthWord(newMonth);
             }
         }
     },
@@ -4695,46 +4722,94 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 days.push(i);
             }
             return days;
+        },
+        asOfDate: function asOfDate() {
+            var asOfMonth = this.showMonthWord(this.asof.asOfMonth);
+
+            return asOfMonth + ' ' + this.asof.asOfDay + ', Year ' + this.asof.asOfYear;
+        },
+        currentDate: function currentDate() {
+            var currentMonth = this.showMonthWord(this.current.currentMonth);
+
+            return currentMonth + ' ' + this.current.currentDay + ', Year ' + this.current.currentYear;
+        },
+        periodStart: function periodStart() {
+            var startMonth = this.showMonthWord(this.period.startMonth);
+
+            return startMonth + ' ' + this.period.startDay + ', Year ' + this.period.startYear;
+        },
+        periodEnd: function periodEnd() {
+            var endMonth = this.showMonthWord(this.period.endMonth);
+
+            return endMonth + ' ' + this.period.endDay + ', Year ' + this.period.endYear;
+        },
+        current_age: function current_age() {
+            return this._calcAge({
+                birthYear: this.birthYear,
+                birthMonth: this.ic_birth_month,
+                birthDay: this.birthDay,
+                year: this.current.currentYear,
+                month: this.current.currentMonth,
+                day: this.current.currentDay
+            });
+        },
+        asOf_age: function asOf_age() {
+            return this._calcAge({
+                birthYear: this.birthYear,
+                birthMonth: this.ic_birth_month,
+                birthDay: this.birthDay,
+                year: this.asof.asOfYear,
+                month: this.asof.asOfMonth,
+                day: this.asof.asOfDay
+            });
+        },
+        initiationYear: function initiationYear() {
+            return this._calcInitiationYear();
         }
     },
 
     methods: {
-        calcYears: function calcYears(_ref) {
-            var _ref$birthMonth = _ref.birthMonth,
-                birthMonth = _ref$birthMonth === undefined ? this.birthMonth : _ref$birthMonth,
-                _ref$birthYear = _ref.birthYear,
-                birthYear = _ref$birthYear === undefined ? this.birthYear : _ref$birthYear;
-
-            this._calcAge({
-                birthMonth: parseInt(birthMonth),
-                birthYear: parseInt(birthYear),
-                current_year: parseInt(this.year),
-                months: this.months,
-                month: this.month
-            });
-        },
-        _calcAge: function _calcAge(_ref2) {
-            var birthYear = _ref2.birthYear,
-                birthMonth = _ref2.birthMonth,
-                current_year = _ref2.current_year,
-                months = _ref2.months,
-                month = _ref2.month;
+        _calcAge: function _calcAge(_ref) {
+            var birthYear = _ref.birthYear,
+                birthMonth = _ref.birthMonth,
+                birthDay = _ref.birthDay,
+                year = _ref.year,
+                month = _ref.month,
+                day = _ref.day;
 
 
-            var age = current_year - birthYear;
-            var hasHadBirthday = months.indexOf(month) >= months.indexOf(birthMonth);
+            var age = year - birthYear;
+
+            var hasHadBirthday = this._hasHadBirthday({ birthMonth: birthMonth, birthDay: birthDay, month: month, day: day });
 
             if (!hasHadBirthday) {
                 age -= 1;
             }
-            this.current_age = age;
-
-            var clazz = parseInt(birthYear) + 18;
-            if (!hasHadBirthday) {
+            return age;
+        },
+        _calcInitiationYear: function _calcInitiationYear() {
+            var clazz = parseInt(this.birthYear) + 18;
+            if (this.months.indexOf(this.birthMonth) > this.asof.asOfMonth - 1) {
                 clazz += 1;
             }
 
-            this.clazz = clazz;
+            return clazz;
+        },
+        _hasHadBirthday: function _hasHadBirthday(_ref2) {
+            var birthMonth = _ref2.birthMonth,
+                birthDay = _ref2.birthDay,
+                month = _ref2.month,
+                day = _ref2.day;
+
+            if (birthMonth < month) return true;
+
+            return birthMonth === month && birthDay <= day;
+        },
+        showMonthWord: function showMonthWord(monthInt) {
+            return this.months[monthInt - 1];
+        },
+        showMonthInt: function showMonthInt(monthWord) {
+            return this.months.indexOf(monthWord) + 1;
         }
     }
 });
@@ -4748,47 +4823,93 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card-body" }, [
-    _c("div", { staticClass: "form-group row" }, [
+    _c("div", { staticClass: "row mb-5" }, [
+      _c("div", { staticClass: "col" }, [
+        _c(
+          "h4",
+          {
+            staticClass:
+              "m-fancy-header text-center text-uppercase neon-default"
+          },
+          [_vm._v("As of " + _vm._s(_vm.asOfDate))]
+        ),
+        _vm._v(" "),
+        _c("hr", { staticClass: "glow-default" })
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mb-5" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-10 d-flex" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.ic_birth_month,
-              expression: "ic_birth_month"
-            }
-          ],
-          attrs: { name: "ic_birth_month", type: "hidden" },
-          domProps: { value: _vm.ic_birth_month },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.ic_birth_month = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
+      _c("div", { staticClass: "col-md-9" }, [
         _c(
-          "select",
-          {
+          "h6",
+          { staticClass: "m-fancy-header text-uppercase neon-default" },
+          [_vm._v(_vm._s(_vm.periodStart) + " - " + _vm._s(_vm.periodEnd))]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mb-5" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-9" }, [
+        _c(
+          "h6",
+          { staticClass: "m-fancy-header text-uppercase neon-default" },
+          [_vm._v(_vm._s(_vm.currentDate))]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row mb-5" }, [
+      _c("div", { staticClass: "col-md-4" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "label",
+            {
+              staticClass: "control-label m-fancy-title text-uppercase",
+              attrs: { for: "birth_month" }
+            },
+            [_vm._v("Birth Month:")]
+          ),
+          _vm._v(" "),
+          _c("input", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.birthMonth,
-                expression: "birthMonth"
+                value: _vm.ic_birth_month,
+                expression: "ic_birth_month"
               }
             ],
-            staticClass: "form-control",
-            attrs: { name: "birth_month", id: "birth_month" },
+            attrs: { name: "ic_birth_month", type: "hidden" },
+            domProps: { value: _vm.ic_birth_month },
             on: {
-              change: [
-                function($event) {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.ic_birth_month = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.birthMonth,
+                  expression: "birthMonth"
+                }
+              ],
+              staticClass: "form-control form-control-lg",
+              attrs: { name: "birth_month", id: "birth_month" },
+              on: {
+                change: function($event) {
                   var $$selectedVal = Array.prototype.filter
                     .call($event.target.options, function(o) {
                       return o.selected
@@ -4800,136 +4921,103 @@ var render = function() {
                   _vm.birthMonth = $event.target.multiple
                     ? $$selectedVal
                     : $$selectedVal[0]
-                },
-                function($event) {
-                  _vm.calcYears({ birthMonth: _vm.birthMonth })
                 }
-              ]
-            }
-          },
-          [
-            _c("option", { attrs: { disabled: "", selected: "" } }, [
-              _vm._v("Please Choose One")
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.months, function(_month) {
-              return _c("option", [_vm._v(" " + _vm._s(_month))])
-            })
-          ],
-          2
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
-      _vm._m(1),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-10 d-flex" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.birthDay,
-              expression: "birthDay"
-            }
-          ],
-          attrs: { name: "ic_birth_day", type: "hidden" },
-          domProps: { value: _vm.birthDay },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
               }
-              _vm.birthDay = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.birthDay,
-                expression: "birthDay"
-              }
+            },
+            [
+              _c("option", { attrs: { disabled: "", selected: "" } }, [
+                _vm._v("Please Choose One")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.months, function(_month) {
+                return _c("option", [_vm._v(" " + _vm._s(_month))])
+              })
             ],
-            staticClass: "form-control",
-            attrs: { name: "birth_day", id: "birth_day" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.birthDay = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
-            }
-          },
-          [
-            _c("option", { attrs: { disabled: "", selected: "" } }, [
-              _vm._v("Please Choose One")
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.days, function(_day) {
-              return _c("option", [_vm._v(" " + _vm._s(_day))])
-            })
-          ],
-          2
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
-      _vm._m(2),
+            2
+          )
+        ])
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-10 d-flex" }, [
-        _c("input", {
-          directives: [
+      _c("div", { staticClass: "col-md-4" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "label",
             {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.birthYear,
-              expression: "birthYear"
-            }
-          ],
-          attrs: { name: "ic_birth_year", type: "hidden" },
-          domProps: { value: _vm.birthYear },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+              staticClass: "control-label m-fancy-title text-uppercase",
+              attrs: { for: "birth_day" }
+            },
+            [_vm._v("Birth Day:")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.birthDay,
+                  expression: "birthDay"
+                }
+              ],
+              staticClass: "form-control form-control-lg",
+              attrs: { name: "ic_birth_day", id: "birth_day" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.birthDay = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
               }
-              _vm.birthYear = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.birthYear,
-                expression: "birthYear"
-              }
+            },
+            [
+              _c("option", { attrs: { disabled: "", selected: "" } }, [
+                _vm._v("Please Choose One")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.days, function(_day) {
+                return _c("option", [_vm._v(" " + _vm._s(_day))])
+              })
             ],
-            staticClass: "form-control",
-            attrs: { name: "birth_year", id: "birth_year" },
-            on: {
-              change: [
-                function($event) {
+            2
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c(
+            "label",
+            {
+              staticClass: "control-label m-fancy-title text-uppercase",
+              attrs: { for: "birth_year" }
+            },
+            [_vm._v("Birth Year:")]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.birthYear,
+                  expression: "birthYear"
+                }
+              ],
+              staticClass: "form-control form-control-lg",
+              attrs: { name: "ic_birth_year", id: "birth_year" },
+              on: {
+                change: function($event) {
                   var $$selectedVal = Array.prototype.filter
                     .call($event.target.options, function(o) {
                       return o.selected
@@ -4941,37 +5029,33 @@ var render = function() {
                   _vm.birthYear = $event.target.multiple
                     ? $$selectedVal
                     : $$selectedVal[0]
-                },
-                function($event) {
-                  _vm.calcYears({ birthYear: _vm.birthYear })
                 }
-              ]
-            }
-          },
-          [
-            _c("option", { attrs: { disabled: "", selected: "" } }, [
-              _vm._v("Please Choose One")
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.years, function(_year) {
-              return _c("option", [_vm._v(" " + _vm._s(_year))])
-            })
-          ],
-          2
-        )
+              }
+            },
+            [
+              _c("option", { attrs: { disabled: "", selected: "" } }, [
+                _vm._v("Please Choose One")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.years, function(_year) {
+                return _c("option", [_vm._v(" " + _vm._s(_year))])
+              })
+            ],
+            2
+          )
+        ])
       ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
-      _vm._m(3),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "col-md-10 d-flex",
-          class: { "text-danger": _vm.hasAgeError }
-        },
-        [
+    _c("div", { staticClass: "form-group mb-5 h5 row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c(
+          "label",
+          { staticClass: "control-label m-fancy-title text-uppercase" },
+          [_vm._v("Current Age:")]
+        ),
+        _vm._v(" "),
+        _c("span", { class: { "text-danger": _vm.hasAgeError } }, [
           _vm._v("\n            " + _vm._s(_vm.current_age) + "\n            "),
           _c(
             "span",
@@ -4980,78 +5064,63 @@ var render = function() {
               class: { "d-inline-block": _vm.hasAgeError }
             },
             [_vm._v("Age not allowed")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.current_age,
-                expression: "current_age"
-              }
-            ],
-            attrs: { type: "hidden", id: "age", name: "age" },
-            domProps: { value: _vm.current_age },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.current_age = $event.target.value
-              }
-            }
-          })
-        ]
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
-      _vm._m(4),
+          )
+        ])
+      ]),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "col-md-10 d-flex",
-          class: { "text-danger": _vm.hasClazzError }
-        },
-        [
-          _vm._v("\n        " + _vm._s(_vm.clazz) + "\n            "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c(
+          "label",
+          { staticClass: "control-label m-fancy-title text-uppercase" },
+          [_vm._v("Age as of " + _vm._s(_vm.asOfDate) + ":")]
+        ),
+        _vm._v(" "),
+        _c("span", { class: { "text-danger": _vm.hasAgeError } }, [
+          _vm._v(
+            "\n            " + _vm._s(_vm.asOf_age) + "\n                "
+          ),
           _c(
             "span",
             {
               staticClass: "d-none ml-2",
-              class: { "d-inline-block": _vm.hasClazzError }
+              class: { "d-inline-block": _vm.hasAgeError }
             },
-            [_vm._v("Initiation year not allowed")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.clazz,
-                expression: "clazz"
-              }
-            ],
-            attrs: {
-              type: "hidden",
-              id: "initiation_year",
-              name: "initiation_year"
-            },
-            domProps: { value: _vm.clazz },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.clazz = $event.target.value
-              }
-            }
-          })
-        ]
-      )
+            [_vm._v("Age not allowed")]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group mb-5 h5" }, [
+      _c(
+        "label",
+        {
+          staticClass: "control-label m-fancy-title text-uppercase",
+          attrs: { for: "initiation_year" }
+        },
+        [_vm._v("\n                Initiation Year:")]
+      ),
+      _vm._v(" "),
+      _c("span", { class: { "text-danger": _vm.hasClazzError } }, [
+        _vm._v("\n        " + _vm._s(_vm.initiationYear) + "\n            "),
+        _c(
+          "span",
+          {
+            staticClass: "d-none ml-2",
+            class: { "d-inline-block": _vm.hasClazzError }
+          },
+          [_vm._v("Initiation year not allowed")]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          attrs: {
+            type: "hidden",
+            id: "initiation_year",
+            name: "initiation_year"
+          },
+          domProps: { value: _vm.initiationYear }
+        })
+      ])
     ])
   ])
 }
@@ -5060,45 +5129,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c(
-        "label",
-        { staticClass: "control-label", attrs: { for: "birth_month" } },
-        [_vm._v("Birth Month:")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c(
-        "label",
-        { staticClass: "control-label", attrs: { for: "birth_day" } },
-        [_vm._v("Birth Day:")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c(
-        "label",
-        { staticClass: "control-label", attrs: { for: "birth_year" } },
-        [_vm._v("Birth Year:")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c("label", { staticClass: "control-label", attrs: { for: "age" } }, [
-        _vm._v("Age:")
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("h5", { staticClass: "m-fancy-title text-uppercase" }, [
+        _vm._v("Current Period:")
       ])
     ])
   },
@@ -5106,12 +5139,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-2" }, [
-      _c(
-        "label",
-        { staticClass: "control-label", attrs: { for: "initiation_year" } },
-        [_vm._v("Initiation Year:")]
-      )
+    return _c("div", { staticClass: "col-md-3" }, [
+      _c("h5", { staticClass: "m-fancy-title text-uppercase" }, [
+        _vm._v("Current Date:")
+      ])
     ])
   }
 ]
@@ -7326,7 +7357,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['current_industry', 'current_job'],
+    props: ['current_industry', 'current_job', 'current_other'],
 
     data: function data() {
         return {
@@ -7371,6 +7402,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         setOccupation: function setOccupation() {
             if (this.current_industry) this.selected_industry = this.current_industry;
             if (this.current_job) this.selected_job = this.current_job;
+            if (this.current_other) this.other_job = this.current_other;
         }
     },
 
@@ -7380,6 +7412,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         selected_industry: function selected_industry() {
             this.fetchJobsList();
+        },
+        jobs: function jobs() {
+            this.selected_job = '';
         }
     },
 
@@ -7432,7 +7467,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container-fluid px-0" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col" }, [
+      _c("div", { staticClass: "col-md-4" }, [
         _c(
           "select",
           {
@@ -7444,7 +7479,8 @@ var render = function() {
                 expression: "selected_industry"
               }
             ],
-            staticClass: "form-control",
+            staticClass: "form-control form-control-lg",
+            attrs: { name: "industry", id: "industry" },
             on: {
               change: function($event) {
                 var $$selectedVal = Array.prototype.filter
@@ -7482,7 +7518,7 @@ var render = function() {
         _c("p", [_vm._v(_vm._s(_vm.industry_description))])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
+      _c("div", { staticClass: "col-md-4" }, [
         _c(
           "select",
           {
@@ -7494,7 +7530,8 @@ var render = function() {
                 expression: "selected_job"
               }
             ],
-            staticClass: "form-control",
+            staticClass: "form-control form-control-lg",
+            attrs: { name: "industry_job", id: "industry_job" },
             on: {
               change: function($event) {
                 var $$selectedVal = Array.prototype.filter
@@ -7532,7 +7569,7 @@ var render = function() {
         _c("p", [_vm._v(_vm._s(_vm.job_description))])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col" }, [
+      _c("div", { staticClass: "col-md-4" }, [
         _vm.showOther
           ? _c("input", {
               directives: [
@@ -7543,8 +7580,14 @@ var render = function() {
                   expression: "other_job"
                 }
               ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "Enter job" },
+              staticClass: "form-control form-control-lg",
+              attrs: {
+                type: "text",
+                placeholder: "Enter job",
+                required: "",
+                name: "other_job",
+                id: "other_job"
+              },
               domProps: { value: _vm.other_job },
               on: {
                 input: function($event) {
@@ -7639,10 +7682,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['factions', 'current_faction', 'origin_faction'],
@@ -7666,58 +7705,51 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("span", [
-    _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "control-label col-md-2",
-          attrs: { for: "origin_faction" }
-        },
-        [_vm._v("Faction of Origin:")]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col-md-10" },
-        [
-          _c("faction-select", {
-            attrs: {
-              name: "origin_faction",
-              id: "origin_faction",
-              factions: _vm.factions,
-              faction: _vm.origin_faction
-            },
-            on: { "select:faction": _vm.handleOriginFaction }
-          })
-        ],
-        1
-      )
-    ]),
+    _c(
+      "div",
+      { staticClass: "form-group mb-5" },
+      [
+        _c(
+          "label",
+          { staticClass: "control-label", attrs: { for: "origin_faction" } },
+          [_vm._v("Faction of Origin:")]
+        ),
+        _vm._v(" "),
+        _c("faction-select", {
+          attrs: {
+            name: "origin_faction",
+            id: "origin_faction",
+            factions: _vm.factions,
+            faction: _vm.origin_faction
+          },
+          on: { "select:faction": _vm.handleOriginFaction }
+        })
+      ],
+      1
+    ),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        { staticClass: "control-label col-md-2", attrs: { for: "faction" } },
-        [_vm._v("Current Faction:")]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col-md-10" },
-        [
-          _c("faction-select", {
-            attrs: {
-              name: "faction",
-              id: "faction",
-              factions: _vm.factions,
-              faction: _vm.current_faction
-            },
-            on: { "select:faction": _vm.handleCurrentFaction }
-          })
-        ],
-        1
-      )
-    ])
+    _c(
+      "div",
+      { staticClass: "form-group mb-5" },
+      [
+        _c(
+          "label",
+          { staticClass: "control-label", attrs: { for: "faction" } },
+          [_vm._v("Current Faction:")]
+        ),
+        _vm._v(" "),
+        _c("faction-select", {
+          attrs: {
+            name: "faction",
+            id: "faction",
+            factions: _vm.factions,
+            faction: _vm.current_faction
+          },
+          on: { "select:faction": _vm.handleCurrentFaction }
+        })
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -7835,7 +7867,7 @@ var render = function() {
           expression: "selected_faction"
         }
       ],
-      staticClass: "form-control",
+      staticClass: "form-control form-control-lg",
       attrs: { required: "" },
       on: {
         change: [

@@ -19,27 +19,21 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         <div class="container-fluid my-3">
-            <div class="row">
+            <div class="row pt-4">
+                @include('character._basics')
+            </div>
+
+            <div class="row pt-4">
+                @include('character._time')
+            </div>
+
+            <div class="row pt-4">
+                @include('character._details')
+            </div>
+
+            <div class="row pt-4">
                 <div class="col">
                     <input type="hidden" name="owner" value="{{ $character->user->id }}">
-                    @include('character._basics')
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    @include('character._time')
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    @include('character._details')
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
                     <button type="submit"> Edit Character </button>
                 </div>
             </div>
