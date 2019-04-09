@@ -32,7 +32,6 @@ class CreateNewCharacter extends FormRequest
             'last_name' => 'required|max:32',
             'faction' => 'required|exists:factions,id',
             'origin_faction' => 'required|exists:factions,id',
-            'occupation' => 'required|max:64',
             'ic_birth_month' => 'required|between:1,12',
             'ic_birth_day' => 'required|between:1,31',
             'ic_birth_year' => 'required|max:132',

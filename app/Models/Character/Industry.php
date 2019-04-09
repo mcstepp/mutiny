@@ -21,6 +21,10 @@ class Industry extends Model
         return $this->hasMany('App\Models\Character\IndustryJob');
     }
 
+    public function characters(){
+
+    }
+
     public function scopeWhereFaction($query, $faction)
     {
         return $query->where('faction_id', $faction);

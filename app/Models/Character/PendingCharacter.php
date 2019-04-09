@@ -15,7 +15,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class PendingCharacter extends Model
 {
-    //use Cachable;
+    use Cachable;
     use HasSlug;
     use HasStatuses;
     /**
@@ -31,8 +31,8 @@ class PendingCharacter extends Model
      * @var array
      */
     protected $guarded = [];
-    protected $with = ['faction'];
-    protected $appends = ['username','path'];
+    protected $with = ['faction','job'];
+    protected $appends = ['username','path','occupation'];
 
     protected static function boot()
     {
@@ -105,6 +105,16 @@ class PendingCharacter extends Model
     public function getPathAttribute()
     {
         return $this->path();
+    }
+
+    public function job()
+    {
+        return $this->belongsTo('App\Models\Character\IndustryJob');
+    }
+
+    public function getOccupationAttribute()
+    {
+        return $this->job_other ?: $this->job['name'];
     }
 
     /**

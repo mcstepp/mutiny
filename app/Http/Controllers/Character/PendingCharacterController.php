@@ -48,7 +48,7 @@ class PendingCharacterController extends Controller
             'years' => $this->getBirthYears(),
             'months' => $this->getMonths(),
             'clazzes' => $this->getInitiationYears(),
-            'character' => new \App\Models\Character\Character
+            'character' => new \App\Models\Character\PendingCharacter
         ]);
     }
 
@@ -73,7 +73,8 @@ class PendingCharacterController extends Controller
             'last_name' => $validated['last_name'],
             'faction_id' => $validated['faction'],
             'origin_faction_id' => $validated['origin_faction'],
-            'occupation' => $validated['occupation'],
+            'job_id' => $validated['job_id'],
+            'job_other' => $validated['job_other'],
             'ic_birth_month' => $validated['ic_birth_month'],
             'ic_birth_day' => $validated['ic_birth_day'],
             'ic_birth_year' => $validated['ic_birth_year'],

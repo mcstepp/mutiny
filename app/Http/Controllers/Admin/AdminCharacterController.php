@@ -66,11 +66,23 @@ class AdminCharacterController extends AdminController
         $request->flash();
 
         $character->update([
-            'faceclaim' => trim($request->faceclaim),
+            'user_id' => $request->owner,
+            'first_name' => trim($request->first_name),
+            'chosen_name' => trim($request->chosen_name),
+            'last_name' => trim($request->last_name),
+            'faction_id' => $request->faction,
+            'origin_faction_id' => $request->origin_faction,
+            'job_id' => $request->job_id,
+            'job_other' => trim($request->job_other) ?: null,
+            'ic_birth_month' => $request->ic_birth_month,
+            'ic_birth_day' => $request->ic_birth_day,
+            'ic_birth_year' => $request->ic_birth_year,
+            'initiation_year' => $request->initiation_year,
+            'age' => $request->age,
             'history' => trim($request->history),
-            'appearance' => trim($request->appearance),
             'personality' => trim($request->personality),
-            'occupation' => trim($request->occupation)
+            'appearance' => trim($request->appearance),
+            'faceclaim' => trim($request->faceclaim)
         ]);
 
         return redirect()->route('admin-character-list');

@@ -32,7 +32,6 @@ class UpdateCharacter extends FormRequest
                 'string',
                 Rule::unique('characters', 'user_id')->ignore($this->user()->id)
             ],
-            'occupation' => 'required',
             'history' => 'required|min:100',
             'personality' => 'required|min:100',
             'appearance' => 'required|min:100'

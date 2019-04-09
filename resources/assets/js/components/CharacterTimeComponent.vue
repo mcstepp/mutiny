@@ -75,6 +75,7 @@
         <div class="form-group mb-5 h5 row">
             <div class="col-md-6">
                 <label class="control-label m-fancy-title text-uppercase">Current Age:</label>
+                <input type="hidden" :value="current_age" name="age">
 
                 <span :class="{'text-danger': hasAgeError}">
                 {{ current_age }}
@@ -183,25 +184,25 @@
             },
 
             asOfDate() {
-                const asOfMonth = this.showMonthWord(this.asof.asOfMonth);
+                const asOfMonth = this._showMonthWord(this.asof.asOfMonth);
 
                 return `${asOfMonth} ${this.asof.asOfDay}, Year ${this.asof.asOfYear}`;
             },
 
             currentDate() {
-                const currentMonth = this.showMonthWord(this.current.currentMonth);
+                const currentMonth = this._showMonthWord(this.current.currentMonth);
 
                 return `${currentMonth} ${this.current.currentDay}, Year ${this.current.currentYear}`;
             },
 
             periodStart() {
-                const startMonth = this.showMonthWord(this.period.startMonth);
+                const startMonth = this._showMonthWord(this.period.startMonth);
 
                 return `${startMonth} ${this.period.startDay}, Year ${this.period.startYear}`;
             },
 
             periodEnd() {
-                const endMonth = this.showMonthWord(this.period.endMonth);
+                const endMonth = this._showMonthWord(this.period.endMonth);
 
                 return `${endMonth} ${this.period.endDay}, Year ${this.period.endYear}`;
             },

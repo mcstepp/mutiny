@@ -72,13 +72,14 @@ class CharacterController extends Controller
         $user = User::find($validated['user_id']);
 
         $character = Character::make([
-            'user_id' => $validated['user_id'],
+            'user_id' => $validated['owner'],
             'first_name' => $validated['first_name'],
             'chosen_name' => $validated['chosen_name'],
             'last_name' => $validated['last_name'],
             'faction_id' => $validated['faction'],
             'origin_faction_id' => $validated['origin_faction'],
-            'occupation' => $validated['occupation'],
+            'job_id' => $validated['job_id'],
+            'job_other' => $validated['job_other'],
             'ic_birth_month' => $validated['ic_birth_month'],
             'ic_birth_day' => $validated['ic_birth_day'],
             'ic_birth_year' => $validated['ic_birth_year'],
@@ -158,8 +159,7 @@ class CharacterController extends Controller
             'faceclaim' => trim($request->faceclaim),
             'history' => trim($request->history),
             'appearance' => trim($request->appearance),
-            'personality' => trim($request->personality),
-            'occupation' => trim($request->occupation)
+            'personality' => trim($request->personality)
         ]);
 
         return redirect()->back();

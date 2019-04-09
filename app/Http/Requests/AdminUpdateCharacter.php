@@ -28,7 +28,7 @@ class AdminUpdateCharacter extends FormRequest
         return [
             'owner' => 'required|numeric|exists:users,id',
             'faceclaim' => 'string',
-            'occupation' => 'required',
+            'job_id' => 'required|numeric|exists:industry_jobs,id',
             'history' => 'required|min:100',
             'personality' => 'required|min:100',
             'appearance' => 'required|min:100'

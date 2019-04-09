@@ -13,7 +13,7 @@
         </div>
 
             <div class="col-md-4">
-                <select v-model="selected_job" class="form-control form-control-lg" name="industry_job" id="industry_job">
+                <select v-model="selected_job" class="form-control form-control-lg" name="job_id" id="industry_job">
                     <option value="" disabled>Please Select Job</option>
                     <option v-for="myjob in jobs_list" :value="myjob.id">
                         {{ myjob.name }}
@@ -23,7 +23,7 @@
                 <p>{{ job_description }}</p>
             </div>
             <div class="col-md-4">
-                <input v-if="showOther" type="text" class="form-control form-control-lg" v-model="other_job" placeholder="Enter job" required name="other_job" id="other_job">
+                <input v-if="showOther" type="text" class="form-control form-control-lg" v-model="other_job" placeholder="Enter job" required name="job_other" id="other_job">
                 <p v-if="showOther">Specific Job Title</p>
             </div>
         </div>
