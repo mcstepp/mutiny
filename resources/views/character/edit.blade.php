@@ -17,9 +17,9 @@
     <div class="container-fluid my-3">
         <div class="row">
             <div class="col">
-                <h1 class="h2 page-title m-fancy-header neon-default">Character Preferences and Profile</h1>
+                <h1 class="m-fancy-header neon-default">Character Preferences and Profile</h1>
 
-                <div class="page-desc p-md-5 m-md-2">
+                <div class="p-md-5 m-md-2">
                     <p>
                         {{--This is a forum description. In an IC forum, this text would be describing the IC setting of the forum.--}}
                         {{--It can be broad, like "Common areas" or narrow like "Headquarters".--}}
@@ -27,7 +27,7 @@
                     </p>
 
                     @if ($errors->any())
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger">gra
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -39,30 +39,37 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col">
-                <form method="post"
-                      action="{{ route('update-character', $character) }}"
-                      class="form-horizontal">
+        <form method="post"
+              action="{{ route('update-character', $character) }}">
 
-                    {{ csrf_field() }}
-                    <input type="hidden" name="_method" value="PUT">
+            <div class="row pt-4">
 
-                    @include('character._details')
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary text-uppercase m-fancy-title">Update Character</button>
-                    </div>
-                </form>
-                <hr class="glow-default">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="PUT">
+
+                @include('character._details')
 
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col">
+            <div class="form-group row pb-5">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary text-uppercase m-fancy-title">Update Character</button>
+                </div>
+            </div>
+
+        </form>
+
+        <form method="POST" action="{{ route('update-'.$type.'-graphics', $character) }}" class="form-horizontal">
+            <div class="row pt-5">
                 @include('graphics.show', ['owner' => $character, 'type' => $type])
             </div>
 
-        </div>
+            <div class="form-group row">
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary text-uppercase m-fancy-title">Update Graphics</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
 @endsection

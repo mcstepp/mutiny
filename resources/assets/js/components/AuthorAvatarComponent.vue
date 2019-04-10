@@ -17,7 +17,7 @@
             },
 
             hideDiv() {
-                return !(this.hasGraphics() && this.useDefault);
+                return !(this.hasGraphics && this.useDefault);
             }
         }
     }

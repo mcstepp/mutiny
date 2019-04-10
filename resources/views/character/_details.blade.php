@@ -24,12 +24,6 @@
         <div class="card-body">
 
             <div class="form-group">
-                    <label for="occupation" class="control-label m-fancy-title text-uppercase">Occupation:</label>
-
-                    <occupation-claims></occupation-claims>
-                    {{--<input type="text" class="form-control" name="occupation" id="occupation" value="{{ old('occupation', $character->occupation) }}">--}}
-            </div>
-            <div class="form-group">
                     <label for="history" class="control-label m-fancy-title text-uppercase">Back Story:</label>
 
                     <textarea class="form-control form-control-lg" rows="5" name="history" id="history">{{ old('history',$character->history) }}</textarea>

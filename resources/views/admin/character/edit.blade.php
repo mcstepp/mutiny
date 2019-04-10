@@ -32,6 +32,10 @@
             </div>
 
             <div class="row pt-4">
+                @include('character._claims')
+            </div>
+
+            <div class="row pt-4">
                 <div class="col">
                     <input type="hidden" name="owner" value="{{ $character->user_id }}">
                     <button type="submit"> Edit Character </button>
