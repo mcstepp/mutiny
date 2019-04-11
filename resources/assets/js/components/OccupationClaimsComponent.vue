@@ -34,7 +34,7 @@
 
 <script>
     export default {
-        props: ['current_industry', 'current_job', 'current_other'],
+        props: ['current','old'],
 
         data() {
             return {
@@ -72,9 +72,16 @@
             },
 
             setOccupation() {
-                if (this.current_industry) this.selected_industry = this.current_industry;
-                if (this.current_job) this.selected_job = this.current_job;
-                if (this.current_other) this.other_job = this.current_other;
+                if (this.old || this.current) {
+                    this.selected_industry = this.old.industry || this.current.job.industry_id;
+                }
+            },
+
+            setJob() {
+                if (this.old || this.current) {
+                    this.selected_job = this.old.job || this.current.job.id;
+                    this.other_job = this.old.other_job || this.current.other;
+                }
             }
         },
 
@@ -84,7 +91,8 @@
             },
 
             selected_industry() {
-                this.fetchJobsList();
+                this.fetchJobsList()
+                    .then(this.setJob);
             },
 
             jobs() {
@@ -131,7 +139,6 @@
                     ? this.jobs_list
                         .find(job => job.id == job_id)
                     : {id: '', name: ''};
-                console.log("showOther", job);
 
                 return job ? job.name == 'Other': '';
             }

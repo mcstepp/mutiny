@@ -48,7 +48,10 @@ class PendingCharacterController extends Controller
             'years' => $this->getBirthYears(),
             'months' => $this->getMonths(),
             'clazzes' => $this->getInitiationYears(),
-            'character' => new \App\Models\Character\PendingCharacter
+            'character' => new \App\Models\Character\PendingCharacter,
+            'current' => $this->getCurrent(),
+            'period' => $this->getPeriod(),
+            'asOf' => $this->getAsOf(),
         ]);
     }
 

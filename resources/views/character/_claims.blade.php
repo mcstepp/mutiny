@@ -13,7 +13,12 @@
             <div class="form-group">
                 <label for="occupation" class="control-label m-fancy-title text-uppercase">Occupation:</label>
 
-                <occupation-claims></occupation-claims>
+                <occupation-claims :current="{{ json_encode([
+                                                    'job' => $character->job ?: null,
+                                                    'other' => $character->job_other
+                                                ]) }}"
+                                    :old="{{ json_encode(old()) }}"
+                ></occupation-claims>
 
             </div>
         </div>

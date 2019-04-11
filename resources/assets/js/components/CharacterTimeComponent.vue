@@ -215,7 +215,7 @@
                     year: this.current.currentYear,
                     month: this.current.currentMonth,
                     day: this.current.currentDay
-                });
+                }) || 0;
             },
 
             asOf_age() {
@@ -226,7 +226,7 @@
                     year: this.asof.asOfYear,
                     month: this.asof.asOfMonth,
                     day: this.asof.asOfDay
-                });
+                }) || 0;
             },
 
             initiationYear() {
