@@ -36,12 +36,15 @@
 
                         <ul class="list-unstyled">
                             @foreach($industry->jobs as $job)
-                                <li><span class="m-fancy-title text-uppercase text-{{ strtolower($faction->name) }}">{{ $job->name }}</span>:
+                                <li><span class="m-fancy-title text-uppercase text-{{ strtolower($faction->name) }}">{{ $job->name }}</span> <span class="text-gray-300">({{ ($job->occupancy) - (count($job->characters)) }} available)</span>:
+
+
+
                                 @forelse($job->characters as $character)
                                         <a href="{{ $character->path }}" target="_blank">{{ $character->username }}</a> -
 
                                 @empty
-                                (None)
+                                Open!
                                 @endforelse
                             </li>
                             @endforeach
