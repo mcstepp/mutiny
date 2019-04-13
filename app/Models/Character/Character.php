@@ -27,16 +27,16 @@ class Character extends PendingCharacter implements Auditable, IGraphics
      */
     protected $guarded = [];
 
-    protected $with = ['faction','graphics'];
+    protected $with = ['faction','graphics','job'];
 
 
     protected static function boot()
     {
         parent::boot();
 
-        static::addGlobalScope('posts_count', function($builder){
-            $builder->withCount('posts');
-        });
+//        static::addGlobalScope('posts_count', function($builder){
+//            $builder->withCount('posts');
+//        });
 
         static::created(function($character) {
             PendingCharacter::where([

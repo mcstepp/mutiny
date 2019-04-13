@@ -15,17 +15,22 @@ class IndustryJob extends Model
 
     public function characters()
     {
-        return $this->belongsToMany('App\Models\Character\Character');
+        return $this->hasMany('App\Models\Character\Character','job_id');
     }
 
     public function pending_characters()
     {
-        return $this->belongsToMany('App\Models\Character\PendingCharacter');
+        return $this->hasMany('App\Models\Character\PendingCharacter','job_id');
     }
 
     public function industry()
     {
         return $this->belongsTo('App\Models\Character\Industry');
+    }
+
+    public function faction()
+    {
+        return $this->belongsTo('App\Models\Character\Faction');
     }
 
     public function scopeWhereIndustry($query, $industry)

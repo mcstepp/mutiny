@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Character;
 
 use App\Http\Controllers\Controller;
+use App\Models\Character\Character;
+use App\Models\Character\Faction;
 use App\Models\Character\IndustryJob;
 use Illuminate\Http\Request;
 
@@ -31,5 +33,14 @@ class IndustryJobController extends Controller
         else {
             dd($jobs);
         }
+    }
+
+    public function list()
+    {
+        $factions = Faction::with(['industries.jobs' => function($query) {
+           $query->groupBy('id');
+       }, 'industries.jobs.characters'])->get();
+
+        return view('occupations.index', ['factions' => $factions]);
     }
 }

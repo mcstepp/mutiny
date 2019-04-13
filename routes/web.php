@@ -31,7 +31,6 @@ Route::get('/site/privacy', 'DocsController@privacy')->name('privacy');
 
 // API Industries
 Route::get('/industry', 'Character\IndustryController@index')->name('industry-list');
-
 Route::get('/industry/jobs', 'Character\IndustryJobController@index')->name('jobs-list');
 
 
@@ -127,3 +126,5 @@ Route::get('/pc/{pcharacter}', 'Character\UserPendingCharacterController@show')-
 Route::get('/pc/{pcharacter}/edit', 'Character\UserPendingCharacterController@edit')->name('edit-pending-character');
 Route::put('/pc/{pcharacter}/update', 'Character\UserPendingCharacterController@update')->name('update-pending-character');
 
+// Occupation Claims
+Route::get('/occupations', 'Character\IndustryJobController@list')->name('occupation-claims');
