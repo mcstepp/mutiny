@@ -15,12 +15,12 @@ class Faction extends Model
 
     public function characters()
     {
-    	return $this->belongsToMany('App\Models\Character\Character');
+    	return $this->hasMany('App\Models\Character\Character');
     }
 
     public function pending_characters()
     {
-    	return $this->belongsToMany('App\Models\Character\PendingCharacter');
+    	return $this->hasMany('App\Models\Character\PendingCharacter');
     }
 
     public function getIconAttribute()

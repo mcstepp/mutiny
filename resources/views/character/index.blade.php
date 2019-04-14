@@ -38,10 +38,6 @@
             </div>
 
             <div class="btn-group m-3">
-                <a class="btn btn-outline-primary" href="{{ route('character-list',['faction' => 'asc']) }}">Sort By Faction</a>
-            </div>
-
-            <div class="btn-group m-3">
                 <a class="btn btn-outline-secondary" href="{{ route('character-list',['pending' => 'asc']) }}">Show Pending</a>
             </div>
 
@@ -49,20 +45,28 @@
         </div>
 
         <div class="row">
-            <div class="container-fluid my-3">
-                <dl>
-                    @foreach($characters as $character)
-                        <dt>
-                            <a class="text-{{ strtolower($character->faction->name)}}" href="{{ $character->path() }}"><i class="fas fa-{{ $character->faction->icon }}"></i> {{ $character->username }}</a>, Class of {{ $character->initiation_year }}, age {{ $character->age }}
-                        </dt>
-                        <dd>
-                            {{ \Carbon\Carbon::createFromDate(null, $character->ic_birth_month, $character->ic_birth_day)->format('F j') }} YR {{ $character->ic_birth_year }} <br>
-                            Face claim: {{ $character->faceclaim }}
+            @foreach($factions as $faction)
+            <div class="col-lg-4 col-md-6">
+                <div class="card m-card bg-industrial-dark">
+                    <div class="card-top">
+                        <h4 class="m-fancy-title text-uppercase text-center text-{{ strtolower($faction->name) }}"><i class="fas fa-{{ $faction->icon }}"></i> {{ $faction->name }}</h4>
+                        <hr class="glow-default">
+                    </div>
 
-                        </dd>
-                    @endforeach
-                </dl>
+                    <div class="card-body">
+                        @if($pending)
+                            @foreach($faction->pending_characters as $character)
+                                <a href="{{ $character->path }}">{{ $character->username }}</a><br>
+                            @endforeach
+                        @else
+                            @foreach($faction->characters as $character)
+                                <a href="{{ $character->path }}">{{ $character->username }}</a><br>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
             </div>
+            @endforeach
         </div>
     </div>
 

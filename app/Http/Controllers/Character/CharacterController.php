@@ -29,16 +29,21 @@ class CharacterController extends Controller
     {
         // show a list of all characters
         if ($request->has('pending')) {
-            $characters = $this->getPendingCharacters();
+            $factions = $this->getPendingCharacters();
+            $pending = true;
         }
 
         else {
-            $characters = $this->getCharacters($filters);
+            $factions = $this->getFactions($filters);
+            $pending = false;
         }
 
         return view('character.index', [
-            'characters' => $characters
+            'factions' => $factions,
+            'pending' => $pending
         ]);
+
+
     }
 
     /**
@@ -204,21 +209,19 @@ class CharacterController extends Controller
     /**
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder|\Illuminate\Support\Collection|static|static[]
      */
-    protected function getCharacters(CharacterFilters $filters)
+    protected function getFactions(CharacterFilters $filters)
     {
-        $characters = Character::filter($filters);
-
-        return $characters->get();
+        return Faction::with(['characters' => function ($query) use ($filters) {
+                $filters->apply($query);
+            }])->disableModelCaching()->get();
     }
 
     protected function getPendingCharacters()
     {
-        $characters = PendingCharacter::orderBy('faction_id')
-            ->orderByDesc('ic_birth_year')
-            ->orderBy('ic_birth_month')
-            ->orderBy('ic_birth_day');
 
-        return $characters->get();
+            return Faction::with(['pending_characters' => function($query) {
+                $query->orderBy('slug');
+            }])->get();
     }
 
 }
