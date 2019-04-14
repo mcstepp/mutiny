@@ -31,7 +31,7 @@ class CreatePendingCharacter extends FormRequest
             'last_name' => 'required|max:32',
             'faction' => 'required|exists:factions,id',
             'origin_faction' => 'required|exists:factions,id',
-            'job_id' => 'required|numeric|exist:industry_jobs,id',
+            'job_id' => 'required|numeric|exists:industry_jobs,id',
             'job_other' => 'sometimes|max:64',
             'ic_birth_month' => 'required|between:1,12',
             'ic_birth_day' => 'required|between:1,31',

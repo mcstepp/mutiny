@@ -52,9 +52,9 @@ class User extends Authenticatable implements IGraphics
     {
         parent::boot();
 
-//         static::addGlobalScope('posts_count', function($builder){
-//                 $builder->withCount('posts');
-//         });
+         static::addGlobalScope('posts_count', function($builder){
+                 $builder->withCount('posts');
+         });
 
     }
 

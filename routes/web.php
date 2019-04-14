@@ -128,3 +128,6 @@ Route::put('/pc/{pcharacter}/update', 'Character\UserPendingCharacterController@
 
 // Occupation Claims
 Route::get('/occupations', 'Character\IndustryJobController@list')->name('occupation-claims');
+
+// Face Claims
+Route::get('/faceclaims', 'Character\CharacterController@list')->name('face-claims');

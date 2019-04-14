@@ -69,7 +69,7 @@ class CharacterController extends Controller
 
         // TODO: stricter validations and stuff, stripping out HTML, XSS stuff
 
-        $user = User::find($validated['user_id']);
+        $user = User::find($validated['owner']);
 
         $character = Character::make([
             'user_id' => $validated['owner'],
@@ -79,7 +79,7 @@ class CharacterController extends Controller
             'faction_id' => $validated['faction'],
             'origin_faction_id' => $validated['origin_faction'],
             'job_id' => $validated['job_id'],
-            'job_other' => $validated['job_other'],
+            'job_other' => trim($request->job_other) ?: null,
             'ic_birth_month' => $validated['ic_birth_month'],
             'ic_birth_day' => $validated['ic_birth_day'],
             'ic_birth_year' => $validated['ic_birth_year'],
@@ -174,6 +174,18 @@ class CharacterController extends Controller
     public function destroy(Character $character)
     {
         //
+    }
+
+    public function list()
+    {
+        $characters = Character::whereNotNull('faceclaim')->orderBy('faceclaim')->get();
+
+        $pcharacters = PendingCharacter::whereNotNull('faceclaim')->orderBy('faceclaim')->get();
+
+        return view('character.claims',[
+            'characters' => $characters,
+            'pcharacters' => $pcharacters
+        ]);
     }
 
     public function switch(Request $request)

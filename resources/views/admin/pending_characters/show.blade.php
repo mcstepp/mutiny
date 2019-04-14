@@ -118,7 +118,7 @@
                 <div class="card m-card bg-industrial-dark">
                     <div class="card-top">
                         <h3 class="m-fancy-title uppercase text-center">
-                            Timey-Wimey Stuff
+                            The Timeline
                         </h3>
                         <hr class="glow-default">
                     </div>
@@ -189,7 +189,7 @@
                             </div>
 
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="occupation" id="occupation" value="{{ $character->occupation }}">
+                                <occupation-claims :current="{{ json_encode($character) }}" :old="{{ json_encode(old()) }}"></occupation-claims>
                             </div>
                         </div>
 
@@ -199,7 +199,7 @@
                             </div>
 
                             <div class="col-md-10">
-                                {{ nl2br($character->history) }}
+                                {!! nl2br($character->history) !!}
                                 <input type="hidden" name="history" id="history" value="{{ $character->history }}">
                             </div>
                         </div>
@@ -210,7 +210,7 @@
                             </div>
 
                             <div class="col-md-10">
-                                {{ nl2br($character->personality) }}
+                                {!! nl2br($character->personality) !!}
                                 <input type="hidden" name="personality" id="personality" value="{{ $character->personality }}">
                             </div>
                         </div>
@@ -221,7 +221,7 @@
                             </div>
 
                             <div class="col-md-10">
-                                {{ nl2br($character->appearance) }}
+                                {!! nl2br($character->appearance) !!}
                                 <input type="hidden" name="appearance" id="appearance" value="{{ $character->appearance }}">
                             </div>
                         </div>
@@ -240,6 +240,7 @@
                 </div>
 
                 <div class="text-center">
+                    <input type="hidden" name="owner" value="{{ $character->user_id }}">
                     <button type="submit" class="btn btn-primary text-uppercase m-fancy-title">Approve Character</button>
                 </div>
             </form>

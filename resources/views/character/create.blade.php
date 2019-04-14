@@ -75,6 +75,7 @@
 
                         </div>
 
+                        <input type="hidden" name="owner" value="{{ $character->user_id }}">
                         <button type="submit" class="btn btn-primary text-uppercase m-fancy-title">Submit Character</button>
                     </div>
                 </div>

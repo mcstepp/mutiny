@@ -16,7 +16,7 @@
         <div class="animated fadeId">
 
             <form method="POST"
-                  action="{{ route('update-pending-character', $pending_character) }}"
+                  action="{{ route('update-pending-character', $character) }}"
                   class="form-horizontal">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
@@ -32,40 +32,55 @@
                     </div>
                 @endif
 
-                @include('character._basics', ['character' => $pending_character])
-
-                @include('character._time', ['character' => $pending_character])
-
-                @include('character._details', ['character' => $pending_character])
-
-                <div class="card m-card bg-industrial-dark">
-                    <div class="card-top">
-                        <h3 class="m-fancy-title uppercase text-center">
-                            Submission
-                        </h3>
-                        <hr class="glow-default">
+                <div class="container-fluid my-3">
+                    <div class="row pt-4">
+                        @include('character._basics')
                     </div>
-                    <div class="card-body">
-                        <h4 class="text-uppercase m-fancy-title d-inline-block">Work In Progress | </h4>
-                        <span>
-                            Your character's given name at birth. Your character might go by a nickname, or a shortened version of their name, or may have even given themselves a new name at initiation. There's a different section for that after this field. What is the first name on the birth certificate of your character?
-                        </span>
-                    </div>
-                </div>
 
-                <div class="card m-card">
-                    <div class="card-body">
-                        <div class="form-group row px-5">
-                            <div class="form-check text-center my-0 mx-auto">
-                                <input class="form-check-input" type="checkbox" name="save" id="wip" checked>
-                                <label class="form-check-label" for="wip">Work In Progress</label>
+                    <div class="row pt-4">
+                        @include('character._time')
+                    </div>
+
+                    <div class="row pt-4">
+                        @include('character._details')
+                    </div>
+
+                    <div class="row pt-4">
+                        @include('character._claims')
+                    </div>
+
+                    <div class="row">
+
+                        <div class="card m-card bg-industrial-dark">
+                            <div class="card-top">
+                                <h3 class="m-fancy-title uppercase text-center">
+                                    Submission
+                                </h3>
+                                <hr class="glow-default">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="text-uppercase m-fancy-title d-inline-block">Work In Progress | </h4>
+                                <span>
+                                    Your character's given name at birth. Your character might go by a nickname, or a shortened version of their name, or may have even given themselves a new name at initiation. There's a different section for that after this field. What is the first name on the birth certificate of your character?
+                                </span>
                             </div>
                         </div>
+
+                        <div class="card m-card">
+                            <div class="card-body">
+                                <div class="form-group row px-5">
+                                    <div class="form-check text-center my-0 mx-auto">
+                                        <input class="form-check-input" type="checkbox" name="save" id="wip" checked>
+                                        <label class="form-check-label" for="wip">Work In Progress</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary text-uppercase m-fancy-title">Save Character</button>
                     </div>
-
                 </div>
-
-                <button type="submit" class="btn btn-primary text-uppercase m-fancy-title">Save Character</button>
             </form>
         </div>
 

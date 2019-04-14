@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Character;
 use App\Http\Requests\CreatePendingCharacter;
 use App\Models\Character\PendingCharacter;
 use App\Models\Character\Faction;
+use App\Traits\Time;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,15 +13,10 @@ use Illuminate\Support\Facades\Auth;
 
 class UserPendingCharacterController extends Controller
 {
+    use Time;
     public function __construct()
     {
         $this->middleware('auth');
-
-        $this->startDay = 31;
-        $this->startMonth = "May";
-        $this->startYear = 150;
-        $this->maxAge = 78;
-        $this->minAge = 18;
     }
 
     /**
@@ -98,28 +94,17 @@ class UserPendingCharacterController extends Controller
     public function edit(Request $request, PendingCharacter $character)
     {
         $factions = Faction::all();
-        $months = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December'
-        ];
 
         return view('pending_characters.edit', [
-            'pending_character' => $character,
             'factions' => $factions,
             'ages' => $this->getAges(),
             'years' => $this->getBirthYears(),
-            'months' => $months,
-            'clazzes' => $this->getInitiationYears()
+            'months' => $this->getMonths(),
+            'clazzes' => $this->getInitiationYears(),
+            'character' => $character,
+            'current' => $this->getCurrent(),
+            'period' => $this->getPeriod(),
+            'asOf' => $this->getAsOf(),
         ]);
     }
 
@@ -143,7 +128,7 @@ class UserPendingCharacterController extends Controller
             'last_name' => $validated['last_name'],
             'faction_id' => $validated['faction'],
             'origin_faction_id' => $validated['origin_faction'],
-            'occupation' => $validated['occupation'],
+            'job_id' => $validated['job_id'],
             'ic_birth_month' => $validated['ic_birth_month'],
             'ic_birth_day' => $validated['ic_birth_day'],
             'ic_birth_year' => $validated['ic_birth_year'],
@@ -161,6 +146,10 @@ class UserPendingCharacterController extends Controller
 
         else {
             $character->setStatus('In Review');
+        }
+
+        if ($request['job_other']) {
+            $character->job_other = $validated['job_other'];
         }
 
         return redirect()->route('view-my-pending-characters');

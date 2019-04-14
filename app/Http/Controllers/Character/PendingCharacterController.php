@@ -77,7 +77,6 @@ class PendingCharacterController extends Controller
             'faction_id' => $validated['faction'],
             'origin_faction_id' => $validated['origin_faction'],
             'job_id' => $validated['job_id'],
-            'job_other' => $validated['job_other'],
             'ic_birth_month' => $validated['ic_birth_month'],
             'ic_birth_day' => $validated['ic_birth_day'],
             'ic_birth_year' => $validated['ic_birth_year'],
@@ -95,6 +94,10 @@ class PendingCharacterController extends Controller
 
         else {
             $character->setStatus('In Review');
+        }
+
+        if ($request['job_other']) {
+            $character->job_other = $validated['job_other'];
         }
 
         return redirect()->route('view-my-pending-characters');

@@ -26,7 +26,7 @@ class CreateNewCharacter extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:users,id',
+            'owner' => 'required|numeric|exists:users,id',
             'first_name' => 'required|max:32',
             'chosen_name' => 'max:32',
             'last_name' => 'required|max:32',
@@ -35,6 +35,7 @@ class CreateNewCharacter extends FormRequest
             'ic_birth_month' => 'required|between:1,12',
             'ic_birth_day' => 'required|between:1,31',
             'ic_birth_year' => 'required|max:132',
+            'job_id' => 'required|numeric|exists:industry_jobs,id',
             'initiation_year' => 'required|max:150',
             'age' => 'required|digits:2',
             'history' => 'required|min:100',
