@@ -21,6 +21,47 @@
             </div>
 
             <div class="row">
+                <div class="col-md-9 d-flex">
+
+                    <div class="card m-card bg-industrial align-content-stretch">
+                        <div class="card-body">
+                            <h3 class="m-fancy-header neon-default text-center card-title">Profile</h3>
+                            <hr class="glow-default">
+                            <ul class="nav nav-tabs m-fancy-title text-uppercase">
+                                <li class="nav-item">
+                                    <a class="nav-link active show"
+                                       data-toggle="tab"
+                                       href="#backstory"
+                                       role="tab">Back Story</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                       data-toggle="tab"
+                                       href="#personality"
+                                       role="tab">Personality</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                       data-toggle="tab"
+                                       href="#appearance"
+                                       role="tab">Appearance</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content m-profile">
+                                <div class="tab-pane active show" id="backstory" role="tabpanel">
+                                    {!! nl2br($character->history) !!}
+                                </div>
+                                <div class="tab-pane" id="personality" role="tabpanel">
+                                    {!! nl2br($character->personality) !!}
+                                </div>
+                                <div class="tab-pane" id="appearance" role="tabpanel">
+                                    {!! nl2br($character->appearance) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
 
                 <div class="col-md-3">
 
@@ -51,63 +92,9 @@
 
                         </div>
 
-                <div class="col-md-9 d-flex">
-
-                            <div class="card m-card bg-industrial align-content-stretch">
-                                <div class="card-body">
-                                    <h3 class="m-fancy-header neon-default text-center card-title">Profile</h3>
-                                    <hr class="glow-default">
-                                    <ul class="nav nav-tabs m-fancy-title text-uppercase">
-                                        <li class="nav-item">
-                                            <a class="nav-link active show"
-                                               data-toggle="tab"
-                                               href="#backstory"
-                                               role="tab">Back Story</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                               data-toggle="tab"
-                                               href="#personality"
-                                               role="tab">Personality</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link"
-                                               data-toggle="tab"
-                                               href="#appearance"
-                                               role="tab">Appearance</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content m-profile">
-                                        <div class="tab-pane active show" id="backstory" role="tabpanel">
-                                            {!! nl2br($character->history) !!}
-                                        </div>
-                                        <div class="tab-pane" id="personality" role="tabpanel">
-                                            {!! nl2br($character->personality) !!}
-                                        </div>
-                                        <div class="tab-pane" id="appearance" role="tabpanel">
-                                            {!! nl2br($character->appearance) !!}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
             </div>
 
             <div class="row">
-
-                <div class="col-md-9">
-
-                            <div class="card m-card bg-industrial">
-                                <div class="card-body">
-                                    <h3 class="m-fancy-header neon-default text-center card-title">Activity</h3>
-                                    <hr class="glow-default">
-                                    @include('user.profile._activities', $activities)
-                                </div>
-                            </div>
-
-                        </div>
 
                 <div class="col-md-3">
 
@@ -120,6 +107,18 @@
                             </div>
 
                         </div>
+
+                <div class="col-md-9">
+
+                    <div class="card m-card bg-industrial">
+                        <div class="card-body">
+                            <h3 class="m-fancy-header neon-default text-center card-title">Activity</h3>
+                            <hr class="glow-default">
+                            @include('user.profile._activities', $activities)
+                        </div>
+                    </div>
+
+                </div>
 
             </div>
 
