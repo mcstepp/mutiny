@@ -4,6 +4,7 @@ namespace App;
 
 use App\Filters\UserFilters;
 use App\Interfaces\IGraphics;
+use App\Models\Forum\Category;
 use App\Models\Invitation;
 use App\Traits\HasGraphics;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
@@ -31,7 +32,7 @@ class User extends Authenticatable implements IGraphics
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'alias'
+        'username', 'email', 'password', 'alias','parent_id'
     ];
 
     /**
@@ -194,5 +195,18 @@ class User extends Authenticatable implements IGraphics
     public function isSelf()
     {
         return auth()->id() == $this->id;
+    }
+
+    public function forum()
+    {
+        return $this->belongsToMany('App\Models\Forum\Forum', 'user_forums');
+    }
+
+    public function subplots()
+    {
+        $category = Category::where('name','Development')->first();
+        return $this->forum()->with(['category' => function ($query) use($category) {
+            $query->where('id',$category->id);
+    }])->first();
     }
 }

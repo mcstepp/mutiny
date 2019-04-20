@@ -15,6 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\Forum\Category::class, function (Faker $faker) {
     return [
+        'private' => 0,
         'name' => $faker->state,
         'description' => $faker->paragraph(5)
     ];

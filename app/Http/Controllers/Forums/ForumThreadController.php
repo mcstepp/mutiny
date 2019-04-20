@@ -50,8 +50,7 @@ class ForumThreadController extends Controller
      */
     public function create(Forum $forum)
     {
-        // TODO: update later with specific rules
-        $this->authorize('view', $forum);
+        $this->authorize('newThread', $forum);
 
         return view('forum.thread.create', compact('forum'));
     }

@@ -49,10 +49,12 @@
         </div>
         <div class="row">
             <div class="col">
-                <a class="btn btn-outline-secondary m-1" href="{{ route('create-thread', $forum) }}">
-                    <i class="far fa-edit"></i>
-                    Create New Thread
-                </a>
+               @can('newThread',$forum)
+                    <a class="btn btn-outline-secondary m-1" href="{{ route('create-thread', $forum) }}">
+                        <i class="far fa-edit"></i>
+                        Create New Thread
+                    </a>
+               @endcan
             </div>
 
             <div class="col">

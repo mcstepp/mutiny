@@ -41,7 +41,14 @@ class ThreadPolicy
      */
     public function create(User $user, Forum $forum)
     {
+        if ($forum->category->private) {
+            return $user->forum->contains($forum);
+        }
 
+        if ($forum->private) {
+            return $forum->users->contains($user);
+        }
+        return true;
     }
 
     /**

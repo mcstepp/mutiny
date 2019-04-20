@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 //use Illuminate\Http\Request;
 
+use App\Models\Forum\Category;
+
 class AdminPanelController extends AdminController
 {
 
@@ -14,6 +16,8 @@ class AdminPanelController extends AdminController
 
     public function indexForum()
     {
-        return view('admin.forum.index');
+        $categories = Category::with('forums')->get();
+
+        return view('admin.forum.index', compact('categories'));
     }
 }

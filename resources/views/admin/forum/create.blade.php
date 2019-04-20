@@ -23,8 +23,19 @@
                     </div>
                 </div>
 
-                
                 <div class="form-group row">
+                    <label class="col-sm-2 control-label">Category Settings:</label>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" name="private" type="checkbox" value="true">
+                                Private/Hidden
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                        <div class="form-group row">
                     <label for="description" class="col-sm-2 control-label">Category Description:</label>
                     <div class="col-sm-10">
                         <textarea class="form-control" name="description" id="description" placeholder="Category description" rows="5"></textarea>

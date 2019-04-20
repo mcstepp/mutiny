@@ -50,8 +50,12 @@ class CategoryController extends Controller
             'description' => 'required|min:6',
         ]);
 
-        //dd($request);
-
+        Category::create([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'ic' => $request->has('ic'),
+            'private' => $request->has('private')
+        ]);
 
         return redirect()->route('admin-forums');
     }

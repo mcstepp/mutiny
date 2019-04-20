@@ -92,4 +92,9 @@ class Forum extends Model implements Auditable
     {
         return $this->belongsToMany('App\User', 'forum_moderators');
     }
+
+    public function owners()
+    {
+        return $this->belongsToMany('App\User', 'user_forums');
+    }
 }

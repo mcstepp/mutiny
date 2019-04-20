@@ -16,7 +16,7 @@ class Category extends Model
     use Cachable;
 
     protected $fillable = [
-        'name', 'description'
+        'name', 'description', 'private'
     ];
 
     public function forums()

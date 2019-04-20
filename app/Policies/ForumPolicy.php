@@ -12,7 +12,7 @@ class ForumPolicy
 
     public function before(User $user)
     {
-        return $user->isSuperAdmin() ?: null;
+        return $user->isAdmin() ?: null;
     }
     /**
      * Determine whether the user can view the forum.
@@ -75,5 +75,17 @@ class ForumPolicy
     public function delete(User $user, Forum $forum)
     {
         //
+    }
+
+    public function newThread(User $user, Forum $forum)
+    {
+        if ($forum->category->private) {
+            return $user->forum->contains($forum);
+        }
+
+        if ($forum->private) {
+            return $forum->users->contains($user);
+        }
+        return true;
     }
 }

@@ -21,7 +21,8 @@ class NavigationComposer
     {
         $categories = Category::with(['forums' => function ($query) {
             $query->where('private', 0);
-        }])->get();
+        }])
+            ->where('private', 0)->get();
 
         $view->with('categories', $categories);
     }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Forum\Category;
+use App\Models\Forum\Forum;
 use App\Models\Invitation;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -66,7 +68,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Invitation
+     * @return \App\User
      */
     protected function create(array $data)
     {
@@ -80,10 +82,24 @@ class RegisterController extends Controller
             'parent_id' => $invitation->user_id
         ]);
 
+        $this->createDevForum($user);
+
         $invitation->delete();
 
         return $user;
 
+    }
+
+    private function createDevForum(User $user)
+    {
+        $username = $user->username;
+        $category = Category::where('name','Development')->first();
+
+        $user->forum()->create([
+            'name' => $username,
+            'description' => $username . '\'s character development and subplotting',
+            'category_id' => $category->id
+        ]);
     }
 
 

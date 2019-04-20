@@ -87,6 +87,8 @@
                                         <a class="flicker" href="{{route('user-profile', $character->user)}}">{{ $character->user->username }}</a></p>
                                     <p><span class="m-fancy-title text-uppercase">Portrayed by:</span>
                                         {{ $character->faceclaim }}</p>
+
+                                    <p class="text-center"><strong><a href="{{$character->user->subplots()->path()}}">SUBPLOTS AND DEVELOPMENT</a></strong></p>
                                 </div>
                             </div>
 
