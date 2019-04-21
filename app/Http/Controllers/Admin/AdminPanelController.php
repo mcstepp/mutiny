@@ -16,8 +16,6 @@ class AdminPanelController extends AdminController
 
     public function indexForum()
     {
-        $categories = Category::with('forums')->get();
 
-        return view('admin.forum.index', compact('categories'));
     }
 }

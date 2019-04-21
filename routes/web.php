@@ -42,9 +42,12 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::get('/admin', 'Admin\AdminPanelController@index')->name('adminPanel');
 
 // Admin Forum
-Route::get('/admin/forums', 'Admin\AdminPanelController@indexForum')->name('admin-forums');
+Route::get('/admin/forums', 'Admin\AdminForumController@index')->name('admin-forums');
 Route::post('/admin/forums', 'Forums\ForumController@store')->name('admin-store-forum');
 Route::get('/admin/forums/create', 'Forums\ForumController@create')->name('admin-create-forum');
+Route::get('/admin/forums/create', 'Forums\ForumController@create')->name('admin-create-forum');
+
+Route::get('/admin/forums/edit', 'Admin\AdminForumController@edit')->name('admin-edit-forum');
 
 Route::post('/admin/categories', 'Forums\CategoryController@store')->name('admin-store-category');
 
