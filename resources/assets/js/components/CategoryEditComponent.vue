@@ -4,7 +4,8 @@
         <div class="form-group row">
             <label for="name" class="col-sm-2 control-label">Select Category:</label>
             <div class="col-sm-10">
-                <select>
+                <select v-model="category_id" name="category">
+                    <option value="" disabled>Please Select a Category</option>
                     <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
                 </select>
             </div>
@@ -13,7 +14,7 @@
             <div class="form-group row">
                 <label for="name" class="col-sm-2 control-label">Category Name:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Category Name">
+                    <input v-model="selected_category.name" type="text" class="form-control" name="name" id="name" placeholder="Category Name">
                 </div>
             </div>
 
@@ -22,7 +23,7 @@
                 <div class="col-sm-10">
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" name="private" type="checkbox" value="true">
+                            <input class="form-check-input" name="private" type="checkbox"  v-model="selected_category.private">
                             Private/Hidden
                         </label>
                     </div>
@@ -32,7 +33,7 @@
             <div class="form-group row">
                 <label for="description" class="col-sm-2 control-label">Category Description:</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" name="description" id="description" placeholder="Category description" rows="5"></textarea>
+                    <textarea class="form-control" name="description" id="description" placeholder="Category description" rows="5">{{ selected_category.description }}</textarea>
                 </div>
 
             </div>
@@ -48,6 +49,30 @@
 
 <script>
     export default {
+        props: ['categories'],
 
+        data() {
+            return {
+                category_id: '',
+                default_category: {
+                    id: '',
+                    name: '',
+                    description: '',
+                    private: false
+                }
+            }
+        },
+
+        computed: {
+            selected_category() {
+                return this._selectCategory() || this.default_category;
+            }
+        },
+
+        methods: {
+          _selectCategory() {
+              return this.categories.find(category => category.id === this.category_id);
+          }
+        }
     }
 </script>

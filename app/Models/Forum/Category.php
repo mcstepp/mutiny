@@ -37,6 +37,6 @@ class Category extends Model
             'Out of Character' => 'home'
         ];
 
-        return $icons[$this->name];
+        return array_key_exists ($this->name, $icons) ? $icons[$this->name] : 'dumpster-fire';
     }
 }

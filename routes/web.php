@@ -48,8 +48,10 @@ Route::get('/admin/forums/create', 'Forums\ForumController@create')->name('admin
 Route::get('/admin/forums/create', 'Forums\ForumController@create')->name('admin-create-forum');
 
 Route::get('/admin/forums/edit', 'Admin\AdminForumController@edit')->name('admin-edit-forum');
+Route::put('/admin/forums', 'Admin\AdminForumController@update')->name('admin-update-forum');
 
 Route::post('/admin/categories', 'Forums\CategoryController@store')->name('admin-store-category');
+Route::put('/admin/categories', 'Forums\CategoryController@update')->name('admin-update-category');
 
 // Admin character
 Route::get('/admin/character', 'Admin\AdminCharacterController@index')->name('admin-character-list');

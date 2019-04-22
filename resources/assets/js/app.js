@@ -34,6 +34,9 @@ Vue.component('character-filter', require('./components/CharacterFilterComponent
 Vue.component('occupation-claims', require('./components/OccupationClaimsComponent'));
 Vue.component('faction-container', require('./components/FactionContainer'));
 Vue.component('faction-select', require('./components/FactionSelectComponent'));
+Vue.component('category-edit', require('./components/CategoryEditComponent'));
+Vue.component('forum-edit', require('./components/ForumEditComponent'));
+
 
 const store = new Vuex.Store({
     state: {

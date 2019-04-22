@@ -74,9 +74,28 @@ class AdminForumController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'forum' => 'required|exists:forums,id',
+            'category' => 'required|exists:categories,id',
+            'name' => 'required|min:3|max:255',
+            'description' => 'required|min:6'
+        ]);
+
+        $forum = Forum::find($request->input('forum'));
+
+        $forum->update([
+            'name' => $request->input('name'),
+            'category_id' => $request->input('category'),
+            'description' => $request->input('description'),
+            'private' => $request->has('private'),
+            'ic' => $request->has('ic')
+        ]);
+
+        //TODO: flash success message
+
+        return redirect()->route('admin-forums');
     }
 
     /**

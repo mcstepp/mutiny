@@ -38,7 +38,7 @@
                         <a href="{{ route('admin-create-forum') }}" class="list-group-item">
                             Create a New Forum
                         </a>
-                        <a href="#" class="list-group-item disabled">
+                        <a href="{{ route('admin-edit-forum') }}" class="list-group-item">
                             Edit a Forum
                         </a>
                     </div>

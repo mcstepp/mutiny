@@ -66,7 +66,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Forum\Forum  $forum
      * @return \Illuminate\Http\Response
      */
-    public function show(Forum $forum)
+    public function show(Category $category)
     {
         //
     }
@@ -77,7 +77,7 @@ class CategoryController extends Controller
      * @param Forum $forum
      * @return void
      */
-    public function edit(Forum $forum)
+    public function edit(Category $category)
     {
         //
     }
@@ -87,11 +87,27 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param Forum $forum
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Forum $forum)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'category' => 'required|exists:categories,id',
+            'name' => 'required|min:3|max:255',
+            'description' => 'required|min:6'
+        ]);
+
+        $category = Category::find($request->input('category'));
+
+        $category->update([
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'private' => $request->has('private')
+        ]);
+
+        //TODO: flash success message
+
+        return redirect()->route('admin-forums');
     }
 
     /**
@@ -100,7 +116,7 @@ class CategoryController extends Controller
      * @param Forum $forum
      * @return void
      */
-    public function destroy(Forum $forum)
+    public function destroy(Category $category)
     {
         //
     }
