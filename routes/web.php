@@ -136,3 +136,6 @@ Route::get('/occupations', 'Character\IndustryJobController@list')->name('occupa
 
 // Face Claims
 Route::get('/faceclaims', 'Character\CharacterController@list')->name('face-claims');
+
+// Wiki
+Route::get('/wiki', 'Wiki\WikiPageController@show')->name('wiki-page');
