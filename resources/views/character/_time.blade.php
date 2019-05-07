@@ -15,33 +15,26 @@
     <div class="card m-card bg-industrial-dark">
         <div class="card-body">
             <h4 class="text-uppercase m-fancy-title d-inline-block">Birth Month | </h4>
-            <span>
-                            Your character's given name at birth. Your character might go by a nickname, or a shortened version of their name, or may have even given themselves a new name at initiation. There's a different section for that after this field. What is the first name on the birth certificate of your character?
-                        </span>
+            <span>The calendar month your character was born in.</span>
         </div>
         <div class="card-body">
             <h4 class="text-uppercase m-fancy-title d-inline-block">Birth Day | </h4>
-            <span>
-                            Your character's given name at birth. Your character might go by a nickname, or a shortened version of their name, or may have even given themselves a new name at initiation. There's a different section for that after this field. What is the first name on the birth certificate of your character?
+            <span>The calendar day your character was born on.
                         </span>
         </div>
         <div class="card-body">
             <h4 class="text-uppercase m-fancy-title d-inline-block">Birth Year | </h4>
             <span>
-                            Your character's given name at birth. Your character might go by a nickname, or a shortened version of their name, or may have even given themselves a new name at initiation. There's a different section for that after this field. What is the first name on the birth certificate of your character?
-                        </span>
+                The <a href="#LinkToPostCollapseWiki">post-collapse</a> year your character was born in.
+            </span>
         </div>
         <div class="card-body">
             <h4 class="text-uppercase m-fancy-title d-inline-block">Age | </h4>
-            <span>
-                            Your character's given name at birth. Your character might go by a nickname, or a shortened version of their name, or may have even given themselves a new name at initiation. There's a different section for that after this field. What is the first name on the birth certificate of your character?
-                        </span>
+            <span>Your character's age. Characters must be 18 years old on May 31 in order to become initiates.</span>
         </div>
         <div class="card-body">
             <h4 class="text-uppercase m-fancy-title d-inline-block">Initiation Year | </h4>
-            <span>
-                            Your character's given name at birth. Your character might go by a nickname, or a shortened version of their name, or may have even given themselves a new name at initiation. There's a different section for that after this field. What is the first name on the birth certificate of your character?
-                        </span>
+            <span>This is the post-collapse year your character started the initiation process into their faction.</span>
         </div>
     </div>
 </div>
