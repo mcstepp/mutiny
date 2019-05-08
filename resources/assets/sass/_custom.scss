@@ -350,17 +350,17 @@ hr {
 // Avatars and Icons
 
 .m-avatar {
-  @include aspect-ratio(2,3);
   max-width: 200px;
   max-height: 300px;
-  height:100%;
+  width: 100%;
+  height: auto;
   object-fit: cover;
 }
 
-.m-icon {
-  @include aspect-ratio(150,150);
-  max-width: 150px;
-  max-height: 150px;
-  height: 100%;
-  object-fit: cover;
+img.m-icon {
+    height: 150px;
+    width: 150px;
+    max-width: 100%;
+    object-fit: cover;
+    border: 1px solid;
 }

@@ -2,13 +2,13 @@
     <div class="card-body container-fluid">
         <div class="row">
 
-            <div class="col-md-3 col-lg-2 text-center">
+            <div class="col-lg-3 text-center">
                 @include('graphics._icon', [
                 'author' => $author,
                 'type' => strtolower(class_basename($author))])
             </div>
 
-            <div class="col-md-9 col-lg-10 align-self-center">
+            <div class="col-lg-9 align-self-center">
                 <div class="container-fluid p-0">
                     <div class="m-traits text-md-left text-sm-center align-self-center">
                         <i class="fas fa-{{ $author->faction->icon }} text-{{ strtolower($author->faction->name) }}"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
