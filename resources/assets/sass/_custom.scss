@@ -202,6 +202,10 @@
     background: transparent;
   }
 
+   .card-footer {
+     border-top: 1px solid $mutiny_purple_alt;
+   }
+
   .card-top, .card-body {
     padding: 16px;
   }
