@@ -29,6 +29,20 @@ class Post extends Model implements Auditable
      */
     //protected $touches = ['thread'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        // if post is IC, award author +5 points
+        static::created(function ($post) {
+            if ($post->isIc()) {
+                $post->author->addPoints(5);
+            }
+        });
+
+    }
+
+
     // character or user
     public function author()
     {
@@ -44,6 +58,11 @@ class Post extends Model implements Auditable
     {
         $thread = $this->thread->path();
         return $thread . "/" . $this->id;
+    }
+
+    public function isIc()
+    {
+        return $this->author_type === 'character';
     }
 
 //    public function transformAudit(array $data): array

@@ -40,14 +40,23 @@ class Thread extends Model implements Auditable
     {
         parent::boot();
 
+        // add post_count
         static::addGlobalScope('post_count', function($builder){
             $builder->withCount('posts');
         });
 
+        // delete all posts and subscriptions to threads
         static::deleting(function ($thread) {
             $thread->posts->each->delete();
 
             $thread->subscriptions->each->delete();
+        });
+
+        // if thread is IC, award author +5 points
+        static::created(function ($thread) {
+            if ($thread->isIc()) {
+                $thread->author->addPoints(5);
+            }
         });
 
     }
@@ -210,6 +219,11 @@ class Thread extends Model implements Auditable
         $this->timestamps = false;
         $this->save();
         return $this;
+    }
+
+    public function isIc()
+    {
+        return $this->forum->ic;
     }
 
 }

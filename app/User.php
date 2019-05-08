@@ -207,6 +207,15 @@ class User extends Authenticatable implements IGraphics
         $category = Category::where('name','Development')->first();
         return $this->forum()->with(['category' => function ($query) use($category) {
             $query->where('id',$category->id);
-    }])->first();
+        }])->first();
+    }
+
+    public function addPoints($num = 0)
+    {
+        $points = $this->points + $num;
+
+        $this->points = $points;
+        $this->save();
+        return $this;
     }
 }

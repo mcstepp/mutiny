@@ -85,4 +85,9 @@ class Character extends PendingCharacter implements Auditable, IGraphics
         return $this->morphOne('App\Models\Graphics', 'owner');
     }
 
+    public function addPoints($num = 0)
+    {
+        return $this->user->addPoints($num);
+    }
+
 }
