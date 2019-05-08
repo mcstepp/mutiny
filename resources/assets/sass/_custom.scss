@@ -32,6 +32,29 @@
   background-attachment: fixed;
 }
 
+@each $color, $value in $theme-colors {
+  .bg-industrial-#{$color} {
+    background-image: linear-gradient(to bottom, rgba($value, 1) 5%, rgba(darken($value, 12.5%), 0.85) 50%, rgba($body-bg, 0.95) 100%), /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    url('/images/mutiny_raw_02.png');
+    //url('/images/city_central.jpg');
+    //url('/images/abnegation_sector.jpg');
+    //url('/images/city_central.jpg');
+
+    background-size: cover;
+    background-position: bottom center;
+    background-attachment: fixed;
+
+    &.m-card {
+      border: 1px solid $value;
+
+      .card-footer {
+        border-top: 1px solid $value;
+      }
+    }
+  }
+}
+
+
 .bg-industrial-dark {
   background-image:
           linear-gradient(to bottom, rgba($mutiny_darkpurple, 1) 5%, rgba($mutiny_darkpurple, 0.85) 100%), /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
@@ -367,4 +390,8 @@ img.m-icon {
     max-width: 100%;
     object-fit: cover;
     border: 1px solid;
+}
+
+.m-text-shadow {
+  text-shadow: 1px 1px 1px rgba(black,0.5);
 }

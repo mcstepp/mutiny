@@ -25,53 +25,53 @@
 
         <div class="row">
             <div class="col-md-3">
-                <div class="card m-card">
+                <div class="card m-card m-text-shadow bg-industrial-gray-700">
                     <div class="card-body p-3 clearfix">
-                        <i class="fas fa-trophy bg-info p-3 font-2xl mr-3 float-left"></i>
+                        <i class="fas fa-trophy bg-gray-700 p-3 font-2xl mr-3 float-left"></i>
                         <div class="h5 mt-2 mb-0">42</div>
-                        <div class="text-uppercase text-info font-xs m-fancy-header">My Points</div>
+                        <div class="text-uppercase font-xs m-fancy-header">My Points</div>
                     </div>
-                    <div class="card-footer px-3 py-2">
-                        <a class="font-weight-bold font-xs btn-block flicker" href="#">Redeem Points <i class="text-muted fa fa-angle-right float-right font-lg"></i></a>
+                    <div class="card-footer bg-gray-700 px-3 py-2">
+                        <a class="text-white m-fancy-title text-uppercase font-xs btn-block flicker" href="#">Redeem Points <i class="text-white fa fa-angle-right float-right font-lg"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card m-card">
+                <div class="card m-card m-text-shadow bg-industrial-primary">
                     <div class="card-body p-3 clearfix">
-                        <i class="fas fa-comment-alt bg-warning p-3 font-2xl mr-3 float-left"></i>
+                        <i class="fas fa-comment-alt bg-primary p-3 font-2xl mr-3 float-left"></i>
                         <div class="h5 mt-2 mb-0">42</div>
-                        <div class="text-uppercase text-warning font-xs m-fancy-header">My Posts</div>
+                        <div class="text-uppercase font-xs m-fancy-header">My Posts</div>
                     </div>
-                    <div class="card-footer px-3 py-2">
-                        <a class="font-weight-bold font-xs btn-block flicker" href="#">View Breakdown <i class="text-muted fa fa-angle-right float-right font-lg"></i></a>
+                    <div class="card-footer bg-primary px-3 py-2">
+                        <a class="text-white m-fancy-title text-uppercase font-xs btn-block flicker" href="#">View Breakdown <i class="text-white fa fa-angle-right float-right font-lg"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card m-card">
+                <div class="card m-card m-text-shadow bg-industrial-secondary">
                     <div class="card-body p-3 clearfix">
-                        <i class="fas fa-user-clock bg-danger p-3 font-2xl mr-3 float-left"></i>
+                        <i class="fas fa-user-clock bg-secondary p-3 font-2xl mr-3 float-left"></i>
                         <div class="h5 mt-2 mb-0">42</div>
-                        <div class="text-uppercase text-danger font-xs m-fancy-header">Online Players</div>
+                        <div class="text-uppercase font-xs m-fancy-header">Online Players</div>
                     </div>
-                    <div class="card-footer px-3 py-2">
-                        <a class="font-weight-bold font-xs btn-block flicker" href="#">Last 24 hours <i class="text-muted fas fa-calendar-alt float-right font-lg"></i></a>
+                    <div class="card-footer bg-secondary px-3 py-2">
+                        <a class="m-fancy-title text-uppercase font-xs btn-block flicker text-white" href="#">Last 24 hours <i class="fas fa-calendar-alt float-right font-lg"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-3">
-                <div class="card m-card">
+                <div class="card m-card m-text-shadow bg-industrial-info">
                     <div class="card-body p-3 clearfix">
-                        <i class="fas fa-users bg-primary p-3 font-2xl mr-3 float-left"></i>
+                        <i class="fas fa-users bg-info p-3 font-2xl mr-3 float-left"></i>
                         <div class="h5 mt-2 mb-0">42</div>
-                        <div class="text-uppercase text-primary font-xs m-fancy-header">Active Chars.</div>
+                        <div class="text-uppercase font-xs m-fancy-header">Active Chars.</div>
                     </div>
-                    <div class="card-footer px-3 py-2">
-                        <a class="font-weight-bold font-xs btn-block flicker" href="#">Last 7 days <i class="text-muted fas fa-calendar-alt float-right font-lg"></i></a>
+                    <div class="card-footer bg-info px-3 py-2">
+                        <a class="text-uppercase m-fancy-title text-white font-xs btn-block flicker" href="#">Last 7 days <i class="fas fa-calendar-alt float-right font-lg"></i></a>
                     </div>
                 </div>
             </div>
