@@ -69,6 +69,23 @@
         </div>
 
         <div class="row">
+            <div class="col-md-8">
+                <div class="card m-card">
+                    @include("widgets._announcements")
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card m-card bg-industrial">
+                    <div class="card-body">
+                        Recent Threads
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
             <div class="col-md-4">
                 <div class="card m-card bg-industrial">
                     <div class="card-body">

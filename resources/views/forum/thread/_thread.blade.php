@@ -89,11 +89,13 @@
                             {{ $thread->firstPost->author->username }}
                         </a>
                     </div>
+                    @if($thread->description || $thread->ic_time)
                     <div class="callout callout-primary">
                         <small class="m-fancy-title text-uppercase">Description:</small><br>
                         <h5 class="m-fancy-header neon-default">May 30, YR 150</h5>
                         <p>{{ $thread->description }}</p>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

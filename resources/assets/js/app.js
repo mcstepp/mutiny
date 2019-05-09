@@ -36,6 +36,7 @@ Vue.component('faction-container', require('./components/FactionContainer'));
 Vue.component('faction-select', require('./components/FactionSelectComponent'));
 Vue.component('category-edit', require('./components/CategoryEditComponent'));
 Vue.component('forum-edit', require('./components/ForumEditComponent'));
+Vue.component('post-ic-time', require('./components/PostICTimeComponent'));
 
 
 const store = new Vuex.Store({

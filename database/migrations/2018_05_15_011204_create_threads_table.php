@@ -15,15 +15,17 @@ class CreateThreadsTable extends Migration
     {
         Schema::create('threads', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('forum_id');
-            $table->integer('author_id');
+            $table->unsignedInteger('forum_id');
+            $table->unsignedInteger('author_id');
             $table->text('author_type');
             $table->string('title');
             $table->text('description')->nullable();
             $table->boolean('locked')->default(false);
             $table->boolean('pinned')->default(false);
             $table->boolean('announcement')->default(false);
-            $table->bigInteger('ic_time')->nullable();
+            $table->unsignedInteger('ic_month')->nullable();
+            $table->unsignedInteger('ic_day')->nullable();
+            $table->unsignedInteger('ic_year')->nullable();
             $table->string('slug');
             $table->softDeletes();
             $table->timestamps();
