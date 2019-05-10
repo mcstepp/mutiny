@@ -18,8 +18,13 @@ class SettingsPanelComposer
     public function compose(View $view)
     {
 
-        $sub_updates_count = auth()->user()->subscriptions()->count();
+        $subscriptions_count = auth()->user()->subscriptions()->count();
+        $notifications_count = auth()->user()->notifications()->count();
 
-        $view->with('sub_updates_count', $sub_updates_count);
+        $view->with([
+            'subscriptions_count' => $subscriptions_count,
+            'notifications_count' => $notifications_count
+        ]);
     }
 }
+
