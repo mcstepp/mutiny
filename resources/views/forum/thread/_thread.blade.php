@@ -6,7 +6,7 @@
     <div class="card-top">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="callout callout-primary">
                         <h3 class="m-fancy-title neon-default text-uppercase">
                             @if($thread->pinned)
@@ -21,13 +21,14 @@
                         <small class="font-xs">Last reply {{ $thread->lastPost->created_at->diffForHumans() }} on {{ $thread->lastPost->created_at->format('M j, Y') }}</small>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="callout callout-primary">
-                        <small class="m-fancy-title text-uppercase">Last Reply by:</small><br>
-                        <a href="{{ $thread->lastPost->author->path() }}"
-                           class="flicker dauntless">
-                            {{ $thread->lastPost->author->username }}
-                        </a>
+                        <small class="m-fancy-title text-uppercase">Last Reply by:</small>
+                        @if(strtolower(class_basename($thread->lastPost->author)) === 'character')
+                        <a class="d-block flicker text-{{ strtolower($thread->lastPost->author->faction->name) }}" href="{{ $thread->lastPost->author->path }}"><i class="fas fa-{{ $thread->lastPost->author->faction->icon  }}"></i> {{ $thread->lastPost->author->username }}</a>
+                        @else
+                            <a class="flicker text-secondary d-block" href="{{ $thread->lastPost->author->path }}"> {{ $thread->lastPost->author->username }}</a>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -46,11 +47,10 @@
         </div>
     </div>
 
-    <div class="card-body collapse" id="thread{{ $thread->id }}">
-        <div class="container-fluid">
+    <div class="card-body collapse container-fluid" id="thread{{ $thread->id }}">
             <div class="row">
 
-                <div class="col-lg-6 align-self-center">
+                <div class="col-lg-5 order-lg-first align-self-center">
                     <div class="callout callout-primary text-uppercase">
                         <p><small class="m-fancy-title text-uppercase">Tags:</small></p>
                         <span class="badge badge-pill badge-info m-1">Info</span>
@@ -65,29 +65,16 @@
                         <span class="badge badge-pill badge-light m-1">Light</span>
                         <span class="badge badge-pill badge-dark m-1">Dark</span>
                     </div>
-                    <div class="callout callout-primary">
-                        <p><small class="m-fancy-title text-uppercase">Participants</small></p>
-
-                        @foreach($thread->participants() as $post)
-                            <a href="{{ $post->author->path() }}" class="m-thread-participant">
-                                @include("graphics._icon", [
-                                    'author' => $post->author,
-                                    'type' => strtolower(class_basename($post->author)),
-                                    'size' => 50,
-                                    'hide'
-                                ])
-                            </a>
-                        @endforeach
-                    </div>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-7 order-first order-lg-last">
                     <div class="callout callout-primary">
                         <small class="m-fancy-title text-uppercase">Started by:</small><br>
-                        <a href="{{ $thread->firstPost->author->path() }}"
-                           class="flicker dauntless">
-                            {{ $thread->firstPost->author->username }}
-                        </a>
+                        @if(strtolower(class_basename($thread->firstPost->author)) === 'character')
+                            <a class="d-block flicker text-{{ strtolower($thread->firstPost->author->faction->name) }}" href="{{ $thread->firstPost->author->path }}"><i class="fas fa-{{ $thread->firstPost->author->faction->icon  }}"></i> {{ $thread->firstPost->author->username }}</a>
+                        @else
+                            <a class="flicker text-secondary d-block" href="{{ $thread->firstPost->author->path }}"> {{ $thread->firstPost->author->username }}</a>
+                        @endif
                     </div>
 
                     @if($thread->description || $thread->happened_at)
@@ -108,7 +95,24 @@
 
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col">
+                    <div class="callout callout-primary">
+                        <p><small class="m-fancy-title text-uppercase">Participants:</small></p>
+
+                        @foreach($thread->participants() as $post)
+                            <a href="{{ $post->author->path() }}" class="m-thread-participant">
+                                @include("graphics._icon", [
+                                    'author' => $post->author,
+                                    'type' => strtolower(class_basename($post->author)),
+                                    'size' => 50,
+                                    'hide'
+                                ])
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
     </div>
 
     <div class="card-bottom py-3">
