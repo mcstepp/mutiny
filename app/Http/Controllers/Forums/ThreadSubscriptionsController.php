@@ -13,6 +13,17 @@ class ThreadSubscriptionsController extends Controller
         $this->middleware('auth');
     }
 
+    public function index()
+    {
+        $user = auth()->user();
+        $subscriptions = $user->subscriptions();
+
+        return view('user.manage.subscriptions', [
+            'user' => $user,
+            'subscriptions' => $subscriptions
+        ]);
+    }
+
     /**
      * @param $forumId
      * @param Thread $thread

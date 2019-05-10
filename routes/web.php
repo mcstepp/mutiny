@@ -142,3 +142,4 @@ Route::get('/wiki', 'Wiki\WikiPageController@show')->name('wiki-page');
 
 // Manage Subscriptions
 
+Route::get('/subscriptions', 'Forums\ThreadSubscriptionsController@index')->name('view-my-thread-subscriptions');
