@@ -128,6 +128,10 @@ class User extends Authenticatable implements IGraphics
         return $this->morphMany('App\Models\Activity', 'author');
     }
 
+    public function subscriptions()
+    {
+        return $this->hasMany('App\Models\Subscriptions\ThreadSubscription');
+    }
 
     public function faction()
     {
