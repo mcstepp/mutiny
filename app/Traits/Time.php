@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Carbon\Carbon;
+
 trait Time
 {
     protected $startDay = 31;
@@ -15,6 +17,7 @@ trait Time
     protected $asOfYear = 150;
     protected $maxAge = 78;
     protected $minAge = 18;
+    protected $realYear = 2025;
     protected $months = [
         'January',
         'February',
@@ -30,10 +33,9 @@ trait Time
         'December'
     ];
 
-    protected static function bootTime()
-    {
+    //TODO: Extract to model
+    protected $startDate;
 
-    }
 
     public function getBirthYears()
     {
@@ -94,6 +96,15 @@ trait Time
         ];
     }
 
+    public function getRealStartPeriod()
+    {
+        return [
+            'startYear' => $this->startYear + $this->realYear,
+            'startMonth' => $this->startMonth,
+            'startDay' => $this->startDay,
+        ];
+    }
+
     public function getAsOf()
     {
         return [
@@ -101,5 +112,15 @@ trait Time
             'asOfMonth' => $this->asOfMonth,
             'asOfYear' => $this->asOfYear,
         ];
+    }
+
+    public function getRealYear()
+    {
+        return $this->realYear;
+    }
+
+    public function getIcTime()
+    {
+
     }
 }

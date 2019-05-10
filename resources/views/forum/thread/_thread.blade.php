@@ -89,13 +89,23 @@
                             {{ $thread->firstPost->author->username }}
                         </a>
                     </div>
-                    @if($thread->description || $thread->ic_time)
-                    <div class="callout callout-primary">
-                        <small class="m-fancy-title text-uppercase">Description:</small><br>
-                        <h5 class="m-fancy-header neon-default">May 30, YR 150</h5>
-                        <p>{{ $thread->description }}</p>
-                    </div>
+
+                    @if($thread->description || $thread->happened_at)
+                        <div class="callout callout-primary">
+                            <small class="m-fancy-title text-uppercase">Description:</small><br>
+
+                            @if($thread->happened_at)
+                                <h5 class="m-fancy-header text-uppercase neon-default">
+                                    {{ $thread->happened_at->subYears(2025)->format('F j, \Y\R \1y') }}
+                                </h5>
+                            @endif
+
+                            @if($thread->description)
+                                <p>{{ $thread->description }}</p>
+                            @endif
+                        </div>
                     @endif
+
                 </div>
             </div>
         </div>

@@ -24,11 +24,11 @@
         </div>
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-6 col-lg-3">
                 @include("widgets._points")
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-6 col-lg-3">
                 <div class="card m-card m-text-shadow bg-industrial-primary">
                     <div class="card-body p-3 clearfix">
                         <i class="fas fa-comment-alt bg-primary p-3 font-2xl mr-3 float-left"></i>
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-6 col-lg-3">
                 <div class="card m-card m-text-shadow bg-industrial-secondary">
                     <div class="card-body p-3 clearfix">
                         <i class="fas fa-user-clock bg-secondary p-3 font-2xl mr-3 float-left"></i>
@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-6 col-lg-3">
                 <div class="card m-card m-text-shadow bg-industrial-info">
                     <div class="card-body p-3 clearfix">
                         <i class="fas fa-users bg-info p-3 font-2xl mr-3 float-left"></i>

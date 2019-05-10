@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\Forums;
 
+use App\Http\Requests\StoreForumThread;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Thread;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
+use App\Traits\Time;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
 class ForumThreadController extends Controller
 {
+    use Time;
     public function __construct()
     {
         $this->middleware('auth');
@@ -37,7 +41,7 @@ class ForumThreadController extends Controller
 
         return view('forum.thread.index', [
             'threads' => $threads,
-            'forum' => $forum
+            'forum' => $forum,
         ]);
     }
 
@@ -52,7 +56,14 @@ class ForumThreadController extends Controller
     {
         $this->authorize('newThread', $forum);
 
-        return view('forum.thread.create', compact('forum'));
+        return view('forum.thread.create', [
+            'forum' => $forum,
+            'months' => $this->getMonths(),
+            'period' => $this->getPeriod(),
+            'current' => $this->getCurrent(),
+            'asOf' => $this->getAsOf(),
+            'years' => [ 150 ]
+        ]);
     }
 
     /**
@@ -62,33 +73,33 @@ class ForumThreadController extends Controller
      * @param Forum $forum
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Forum $forum)
+    public function store(StoreForumThread $request, Forum $forum)
     {
-        // TODO: update later with specific rules
-        $this->authorize('view', $forum);
-
-        $this->validate($request, [
-            'title' => 'required|min:6|max:255',
-            'body' => 'required|min:6',
-            'description' => 'nullable|min:6',
-            'author_id' => 'required',
-            'author_type' => 'required'
-        ]);
 
         // is the author a user ('u') or a character?
-        $author_id = request('author_id') === 'u' ?
+        $author_id = $request->input('author_id') === 'u' ?
             auth()->id() :
-            request('author_id');
+            $request->input('author_id');
 
+        $ic_date = $request->filled('ic_day') ?
+            Carbon::create(
+                $request->input('ic_year') + $this->getRealYear(),
+                $request->input('ic_month'),
+                $request->input('ic_day'))
+            : NULL;
 
         $thread = Thread::create([
             'forum_id' => $forum->id,
-            'title' => request('title'),
-            'description' => request('description'),
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
             'author_id' => $author_id,
             'author_type' => request('author_type'),
+            'ic_month' => $request->input('ic_month', NULL),
+            'ic_day' => $request->input('ic_day', NULL),
+            'ic_year' => $request->input('ic_year', NULL),
             'pinned' => request('pin') || false,
-            'locked' => request('lock') || false
+            'locked' => request('lock') || false,
+            'happened_at' => $ic_date
         ]);
 
         // make post with thread id
@@ -120,7 +131,12 @@ class ForumThreadController extends Controller
 
         return view('forum.thread.edit', [
             'forum' => $forum,
-            'thread' => $thread
+            'thread' => $thread,
+            'months' => $this->getMonths(),
+            'period' => $this->getPeriod(),
+            'current' => $this->getCurrent(),
+            'asOf' => $this->getAsOf(),
+            'years' => [ 150 ]
         ]);
     }
 
@@ -153,8 +169,17 @@ class ForumThreadController extends Controller
                 ]);
             }
 
-            $thread->save();
+
+            $ic_date = $request->filled(['ic_day', 'ic_month', 'ic_year']) ? Carbon::create(
+                        $request->input('ic_year') + $this->getRealYear(),
+                        $request->input('ic_month'),
+                        $request->input('ic_day')) : NULL;
+                $thread->fill([
+                    'happened_at' => $ic_date
+                ]);
         }
+
+        $thread->save();
 
 
         if ($request->has('pin'))

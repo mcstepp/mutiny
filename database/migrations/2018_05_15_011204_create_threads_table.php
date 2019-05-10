@@ -28,6 +28,7 @@ class CreateThreadsTable extends Migration
             $table->unsignedInteger('ic_year')->nullable();
             $table->string('slug');
             $table->softDeletes();
+            $table->dateTime('happened_at')->nullable();
             $table->timestamps();
         });
     }

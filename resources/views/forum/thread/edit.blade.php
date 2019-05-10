@@ -73,6 +73,20 @@
                             </div>
 
 
+                                @if($forum->ic)
+                                    <post-ic-time :old="{{ json_encode([
+                                                    'ic_day' => $thread->ic_day,
+                                                    'ic_month' => $thread->ic_month,
+                                                    'ic_year' => $thread->ic_year
+                                                    ]) }}"
+                                                  :period="{{ json_encode($period) }}"
+                                                  :current="{{ json_encode($current) }}"
+                                                  :asof="{{ json_encode($asOf) }}"
+                                                  :years="{{ json_encode($years) }}"
+                                                  :months="{{ json_encode($months) }}"></post-ic-time>
+                                @endif
+
+
                             @if($forum->ic && $forum->moderators->contains($thread->author->user))
 
                                 <post-as :characters="{{ json_encode($thread->author->user->characters) }}"
@@ -80,7 +94,7 @@
 
                             @elseif($forum->ic && !$forum->moderators->contains($thread->author->user()))
 
-                                <post-as :characters="{{ json_encode($thread->author->user()->characters) }}">
+                                <post-as :characters="{{ json_encode($thread->author->user->characters) }}">
 
                                 </post-as>
 
@@ -91,11 +105,8 @@
                             @endif
 
 
-                            <div class="row">
-                                <div class="col-sm-2"></div>
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Edit Thread</button>
-                                </div>
+                            <div class="form-group row">
+                                <button type="submit" class="mx-auto btn btn-primary m-fancy-title text-uppercase">Edit Thread</button>
                             </div>
                         </form>
                     </div>

@@ -43,7 +43,7 @@ class ThreadController extends Controller
      */
     public function create(Forum $forum)
     {
-        return view('thread.create', compact('forum'));
+        //
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Models\Forum;
 use App\Filters\ThreadFilters;
 use App\Models\Subscriptions\ThreadSubscription;
 use App\Notifications\ThreadWasReplied;
+use App\Traits\Time;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +23,7 @@ class Thread extends Model implements Auditable
     use RecordsActivity;
     use Cachable;
     use HasSlug;
+    use Time;
     use \OwenIt\Auditing\Auditable;
 
 
@@ -34,7 +36,7 @@ class Thread extends Model implements Auditable
 
     protected $appends = ['path'];
     
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at','happened_at'];
 
     protected static function boot()
     {
@@ -151,6 +153,11 @@ class Thread extends Model implements Auditable
                 ->exists();
     }
 
+    public function getIcTimeAttribute()
+    {
+        return $this->getIcTime();
+    }
+
     public function lastPost()
     {
         return $this->hasOne(Post::class)->orderBy('id','desc');
@@ -225,5 +232,4 @@ class Thread extends Model implements Auditable
     {
         return $this->forum->ic;
     }
-
 }

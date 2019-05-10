@@ -46,7 +46,10 @@ $factory->define(App\Models\Forum\Thread::class, function (Faker $faker) {
             };
 
             return factory('App\User')->create()->id;
-        }
+        },
+        'ic_day' => 31,
+        'ic_month' => 5,
+        'ic_year' => 150
 //        'locked' => 0,
 //        'pinned' => 0,
 //        'announcement' => 0,

@@ -88,6 +88,15 @@
                         </div>
                     </div>
 
+                    @if($forum->ic)
+                        <post-ic-time :old="{{ json_encode(old()) }}"
+                                      :period="{{ json_encode($period) }}"
+                                      :current="{{ json_encode($current) }}"
+                                      :asof="{{ json_encode($asOf) }}"
+                                      :years="{{ json_encode([150]) }}"
+                                      :months="{{ json_encode($months) }}"></post-ic-time>
+                    @endif
+
                     <div class="form-group row">
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10 checkbox">
