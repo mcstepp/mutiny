@@ -139,3 +139,6 @@ Route::get('/faceclaims', 'Character\CharacterController@list')->name('face-clai
 
 // Wiki
 Route::get('/wiki', 'Wiki\WikiPageController@show')->name('wiki-page');
+
+// Manage Subscriptions
+
