@@ -3,24 +3,16 @@
         <label class="control-label col-sm-2">Post As:</label>
         <div class="col-sm-10">
             <input type="hidden" name="author_type" v-model="author_type">
-            <template v-if="characters">
-                <label v-for="character in characters">
-                    <input type="radio"
-                           name="author_id"
-                           :value="character.id"
-                           @change="setType('character')"
-                           v-model="author_id">
+            <select v-model="author_id">
+                <option v-if="characters.length"
+                        v-for="character in characters"
+                        :value="character.id">
                     {{ username(character) }}
-                </label>
-            </template>
-            <label v-if="user">
-                <input type="radio"
-                       name="author_id"
-                       value="u"
-                       @change="setType('user')"
-                       v-model="author_id">
-                {{ user.username }}
-            </label>
+                </option>
+
+                <option v-if="user" value="u">{{ user.username }}</option>
+
+            </select>
         </div>
     </div>
 </template>
@@ -52,6 +44,12 @@
                 author_type: 'user',
                 author_id: ''
             };
+        },
+
+        computed: {
+          post_as() {
+              return
+          }
         },
 
 
