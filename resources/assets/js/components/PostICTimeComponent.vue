@@ -130,7 +130,7 @@
         },
 
         created() {
-            if(this.old) {
+            if(this.old && this.old.length) {
                 this.use_current = false;
                 this.use_period = false;
 
