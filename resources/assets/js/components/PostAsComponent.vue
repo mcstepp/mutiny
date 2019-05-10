@@ -1,9 +1,9 @@
 <template>
     <div class="form-group row">
-        <label class="control-label col-sm-2">Post As:</label>
+        <label class="control-label col-sm-2" for="author_id">Post As:</label>
         <div class="col-sm-10">
             <input type="hidden" name="author_type" v-model="author_type">
-            <select v-model="author_id">
+            <select v-model="author_id" name="author_id" id="author_id">
                 <option v-if="characters.length"
                         v-for="character in characters"
                         :value="character.id">
