@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
 
 
         View::composer('widgets._posts', 'App\Http\ViewComposers\PostsWidgetComposer');
+        View::composer('widgets._online', 'App\Http\ViewComposers\OnlineWidgetComposer');
     }
 
     /**

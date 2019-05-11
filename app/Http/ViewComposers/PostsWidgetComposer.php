@@ -2,9 +2,6 @@
 
 namespace App\Http\ViewComposers;
 
-use App\Models\Forum\Category;
-use App\Models\Forum\Forum;
-use App\Models\Forum\Post;
 use App\Models\Forum\Thread;
 use Illuminate\View\View;
 
