@@ -33,6 +33,7 @@
                                     'author' => $user,
                                     'type' => strtolower(class_basename($user))])
                                     <br/>
+
                                     <p>Member since {{ $user->created_at->format('M j, Y') }}</p>
                                     <p><strong><a href="{{$user->subplots()->path()}}">SUBPLOTS AND DEVELOPMENT</a></strong></p>
                                 </div>

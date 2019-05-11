@@ -22,6 +22,7 @@ class LastSeen
 
         $user = auth()->user();
 
+        $user->timestamps = false;
         $user->update([
             'seen_at' => Carbon::now()->format("Y-m-d H:i:s")
         ]);

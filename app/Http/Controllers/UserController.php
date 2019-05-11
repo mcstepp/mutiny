@@ -44,6 +44,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+
         $activities = $user->activities()->with('subject')->get();
         $characters = $user->characters;
 

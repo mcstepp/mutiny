@@ -51,8 +51,6 @@ class User extends Authenticatable implements IGraphics
 
     protected $dates = ['seen_at'];
 
-    public $timestamps = false;
-
     protected static function boot()
     {
         parent::boot();
