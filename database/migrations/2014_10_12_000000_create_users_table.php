@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('slug');
             $table->unsignedInteger('parent_id')->default(0);
             $table->rememberToken();
+            $table->dateTime('seen_at')->nullable();
             $table->timestamps();
         });
     }

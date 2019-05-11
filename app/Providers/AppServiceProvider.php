@@ -29,6 +29,9 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('layouts._unread_notifications', 'App\Http\ViewComposers\UnreadNotificationsComposer');
         View::composer('layouts._settings', 'App\Http\ViewComposers\SettingsPanelComposer');
+
+
+        View::composer('widgets._posts', 'App\Http\ViewComposers\PostsWidgetComposer');
     }
 
     /**

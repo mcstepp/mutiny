@@ -32,7 +32,7 @@ class User extends Authenticatable implements IGraphics
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'alias','parent_id'
+        'username', 'email', 'password', 'alias','parent_id','seen_at'
     ];
 
     /**
@@ -48,6 +48,10 @@ class User extends Authenticatable implements IGraphics
     protected $appends = ['path'];
 
     protected $with = ['graphics'];
+
+    protected $dates = ['seen_at'];
+
+    public $timestamps = false;
 
     protected static function boot()
     {
