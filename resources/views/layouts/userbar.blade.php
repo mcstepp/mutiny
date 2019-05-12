@@ -11,6 +11,7 @@
             <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>
         @else
 
+        @include('layouts._users_online')
         @include('layouts._unread_notifications')
         @include('layouts._messages')
         @include('layouts._settings')
