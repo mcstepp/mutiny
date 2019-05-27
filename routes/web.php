@@ -38,13 +38,19 @@ Route::get('/industry/jobs', 'Character\IndustryJobController@index')->name('job
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
+//Admin Announcements
+Route::get('/admin/announcements', 'Admin\AdminAnnouncementsController@index')->name('admin-announcements');
+Route::get('/admin/announcements/create', 'Admin\AdminAnnouncementsController@create')->name('admin-create-announcement');
+Route::post('admin/announcements', 'Admin\AdminAnnouncementsController@store')->name('admin-store-announcement');
+
+
 // Admin Panel
 Route::get('/admin', 'Admin\AdminPanelController@index')->name('adminPanel');
+
 
 // Admin Forum
 Route::get('/admin/forums', 'Admin\AdminForumController@index')->name('admin-forums');
 Route::post('/admin/forums', 'Forums\ForumController@store')->name('admin-store-forum');
-Route::get('/admin/forums/create', 'Forums\ForumController@create')->name('admin-create-forum');
 Route::get('/admin/forums/create', 'Forums\ForumController@create')->name('admin-create-forum');
 
 Route::get('/admin/forums/edit', 'Admin\AdminForumController@edit')->name('admin-edit-forum');

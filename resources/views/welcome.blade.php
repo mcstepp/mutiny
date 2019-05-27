@@ -8,11 +8,21 @@
 
     <div class="row ">
         <div class="col d-flex">
-            <div class="card m-card bg-industrial align-self-stretch">
+
+            {{--<div class="card m-card m-text-shadow bg-industrial-gray-700">--}}
+                {{--<div class="card-body p-3 clearfix">--}}
+                    {{--<i class="fas fa-trophy bg-gray-700 p-3 font-2xl mr-3 float-left"></i>--}}
+                    {{--<div class="text-uppercase font-xs m-fancy-header">State of the Art</div>--}}
+                {{--</div>--}}
+                {{--<div class="card-footer bg-gray-700 px-3 py-2">--}}
+                    {{--<a class="text-white m-fancy-title text-uppercase font-xs btn-block flicker" href="#">Redeem Points <i class="text-white fa fa-angle-right float-right font-lg"></i></a>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+
+            <div class="card m-card bg-industrial-gray-700 align-self-stretch">
                 <div class="card-top text-center">
-                    <h2 class="m-fancy-title text-uppercase neon-default">
-                        <i class="fas fa-cog"></i> State of the Art
-                    </h2>
+                    <i class="fas fa-certificate bg-gray-700 p-3 font-2xl mr-3 float-left neon-default glow-default"></i>
+                    <h2 class="text-uppercase m-fancy-header m-3 neon-default">State of the Art</h2>
                 </div>
                 <div class="card-body">
                     <ul>
@@ -26,11 +36,10 @@
         </div>
 
         <div class="col d-flex">
-            <div class="card m-card bg-industrial align-self-stretch">
+            <div class="card m-card bg-industrial-gray-700 align-self-stretch">
                 <div class="card-top text-center">
-                    <h2 class="m-fancy-title text-uppercase neon-default">
-                        <i class="fas fa-users"></i> Collaborative
-                    </h2>
+                    <i class="fas fa-users bg-gray-700 p-3 font-2xl mr-3 float-left neon-default glow-default"></i>
+                    <h2 class="text-uppercase m-fancy-header m-3 neon-default">Collaborative</h2>
                 </div>
                 <div class="card-body">
                     <ul>
@@ -39,14 +48,16 @@
                         <li>Discord Available</li>
                     </ul>
                 </div>
+
             </div>
         </div>
 
         <div class="col d-flex">
-            <div class="card m-card bg-industrial align-self-stretch">
+            <div class="card m-card bg-industrial-gray-700 align-self-stretch">
                 <div class="card-top text-center">
-                    <h2 class="m-fancy-title text-uppercase neon-default">
-                        <i class="fas fa-book-reader"></i> Immersive Storytelling
+                    <i class="fas fa-book-reader bg-gray-700 p-3 font-2xl mr-3 float-left neon-default glow-default"></i>
+                    <h2 class="m-fancy-header text-uppercase m-3 neon-default">
+                         Immersive Storytelling
                     </h2>
                 </div>
                 <div class="card-body">
@@ -62,8 +73,14 @@
     </div>
 
     <div class="row">
-        <div class="col d-flex">
-            <div class="card m-card bg-industrial-dark align-self-stretch">
+        <div class="col pb-4">
+            @include("widgets._announcements")
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 d-flex">
+            <div class="card m-card bg-industrial align-self-stretch">
                 <div class="card-top text-center">
                     <h2 class="m-fancy-header neon-default">
                         About MUTINY!
@@ -81,8 +98,8 @@
                 </div>
             </div>
         </div>
-        <div class="col d-flex">
-            <div class="card m-card bg-industrial-dark align-self-stretch">
+        <div class="col sm-6 d-flex">
+            <div class="card m-card bg-industrial align-self-stretch">
                 <div class="card-top text-center">
                     <h2 class="m-fancy-header neon-default">
                         About MUTINY! 2.0

@@ -93,6 +93,11 @@ class Thread extends Model implements Auditable
         return $this->path();
     }
 
+    public function announcement()
+    {
+        return $this->hasOne('App\Models\Announcement');
+    }
+
     /**
      * A thread belongs to an author
      *

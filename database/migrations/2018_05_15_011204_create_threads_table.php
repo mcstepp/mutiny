@@ -15,6 +15,7 @@ class CreateThreadsTable extends Migration
     {
         Schema::create('threads', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('announcement_id')->nullable();
             $table->unsignedInteger('forum_id');
             $table->unsignedInteger('author_id');
             $table->text('author_type');
@@ -22,7 +23,6 @@ class CreateThreadsTable extends Migration
             $table->text('description')->nullable();
             $table->boolean('locked')->default(false);
             $table->boolean('pinned')->default(false);
-            $table->boolean('announcement')->default(false);
             $table->unsignedInteger('ic_month')->nullable();
             $table->unsignedInteger('ic_day')->nullable();
             $table->unsignedInteger('ic_year')->nullable();
