@@ -19,7 +19,7 @@
 </head>
 
 @auth
-<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
+<body class="app header-fixed sidebar-fixed aside-menu-off-canvas aside-menu-hidden">
 @endauth
 @guest
 <body class="app header-fixed sidebar-hidden aside-menu-hidden">
@@ -52,7 +52,7 @@
 
     </main>
 
-    {{--@include('layouts.aside')--}}
+    @include('layouts.aside')
 </div>
 <footer class="app-footer">
     <p class="text-muted text-center font-xs m-auto">

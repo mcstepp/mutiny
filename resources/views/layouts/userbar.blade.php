@@ -16,9 +16,9 @@
         @include('layouts._messages')
         @include('layouts._settings')
 
-        {{--<button class="navbar-toggler aside-menu-toggler" type="button">--}}
-            {{--<span class="navbar-toggler-icon"></span>--}}
-        {{--</button>--}}
+        <button class="navbar-toggler aside-menu-toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         @endif
 
     </ul>
