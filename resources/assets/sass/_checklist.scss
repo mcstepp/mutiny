@@ -3,3 +3,30 @@
   background-color: $gray-500;
   color: darken($white, 50%);
 }
+
+.m-task {
+  position: relative;
+  min-height: 45vh;
+  a {
+    color: $white;
+    transition: background-color 0.2s ease-in-out;
+    &:link {}
+    &:visited {}
+    &:hover {
+      background-color: $mutiny_pink_alt;
+    }
+    &:active {}
+
+    &.active {
+      background-color: $mutiny_purple_alt;
+    }
+  }
+
+  footer {
+    margin-bottom: 1em;
+    position: absolute;
+    bottom: 0;
+  }
+
+
+}
