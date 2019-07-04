@@ -1,10 +1,20 @@
-<div class="card m-card m-task rounded m-text-shadow bg-industrial-primary m-3" style="width: 85%;">
+@php
+    $type = [
+        'occupational' => 'primary',
+        'casual' => 'gray-700',
+        'lifestyle' => 'dauntless',
+        'minor' => 'abnegation',
+        'major' => 'info'
+    ];
+@endphp
+
+<div class="card m-card m-task rounded m-text-shadow bg-industrial-{{ $type[$task_category] }} m-3" style="width: 85%;">
     <div class="card-body clearfix">
         <h6 class="m-fancy-title text-uppercase neon-default">
             Task Category
         </h6>
         <div class="tab-content border-0 text-white h-auto bg-transparent">
-            <div class="tab-pane p-1 active" id="task-summary-{{ $id }}" role="tabpanel">
+            <div class="tab-pane active" id="task-summary-{{ $id }}" role="tabpanel">
                 <p class="small">Aenean sit amet aliquet risus. Curabitur vel auctor ipsum. Vestibulum at accumsan ligula, et accumsan diam. Aliquam id est sit amet ligula molestie pellentesque. Ut dignissim, odio et mattis maximus, dui dui convallis odio, vel aliquam lectus dolor vitae velit.</p>
             </div>
             <div class="tab-pane p-1" id="bonus-{{ $id }}" role="tabpanel">
@@ -21,7 +31,7 @@
             </div>
         </div>
 
-        <footer class="bg-primary">
+        <footer class="bg-{{ $type[$task_category] }}">
             <ul class="nav border-0 justify-content-around nav-fill" role="tablist">
                 <li class="nav-item text-center">
                     <a class="nav-link text-white active" data-toggle="tab" href="#task-summary-{{ $id }}" role="tab"><i class="fas fa-comment-alt"></i></a>

@@ -47,11 +47,11 @@ class Thread extends Model implements Auditable
             $builder->withCount('posts');
         });
 
-        // delete all posts and subscriptions to threads
+        // delete all posts, subscriptions, activity to threads
         static::deleting(function ($thread) {
             $thread->posts->each->delete();
-
             $thread->subscriptions->each->delete();
+            $thread->activities->each->delete();
         });
 
         // if thread is IC, award author +5 points
@@ -132,6 +132,11 @@ class Thread extends Model implements Auditable
     public function subscriptions()
     {
         return $this->hasMany(ThreadSubscription::class);
+    }
+
+    public function activities()
+    {
+        return $this->morphMany('App\Models\Activity', 'subject');
     }
 
     public function participants()

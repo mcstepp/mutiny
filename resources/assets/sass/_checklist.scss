@@ -6,7 +6,7 @@
 
 .m-task {
   position: relative;
-  min-height: 45vh;
+  height: 45vh;
   a {
     color: $white;
     transition: background-color 0.2s ease-in-out;
@@ -20,6 +20,12 @@
     &.active {
       background-color: $mutiny_purple_alt;
     }
+  }
+
+  .card-body {
+    overflow: auto;
+    padding: 1em;
+    margin-bottom: calc(38px + 1em);
   }
 
   footer {

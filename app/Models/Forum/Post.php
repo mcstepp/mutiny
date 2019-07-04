@@ -40,6 +40,10 @@ class Post extends Model implements Auditable
             }
         });
 
+        static::deleting(function ($post) {
+            $post->activities->each->delete();
+        });
+
     }
 
 
@@ -58,6 +62,11 @@ class Post extends Model implements Auditable
     {
         $thread = $this->thread->path();
         return $thread . "/" . $this->id;
+    }
+
+    public function activities()
+    {
+        return $this->morphMany('App\Models\Activity', 'subject');
     }
 
     public function isIc()
