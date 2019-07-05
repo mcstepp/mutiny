@@ -18,9 +18,10 @@
             @endif
 
                     <img class="d-block w-100" style="object-fit:cover; height: 50vh; object-position: center bottom;" src="{{ $announcement->image_path }}">
+
                     <div class="carousel-caption m-text-shadow">
-                        <a class="text-white h3 m-fancy-title text-uppercase d-block" href="{{ $announcement->thread->path }}">{{ $announcement->thread->title }}</a>
-                        <a class="text-white d-block" href="{{ $announcement->thread->path }}">{{ $announcement->thread->description }}</a>
+                        <a class="text-white h3 m-fancy-title text-uppercase d-block" href="/f/{{$announcement->thread->forum_id}}/t/{{ $announcement->thread->slug }}">{{ $announcement->thread->title }}</a>
+                        <a class="text-white d-block" href=/f/{{$announcement->thread->forum_id}}/t/{{ $announcement->thread->slug }}">{{ $announcement->thread->description }}</a>
                     </div>
 
                 </div>

@@ -52,6 +52,10 @@ class Thread extends Model implements Auditable
             $thread->posts->each->delete();
             $thread->subscriptions->each->delete();
             $thread->activities->each->delete();
+
+            if (isset($thread->announcement)) {
+                $thread->announcement->delete();
+            }
         });
 
         // if thread is IC, award author +5 points
@@ -85,7 +89,7 @@ class Thread extends Model implements Auditable
     public function path()
     {
         $key = $this->getRouteKeyName();
-        return "/f/{$this->forum->id}/t/" . $this[$key];
+        return "/f/{$this->forum_id}/t/" . $this[$key];
     }
 
     public function getPathAttribute()

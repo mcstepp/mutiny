@@ -1,14 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    @include('layouts._breadcrumb', ['menu' => [
-        [
-        'link-route' => route('dashboard'),
-        'link-name' => 'Dashboard'
-        ],[
-        'link-name' => 'Dashboard'
-        ],
-        [
+    @include('layouts._breadcrumb', ['menu' => [[
         'link-name' => 'Dashboard'
         ]
     ]])
@@ -124,18 +117,9 @@
     </div>
 @endsection
 
-{{--@section('content')--}}
-    {{--<div class="card bg-secondary m-3">--}}
-        {{--<div class="card-header">Dashboard</div>--}}
-
         {{--<div class="card-body">--}}
             {{--@if (session('status'))--}}
                 {{--<div class="alert alert-success">--}}
                     {{--{{ session('status') }}--}}
                 {{--</div>--}}
             {{--@endif--}}
-
-            {{--You are logged in!--}}
-        {{--</div>--}}
-    {{--</div>--}}
-{{--@endsection--}}

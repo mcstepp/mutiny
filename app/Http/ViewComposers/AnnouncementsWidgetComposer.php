@@ -18,7 +18,7 @@ class AnnouncementsWidgetComposer
      */
     public function compose(View $view)
     {
-        $announcements = Announcement::with('thread.forum:id,title,description')
+        $announcements = Announcement::with('thread:id,forum_id,title,description,slug')
             ->latest()
             ->limit(3)
             ->get();
