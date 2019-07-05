@@ -6,6 +6,7 @@ use App\Filters\UserFilters;
 use App\Interfaces\IGraphics;
 use App\Models\Forum\Category;
 use App\Models\Invitation;
+use App\Traits\CanAuthorThreads;
 use App\Traits\HasGraphics;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
@@ -24,6 +25,7 @@ class User extends Authenticatable implements IGraphics
 {
     use Notifiable, Cachable, HasSlug, UsersOnlineTrait;
     use HasGraphics;
+    use CanAuthorThreads;
 
 
     /**
@@ -79,16 +81,6 @@ class User extends Authenticatable implements IGraphics
         return $this->hasMany(Audit::class);
     }
 
-    public function threads()
-    {
-        return $this->morphMany('App\Models\Forum\Thread', 'author');
-    }
-
-    public function posts()
-    {
-        return $this->morphMany('App\Models\Forum\Post', 'author');
-    }
-
     public function pending_characters()
     {
         return $this->hasMany(PendingCharacter::class);
@@ -123,11 +115,6 @@ class User extends Authenticatable implements IGraphics
     public function getPathAttribute()
     {
         return $this->path();
-    }
-
-    public function activities()
-    {
-        return $this->morphMany('App\Models\Activity', 'author');
     }
 
     public function subscriptions()

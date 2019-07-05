@@ -4,6 +4,7 @@ namespace App\Models\Character;
 
 use App\Interfaces\IGraphics;
 use App\Notifications\CharacterWasAccepted;
+use App\Traits\CanAuthorThreads;
 use App\Traits\HasGraphics;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 use OwenIt\Auditing\Contracts\Auditable;
@@ -16,6 +17,7 @@ class Character extends PendingCharacter implements Auditable, IGraphics
     use HasSlug;
     use \OwenIt\Auditing\Auditable;
     use HasGraphics;
+    use CanAuthorThreads;
 
 
     protected $table = 'characters';
@@ -59,30 +61,10 @@ class Character extends PendingCharacter implements Auditable, IGraphics
         return 'slug';
     }
 
-    public function threads()
-    {
-        return $this->morphMany('App\Models\Forum\Thread', 'author');
-    }
-
-    public function posts()
-    {
-        return $this->morphMany('App\Models\Forum\Post', 'author');
-    }
-
     public function path() 
     {
         $key = $this->getRouteKeyName();
         return "/c/" . $this[$key];
-    }
-
-    public function activities()
-    {
-        return $this->morphMany('App\Models\Activity', 'author');
-    }
-
-    public function graphics()
-    {
-        return $this->morphOne('App\Models\Graphics', 'owner');
     }
 
     public function addPoints($num = 0)
