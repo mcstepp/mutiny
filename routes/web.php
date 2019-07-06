@@ -75,6 +75,13 @@ Route::get('/admin/pending', 'Character\PendingCharacterController@index')->name
 Route::get('admin/pending/{pcharacter}', 'Character\PendingCharacterController@show')->name('admin-show-pending-character');
 Route::put('/admin/pending/{pcharacter}', 'Character\PendingCharacterController@update')->name('admin-pend-character');
 
+// Admin Checklists
+
+// Admin TaskCategories
+Route::get('/admin/taskcategories', 'Admin\AdminTaskCategoryController@create')->name('admin-create-task-category');
+Route::post('/admin/taskcategories','Admin\AdminTaskCategoryController@store')->name('admin-store-task-category');
+Route::get('/admin/taskcategories/index', 'Admin\AdminTaskCategoryController@index')->name('admin-task-category-index');
+
 // Invitations
 Route::get('/invites', 'InvitationController@index')->name('my-invites');
 Route::post('/invites', 'InvitationController@store')->name('generate-invite');
