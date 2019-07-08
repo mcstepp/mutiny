@@ -8,6 +8,8 @@ use App\Models\Forum\Thread;
 use App\Http\Controllers\Controller;
 
 
+use App\Models\Graphics;
+use App\Models\User\Role;
 use Illuminate\Http\Request;
 
 class ThreadPostController extends Controller
@@ -201,7 +203,12 @@ class ThreadPostController extends Controller
     private function getThreadPosts(Thread $thread)
     {
         $posts = Post::oldest()
-            ->with('author:id,username');
+            ->with(['author' => function ($morphTo) {
+                $morphTo->morphWith([
+                    Role::class,
+                    Graphics::class
+                ]);
+            }]);
 
 
         if ( $thread->exists ) {

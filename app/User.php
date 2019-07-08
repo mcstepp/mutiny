@@ -6,6 +6,7 @@ use App\Filters\UserFilters;
 use App\Interfaces\IGraphics;
 use App\Models\Forum\Category;
 use App\Models\Invitation;
+use App\Models\User\Role;
 use App\Traits\CanAuthorThreads;
 use App\Traits\HasGraphics;
 use GeneaLabs\LaravelModelCaching\Traits\Cachable;
@@ -34,8 +35,7 @@ class User extends Authenticatable implements IGraphics
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'alias','parent_id','seen_at'
-    ];
+        'username', 'email', 'password', 'alias','parent_id','seen_at',  'role_id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -49,7 +49,7 @@ class User extends Authenticatable implements IGraphics
 
     protected $appends = ['path'];
 
-    protected $with = ['graphics'];
+    protected $with = ['graphics','role'];
 
     protected $dates = ['seen_at'];
 
@@ -130,7 +130,7 @@ class User extends Authenticatable implements IGraphics
 
     public function role()
     {
-        return $this->belongsTo('App\Models\User\Role');
+        return $this->belongsTo(Role::class);
     }
 
     public function isSuperAdmin()
