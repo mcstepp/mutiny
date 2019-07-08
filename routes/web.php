@@ -82,6 +82,15 @@ Route::get('/admin/taskcategories', 'Admin\AdminTaskCategoryController@create')-
 Route::post('/admin/taskcategories','Admin\AdminTaskCategoryController@store')->name('admin-store-task-category');
 Route::get('/admin/taskcategories/index', 'Admin\AdminTaskCategoryController@index')->name('admin-task-category-index');
 
+// Admin Tasks
+Route::get('/admin/tasks', 'Admin\AdminTasksController@create')->name('admin-create-tasks');
+Route::post('/admin/tasks', 'Admin\AdminTasksController@store')->name('admin-store-tasks');
+
+// Admin Bonus Modes
+Route::get('/admin/bonusmodes', 'Admin\AdminBonusModeController@create')->name('admin-create-bonus-mode');
+Route::post('/admin/bonusmodes', 'Admin\AdminBonusModeController@store')->name('admin-store-bonus-mode');
+
+
 // Invitations
 Route::get('/invites', 'InvitationController@index')->name('my-invites');
 Route::post('/invites', 'InvitationController@store')->name('generate-invite');

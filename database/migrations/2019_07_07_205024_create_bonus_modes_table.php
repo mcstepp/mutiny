@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable extends Migration
+class CreateBonusModesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_categories', function (Blueprint $table) {
+        Schema::create('bonus_modes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('task_category_id');
+            $table->string('name');
             $table->text('description');
-            $table->unsignedInteger('points');
         });
     }
 
@@ -28,6 +27,6 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('task_categories');
+        Schema::dropIfExists('bonus_modes');
     }
 }

@@ -12,4 +12,9 @@ class TaskCategory extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+
+    public function tasks()
+    {
+        return $this->hasMany('App\Models\Checklists\Task');
+    }
 }

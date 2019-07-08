@@ -32,7 +32,7 @@ class AdminTaskCategoryController extends AdminController
     {
         $taskCategories = TaskCategory::all();
 
-        return view('admin.checklists.tasks.index', [
+        return view('admin.checklists.task_categories.index', [
             'taskCategories' => $taskCategories
         ]);
     }

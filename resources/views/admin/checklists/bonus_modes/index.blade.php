@@ -8,11 +8,11 @@
         'link-route' => route('adminPanel')
         ],[
         'link-route' => '#',
-        'link-name' => 'Create New Task'
+        'link-name' => 'Create a New Bonus Mode'
         ]
     ]])
 
-    @include('admin.checklists.tasks._index')
-    @include('admin.checklists.tasks._create')
+    @include('admin.checklists.bonus_modes._index')
+    @include('admin.checklists.bonus_modes._create')
 
 @endsection

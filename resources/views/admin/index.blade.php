@@ -20,9 +20,16 @@
                         <a href="{{ route('admin-factions') }}" class="list-group-item">
                             Factions
                         </a>
+                    </div>
 
-                        <a href="{{ route('admin-ranks') }}" class="list-group-item">
-                            Ranks
+                    <div class="list-group-">
+
+                        <a href="{{ route('admin-create-task-category') }}" class="list-group-item">
+                            Checklist Task Categories
+                        </a>
+
+                        <a href="{{ route('admin-create-bonus-mode') }}" class="list-group-item">
+                            Checklist Bonus Modes
                         </a>
                     </div>
 
@@ -32,9 +39,36 @@
 
             <div class="card m-card bg-industrial">
                 <div class="card-body">
+                    <h2 class="card-title m-fancy-title text-uppercase">Checklist Settings</h2>
+
+                    <div class="list-group">
+                        <a href="{{ route('admin-create-tasks') }}" class="list-group-item">
+                            Create a New Task
+                        </a>
+
+                        <a href="#" class="list-group-item">
+                            Create a New Bonus
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Assign a Task to a Character
+                        </a>
+                        <a href="#" class="list-group-item">
+                            Bulk Assign a Task to Characters
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card m-card bg-industrial">
+                <div class="card-body">
                     <h2 class="card-title m-fancy-title text-uppercase">Forum Settings</h2>
 
                     <div class="list-group">
+                        <a href="{{ route('admin-create-announcement') }}" class="list-group-item">
+                            Create an Announcement
+                        </a>
+
                         <a href="{{ route('admin-create-forum') }}" class="list-group-item">
                             Create a New Forum
                         </a>

@@ -8,11 +8,11 @@
         'link-route' => route('adminPanel')
         ],[
         'link-route' => '#',
-        'link-name' => 'Create New Task'
+        'link-name' => 'Create New Task Category'
         ]
     ]])
 
-    @include('admin.checklists.tasks._index')
-    @include('admin.checklists.tasks._create')
+    @include('admin.checklists.task_categories._index')
+    @include('admin.checklists.task_categories._create')
 
 @endsection

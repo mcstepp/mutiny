@@ -62,7 +62,7 @@ class IndustryTableSeeder extends Seeder
             ],[
                 'faction_id' => 2,
                 'name' => 'Manual Labor',
-                'description' => 'Jobs related to a variety of laborious tasks and other as-needed work.'
+                'description' => 'Jobs related to a variety of laborious task_categories and other as-needed work.'
             ], [
                 'faction_id' => 2,
                 'name' => 'Distribution',
@@ -178,7 +178,7 @@ class IndustryTableSeeder extends Seeder
             ],[
                 'faction_id' => 6,
                 'name' => 'Manual Labor',
-                'description' => 'Jobs related to a variety of laborious tasks and other as-needed work.'
+                'description' => 'Jobs related to a variety of laborious task_categories and other as-needed work.'
             ],[
                 'faction_id' => 6,
                 'name' => 'Other',
