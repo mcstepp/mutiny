@@ -67,6 +67,12 @@ class Character extends PendingCharacter implements Auditable, IGraphics
         return "/c/" . $this[$key];
     }
 
+    public function tasks()
+    {
+        return $this->hasMany('App\Models\Checklist\ModesTasks')
+            ->using('App\Models\Checklist\CharactersTasks');
+    }
+
     public function addPoints($num = 0)
     {
         return $this->user->addPoints($num);
