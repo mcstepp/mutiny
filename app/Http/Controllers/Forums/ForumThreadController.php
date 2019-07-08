@@ -7,6 +7,8 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Thread;
 use App\Http\Controllers\Controller;
+use App\Models\Graphics;
+use App\Models\User\Role;
 use Carbon\Carbon;
 
 use App\Traits\Time;
@@ -240,7 +242,7 @@ class ForumThreadController extends Controller
     {
         // TODO: get threads that user is authorized to see
         $threads = Thread::with([
-                'author:id,username',
+                'author',
                 'forum:id,name,ic',
                 'posts:id,thread_id',
                 'lastPost'
@@ -267,7 +269,12 @@ class ForumThreadController extends Controller
     {
         // TODO: get thread posts that user is authorized to see
         $posts = Post::oldest()
-            ->with('author:id,username');
+            ->with(['author' => function ($morphTo) {
+                $morphTo->morphWith([
+                    Role::class,
+                    Graphics::class
+                ]);
+            }]);
 
 
         if ( $thread->exists ) {
