@@ -9,6 +9,7 @@ use App\Models\Character\PendingCharacter;
 use App\Notifications\CharacterWasPended;
 use App\Traits\Time;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 class PendingCharacterController extends Controller
@@ -139,6 +140,8 @@ class PendingCharacterController extends Controller
         $character->setStatus('Pending Modifications', $validated['reason']);
 
         $character->user->notify(new CharacterWasPended($character));
+
+        Artisan::call('modelCache:clear', ['--model' => 'App\Models\Character\PendingCharacter']);
 
 
         return redirect()->route('admin-view-pending-characters');
